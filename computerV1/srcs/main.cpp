@@ -10,6 +10,8 @@ int		main(int ac, char **av) {
 		equation = new Equation(av[1]);
 		equation->reduce();
 		cout << *equation->getEquation() << endl;
+		equation->split();
+		equation->showResult();
 		delete equation;
 	}
 	else {

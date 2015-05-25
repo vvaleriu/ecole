@@ -12,7 +12,7 @@
 
 NAME = computor
 CC = g++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++11
 HEADERS = -I./headers -I./srcs
 LIBS =
 RM = rm -rf

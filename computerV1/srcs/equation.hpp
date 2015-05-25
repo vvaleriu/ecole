@@ -2,6 +2,7 @@
 #define EQUATION_HPP
 
 # include <iostream>
+# include <string> 
 # include <cstddef>
 # include <list>
 
@@ -18,7 +19,11 @@ public:
 
 	// Logic
 	void					reduce();
-	//std::list<std::string>	split();
+	void					split();
+	void					parseElem(std::string & elem, bool positive);
+	void					showResult();
+	float					computeDelta();
+	float					square(float value);
 
 	// Accessors
 	std::string				*getEquation();
