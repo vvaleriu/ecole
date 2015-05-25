@@ -13,7 +13,7 @@
 NAME = computor
 CC = g++
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = -I./headers
+HEADERS = -I./headers -I./srcs
 LIBS =
 RM = rm -rf
 vpath %.cpp ./srcs
@@ -21,6 +21,7 @@ vpath %.hpp includes libft/includes
 OBJ = $(SRC:%.cpp=$(OP)%.o)
 OP = ./.obj/
 SRC = main.cpp					\
+		equation.cpp			\
 
 all: $(NAME)
 
