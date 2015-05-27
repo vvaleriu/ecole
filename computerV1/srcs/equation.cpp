@@ -120,13 +120,13 @@ void			Equation::solveDeg2() {
 	else if (_delta == 0.0f)
 		cout << "La solution est : " << B << "/" <<  2 * A << endl;
 	else {
-		cout << "Les solutions sont :" << endl << "(" << -B << " - rac(" << _delta << "))" << " / " <<  2 * A << endl \
-		<< "(" << -B << " + rac(" << _delta << "))" << " / " <<  2 * A << endl;
+		cout << "Les solutions sont :" << endl << "(" << -B << " - " << this->sqrt(_delta) << ") / " <<  2 * A << endl \
+		<< "(" << -B << " + " << this->sqrt(_delta) << ") / " <<  2 * A << endl;
 	}
 }
 
 void			Equation::solveDeg1() const {
-	displayABC();
+	displayABC1();
 	if (C != 0.0f)
 		cout << "La solution est : " << -C << "/" << B << "." << endl;
 	if (C == 0.0f)
@@ -150,6 +150,37 @@ int			Equation::returnDegre() const {
 		return 0;
 }
 
+float		Equation::sqrt(float num) const {
+	float fa;
+	float fb;
+	float fm;
+	float fn;
+
+	if(num == 0.0) {
+    	return 0.0;
+	}
+	else {
+		fm = 1.0;
+		fn = num;
+		while(fn >= 2.0) {
+		fn = 0.25 * fn;
+		fm = 2.0 * fm;
+    	}
+     	while(fn<0.5) {
+		fn = 4.0 * fn;
+		fm = 0.5 * fm;
+    	}
+    	fa = fn;
+    	fb = 1.0 - fn;
+    	do {
+		fa = fa * (1.0 + 0.5 * fb);
+		fb = 0.25 * (3.0 + fb) * fb * fb;
+		}
+		while(fb >= 1.0E-15);
+		return fa * fm;
+	}
+}
+
 float			Equation::computeDelta() const {
 	return square(B) - (4 * A * C);
 }
@@ -160,6 +191,10 @@ float			Equation::square(float value) const {
 
 void			Equation::displayABC() const {
 	cout << "A = " << A << ", B = " << B << ", C = " << C << " | delta = " << _delta << endl;
+}
+
+void			Equation::displayABC1() const {
+	cout << "A = " << A << ", B = " << B << ", C = " << C << "." << endl;
 }
 
 //================================= ACCESSORS

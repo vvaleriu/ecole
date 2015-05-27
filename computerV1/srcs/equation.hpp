@@ -34,6 +34,8 @@ public:
 
 	// Helpers
 	void					displayABC() const;
+	void					displayABC1() const;
+	float					sqrt(float num) const;
 
 	// Accessors
 	std::string				*getEquation();
