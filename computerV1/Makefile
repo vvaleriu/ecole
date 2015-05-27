@@ -6,11 +6,11 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/05/25 13:00:05 by vvaleriu         ###   ########.fr        #
+#    Updated: 2015/05/27 14:10:17 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = computor
+NAME = computor.out
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 HEADERS = -I./headers -I./srcs
