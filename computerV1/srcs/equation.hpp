@@ -22,8 +22,18 @@ public:
 	void					split();
 	void					parseElem(std::string & elem, bool positive);
 	void					showResult();
-	float					computeDelta();
-	float					square(float value);
+	float					computeDelta() const;
+	float					square(float value) const;
+
+	// Solution
+	void					solve();
+	void					solveDeg2();
+	void					solveDeg1() const;
+	void					solveDeg0() const;
+	int						returnDegre() const;
+
+	// Helpers
+	void					displayABC() const;
 
 	// Accessors
 	std::string				*getEquation();

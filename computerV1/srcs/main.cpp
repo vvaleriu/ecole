@@ -11,7 +11,7 @@ int		main(int ac, char **av) {
 		equation->reduce();
 		cout << *equation->getEquation() << endl;
 		equation->split();
-		equation->showResult();
+		equation->solve();
 		delete equation;
 	}
 	else {

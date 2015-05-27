@@ -89,7 +89,7 @@ void			Equation::split() {
 			previous = it + 2;
 			if (*it == '+')
 				positive = true;
-			else if (*it == '+')
+			else if (*it == '-')
 				positive = false;
 		}
 		it++;
@@ -97,38 +97,69 @@ void			Equation::split() {
 }
 
 void			Equation::parseElem(string & elem, bool positive) {
-	if (positive)
-		cout << "positif : ";
-	else
-		cout << "negatif : ";
-	cout << elem << endl;
-
-	//float tmp = atof(elem.c_str());
 	float tmp = std::stof(elem);
-	cout << tmp << endl;
 	_degre[static_cast<int> (*(elem.rbegin())) - 48] += (positive ? tmp : -tmp);
-	cout << _degre[static_cast<int> (*(elem.rbegin())) - 48] << endl;
 }
 
-void			Equation::showResult() {
+void			Equation::solve() {
+	int 	deg = returnDegre();
+
+	if (deg == 2)
+		solveDeg2();
+	else if (deg == 1)
+		solveDeg1();
+	else
+		solveDeg0();
+}
+
+void			Equation::solveDeg2() {
 	_delta = computeDelta();
-	cout << _delta << endl;
-	if (_delta < 0)
-		cout << "Pas de solution." << endl;
-	else if (_delta == 0.0f) {
-		cout << "Une solution." << endl;
-	}
-	else{
-		cout << "Deux solutions." << endl;
+	displayABC();
+	if (_delta < 0.0f)
+		cout << "Cette equation n'a pas de solution reelle.";
+	else if (_delta == 0.0f)
+		cout << "La solution est : " << B << "/" <<  2 * A << endl;
+	else {
+		cout << "Les solutions sont :" << endl << "(" << -B << " - rac(" << _delta << "))" << " / " <<  2 * A << endl \
+		<< "(" << -B << " + rac(" << _delta << "))" << " / " <<  2 * A << endl;
 	}
 }
 
-float			Equation::computeDelta() {
+void			Equation::solveDeg1() const {
+	displayABC();
+	if (C != 0.0f)
+		cout << "La solution est : " << -C << "/" << B << "." << endl;
+	if (C == 0.0f)
+		cout << "La solution est : " << 0 << "." << endl;
+}
+
+void			Equation::solveDeg0() const {
+	displayABC();
+	if (C == 0.0f)
+		cout << "Tous les nombres reels sont solutions de cette equation." << endl;
+	else
+		cout << "Celle equation n'a pas de solution." << endl;
+}
+
+int			Equation::returnDegre() const {
+	if (A != 0.0f)
+		return 2;
+	else if (B != 0.0f)
+		return 1;
+	else
+		return 0;
+}
+
+float			Equation::computeDelta() const {
 	return square(B) - (4 * A * C);
 }
 
-float			Equation::square(float value) {
+float			Equation::square(float value) const {
 	return value * value;
+}
+
+void			Equation::displayABC() const {
+	cout << "A = " << A << ", B = " << B << ", C = " << C << " | delta = " << _delta << endl;
 }
 
 //================================= ACCESSORS
