@@ -104,12 +104,45 @@ void			Equation::parseElem(string & elem, bool positive) {
 void			Equation::solve() {
 	int 	deg = returnDegre();
 
+	printReduced();
+	printDegre();
 	if (deg == 2)
 		solveDeg2();
 	else if (deg == 1)
 		solveDeg1();
 	else
 		solveDeg0();
+}
+
+void			Equation::printReduced() const {
+	if (A != 0.0f)
+		cout << A << " * X^2";
+	if (B != 0.0f) {
+		if (A != 0.0f)
+			cout << " ";
+		if (B < 0.0f)
+			cout << "- " << -B << " * X^1";
+		 if (B > 0.0f)
+			cout << "+ " << B << " * X^1";
+	}
+	if (C != 0.0f) {
+		if (A != 0.0f || B != 0.0f)
+			cout << " ";
+		if (C < 0.0f)
+			cout << "- " << -C << " * X^0";
+		 if (C > 0.0f)
+			cout << "+ " << C << " * X^0";
+	}
+	cout << " = 0" << endl;
+}
+
+void			Equation::printDegre() const {
+	if (A != 0.0f)
+		cout << "Polynome de degre 2." << endl;
+	else if (B != 0.0f)
+		cout << "Polynome de degre 1." << endl;
+	else if (C != 0.0f)
+		cout << "Polynome sans degre." << endl;
 }
 
 void			Equation::solveDeg2() {

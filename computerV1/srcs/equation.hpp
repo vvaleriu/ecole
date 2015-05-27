@@ -31,6 +31,8 @@ public:
 	void					solveDeg1() const;
 	void					solveDeg0() const;
 	int						returnDegre() const;
+	void					printReduced() const;
+	void					printDegre() const ;
 
 	// Helpers
 	void					displayABC() const;
