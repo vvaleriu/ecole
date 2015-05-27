@@ -64,8 +64,6 @@ private:
 	Equation();
 
 	// Logic
-
-
 };
 
 #endif

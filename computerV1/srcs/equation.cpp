@@ -196,18 +196,18 @@ float		Equation::sqrt(float num) const {
 		fm = 1.0;
 		fn = num;
 		while(fn >= 2.0) {
-		fn = 0.25 * fn;
-		fm = 2.0 * fm;
+			fn = 0.25 * fn;
+			fm = 2.0 * fm;
     	}
      	while(fn<0.5) {
-		fn = 4.0 * fn;
-		fm = 0.5 * fm;
+			fn = 4.0 * fn;
+			fm = 0.5 * fm;
     	}
     	fa = fn;
     	fb = 1.0 - fn;
     	do {
-		fa = fa * (1.0 + 0.5 * fb);
-		fb = 0.25 * (3.0 + fb) * fb * fb;
+			fa = fa * (1.0 + 0.5 * fb);
+			fb = 0.25 * (3.0 + fb) * fb * fb;
 		}
 		while(fb >= 1.0E-15);
 		return fa * fm;

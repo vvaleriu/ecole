@@ -17,6 +17,5 @@ int		main(int ac, char **av) {
 	else {
 		std::cout << "Usage : computor \"equation\"" << std::endl;
 	}
-
 	return 0;
 }
