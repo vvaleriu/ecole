@@ -6,22 +6,22 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/05/27 14:10:17 by vvaleriu         ###   ########.fr        #
+#    Updated: 2015/02/02 11:36:54 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = computor.out
-CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++11
-HEADERS = -I./headers -I./srcs
-LIBS =
+NAME = a.out
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+I_LINKS = -I./includes -I./libft/includes
+L_LINKS = -L./libft -lftprintf
 RM = rm -rf
-vpath %.cpp ./srcs
-vpath %.hpp includes libft/includes
-OBJ = $(SRC:%.cpp=$(OP)%.o)
+vpath %.c ./srcs
+vpath %.h includes libft/includes
+vpath %.a libft
+OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
-SRC = main.cpp					\
-		equation.cpp			\
+SRC = main.c					\
 
 all: $(NAME)
 
@@ -31,19 +31,24 @@ deb:
 scan: 
 	scanbuild gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(HEADERS) $(LIBS)
-	echo Compile done
+$(NAME): libftprintf.a $(OBJ)
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
+	@echo Compile done
 
-$(OP)%.o: %.cpp
+libftprintf.a: libft.h
+	@(cd ./libft/ && make)
+
+$(OP)%.o: %.c
 	@(mkdir -p $(OP))
-	@$(CC) -c $(CFLAGS) $< -o $@ $(HEADERS) $(LIBS)
+	@$(CC) -c $(CFLAGS) $< -o $@ $(I_LINKS) $(L_LINKS)
 
 clean:
 	@$(RM) $(OP)
+	@(cd ./libft/ && make clean)
 
 fclean: clean
 	@$(RM) $(NAME)
+	@(cd ./libft/ && make fclean)
 
 re: fclean all
 

@@ -31,9 +31,13 @@ public:
 	void					solveDeg1() const;
 	void					solveDeg0() const;
 	int						returnDegre() const;
+	void					printReduced() const;
+	void					printDegre() const ;
 
 	// Helpers
 	void					displayABC() const;
+	void					displayABC1() const;
+	float					sqrt(float num) const;
 
 	// Accessors
 	std::string				*getEquation();
@@ -60,8 +64,6 @@ private:
 	Equation();
 
 	// Logic
-
-
 };
 
 #endif
