@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = server
+NAME = serveur
 BIN_PATH = ../bin
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
