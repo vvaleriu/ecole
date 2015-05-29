@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = client.out
+NAME = client
 BIN_PATH = ../bin
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
