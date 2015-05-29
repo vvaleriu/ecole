@@ -11,14 +11,15 @@
 # **************************************************************************** #
 
 NAME = server.out
-CC = cc
+BIN_PATH = ../bin
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = -I./headers -I../libs/headers
+HEADERS = -I./headers -I../libs/libft/headers
 LIBS = -L../libs -lft
 RM = rm -rf
 vpath %.c ./srcs
-vpath %.h headers libs/headers
-vpath %.a libft
+vpath %.h ./headers ../libs/libft/headers
+vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
 SRC = main.c					\
@@ -28,24 +29,18 @@ all: $(NAME)
 deb: 
 	gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
-$(NAME): libftprintf.a $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
-	@echo Compile done
-
-libftprintf.a: libft.h
-	@(cd ./libft/ && make)
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) -o $(BIN_PATH)/$@ $(OBJ) $(HEADERS) $(LIBS)
 
 $(OP)%.o: %.c
 	@(mkdir -p $(OP))
-	@$(CC) -c $(CFLAGS) $< -o $@ $(I_LINKS) $(L_LINKS)
+	@$(CC) -c $(CFLAGS) $< -o $@ $(HEADERS)
 
 clean:
 	@$(RM) $(OP)
-	@(cd ./libft/ && make clean)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@(cd ./libft/ && make fclean)
 
 re: fclean all
 

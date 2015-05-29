@@ -11,28 +11,34 @@
 # **************************************************************************** #
 
 SUBDIRS = client server
+LIBDIR = ./libs
+BIN_PATH = ./bin
+LIBS = $(LIBDIR)/libft
 RM = rm -rf
 
 all: $(SUBDIRS)
 
-deb: 
-	gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
-
 scan: 
 	scanbuild gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
-$(SUBDIRS): libftprintf.a $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
-	@echo Compile done
+$(SUBDIRS): $(BIN_PATH) $(LIBS) $(SUBDIRS)
+	@$(MAKE) -C $@
+	$@ compiled 
+
+$(BIN_PATH):
+	@(mkdir -p $@)
+
+$(LIBS):
+	@$(MAKE) -C $@
 
 clean:
-	@$(RM) $(OP)
-	@(cd ./libft/ && make clean)
-
+	$(MAKE) -C client clean
+	$(MAKE) -C server clean
+	$(MAKE) -C libs/libft clean
 fclean: clean
-	@$(RM) $(NAME)
-	@(cd ./libft/ && make fclean)
+	@$(RM) $(BIN_PATH):
+	@($(MAKE) -C libs/libft fclean)
 
 re: fclean all
 
-.PHONY: clean, re, $(SUBDIRS)
+.PHONY: clean, re, $(SUBDIRS), $(LIBS)
