@@ -10,20 +10,34 @@
 #                                                                              #
 # **************************************************************************** #
 
-SUBDIRS = client server
+NAME = client.out
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+HEADERS = -I./headers -I../libs/headers
+LIBS = -L../libs -lft
 RM = rm -rf
+vpath %.c ./srcs
+vpath %.h includes libs/includes
+vpath %.a libft
+OBJ = $(SRC:%.c=$(OP)%.o)
+OP = ./.obj/
+SRC = main.c					\
 
-all: $(SUBDIRS)
+all: $(NAME)
 
 deb: 
 	gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
-scan: 
-	scanbuild gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
-
-$(SUBDIRS): libftprintf.a $(OBJ)
+$(NAME): libftprintf.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
 	@echo Compile done
+
+libftprintf.a: libft.h
+	@(cd ./libft/ && make)
+
+$(OP)%.o: %.c
+	@(mkdir -p $(OP))
+	@$(CC) -c $(CFLAGS) $< -o $@ $(I_LINKS) $(L_LINKS)
 
 clean:
 	@$(RM) $(OP)
@@ -35,4 +49,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean, re, $(SUBDIRS)
+.PHONY: clean, re
