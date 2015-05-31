@@ -11,6 +11,8 @@
 # **************************************************************************** #
 
 BIN = client serveur
+CLIENT = client
+SERVEUR = serveur
 LIBDIR = ./libs
 BIN_PATH = ./bin
 LIBS = $(LIBDIR)/libft
@@ -22,7 +24,7 @@ scan:
 	scanbuild gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
 $(BIN): $(BIN_PATH) $(LIBS) $(CLIENT) $(SERVEUR)
-	@$(MAKE) -C $@
+	@$(MAKE) -C $@	
 
 $(BIN_PATH):
 	@(mkdir -p $@)
@@ -31,9 +33,10 @@ $(LIBS):
 	@$(MAKE) -C $@
 
 clean:
-	$(MAKE) -C client clean
-	$(MAKE) -C server clean
+	$(MAKE) -C $(CLIENT) clean
+	$(MAKE) -C $(SERVEUR) clean
 	$(MAKE) -C libs/libft clean
+
 fclean: clean
 	@$(RM) $(BIN_PATH):
 	@($(MAKE) -C libs/libft fclean)

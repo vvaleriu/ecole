@@ -13,9 +13,11 @@ int					main(int ac, char **av, char **env)
 		return (0);
 	}
 	init_sv_prop(&sv, av[1], env);
-	lauch_server(&sv);
-	read_client_input(&sv);
-	kill_server(&sv);
+	if (lauch_server(&sv) != -1)
+	{
+		read_client_input(&sv);
+		kill_server(&sv);
+	}
 	return (0);
 }
 

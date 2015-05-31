@@ -1,15 +1,15 @@
 #include <ftp_server.h>
 
-/*void			read_client_input(t_sv_prop *sv)
+void			read_client_input(t_sv_prop *sv)
 {
 	while (get_next_line(sv->cl.sock, &(sv->cmd)) > 0)
 	{
-		printf("%s", sv->cmd);
+		printf("%s\n", sv->cmd);
 		exe_command(sv);
 	}
-}*/
+}
 
-void			read_client_input(t_sv_prop *sv)
+/*void			read_client_input(t_sv_prop *sv)
 {
 	int 	nc;
 	char	buf[1024];
@@ -19,7 +19,7 @@ void			read_client_input(t_sv_prop *sv)
 		buf[nc] = '\0';
 		printf("%s", buf);
 	}
-}
+}*/
 
 /*void			read_client_input(t_sv_prop *sv)
 {
