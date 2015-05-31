@@ -22,7 +22,9 @@ vpath %.h headers ../libs/libft/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
-SRC = main.c					\
+SRC = main.c								\
+		errors.c							\
+		network.c							\
 
 all: $(NAME)
 

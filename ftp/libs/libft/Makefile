@@ -150,6 +150,7 @@ SRC = ft_putchar.c			\
 		ft_itoa_unsign_short.c\
 		pf_check_suf.c		\
 		pf_check_dcxop.c	\
+		get_next_line.c		\
 
 
 $(NAME): libft.h $(OBJ)

@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include <limits.h>
+# include <unistd.h>
 
 # define FT_PI			3.141592653589793
 # define FT_RAD			0.0174532925
@@ -24,7 +25,7 @@
 # define J				t[1]
 # define K				t[2]
 # define L				t[3]
-
+# define GNL_BUFFER		512
 /*
 **	PRINTF : FLAGS POSITION
 **	CONVERSION QUALIFIER DEFINE
@@ -73,6 +74,17 @@ typedef struct		s_pf_print_func
 	char	id;
 	int		(*f)(void *pt, t_pf_flag *flags);
 }					t_pf_print_func;
+
+/*
+**		_____GET_NEXT_LINE STRUCTURE
+*/
+
+typedef	struct		s_str_prop
+{
+	int		char_rd;
+	char	*file;
+	char	*tmp;
+}					t_str_prop;
 
 /*
 **		LIBFT STANDARD
@@ -163,7 +175,7 @@ int					ft_fill_print(int n, char c);
 int					ft_isspace(char c);
 double				ft_pitorad(double ang);
 double				ft_atod(char *s);
-int					ft_putwchar(wint_t wc);
+int					ft_putwchar(wchar_t wc);
 int					ft_putwstr(wchar_t const *s);
 wchar_t				*ft_wstrndup(const wchar_t *s1, size_t n);
 size_t				ft_wstrlen(const wchar_t *s);
@@ -171,6 +183,7 @@ wchar_t				*ft_wstrdup(const wchar_t *s1);
 void				*ft_wstrdel(wchar_t **s1);
 char				*ft_itoa_short(short int n);
 char				*ft_itoa_unsign_short(unsigned short int n);
+int					get_next_line(int const fd, char **line);
 
 /*
 **		============================

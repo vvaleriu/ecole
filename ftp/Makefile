@@ -10,20 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-SUBDIRS = client server
+BIN = client serveur
 LIBDIR = ./libs
 BIN_PATH = ./bin
 LIBS = $(LIBDIR)/libft
 RM = rm -rf
 
-all: $(SUBDIRS)
+all: $(BIN)
 
 scan: 
 	scanbuild gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
 
-$(SUBDIRS): $(BIN_PATH) $(LIBS) $(SUBDIRS)
+$(BIN): $(BIN_PATH) $(LIBS) $(CLIENT) $(SERVEUR)
 	@$(MAKE) -C $@
-	$@ compiled 
 
 $(BIN_PATH):
 	@(mkdir -p $@)
@@ -41,4 +40,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean, re, $(SUBDIRS), $(LIBS)
+.PHONY: clean, re, $(BIN), $(LIBS), $(CLIENT), $(SERVEUR)
