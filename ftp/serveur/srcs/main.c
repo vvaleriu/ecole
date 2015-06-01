@@ -13,6 +13,7 @@ int					main(int ac, char **av, char **env)
 		return (0);
 	}
 	init_sv_prop(&sv, av[1], env);
+	init_command_list(&sv);
 	if (lauch_server(&sv) != -1)
 	{
 		read_client_input(&sv);
@@ -51,4 +52,16 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 		pterr(ERR_EMPTY_ENV);
 		exit(2);
 	}
+}
+
+void			init_command_list(t_sv_prop *sv)
+{
+	sv->bin = (char **)ft_memalloc(sizeof(char *) * BIN_NB + 1);
+	sv->bin[0] = ft_strdup("ls");
+	sv->bin[1] = ft_strdup("cd");
+	sv->bin[2] = ft_strdup("get");
+	sv->bin[3] = ft_strdup("put");
+	sv->bin[4] = ft_strdup("pwd");
+	sv->bin[5] = ft_strdup("help");
+	sv->bin[6] = ft_strdup("quit");
 }

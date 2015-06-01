@@ -5,6 +5,7 @@ void			read_client_input(t_sv_prop *sv)
 	while (get_next_line(sv->cl.sock, &(sv->cmd)) > 0)
 	{
 		printf("%s\n", sv->cmd);
+		sv->cmd = lexer(sv->cmd);
 		exe_command(sv);
 	}
 }

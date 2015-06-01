@@ -151,6 +151,10 @@ SRC = ft_putchar.c			\
 		pf_check_suf.c		\
 		pf_check_dcxop.c	\
 		get_next_line.c		\
+		is_text.c			\
+		is_space.c			\
+		is_operator.c		\
+		ft_strarray_del.c	\
 
 
 $(NAME): libft.h $(OBJ)

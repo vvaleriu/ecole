@@ -30,7 +30,7 @@ $(BIN_PATH):
 	@(mkdir -p $@)
 
 $(LIBS):
-	@$(MAKE) -C $@
+	@$(MAKE) -C $(LIBDIR)/libft
 
 clean:
 	$(MAKE) -C $(CLIENT) clean

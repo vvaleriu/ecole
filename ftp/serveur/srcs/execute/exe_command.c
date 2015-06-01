@@ -29,16 +29,14 @@ int				exe_command(t_sv_prop *sv)
 {
 	pid_t		father;
 	char		*path;
-	char		**arg;
 
 	path = NULL;
 	father = fork();
-	arg = (char **) ft_memalloc(sizeof(char *) * 2);
-	arg[0] = ft_strdup(sv->cmd);
 	if (father == 0 && (path = get_path(sv)))
 	{
-		execve(path, arg, sv->env);
-		ft_strdel(&path);			
+		execve(path, sv->cmda, sv->env);
+		ft_strdel(&path);
+		ft_strarray_del(&sv->cmda);
 		exit(1);
 	}
 	else
@@ -46,26 +44,16 @@ int				exe_command(t_sv_prop *sv)
 	return (1);
 }
 
-/*
-int				exe_command(t_sv_prop *sv)
+int			clean_memory(t_sv_prop *sv)
 {
-	pid_t		father;
-	char		*path;
-
-	if (sv)
+	ft_strdel(&sv->com);
+	if (sv->cmd != null)
 	{
-		if (path = get_path(sv))
+		while (i < CMD_NB)
 		{
-			father = fork();
-			if (father > 0)
-				wait(0);
-			if (father == 0)
-			{
-				execve(path, NULL, sv->env);
-				exit(1);
-			}
-			ft_strdel(&path);
+			free(sv->cmd[i])
+			i++;
 		}
+		free(sv->cmd);
 	}
-	return (1);
-}*/
+}

@@ -50,6 +50,18 @@ int			create_server(t_sv_prop *sv)
 
 void		kill_server(t_sv_prop *sv)
 {
+	int		i;
+
+	i = 0;
+	if (sv->cmd != null)
+	{
+		while (i < CMD_NB)
+		{
+			free(sv->cmd[i])
+			i++;
+		}
+		free(sv->cmd);
+	}
 	close(sv->cl.sock);
 	close(sv->sock);
 }

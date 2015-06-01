@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 HEADERS = -I./headers -I../libs/libft/headers
 LIBS = -L../libs -lft
 RM = rm -rf
-vpath %.c ./srcs ./srcs/execute
+vpath %.c ./srcs ./srcs/execute ./srcs/commands ./srcs/lexer
 vpath %.h ./headers ../libs/libft/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -28,6 +28,10 @@ SRC = main.c								\
 		client_input.c						\
 		exe_command.c						\
 		get_path.c							\
+		command_checker.c					\
+		lex_char.c							\
+		lex_space.c							\
+		lexer.c								\
 
 all: $(NAME)
 

@@ -184,6 +184,10 @@ void				*ft_wstrdel(wchar_t **s1);
 char				*ft_itoa_short(short int n);
 char				*ft_itoa_unsign_short(unsigned short int n);
 int					get_next_line(int const fd, char **line);
+int					is_space(char c);
+int					is_operator(char c);
+int					is_text(char c);
+void				ft_strarray_del(char ***c);
 
 /*
 **		============================

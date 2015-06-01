@@ -55,7 +55,7 @@ char		*get_path(t_sv_prop *sv)
 	ret = NULL;
 	i = 0;
 	while (sv->path[++i])
-		if ((ret = ft_readdir(sv->cmd, sv->path[i])) != NULL)
+		if ((ret = ft_readdir(sv->cmda[0], sv->path[i])) != NULL)
 			return (ret);
 	ft_putendl("command not found");
 	return (NULL);
