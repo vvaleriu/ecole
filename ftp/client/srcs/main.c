@@ -13,7 +13,7 @@ int					main(int ac, char **av)
 	}
 	init_cl_prop(&cl, av[1], av[2]);
 	create_client(&cl);
-	write(cl.sock, "ls\n", 11);
+	write(cl.sock, "ls -l\n", 11);
 	close(cl.sock);
 	return (0);
 }

@@ -44,16 +44,19 @@ int				exe_command(t_sv_prop *sv)
 	return (1);
 }
 
-int			clean_memory(t_sv_prop *sv)
+void			clean_memory(t_sv_prop *sv)
 {
-	ft_strdel(&sv->com);
-	if (sv->cmd != null)
+	int		i;
+
+	i = 0;
+	ft_strdel(&(sv->cmd));
+	if (sv->cmda != NULL)
 	{
-		while (i < CMD_NB)
+		while (i < BIN_NB)
 		{
-			free(sv->cmd[i])
+			free(sv->cmda[i]);
 			i++;
 		}
-		free(sv->cmd);
+		free(sv->cmda);
 	}
 }

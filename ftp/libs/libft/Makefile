@@ -155,6 +155,7 @@ SRC = ft_putchar.c			\
 		is_space.c			\
 		is_operator.c		\
 		ft_strarray_del.c	\
+		ft_putstr_array.c	\
 
 
 $(NAME): libft.h $(OBJ)

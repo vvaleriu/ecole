@@ -5,6 +5,7 @@
 #include <netinet/in.h>
 #include <stdio.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 /*
 ** Create the server and accept client connection
@@ -53,14 +54,14 @@ void		kill_server(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
-	if (sv->cmd != null)
+	if (sv->bin != NULL)
 	{
-		while (i < CMD_NB)
+		while (i < BIN_NB)
 		{
-			free(sv->cmd[i])
+			free(sv->bin[i]);
 			i++;
 		}
-		free(sv->cmd);
+		free(sv->bin);
 	}
 	close(sv->cl.sock);
 	close(sv->sock);

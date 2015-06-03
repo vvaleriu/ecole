@@ -20,17 +20,15 @@
 
 char			**lexer(char *buf)
 {
-	int		i;
-	t_list	*alist;
+	t_list	*alst;
 
-	i = 0;
 	alst = NULL;
 	while (*buf)
 	{
-		if (is_space(*buf) == 1)
-			lex_space(char **buf, t_list **alst);
+		if (is_space(*buf))
+			lex_space(&buf, &alst);
 		else
-			lex_char(char **buf, t_list **alst);
+			lex_char(&buf, &alst);
 	}
 	return (list_to_tab(alst));
 }
@@ -40,16 +38,25 @@ char			**list_to_tab(t_list *l)
 	char	**ret;
 	int		len;
 	int		i;
+	t_list	*tmp;
 
+	tmp = l;
 	len = ft_lstlen(l);
 	i = 0;
 	ret = (char **)ft_memalloc(sizeof(char *) * len + 1);
 	len = 0;
 	while (l)
 	{
-		ret[i] = ft_strdup((char *)l->content);
+		ret[i] = (char *)l->content;
 		i++;
 		l = l->next;
+	}
+	l = tmp;
+	while (tmp != NULL)
+	{
+		l = tmp->next;
+		free(tmp);
+		tmp = l;
 	}
 	return (ret);
 }

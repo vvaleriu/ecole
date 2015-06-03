@@ -12,7 +12,7 @@
 #include <sys/socket.h>
 
 # define QUEUE_LENGTH	42
-# define CMD_NB			7
+# define BIN_NB			7
 
 
 /*
@@ -31,7 +31,11 @@ typedef struct			s_cl_prop
 }						t_cl_prop;
 
 /*
+**	root_dir	dir of the binary, can't go upper than that
+**	env:		environment variables
 **	path:		list of dir to look for the exe
+**	bin:		list of string of allowed command on the server
+**	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc.
 **	cmd:		client entered command
 **	port:		port
 **	sock: 		server socket
@@ -71,7 +75,7 @@ int							exe_command(t_sv_prop *sv);
 ** 			LEXING FUNCTIONS
 */
 
-t_list						*lexer(char *buf, t_lexing_ft *lex);
+char						**lexer(char *buf);
 void						lex_space(char **buf, t_list **alst);
 void						lex_char(char **buf, t_list **alst);
 char						**list_to_tab(t_list *l);
