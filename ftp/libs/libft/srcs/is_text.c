@@ -14,7 +14,7 @@
 
 int		is_text(char c)
 {
-	if (is_operator(c) || is_space(c) || c == '\'' || c == '\"' || c == '`')
+	if (is_space(c) || c == '\'' || c == '\"' || c == '`')
 		return (0);
 	return (1);
 }

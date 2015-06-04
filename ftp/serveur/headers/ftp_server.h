@@ -70,13 +70,14 @@ void						kill_server(t_sv_prop *sv);
 
 char						*get_path(t_sv_prop *sv);
 int							exe_command(t_sv_prop *sv);
+int							check_command(t_sv_prop *sv);
 
 /*
 ** 			LEXING FUNCTIONS
 */
 
 char						**lexer(char *buf);
-void						lex_space(char **buf, t_list **alst);
+void						lex_space(char **buf);
 void						lex_char(char **buf, t_list **alst);
 char						**list_to_tab(t_list *l);
 

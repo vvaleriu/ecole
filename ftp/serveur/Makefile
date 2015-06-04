@@ -36,8 +36,10 @@ SRC = main.c								\
 all: $(NAME)
 
 deb: 
-	gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
+	gcc -g3 -I./libs/libft/headers -I./libs/libft/headers -L./libs/libft/ -lft ./srcs/*.c ./srcs/execute/*.c ./srcs/commands/*.c ./srcs/lexer/*.c
 
+hallah:
+	gcc -g3 -I../libs/libft/headers -I./headers  -L../libs -lft ./srcs/client_input.c ./srcs/errors.c ./srcs/main.c ./srcs/network.c ./srcs/execute/command_checker.c ./srcs/execute/exe_command.c ./srcs/execute/get_path.c  ./srcs/lexer/lex_char.c ./srcs/lexer/lex_space.c ./srcs/lexer/lexer.c
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(BIN_PATH)/$@ $(OBJ) $(HEADERS) $(LIBS)
 

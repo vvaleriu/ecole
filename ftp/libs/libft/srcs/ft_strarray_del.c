@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdlib.h>
 
 void		ft_strarray_del(char ***ar)
 {
 	int		i;
 
 	i = 0;
-	while (*(ar[i]) != '\0')
+	while ((*ar)[i] != NULL)
 	{
-		ft_strdel(ar[i]);
+		ft_strdel(&(*ar)[i]);
 		i++;
 	}
+	free(*ar);
 	*ar = NULL;
 }

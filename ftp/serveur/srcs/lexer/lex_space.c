@@ -12,9 +12,8 @@
 
 #include <ftp_server.h>
 
-void	lex_space(char **buf, t_list **alst)
+void	lex_space(char **buf)
 {
-	while (is_space(**buf) == 1)
+	while (is_space(**buf))
 		(*buf)++;
-	*alst = NULL;
 }

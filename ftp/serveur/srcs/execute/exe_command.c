@@ -36,7 +36,6 @@ int				exe_command(t_sv_prop *sv)
 	{
 		execve(path, sv->cmda, sv->env);
 		ft_strdel(&path);
-		ft_strarray_del(&sv->cmda);
 		exit(1);
 	}
 	else

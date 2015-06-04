@@ -26,7 +26,7 @@ char			**lexer(char *buf)
 	while (*buf)
 	{
 		if (is_space(*buf))
-			lex_space(&buf, &alst);
+			lex_space(&buf);
 		else
 			lex_char(&buf, &alst);
 	}
@@ -44,6 +44,7 @@ char			**list_to_tab(t_list *l)
 	len = ft_lstlen(l);
 	i = 0;
 	ret = (char **)ft_memalloc(sizeof(char *) * len + 1);
+	ret[len] = NULL;
 	len = 0;
 	while (l)
 	{

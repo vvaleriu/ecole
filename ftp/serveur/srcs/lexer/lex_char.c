@@ -18,10 +18,9 @@ void		lex_char(char **buf, t_list **alst)
 	int		i;
 
 	i = 0;
-	while (is_text(buf[0][i]) && buf[0][i])
+	while (is_text((*buf)[i]) && (*buf)[i])
 		i++;
 	tmp = ft_lstnew((void *)ft_strndup(*buf, i), sizeof(char *));
-	ft_putendl(*buf);
 	*buf += i;
 	ft_lstadd_last(alst, tmp);
 }

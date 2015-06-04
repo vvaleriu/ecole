@@ -12,14 +12,14 @@
 
 #include <libft.h>
 
-void	ft_lstadd_last(t_list **alst, t_list *new)
+void	ft_lstadd_last(t_list **alst, t_list *elem)
 {
 	t_list	*tmp;
 	t_list	*last;
 
 	tmp = *alst;
 	if (*alst == NULL)
-		*alst = new;
+		*alst = elem;
 	else
 	{
 		while (tmp)
@@ -27,6 +27,6 @@ void	ft_lstadd_last(t_list **alst, t_list *new)
 			last = tmp;
 			tmp = tmp->next;
 		}
-		last->next = new;
+		last->next = elem;
 	}
 }

@@ -54,7 +54,7 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 	}
 }
 
-void			init_command_list(t_sv_prop *sv)
+void				init_command_list(t_sv_prop *sv)
 {
 	sv->bin = (char **)ft_memalloc(sizeof(char *) * BIN_NB + 1);
 	sv->bin[0] = ft_strdup("ls");
