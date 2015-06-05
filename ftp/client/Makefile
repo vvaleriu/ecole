@@ -25,6 +25,7 @@ OP = ./.obj/
 SRC = main.c								\
 		errors.c							\
 		network.c							\
+		command.c							\
 
 all: $(NAME)
 
