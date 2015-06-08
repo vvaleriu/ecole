@@ -11,14 +11,14 @@
 ** Create the server and accept client connection
 */
 
-int			lauch_server(t_sv_prop *sv)
+int			sv_launch(t_sv_prop *sv)
 {
 	pid_t	father;
 
 	father = fork();
 	if (father == 0)
 	{
-		if (create_server(sv) == -1)
+		if (sv_create(sv) == -1)
 			return (-1);
 		if ((sv->cl.sock = accept(sv->sock, (struct sockaddr *)&(sv->cl.sin), &(sv->cl.slen))) == -1)
 			return (-1);
@@ -28,7 +28,9 @@ int			lauch_server(t_sv_prop *sv)
 	return (1);
 }
 
-int			create_server(t_sv_prop *sv)
+
+
+int			sv_create(t_sv_prop *sv)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
@@ -48,6 +50,7 @@ int			create_server(t_sv_prop *sv)
 	listen(sv->sock, QUEUE_LENGTH);
 	return (1);
 }
+	
 
 void		kill_server(t_sv_prop *sv)
 {

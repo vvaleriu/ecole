@@ -14,7 +14,7 @@ int					main(int ac, char **av, char **env)
 	}
 	init_sv_prop(&sv, av[1], env);
 	init_command_list(&sv);
-	if (lauch_server(&sv) != -1)
+	if (sv_launch(&sv) != -1)
 	{
 		read_client_input(&sv);
 		kill_server(&sv);
