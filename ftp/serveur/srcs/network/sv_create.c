@@ -1,4 +1,5 @@
 #include <ftp_server.h>
+#include <ftp_server_error.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
@@ -17,7 +18,7 @@ int			sv_create(t_sv_prop *sv)
 		pterr(ERR_UNKNOWN_PROTOCOL);
 		return (-1);
 	}*/
-	proto = (struct protoent*)EV(NULL, getprotobyname("tcp"), "getprotobyname error", 0);
+	proto = (struct protoent *)EV(NULL, getprotobyname("tcp"), "getprotobyname error", 0);
 	sv_status(SV_STARTED);
 	if (!(sv->fds[0].sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);
@@ -28,5 +29,6 @@ int			sv_create(t_sv_prop *sv)
 	bind(sv->fds[0].sock, (const struct sockaddr *)&sin, sizeof(sin));
 	listen(sv->fds[0].sock, QUEUE_LENGTH);
 	sv->max = sv->fds[0].sock;
+	sv->fds[0].ft_read = sv_accept;
 	return (1);
 }

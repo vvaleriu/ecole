@@ -19,7 +19,7 @@ void		sv_kill(t_sv_prop *sv)
 			free(sv->cmd->bin[i]);
 			i++;
 		}
-		free(sv->bin);
+		free(sv->cmd->bin);
 	}
 	close(sv->fds[0].sock);
 }

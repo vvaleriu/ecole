@@ -10,12 +10,8 @@ int					main(int ac, char **av, char **env)
 
 	usage(ac, av);
 	init_sv_prop(&sv, av[1], env);
-	if (sv_launch(&sv) != -1)
-		main_loop();
+	if (sv_create(&sv) != -1)
+		main_loop(&sv);
 	sv_kill(&sv);
-	/*{
-		read_client_input(&sv);
-		kill_server(&sv);
-	}*/
 	return (0);
 }

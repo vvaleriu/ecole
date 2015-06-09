@@ -14,6 +14,7 @@ int			err_int(int err, int res, char *str, int quit)
 		printf("%s\n", str);
 	if (quit)
 		exit(2);
+	return (res);
 }
 
 void		*err_void(void *err, void *res, char *str, int quit)

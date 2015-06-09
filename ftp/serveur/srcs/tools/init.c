@@ -8,29 +8,33 @@
 void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 {
 	int				i;
-	char			*tmp;
 
 	i = 0;
 	sv->max = 0;
 	sv->port = (unsigned short) ft_atoi(port);
 	sv->cmd = (t_cmd *)ft_memalloc(sizeof(t_cmd) * 1);
 	sv->fds = (t_fd *)ft_memalloc(sizeof(t_fd) * MAX_SOCKETS);
+	while (i < MAX_SOCKETS);
 	while (i++ < MAX_SOCKETS)
-		clean_socket(sv->fds[i]);
+		clean_fd(&(sv->fds[i]));
 	init_env(sv, env);
 	init_command_list(sv);
 }
 
 void				init_env(t_sv_prop *sv, char **env)
 {
+	int		i;
+	char	*tmp;
+
+	i = 0;
 	if (env != NULL)
 	{
-		sv->env = env;
+		sv->cmd->env = env;
 		while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 			i++;
 		if (env[i])
 		{
-			sv->path = ft_strsplit((tmp = ft_strdup(env[i] + 5)), ':');
+			sv->cmd->path = ft_strsplit((tmp = ft_strdup(env[i] + 5)), ':');
 			ft_strdel(&tmp);
 		}
 		else

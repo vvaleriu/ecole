@@ -74,14 +74,14 @@ struct			s_cmd
 **	ft_write:	pointer on write function
 */
 
-typedef struct	s_fd
+struct			s_fd
 {
 	int		sock;
 	int		type;
 	void	(*ft_read)();
 	void	(*ft_write)();
-	char	buf_read[BUF_SIZE + 1];
-	char	buf_write[BUF_SIZE + 1];
+	char	read_b[BUF_SIZE + 1];
+	char	write_b[BUF_SIZE + 1];
 };
 	
 /*
@@ -90,18 +90,19 @@ typedef struct	s_fd
 **	port:	port
 **	fd: 	server fd
 **	max:	value of the higher file descriptor
-**	r:		??
+**	left:	number of file despcriptor left after select called (= file descrip
+**			in which there is something to read/write)
 **	readfds: set of read file descriptor
 **	writefds: set of write fds
 */
 
-typedef struct			s_sv_prop
+struct			s_sv_prop
 {
 	t_fd				*fds;
 	t_cmd				*cmd;
 	unsigned short		port;
 	int					max;
-	int					r;
+	int					left;
 	fd_set				readfds;
 	fd_set				writefds;
 };
@@ -112,9 +113,14 @@ typedef struct			s_sv_prop
 
 int							sv_launch(t_sv_prop *prop);
 int							sv_create(t_sv_prop *prop);
-int							sv_accept(t_sv_prop *sv);
+void						sv_accept(t_sv_prop *sv);
 void						sv_kill(t_sv_prop *sv);
-void						clean_socket(t_sock *s);
+void						clean_fd(t_fd *fd);
+void						init_fds(t_sv_prop *sv);
+void						check_fds(t_sv_prop *sv);
+void						select_fds(t_sv_prop *sv);
+void						main_loop(t_sv_prop *sv);
+
 
 /*
 **			EXECUTION FUNCTIONS
@@ -123,6 +129,8 @@ void						clean_socket(t_sock *s);
 char						*get_path(t_sv_prop *sv);
 int							exe_command(t_sv_prop *sv);
 int							check_command(t_sv_prop *sv);
+void						ft_read(t_sv_prop *sv, int i);
+void						ft_write(t_sv_prop *sv, int i);
 
 /*
 ** 			LEXING FUNCTIONS
@@ -146,7 +154,7 @@ void						kill_server(t_sv_prop *sv);
 void						usage(int ac, char **av);
 void						pterr(char *err);
 int							err_int(int err, int res, char *str, int quit);
-void						*err_void(void *res, char *str, int quit);
+void						*err_void(void *err, void *res, char *str, int quit);
 
 /*
 **				INITIALISATION

@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-void		clean_socket(t_fd *fd)
+void		clean_fd(t_fd *fd)
 {
 	fd->type = SK_FREE;
 	fd->ft_read = NULL;

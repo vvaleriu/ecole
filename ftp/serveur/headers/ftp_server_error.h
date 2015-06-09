@@ -5,7 +5,8 @@
 **			STATUS
 */
 
-# define ST_CON_WAITING			"Server is running and waiting for connections."
+# define SV_STARTED				"Server is running and waiting for connections."
+
 /*
 **			ERRORS
 */

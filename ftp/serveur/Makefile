@@ -33,10 +33,9 @@ SRC = main.c								\
 		lex_space.c							\
 		lexer.c								\
 		init.c								\
-		sv_launch.c 						\
 		sv_accept.c 						\
 		sv_create.c 						\
-		network_tools.c 					\
+		clean_fd.c 							\
 		error_checker.c 					\
 		pterr.c 							\
 		usage.c 							\
@@ -44,6 +43,11 @@ SRC = main.c								\
 		sv_kill.c 							\
 		max.c 								\
 		init_fds.c 							\
+		check_fds.c 						\
+		select_fds.c 						\
+		ft_read.c 							\
+		ft_write.c 							\
+		sv_status.c 						\
 
 all: $(NAME)
 
@@ -52,6 +56,7 @@ deb:
 
 hallah:
 	gcc -g3 -I../libs/libft/headers -I./headers  -L../libs -lft ./srcs/client_input.c ./srcs/errors.c ./srcs/main.c ./srcs/network.c ./srcs/execute/command_checker.c ./srcs/execute/exe_command.c ./srcs/execute/get_path.c  ./srcs/lexer/lex_char.c ./srcs/lexer/lex_space.c ./srcs/lexer/lexer.c
+
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(BIN_PATH)/$@ $(OBJ) $(HEADERS) $(LIBS)
 

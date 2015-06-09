@@ -34,7 +34,7 @@ int				exe_command(t_sv_prop *sv)
 	father = fork();
 	if (father == 0 && (path = get_path(sv)))
 	{
-		execve(path, sv->cmda, sv->env);
+		execve(path, sv->cmd->cmda, sv->cmd->env);
 		ft_strdel(&path);
 		exit(1);
 	}
@@ -48,14 +48,14 @@ void			clean_memory(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
-	ft_strdel(&(sv->cmd));
-	if (sv->cmda != NULL)
+	ft_strdel(&(sv->cmd->cmd));
+	if (sv->cmd->cmda != NULL)
 	{
 		while (i < BIN_NB)
 		{
-			free(sv->cmda[i]);
+			free(sv->cmd->cmda[i]);
 			i++;
 		}
-		free(sv->cmda);
+		free(sv->cmd->cmda);
 	}
 }
