@@ -11,30 +11,27 @@
 # include <netinet/in.h>
 # include <sys/socket.h>
 
+# define SK_FREE	0
+# define SK_SERV	1
+# define SK_CLIENT	2
+
 # define BUF_SIZE		4096
 # define QUEUE_LENGTH	42
 # define BIN_NB			7
 
-
 typedef struct s_cmd		t_cmd;
 typedef struct s_cl_prop	t_cl_prop;
-typedef struct s_fd			t_fd;
+typedef struct s_sock		t_sock;
 typedef struct s_sv_prop	t_sv_prop;
 
 /*
-**	CLIENT PROP STRUCTURE
-**
-**	sock: 		server socket
-**	sin:		socket address
-**	slen:		socket length
+**	root_dir	dir of the binary, can't go upper than that
+**	env:		environment variables
+**	path:		list of dir to look for the exe
+**	bin:		list of string of allowed command on the server
+**	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc.
+**	cmd:		client entered command
 */
-
-struct			s_cl_prop
-{
-	int					sock;
-	struct sockaddr_in	sin;
-	unsigned int		slen;
-};					
 
 struct			s_cmd
 {
@@ -46,7 +43,13 @@ struct			s_cmd
 	char				*cmd;
 };
 
-typedef struct	s_fd
+/*
+**	type		SK_FREE	0, SK_SERV	1, SK_CLIENT	2
+**	ft_read:	pointer on read function
+**	ft_write:	pointer on write function
+*/
+
+typedef struct	s_sock
 {
 	int		type;
 	void	(*ft_read)();
@@ -54,25 +57,16 @@ typedef struct	s_fd
 	char	buf_read[BUF_SIZE + 1];
 	char	buf_write[BUF_SIZE + 1];
 };
-		
+	
 /*
-**	root_dir	dir of the binary, can't go upper than that
-**	env:		environment variables
-**	path:		list of dir to look for the exe
-**	bin:		list of string of allowed command on the server
-**	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc.
-**	cmd:		client entered command
 **	port:		port
 **	sock: 		server socket
-**	cs:			client socket
-**	csin:
 */
-		
+
 typedef struct			s_sv_prop
 {
-	t_fd				*fds;
+	t_sock				*s;
 	t_cmd				*cmd;
-	t_cl_prop			cl;
 	unsigned short		port;
 	int					sock;
 	int					maxfd;
@@ -89,6 +83,7 @@ typedef struct			s_sv_prop
 int							sv_launch(t_sv_prop *prop);
 int							sv_create(t_sv_prop *prop);
 void						kill_server(t_sv_prop *sv);
+void						clean_socket(t_sock *s);
 
 /*
 **			EXECUTION FUNCTIONS
@@ -126,6 +121,7 @@ void						pterr(char *err);
 */
 
 void						init_sv_prop(t_sv_prop *sv, char *port, char **env);
+void						init_env(t_sv_prop *sv, char **env);
 void						init_command_list(t_sv_prop *sv);
 
 #endif

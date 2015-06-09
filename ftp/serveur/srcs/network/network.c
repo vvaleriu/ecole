@@ -28,6 +28,18 @@ int			sv_launch(t_sv_prop *sv)
 	return (1);
 }
 
+void		sv_accept(t_sv_prop *sv)
+{
+	int				i;
+	sockaddr_in		csin;
+	
+	i = 0;
+	cl = (t_sock *)ft_memalloc(sizeof(t_sock) * 1);
+	cl->type = SK_CLIENT;
+	cl->
+	while (sv->s[i])
+}
+
 
 
 int			sv_create(t_sv_prop *sv)
@@ -50,7 +62,6 @@ int			sv_create(t_sv_prop *sv)
 	listen(sv->sock, QUEUE_LENGTH);
 	return (1);
 }
-	
 
 void		kill_server(t_sv_prop *sv)
 {
