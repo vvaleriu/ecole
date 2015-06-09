@@ -25,7 +25,6 @@ OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
 SRC = main.c								\
 		errors.c							\
-		network.c							\
 		client_input.c						\
 		exe_command.c						\
 		get_path.c							\
@@ -33,8 +32,18 @@ SRC = main.c								\
 		lex_char.c							\
 		lex_space.c							\
 		lexer.c								\
-		socket.c							\
 		init.c								\
+		sv_launch.c 						\
+		sv_accept.c 						\
+		sv_create.c 						\
+		network_tools.c 					\
+		error_checker.c 					\
+		pterr.c 							\
+		usage.c 							\
+		main_loop.c 						\
+		sv_kill.c 							\
+		max.c 								\
+		init_fds.c 							\
 
 all: $(NAME)
 

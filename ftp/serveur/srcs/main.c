@@ -8,16 +8,14 @@ int					main(int ac, char **av, char **env)
 {
 	t_sv_prop		sv;
 
-	if (ac != 2)
-	{
-		usage(av[0], ERR_USAGE);
-		return (0);
-	}
+	usage(ac, av);
 	init_sv_prop(&sv, av[1], env);
 	if (sv_launch(&sv) != -1)
-	{
+		main_loop();
+	sv_kill(&sv);
+	/*{
 		read_client_input(&sv);
 		kill_server(&sv);
-	}
+	}*/
 	return (0);
 }

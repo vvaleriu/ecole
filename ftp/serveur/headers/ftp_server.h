@@ -11,17 +11,41 @@
 # include <netinet/in.h>
 # include <sys/socket.h>
 
-# define SK_FREE	0
-# define SK_SERV	1
-# define SK_CLIENT	2
+/*
+**	SK_SERV, SK_CLIENT : Types contained in t_fd structure
+**	SV_SOCK: macro to access server socket (= files descriptor) value
+**	CL_SOCK(i): macro to access a client socket (= files descriptor) value
+*/
+
+# define SK_SERV		0
+# define SK_CLIENT		1
+# define SK_FREE		2
+
+# define SV_SOCK		sv->fds[0].sock
+# define CL_SOCK(i)		sv->fds[i].sock
+
+/*
+**	ERROR FUNCTIONS
+*/
+
+# define E(e, r, s, q)	err_int(e, r, s, q)
+# define EV(e, r, s, q)	err_void(e, r, s, q)
+
+/*
+**	BUF_SIZE: size of the buffer for read and write operation for each socket
+**	QUEUE_LENGTH: maximum number of pending connection (used in listen())
+**	MAX_SOCKETS: MAX_CLIENTS + server socket (1)
+*/
 
 # define BUF_SIZE		4096
 # define QUEUE_LENGTH	42
 # define BIN_NB			7
+# define MAX_CLIENTS	40
+# define MAX_SOCKETS	1 + MAX_CLIENTS
 
 typedef struct s_cmd		t_cmd;
 typedef struct s_cl_prop	t_cl_prop;
-typedef struct s_sock		t_sock;
+typedef struct s_fd			t_fd;
 typedef struct s_sv_prop	t_sv_prop;
 
 /*
@@ -44,13 +68,15 @@ struct			s_cmd
 };
 
 /*
+**	sd: 		socket descriptor
 **	type		SK_FREE	0, SK_SERV	1, SK_CLIENT	2
 **	ft_read:	pointer on read function
 **	ft_write:	pointer on write function
 */
 
-typedef struct	s_sock
+typedef struct	s_fd
 {
+	int		sock;
 	int		type;
 	void	(*ft_read)();
 	void	(*ft_write)();
@@ -59,21 +85,25 @@ typedef struct	s_sock
 };
 	
 /*
-**	port:		port
-**	sock: 		server socket
+**	fds:	array of socks, 0: is "master server socket",
+**			the rest are clients
+**	port:	port
+**	fd: 	server fd
+**	max:	value of the higher file descriptor
+**	r:		??
+**	readfds: set of read file descriptor
+**	writefds: set of write fds
 */
 
 typedef struct			s_sv_prop
 {
-	t_sock				*s;
+	t_fd				*fds;
 	t_cmd				*cmd;
 	unsigned short		port;
-	int					sock;
-	int					maxfd;
 	int					max;
 	int					r;
-	fd_set				fd_read;
-	fd_set				fd_write;
+	fd_set				readfds;
+	fd_set				writefds;
 };
 
 /*
@@ -82,7 +112,8 @@ typedef struct			s_sv_prop
 
 int							sv_launch(t_sv_prop *prop);
 int							sv_create(t_sv_prop *prop);
-void						kill_server(t_sv_prop *sv);
+int							sv_accept(t_sv_prop *sv);
+void						sv_kill(t_sv_prop *sv);
 void						clean_socket(t_sock *s);
 
 /*
@@ -112,9 +143,10 @@ void						kill_server(t_sv_prop *sv);
 **				ERROR MANAGEMENT
 */
 
-void						usage(char *binname, char *error);
+void						usage(int ac, char **av);
 void						pterr(char *err);
-
+int							err_int(int err, int res, char *str, int quit);
+void						*err_void(void *res, char *str, int quit);
 
 /*
 **				INITIALISATION
@@ -123,5 +155,12 @@ void						pterr(char *err);
 void						init_sv_prop(t_sv_prop *sv, char *port, char **env);
 void						init_env(t_sv_prop *sv, char **env);
 void						init_command_list(t_sv_prop *sv);
+
+/*
+**				TOOLS
+*/
+
+void						sv_status(char *status);
+int							max(int a, int b);
 
 #endif
