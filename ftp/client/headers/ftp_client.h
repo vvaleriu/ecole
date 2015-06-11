@@ -4,7 +4,8 @@
 # include <libft.h>
 # include <ftp_client_error.h>
 # include <unistd.h>
-#include <stdlib.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -21,14 +22,14 @@ typedef struct			s_cl_prop
 **				CLIENT LOGIC
 */
 
-int							connect_client(t_cl_prop *prop);
-void						kill_client(t_cl_prop *cl, char *cmd);
+int							cl_connect(t_cl_prop *prop);
+void						cl_kill(t_cl_prop *cl, char *cmd);
 
 /*
 **				CLIENT COMMAND
 */
 
-int							input_command(t_cl_prop * cl);
+int							cmd_input(t_cl_prop * cl);
 
 /*
 **				ERROR MANAGEMENT

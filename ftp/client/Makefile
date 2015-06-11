@@ -17,15 +17,17 @@ CFLAGS = -Wall -Wextra -Werror
 HEADERS = -I./headers -I../libs/libft/headers
 LIBS = -L../libs -lft
 RM = rm -rf
-vpath %.c ./srcs
+vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands
 vpath %.h headers ../libs/libft/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
 SRC = main.c								\
+		init.c 								\
 		errors.c							\
-		network.c							\
-		command.c							\
+		cl_connect.c						\
+		cl_kill.c 							\
+		cmd_input.c							\
 
 all: $(NAME)
 

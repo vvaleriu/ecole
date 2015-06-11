@@ -12,7 +12,7 @@
 ** Enfin on connect le s
 */
 
-int			connect_client(t_cl_prop *prop)
+int			cl_connect(t_cl_prop *prop)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;

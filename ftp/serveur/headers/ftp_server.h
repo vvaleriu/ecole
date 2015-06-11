@@ -176,5 +176,6 @@ void						init_command_list(t_sv_prop *sv);
 
 void						sv_status(char *status);
 int							max(int a, int b);
+void						sig_handler(int signo);
 
 #endif

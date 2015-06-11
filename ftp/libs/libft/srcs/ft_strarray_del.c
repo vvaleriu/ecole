@@ -15,14 +15,9 @@
 
 void		ft_strarray_del(char ***ar)
 {
-	int		i;
-
-	i = 0;
-	while ((*ar)[i] != NULL)
-	{
-		ft_strdel(&(*ar)[i]);
-		i++;
-	}
-	free(*ar);
+	if (**ar )
+		free(**ar);
+	if (*ar)
+		free(*ar);
 	*ar = NULL;
 }

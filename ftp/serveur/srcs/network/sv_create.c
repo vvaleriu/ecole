@@ -21,7 +21,6 @@ int			sv_create(t_sv_prop *sv)
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
 
-	printf("sv_create - Adresse de sv: %p\n", sv);
 	proto = (struct protoent *)EV(NULL, getprotobyname("tcp"), "getprotobyname error", NO_EXIT);
 	if (!(SV_SOCK = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);

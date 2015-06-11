@@ -12,18 +12,9 @@ int					main(int ac, char **av)
 		return (0);
 	}
 	init_cl_prop(&cl, av[1], av[2]);
-	connect_client(&cl);
+	cl_connect(&cl);
 	//write(cl.sock, "ls -l\n", 11);
-	input_command(&cl);
+	cmd_input(&cl);
 	//close(cl.sock);
 	return (0);
-}
-
-void				init_cl_prop(t_cl_prop *cl, char *ip, char *port)
-{
-	cl->ip = ft_strdup(ip);
-	ft_strdel(&(cl->ip));
-	cl->ip = ft_strdup("127.0.0.1");
-	cl->port = (unsigned short) ft_atoi(port);
-	cl->sock = 0;
 }

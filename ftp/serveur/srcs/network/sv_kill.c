@@ -36,9 +36,8 @@ void		kill_sockets(t_sv_prop *sv)
 
 void		kill_cmd(t_sv_prop *sv)
 {
-	t_cmd	*tmp;
-
-	tmp = sv->cmd;
-	if (tmp->cmd)
-		ft_strdel(&tmp->cmd);
+	ft_strarray_del(&(sv->cmd->path));
+	ft_strarray_del(&(sv->cmd->bin));
+	ft_strarray_del(&(sv->cmd->cmda));
+	ft_strdel(&sv->cmd->cmd);
 }

@@ -11,7 +11,6 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 
 	i = 0;
 	sv->max = 0;
-	printf("init_sv_prop - Adresse de sv: %p\n", sv);
 	sv->port = (unsigned short) ft_atoi(port);
 	sv->cmd = (t_cmd *)ft_memalloc(sizeof(*(sv->cmd)));
 	sv->fds = (t_fd *)ft_memalloc(sizeof(*(sv->fds)) * MAX_SOCKETS);
