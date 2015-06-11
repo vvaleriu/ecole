@@ -10,6 +10,7 @@
 /*
 ** Parcours le tableau de structure socket. Lorsqu'il trouve une case vide il associe 
 ** le socket retourne par la fonction accept a la case socket de la structure.
+** i = 1 car le 0 est le socket du serveur.
 */
 
 void			sv_accept(t_sv_prop *sv)
@@ -22,19 +23,22 @@ void			sv_accept(t_sv_prop *sv)
 	while (i < MAX_SOCKETS && sv->fds[i].type != SK_FREE)
 		i++;
 	if (i == MAX_SOCKETS)
-	{
 		pterr(ERR_MAX_CONNECTIONS);
-		exit(2);
-	}
-//	if ((sv->fds[i].sock = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) == -1)
-	if ((CL_SOCK(i) = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) == -1)
+	else if ((CL_SOCK(i) = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) != -1)
 	{
-		pterr(ERR_ACCEPT_FAILURE);
-		exit(2);
+		printf("New client #%d from %s:%d\n", i, inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
+		clean_fd(&(sv->fds[i]));
+		sv->fds[i].type = SK_CLIENT;
+		sv->fds[i].ft_read = ft_read;
+		sv->fds[i].ft_write = ft_write;
+		sv->max = max(sv->max, CL_SOCK(i));
 	}
-	clean_fd(&(sv->fds[i]));
-	sv->fds[i].type = SK_CLIENT;
-	sv->fds[i].ft_read = ft_read;
-	sv->fds[i].ft_write = ft_write;
-	sv->max = max(sv->max, CL_SOCK(i));
+	else
+		pterr(ERR_ACCEPT_FAILURE);
+}
+
+void			sv_new_cl_info(struct sockaddr_in csin, int i)
+{
+	printf("New client #%d from %s:%d\n", i,
+	inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
 }

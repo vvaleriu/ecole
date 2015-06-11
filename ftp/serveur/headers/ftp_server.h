@@ -16,20 +16,24 @@
 **	SV_SOCK: macro to access server socket (= files descriptor) value
 **	CL_SOCK(i): macro to access a client socket (= files descriptor) value
 */
-
-# define SK_SERV		0
-# define SK_CLIENT		1
-# define SK_FREE		2
-
-# define SV_SOCK		sv->fds[0].sock
-# define CL_SOCK(i)		sv->fds[i].sock
-
-/*
+	
+# define SK_SERV			0
+# define SK_CLIENT			1
+# define SK_FREE			2
+	
+# define SV_SOCK			sv->fds[0].sock
+# define CL_SOCK(i)			sv->fds[i].sock
+	
+/*	
 **	ERROR FUNCTIONS
-*/
-
-# define E(e, r, s, q)	err_int(e, r, s, q)
-# define EV(e, r, s, q)	err_void(e, r, s, q)
+**	Used in error checking functions
+**	Tells the function wether an error has to exit or continue running the exe.
+*/	
+	
+# define E(e, r, s, q)		err_int(e, r, s, q)
+# define EV(e, r, s, q)		err_void(e, r, s, q)
+# define NO_EXIT			0
+# define FORCE_EXIT			1
 
 /*
 **	BUF_SIZE: size of the buffer for read and write operation for each socket
@@ -37,11 +41,11 @@
 **	MAX_SOCKETS: MAX_CLIENTS + server socket (1)
 */
 
-# define BUF_SIZE		4096
-# define QUEUE_LENGTH	42
-# define BIN_NB			7
-# define MAX_CLIENTS	40
-# define MAX_SOCKETS	1 + MAX_CLIENTS
+# define BUF_SIZE			4096
+# define QUEUE_LENGTH		10
+# define BIN_NB				7
+# define MAX_CLIENTS		10
+# define MAX_SOCKETS		1 + MAX_CLIENTS
 
 typedef struct s_cmd		t_cmd;
 typedef struct s_cl_prop	t_cl_prop;
@@ -49,12 +53,12 @@ typedef struct s_fd			t_fd;
 typedef struct s_sv_prop	t_sv_prop;
 
 /*
-**	root_dir	dir of the binary, can't go upper than that
-**	env:		environment variables
-**	path:		list of dir to look for the exe
-**	bin:		list of string of allowed command on the server
-**	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc.
-**	cmd:		client entered command
+**	root_dir	dir of the binary, can't go upper than that (STACK)
+**	env:		environment variables (STACK)
+**	path:		list of dir to look for the exe (HEAP)
+**	bin:		list of string of allowed command on the server (HEAP)
+**	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc. (HEAP)
+**	cmd:		client entered command (HEAP)
 */
 
 struct			s_cmd
@@ -76,10 +80,10 @@ struct			s_cmd
 
 struct			s_fd
 {
-	int		sock;
-	int		type;
 	void	(*ft_read)();
 	void	(*ft_write)();
+	int		sock;
+	int		type;
 	char	read_b[BUF_SIZE + 1];
 	char	write_b[BUF_SIZE + 1];
 };
@@ -98,13 +102,13 @@ struct			s_fd
 
 struct			s_sv_prop
 {
-	t_fd				*fds;
 	t_cmd				*cmd;
-	unsigned short		port;
-	int					max;
-	int					left;
+	t_fd				*fds;
 	fd_set				readfds;
 	fd_set				writefds;
+	int					max;
+	int					left;
+	unsigned short		port;
 };
 
 /*
@@ -120,7 +124,9 @@ void						init_fds(t_sv_prop *sv);
 void						check_fds(t_sv_prop *sv);
 void						select_fds(t_sv_prop *sv);
 void						main_loop(t_sv_prop *sv);
-
+void						sv_new_cl_info(struct sockaddr_in csin, int i);
+void						sv_socket_state(t_sv_prop *sv);
+void						kill_sockets(t_sv_prop *sv);
 
 /*
 **			EXECUTION FUNCTIONS

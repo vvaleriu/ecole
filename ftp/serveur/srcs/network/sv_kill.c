@@ -23,3 +23,22 @@ void		sv_kill(t_sv_prop *sv)
 	}
 	close(sv->fds[0].sock);
 }
+
+void		kill_sockets(t_sv_prop *sv)
+{
+	int		i;
+
+	i = 0;
+	while (i < MAX_SOCKETS)
+		close(CL_SOCK(i++));
+	free(sv->fds);
+}
+
+void		kill_cmd(t_sv_prop *sv)
+{
+	t_cmd	*tmp;
+
+	tmp = sv->cmd;
+	if (tmp->cmd)
+		ft_strdel(&tmp->cmd);
+}

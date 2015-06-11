@@ -12,6 +12,63 @@
 
 #include <libft.h>
 
+static int		ct_wd(const char *s, char c)
+{
+	int		nb;
+
+	nb = 0;
+	while (*s && *s == c)
+		s++;
+	while (*s)
+	{
+		nb++;
+		while (*s != c)
+			s++;
+		while (*s == c)
+			s++;
+	}
+	ft_putendl(ft_itoa(nb));
+	return (nb);
+}
+
+static int		ct_c(const char *s, char c)
+{
+	int		nb;
+
+	nb = 0;
+	while (*s)
+	{
+		if (*s != c)
+			nb++;
+		s++;
+	}
+	ft_putendl(ft_itoa(nb));
+	return (nb);
+}
+
+char			**ft_strsplit(const char *s, char c)
+{
+	char	**ret;
+	char	*str;
+	int		i;
+
+	i = 0;
+	ret = (char **)ft_memalloc(sizeof(*ret) * ct_wd(s, c) + 1);
+	str = (char *)ft_memalloc(sizeof(*str) * ct_c(s, c) + ct_wd(s, c));
+	while (*s)
+	{
+		ret[i++] = str;
+		while (*s != c)
+			*(str++) = *(s++);
+		*(str++) = '\0';
+		while (*s == c)
+			s++;
+	}
+	ret[i] = NULL;
+	return (ret);
+}
+
+/*
 static void		fill(const char *s, int *t, char **ret, char *tmp)
 {
 	while (*s)
@@ -61,3 +118,4 @@ char			**ft_strsplit(const char *s, char c)
 	fill(s, t, ret, tmp);
 	return (ret);
 }
+*/

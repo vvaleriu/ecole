@@ -10,6 +10,7 @@
 void		clean_fd(t_fd *fd)
 {
 	fd->type = SK_FREE;
+	fd->sock = 0;
 	fd->ft_read = NULL;
 	fd->ft_write = NULL;
 }

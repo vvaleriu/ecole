@@ -24,8 +24,6 @@ vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
 SRC = main.c								\
-		errors.c							\
-		client_input.c						\
 		exe_command.c						\
 		get_path.c							\
 		command_checker.c					\
@@ -48,6 +46,7 @@ SRC = main.c								\
 		ft_read.c 							\
 		ft_write.c 							\
 		sv_status.c 						\
+		sv_socket_state.c 					\
 
 all: $(NAME)
 

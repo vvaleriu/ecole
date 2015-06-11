@@ -23,7 +23,7 @@ void	*ft_memalloc(size_t size)
 	tmp = ret;
 	while (size)
 	{
-		*tmp = '\0';
+		*tmp = 0;
 		tmp++;
 		size--;
 	}

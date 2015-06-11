@@ -11,7 +11,7 @@
 int			err_int(int err, int res, char *str, int quit)
 {
 	if (err == res)
-		printf("%s\n", str);
+		printf("%s %s\n", (quit ? "Exit: " : NULL ), str);
 	if (quit)
 		exit(2);
 	return (res);
@@ -21,7 +21,7 @@ void		*err_void(void *err, void *res, char *str, int quit)
 {
 	if (res == err)
 	{
-		printf("%s\n", str);
+		printf("%s %s\n", (quit ? "Exit:" : NULL ), str);
 		if (quit)
 			exit(2);
 	} 
