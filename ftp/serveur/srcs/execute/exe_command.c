@@ -28,34 +28,17 @@
 int				exe_command(t_sv_prop *sv)
 {
 	pid_t		father;
-	char		*path;
+	char		*binpath;
 
-	path = NULL;
+	binpath = NULL;
 	father = fork();
-	if (father == 0 && (path = get_path(sv)))
+	if (father == 0 && (binpath = get_path(sv)))
 	{
-		execve(path, sv->cmd->cmda, sv->cmd->env);
-		ft_strdel(&path);
+		execve(binpath, sv->cmd->cmda, sv->cmd->env);
+		ft_strdel(&binpath);
 		exit(1);
 	}
 	else
 		wait(0);
 	return (1);
-}
-
-void			clean_memory(t_sv_prop *sv)
-{
-	int		i;
-
-	i = 0;
-	ft_strdel(&(sv->cmd->cmd));
-	if (sv->cmd->cmda != NULL)
-	{
-		while (i < BIN_NB)
-		{
-			free(sv->cmd->cmda[i]);
-			i++;
-		}
-		free(sv->cmd->cmda);
-	}
 }

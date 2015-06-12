@@ -32,7 +32,6 @@ int			sv_create(t_sv_prop *sv)
 	listen(SV_SOCK, QUEUE_LENGTH);
 	sv->max = SV_SOCK;
 	sv->fds[0].ft_read = sv_accept;
-	printf("Server socket: %d\n", SV_SOCK);
 	sv_status(SV_STARTED);
 	return (1);
 }

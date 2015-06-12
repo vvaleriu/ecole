@@ -18,8 +18,31 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	char	*ret;
 
 	i = 0;
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
+	if (s1 == NULL)
+		return (ft_strdup(s2));
+	if (s2 == NULL)
+		return (ft_strdup(s1));
+	ret = ft_strnew(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	while (*s1)
+		ret[i++] = *s1++;
+	while (*s2)
+		ret[i++] = *s2++;
+	ret[i] = '\0';
+	return (ret);
+}
+
+/*
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
+	else
 	ret = ft_strnew(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	while (*s1)
 	{
@@ -36,3 +59,4 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	ret[i] = '\0';
 	return (ret);
 }
+*/

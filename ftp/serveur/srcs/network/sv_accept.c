@@ -24,10 +24,9 @@ void			sv_accept(t_sv_prop *sv)
 		i++;
 	if (i == MAX_SOCKETS)
 		pterr(ERR_MAX_CONNECTIONS);
-	else if ((CL_SOCK(i) = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) != -1)
+	else if ((sv->fds[i].sock = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) != -1)
 	{
-		printf("New client #%d from %s:%d\n", i, inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
-		clean_fd(&(sv->fds[i]));
+		ft_printf("New client #%d from %s:%d\n", sv->fds[i].sock, inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
 		sv->fds[i].type = SK_CLIENT;
 		sv->fds[i].ft_read = ft_read;
 		sv->fds[i].ft_write = ft_write;

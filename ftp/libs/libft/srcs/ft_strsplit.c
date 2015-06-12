@@ -70,6 +70,6 @@ char			**ft_strsplit(const char *s, char c)
 		if (*s)
 			*str++ = '\0';
 	}
-	ret[i] = '\0';
+	ret[i] = 0;
 	return (ret);
 }

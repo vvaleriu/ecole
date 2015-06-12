@@ -1,6 +1,6 @@
 #include <ftp_server.h>
 
-void			sv_socket_state(t_sv_prop *sv)
+void			sv_socket_state(t_sv_prop *sv, char *tag)
 {
 	int		i;
 	char	*str;
@@ -9,7 +9,8 @@ void			sv_socket_state(t_sv_prop *sv)
 	char	skcl[] = "CLIENT";
 
 	i = 0;
-	printf("%8s | %6s | %5s\n", "Number", "Type", "Fd value");
+	printf(" === from : %s , max: %d ===\n", tag, sv->max);
+	printf("%5s | %6s | %5s | %6s | %6s\n", "Nb", "Type", "fd", "Read", "Write");
 	while (i < MAX_SOCKETS)
 	{
 		if (sv->fds[i].type == SK_SERV)
@@ -18,7 +19,9 @@ void			sv_socket_state(t_sv_prop *sv)
 			str = skcl;
 		else
 			str = skfr;
-		printf("%8d | %6s | %5d\n", i, str, CL_SOCK(i));
+		printf("%5d | %6s | %5d | %6c | %6c\n", i, str, CL_SOCK(i),
+			(FD_ISSET(CL_SOCK(i), &sv->readfds) ? 'X' : ' '),
+			(FD_ISSET(CL_SOCK(i), &sv->writefds) ? 'X' : ' '));
 		i++;
 	}
 }

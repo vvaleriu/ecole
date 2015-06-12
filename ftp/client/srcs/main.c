@@ -13,8 +13,8 @@ int					main(int ac, char **av)
 	}
 	init_cl_prop(&cl, av[1], av[2]);
 	cl_connect(&cl);
-	//write(cl.sock, "ls -l\n", 11);
-	cmd_input(&cl);
-	//close(cl.sock);
+	write(cl.sock, "ls\n", 3);
+	//cmd_input(&cl);
+	close(cl.sock);
 	return (0);
 }

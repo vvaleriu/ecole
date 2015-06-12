@@ -55,8 +55,8 @@ typedef struct s_sv_prop	t_sv_prop;
 /*
 **	root_dir	dir of the binary, can't go upper than that (STACK)
 **	env:		environment variables (STACK)
-**	path:		list of dir to look for the exe (HEAP)
-**	bin:		list of string of allowed command on the server (HEAP)
+**	path:		list of dir in which to look for the exe (init at start) (HEAP)
+**	bin:		list of string of allowed command on the server (init at start) (HEAP)
 **	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc. (HEAP)
 **	cmd:		client entered command (HEAP)
 */
@@ -125,7 +125,7 @@ void						check_fds(t_sv_prop *sv);
 void						select_fds(t_sv_prop *sv);
 void						main_loop(t_sv_prop *sv);
 void						sv_new_cl_info(struct sockaddr_in csin, int i);
-void						sv_socket_state(t_sv_prop *sv);
+void						sv_socket_state(t_sv_prop *sv, char *tag);
 void						kill_sockets(t_sv_prop *sv);
 
 /*
