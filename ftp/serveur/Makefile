@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/02/02 11:36:54 by vvaleriu         ###   ########.fr        #
+#    Updated: 2015/06/12 13:23:03 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC = main.c								\
 all: $(NAME)
 
 deb: 
-	gcc -g3 $(HEADERS) $(LIBS) $(SRC) -o $(BIN_PATH)
+	@(sh deb.sh)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(BIN_PATH)/$@ $(OBJ) $(HEADERS) $(LIBS)
