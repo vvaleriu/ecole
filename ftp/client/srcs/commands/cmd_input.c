@@ -2,16 +2,16 @@
 
 int		cmd_input(t_cl_prop * cl)
 {
-	char		*cmd;
-	int			rd_ret;
+	int		rd;
+	char	*line;
 
-	while ((rd_ret = get_next_line(0, &cmd)) != 0 && rd_ret != -1)
+	while ((rd = get_next_line(0, &line)) > 0)
 	{
-		if (!ft_strcmp(cmd, "exit") || !ft_strcmp(cmd, "exit"))
-			cl_kill(cl, cmd);
-		ft_putstr_fd(cmd, cl->sock);
-		printf("%s", cmd);
-		ft_putstr_fd("ls -ln\n", cl->sock);
+		printf("%s\n", line);
+		if (!ft_strcmp(line, "exit") || !ft_strcmp(line, "exit"))
+			cl_kill(cl, &line);
+		send(cl->fd.sock, (void *)line, ft_strlen(line), 0);
 	}
+	ft_strdel(&line);
 	return (1);
 }

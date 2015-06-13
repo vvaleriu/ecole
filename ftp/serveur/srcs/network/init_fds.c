@@ -13,7 +13,7 @@ void				init_fds(t_sv_prop *sv)
 		if (sv->fds[i].type != SK_FREE)
 		{
 			FD_SET(CL_SOCK(i), &(sv->readfds));
-			if (ft_strlen(sv->fds[i].write_b) > 0)
+			if (ft_strlen(sv->fds[i].wr) > 0)
 				FD_SET(CL_SOCK(i), &(sv->writefds));
 		}
 		i++;

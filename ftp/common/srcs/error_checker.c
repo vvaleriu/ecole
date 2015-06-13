@@ -1,5 +1,4 @@
-#include <ftp_server.h>
-#include <stdlib.h>
+#include <ftp_common.h>
 #include <errno.h>
 #include <string.h>
 
@@ -11,9 +10,11 @@
 int			err_int(int err, int res, char *str, int quit)
 {
 	if (err == res)
+	{
 		printf("%s %s\n", (quit ? "Exit: " : NULL ), str);
-	if (quit)
-		exit(2);
+		if (quit)
+			exit(2);
+	}
 	return (res);
 }
 

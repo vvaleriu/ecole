@@ -14,20 +14,22 @@ NAME = client
 BIN_PATH = ../bin
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = -I./headers -I../libs/libft/headers
+HEADERS = -I./headers -I../libs/libft/headers  -I../common/headers
 LIBS = -L../libs -lft
 RM = rm -rf
-vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands
-vpath %.h headers ../libs/libft/headers
+vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs
+vpath %.h headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
 OP = ./.obj/
 SRC = main.c								\
 		init.c 								\
-		errors.c							\
 		cl_connect.c						\
 		cl_kill.c 							\
 		cmd_input.c							\
+		usage.c 							\
+		pterr.c 							\
+		error_checker.c 					\
 
 all: $(NAME)
 

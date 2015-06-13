@@ -10,6 +10,7 @@
 /*
 **			ERRORS
 */
+# undef ERR_USAGE
 # define ERR_USAGE				"<port>"
 # define ERR_UNKNOWN_PROTOCOL	"Protocol is unknown"
 # define ERR_EMPTY_ENV			"env not found."
@@ -18,4 +19,6 @@
 								Please type help to display a list of available commands."
 # define ERR_MAX_CONNECTIONS	"Maximum connections reached, no more slots available. Go fuck yoursefl. Thanks."
 # define ERR_ACCEPT_FAILURE		"Accept function failure."
+# define ERR_RECV				"Recv function error."
+
 #endif

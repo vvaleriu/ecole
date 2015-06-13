@@ -2,20 +2,18 @@
 # define CLIENT_H
 
 # include <libft.h>
+# include <ftp_common.h>
 # include <ftp_client_error.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-
-#include <netinet/in.h>
-#include <sys/socket.h>
+# include <netinet/in.h>
+# include <sys/socket.h>
 
 typedef struct			s_cl_prop
 {
-	char				*ip;
+	t_fd				fd;
 	unsigned short		port;
-	int					sock;
-	int					cs;
+	char				*ip;
 }						t_cl_prop;
 
 /*
@@ -23,21 +21,13 @@ typedef struct			s_cl_prop
 */
 
 int							cl_connect(t_cl_prop *prop);
-void						cl_kill(t_cl_prop *cl, char *cmd);
+void						cl_kill(t_cl_prop *cl, char **cmd);
 
 /*
 **				CLIENT COMMAND
 */
 
 int							cmd_input(t_cl_prop * cl);
-
-/*
-**				ERROR MANAGEMENT
-*/
-
-void						usage(char *binname, char *error);
-void						pterr(char *err);
-
 
 /*
 **				INITIALISATION

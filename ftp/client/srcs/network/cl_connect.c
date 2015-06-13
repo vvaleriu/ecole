@@ -12,30 +12,20 @@
 ** Enfin on connect le s
 */
 
-int			cl_connect(t_cl_prop *prop)
+int			cl_connect(t_cl_prop *cl)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
 
-	if (!(proto = getprotobyname("tcp")))
-	{
-		pterr(ERR_UNKNOWN_PROTOCOL);
-		return (-1);
-	}
-	if (!(prop->sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
+	proto = NULL;
+	EV(NULL, (proto = getprotobyname("tcp")), ERR_UNKNOWN_PROTOCOL, FORCE_EXIT);
+	if (!(cl->fd.sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);
 	sin.sin_family = AF_INET;
-	sin.sin_port = htons(prop->port);
-	printf("address: %s:%d\n", prop->ip, prop->port);
-	sin.sin_addr.s_addr = inet_addr(prop->ip);
-	if (connect(prop->sock, (const struct sockaddr *)&sin, sizeof(sin)) == -1)
-	{
-		printf("connect error.\n");
-		exit(2);
-	}
-	else
-	{
-		printf("connecte.\n");
-	}
+	sin.sin_port = htons(cl->port);
+	printf("address: %s:%d\n", cl->ip, cl->port);
+	sin.sin_addr.s_addr = inet_addr(cl->ip);
+	E(-1, connect(cl->fd.sock, (const struct sockaddr *)&sin, sizeof(sin)), ERR_CONNECT, FORCE_EXIT);
+	printf("connecte.\n");
 	return (1);
 }

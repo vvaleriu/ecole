@@ -6,16 +6,11 @@ int					main(int ac, char **av)
 {
 	t_cl_prop		cl;
 
-	if (ac != 3)
-	{
-		usage(av[0], ERR_USAGE);
-		return (0);
-	}
+	usage(3, ac, av);
 	init_cl_prop(&cl, av[1], av[2]);
 	cl_connect(&cl);
-	write(cl.sock, "ls -l\n", 3);
-	//cmd_input(&cl);
-	close(cl.sock);
+	cmd_input(&cl);
+	close(cl.fd.sock);
 	return (0);
 }
 

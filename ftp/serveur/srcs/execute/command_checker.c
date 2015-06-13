@@ -1,4 +1,6 @@
 #include <ftp_server.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 
 int				check_command(t_sv_prop *sv)
 {

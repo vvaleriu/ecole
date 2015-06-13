@@ -2,38 +2,19 @@
 # define SERVER_H
 
 # include <libft.h>
+# include <ftp_common.h>
 # include <ftp_server_error.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-
-# include <ftp_server.h>
 # include <netinet/in.h>
 # include <sys/socket.h>
 
 /*
-**	SK_SERV, SK_CLIENT : Types contained in t_fd structure
-**	SV_SOCK: macro to access server socket (= files descriptor) value
 **	CL_SOCK(i): macro to access a client socket (= files descriptor) value
 */
-	
-# define SK_SERV			0
-# define SK_CLIENT			1
-# define SK_FREE			2
-	
+
 # define SV_SOCK			sv->fds[0].sock
 # define CL_SOCK(i)			sv->fds[i].sock
-	
-/*	
-**	ERROR FUNCTIONS
-**	Used in error checking functions
-**	Tells the function wether an error has to exit or continue running the exe.
-*/	
-	
-# define E(e, r, s, q)		err_int(e, r, s, q)
-# define EV(e, r, s, q)		err_void(e, r, s, q)
-# define NO_EXIT			0
-# define FORCE_EXIT			1
 
 /*
 **	BUF_SIZE: size of the buffer for read and write operation for each socket
@@ -49,7 +30,6 @@
 
 typedef struct s_cmd		t_cmd;
 typedef struct s_cl_prop	t_cl_prop;
-typedef struct s_fd			t_fd;
 typedef struct s_sv_prop	t_sv_prop;
 
 /*
@@ -69,23 +49,6 @@ struct			s_cmd
 	char				**bin;
 	char				**cmda;
 	char				*cmd;
-};
-
-/*
-**	sd: 		socket descriptor
-**	type		SK_FREE	0, SK_SERV	1, SK_CLIENT	2
-**	ft_read:	pointer on read function
-**	ft_write:	pointer on write function
-*/
-
-struct			s_fd
-{
-	void	(*ft_read)();
-	void	(*ft_write)();
-	int		sock;
-	int		type;
-	char	read_b[BUF_SIZE + 1];
-	char	write_b[BUF_SIZE + 1];
 };
 	
 /*
@@ -155,14 +118,6 @@ char						**list_to_tab(t_list *l);
 
 void						read_client_input(t_sv_prop *sv);
 void						kill_server(t_sv_prop *sv);
-/*
-**				ERROR MANAGEMENT
-*/
-
-void						usage(int ac, char **av);
-void						pterr(char *err);
-int							err_int(int err, int res, char *str, int quit);
-void						*err_void(void *err, void *res, char *str, int quit);
 
 /*
 **				INITIALISATION
