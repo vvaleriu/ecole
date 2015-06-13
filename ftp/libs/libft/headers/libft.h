@@ -25,7 +25,7 @@
 # define J				t[1]
 # define K				t[2]
 # define L				t[3]
-# define GNL_BUFFER		512
+# define GNL_BUFFER		1024
 /*
 **	PRINTF : FLAGS POSITION
 **	CONVERSION QUALIFIER DEFINE
@@ -81,9 +81,11 @@ typedef struct		s_pf_print_func
 
 typedef	struct		s_str_prop
 {
-	int		char_rd;
+	int		rd;
 	char	*file;
 	char	*tmp;
+	char	*buf;
+	char	*end;
 }					t_str_prop;
 
 /*

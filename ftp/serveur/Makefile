@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 HEADERS = -I./headers -I../libs/libft/headers
 LIBS = -L../libs -lft
 RM = rm -rf
-vpath %.c ./srcs ./srcs/execute ./srcs/commands ./srcs/lexer ./srcs/network \
+vpath %.c ./srcs ./srcs/execute ./srcs/lexer ./srcs/network \
 			./srcs/tools
 vpath %.h ./headers ../libs/libft/headers
 vpath %.a ../libs/

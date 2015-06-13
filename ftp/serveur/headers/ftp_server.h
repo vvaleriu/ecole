@@ -132,6 +132,8 @@ void						kill_sockets(t_sv_prop *sv);
 **			EXECUTION FUNCTIONS
 */
 
+int							gnl(int const fd, char **line);
+
 char						*get_path(t_sv_prop *sv);
 int							exe_command(t_sv_prop *sv);
 int							check_command(t_sv_prop *sv);

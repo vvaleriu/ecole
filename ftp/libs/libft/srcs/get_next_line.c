@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdlib.h>
 
 /*
 **static void		reset_struct(t_str_prop *prop)
@@ -41,98 +42,48 @@
 **	on met tmp sur le debut de la chaine et on fait une copie de ce qui se
 **	trouve apres le \n pour pouvoir le reutiliser et le remttre au debut de
 **	la prochaine chaine qu'on lira.
+**
+**			end_of_file(t_str_prop *p, char **line)	
+**
+** p->rd = -3 signifie qu'on a finit de le fichier mais que celui ce ne prend
+** pas de \n final. On renvoit donc la chaine mais on met le marqueur a -3
+** ce qui fait qu'a la prochaine entree on va quitter et renvoyer 0 directement
 */
 
-/*
-**	Retourne le nombre de mots de la chaine a separer
-*/
-
-static int		set_pointer(t_str_prop *prop, char *end, char **line)
+static int		end_of_file(t_str_prop *p, char **line)
 {
-	*end = '\0';
-	*line = prop->file;
-	prop->tmp = prop->file;
-	prop->file = ft_strdup(end + 1);
-	return (1);
-}
-
-static int		end_of_file(t_str_prop *prop, char *end)
-{
-	ft_strdel(&(prop->file));
-	ft_strdel(&(prop->tmp));
-	ft_strdel(&end);
-	return (-2);
+	ft_strdel(&(p->buf));
+	*line = p->file;
+	if (ft_strlen(p->file))
+	{
+		p->rd = -3;
+		return (1);
+	}
+	return (0);
 }
 
 int				get_next_line(int const fd, char **line)
 {
-	static t_str_prop	prop = {-2, NULL, NULL};
-	char				*buf;
-	char				*end;
+	static t_str_prop	p = {-2, NULL, NULL, NULL, NULL};
 
-	buf = (char *)ft_memalloc(sizeof(char) * GNL_BUFFER + 1);
-	if (fd < 0 || GNL_BUFFER < 1 || !buf)
+	if (p.rd == -3)
+		return (0);
+	p.buf = (p.rd == -2 ? (char *)malloc(sizeof(char) * GNL_BUFFER + 1) : p.buf);
+	if (fd < 0 || GNL_BUFFER < 1 || !p.buf)
 		return (-1);
-	if (prop.char_rd == -2)
-		prop.file = ft_strnew(0);
-	ft_strdel(&prop.tmp);
-	while ((end = ft_strchr(prop.file, '\n')) == NULL && prop.char_rd != 0)
+	ft_strdel(&p.tmp);
+	while ((p.end = ft_strchr(p.file, '\n')) == NULL && p.rd != 0)
 	{
-		prop.char_rd = read(fd, buf, GNL_BUFFER);
-		if (!prop.char_rd)
-			return (end_of_file(&prop, end));
-		buf[prop.char_rd] = '\0';
-		prop.tmp = prop.file;
-		prop.file = ft_strjoin(prop.file, buf);
-		ft_strdel(&prop.tmp);
+		ft_bzero((void *)p.buf, GNL_BUFFER + 1);
+		p.rd = read(fd, p.buf, GNL_BUFFER);
+		if (!p.rd)
+			return (end_of_file(&p, line));
+		p.tmp = p.file;
+		p.file = ft_strjoin(p.file, p.buf);
+		ft_strdel(&p.tmp);
 	}
-	if (end)
-		return (set_pointer(&prop, end, line));
-	*line = prop.file;
-	return (0);
-}
-
-/*
-static int		set_pointer(t_str_prop *prop, char *end, char **line)
-{
-	*end = '\0';
-	*line = prop->file;
-	prop->tmp = prop->file;
-	prop->file = ft_strdup(end + 1);
+	*p.end = '\0';
+	*line = p.tmp = p.file;
+	p.file = ft_strdup(p.end + 1);
 	return (1);
 }
-
-static int		end_of_file(t_str_prop *prop, char **line)
-{
-	*line = prop->file;
-	ft_strdel(&(prop->tmp));
-	return (-2);
-}
-
-int				get_next_line(int const fd, char **line)
-{
-	static t_str_prop	prop = {-2, NULL, NULL};
-	char				*buf;
-	char				*end;
-
-	buf = (char *)ft_memalloc(sizeof(char) * GNL_BUFFER + 1);
-	if (fd < 0 || GNL_BUFFER < 1 || !buf)
-		return (-1);
-	ft_strdel(&prop.tmp);
-	while ((end = ft_strchr(prop.file, '\n')) == NULL && prop.char_rd != 0)
-	{
-		prop.char_rd = read(fd, buf, GNL_BUFFER);
-		if (!prop.char_rd)
-			return (end_of_file(&prop, line));
-		buf[prop.char_rd] = '\0';
-		prop.tmp = prop.file;
-		prop.file = ft_strjoin(prop.file, buf);
-		ft_strdel(&prop.tmp);
-	}
-	if (end)
-		return (set_pointer(&prop, end, line));
-	*line = prop.file;
-	return (0);
-}
-
-*/

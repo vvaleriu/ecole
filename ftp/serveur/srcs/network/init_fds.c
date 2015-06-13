@@ -18,5 +18,5 @@ void				init_fds(t_sv_prop *sv)
 		}
 		i++;
 	}
-	sv_socket_state(sv, "init_fds");
+	//sv_socket_state(sv, "init_fds");
 }

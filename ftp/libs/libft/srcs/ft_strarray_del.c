@@ -15,7 +15,7 @@
 
 void		ft_strarray_del(char ***ar)
 {
-	if (**ar )
+	if (ar && **ar)
 		free(**ar);
 	if (*ar)
 		free(*ar);
