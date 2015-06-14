@@ -95,8 +95,6 @@ void						kill_sockets(t_sv_prop *sv);
 **			EXECUTION FUNCTIONS
 */
 
-int							gnl(int const fd, char **line);
-
 char						*get_path(t_sv_prop *sv);
 int							exe_command(t_sv_prop *sv);
 int							check_command(t_sv_prop *sv);
@@ -134,5 +132,6 @@ void						init_command_list(t_sv_prop *sv);
 void						sv_status(char *status);
 int							max(int a, int b);
 void						sig_handler(int signo);
+void						sv_prop(t_sv_prop *sv);
 
 #endif

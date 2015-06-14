@@ -26,7 +26,7 @@ void			sv_accept(t_sv_prop *sv)
 		pterr(ERR_MAX_CONNECTIONS);
 	else if ((sv->fds[i].sock = accept(SV_SOCK, (struct sockaddr *)&csin, &csin_len)) != -1)
 	{
-		ft_printf("New client #%d from %s:%d\n", sv->fds[i].sock, inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
+		sv_new_cl_info(csin, sv->fds[i].sock);
 		sv->fds[i].type = SK_CLIENT;
 		sv->fds[i].ft_read = ft_read;
 		sv->fds[i].ft_write = ft_write;
@@ -34,10 +34,11 @@ void			sv_accept(t_sv_prop *sv)
 	}
 	else
 		pterr(ERR_ACCEPT_FAILURE);
+	printf("valeur du sockfd client : %i\n", sv->fds[i].sock);
 }
 
-void			sv_new_cl_info(struct sockaddr_in csin, int i)
+void			sv_new_cl_info(struct sockaddr_in csin, int sock)
 {
-	printf("New client #%d from %s:%d\n", i,
-	inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
+	ft_printf("New client #%d from %s:%d\n", sock,
+		inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
 }

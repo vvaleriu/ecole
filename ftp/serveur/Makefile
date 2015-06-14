@@ -48,6 +48,7 @@ SRC = main.c								\
 		sv_status.c 						\
 		sv_socket_state.c 					\
 		sig_handler.c 						\
+		sv_prop.c 							\
 
 all: $(NAME)
 

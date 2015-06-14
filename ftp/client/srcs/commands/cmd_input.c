@@ -7,7 +7,7 @@ int		cmd_input(t_cl_prop * cl)
 
 	while ((rd = get_next_line(0, &line)) > 0)
 	{
-		printf("%s\n", line);
+		//printf("%s\n", line);
 		if (!ft_strcmp(line, "exit") || !ft_strcmp(line, "exit"))
 			cl_kill(cl, &line);
 		send(cl->fd.sock, (void *)line, ft_strlen(line), 0);

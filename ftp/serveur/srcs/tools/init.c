@@ -48,34 +48,5 @@ void				init_command_list(t_sv_prop *sv)
 	sv->cmd->bin[4] = ft_strdup("pwd");
 	sv->cmd->bin[5] = ft_strdup("help");
 	sv->cmd->bin[6] = ft_strdup("quit");
+	sv->cmd->bin[BIN_NB] = 0;
 }
-
-/*
-void				init_env(t_sv_prop *sv, char **env)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	if (env != NULL)
-	{
-		sv->cmd->env = env;
-		while (env[i] && ft_strncmp(env[i], "PATH=", 5))
-			i++;
-		if (env[i])
-		{
-			sv->cmd->path = ft_strsplit((tmp = ft_strdup(env[i] + 5)), ':');
-			ft_strdel(&tmp);
-		}
-		else
-		{
-			pterr(ERR_EMPTY_ENV);
-			exit(2);
-		}
-	}
-	else
-	{
-		pterr(ERR_EMPTY_ENV);
-		exit(2);
-	}
-}*/
