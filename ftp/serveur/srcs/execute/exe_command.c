@@ -23,16 +23,40 @@
 ** ft_get_path : check if the command exist and find its path
 ** Finally exe_com execute the specified command or prompt the appropriate
 ** error message
+**
+** father == 0 means we are into the child
 */
 
-int				exe_command(t_sv_prop *sv)
+int				exe_command(t_sv_prop *sv, int i)
+{
+	pid_t		father;
+	char		*binpath;
+
+	i++;
+	binpath = NULL;
+	father = fork();
+	if (!father && (binpath = get_path(sv)))
+	{
+		dup2(CL_SOCK(i), 1);
+		execve(binpath, sv->cmd->cmda, sv->cmd->env);
+		ft_strdel(&binpath);
+		close(CL_SOCK(i));
+		exit(1);
+	}
+	else
+		wait(0);
+	return (1);
+}
+
+/*
+int				exe_command(t_sv_prop *sv, int i)
 {
 	pid_t		father;
 	char		*binpath;
 
 	binpath = NULL;
 	father = fork();
-	if (father == 0 && (binpath = get_path(sv)))
+	if (!father && (binpath = get_path(sv)))
 	{
 		execve(binpath, sv->cmd->cmda, sv->cmd->env);
 		ft_strdel(&binpath);
@@ -42,3 +66,4 @@ int				exe_command(t_sv_prop *sv)
 		wait(0);
 	return (1);
 }
+*/

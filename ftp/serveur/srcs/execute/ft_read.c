@@ -3,7 +3,7 @@
 #include <sys/socket.h>
 
 /*
-** i : case du tableau de sockets clients
+** i : case du tableau de sockets clients (= client)
 **
 */
 
@@ -17,7 +17,7 @@ void		ft_read(t_sv_prop *sv, int i)
 		printf("%s\n", sv->fds[i].rd);
 		sv->cmd->cmda = lexer(sv->fds[i].rd);
 		if ((ret_cmd = check_command(sv)) > 0)
-			exe_command(sv);
+			exe_command(sv, i);
 		else if (!ret_cmd)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));

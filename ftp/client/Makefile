@@ -17,7 +17,8 @@ CFLAGS = -Wall -Wextra -Werror
 HEADERS = -I./headers -I../libs/libft/headers  -I../common/headers
 LIBS = -L../libs -lft
 RM = rm -rf
-vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs
+vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs \
+			./srcs/send ./srcs/receive 
 vpath %.h headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -30,6 +31,12 @@ SRC = main.c								\
 		usage.c 							\
 		pterr.c 							\
 		error_checker.c 					\
+		init_fds.c 							\
+		cl_send.c 							\
+		cl_select.c 						\
+		check_fds.c 						\
+		main_loop.c 						\
+		cl_receive.c 						\
 
 all: $(NAME)
 

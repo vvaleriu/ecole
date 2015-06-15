@@ -9,7 +9,8 @@ int					main(int ac, char **av)
 	usage(3, ac, av);
 	init_cl_prop(&cl, av[1], av[2]);
 	cl_connect(&cl);
-	cmd_input(&cl);
+	//cmd_input(&cl);
+	main_loop(&cl);
 	close(cl.fd.sock);
 	return (0);
 }

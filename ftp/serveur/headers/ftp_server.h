@@ -96,7 +96,7 @@ void						kill_sockets(t_sv_prop *sv);
 */
 
 char						*get_path(t_sv_prop *sv);
-int							exe_command(t_sv_prop *sv);
+int							exe_command(t_sv_prop *sv, int i);
 int							check_command(t_sv_prop *sv);
 void						ft_read(t_sv_prop *sv, int i);
 void						ft_write(t_sv_prop *sv, int i);
