@@ -1,8 +1,13 @@
 #include <ftp_server.h>
 
 /*
+**	init_env = initialisation des variables d'env et sauvegarde du
+**	dossier root et du path pour trouver les executables sans avoir a le
+** 	faire tout le temps par la suite (cf. header pour voir ce qui est sur
+**	la heap et ce qui est sur la stack.)
 **
-**
+**	init_command_list : charge une liste de commandes autorisees sur
+**	le server.
 */
 
 void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
@@ -13,11 +18,11 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 	sv->max = 0;
 	sv->port = (unsigned short) ft_atoi(port);
 	sv->cmd = (t_cmd *)ft_memalloc(sizeof(*(sv->cmd)));
+	init_env(sv, env);
+	init_command_list(sv);
 	sv->fds = (t_fd *)ft_memalloc(sizeof(*(sv->fds)) * MAX_SOCKETS);
 	while (i < MAX_SOCKETS)
 		clean_fd(&(sv->fds[i++]));
-	init_env(sv, env);
-	init_command_list(sv);
 }
 
 void				init_env(t_sv_prop *sv, char **env)
@@ -36,6 +41,9 @@ void				init_env(t_sv_prop *sv, char **env)
 		i++;
 	EV(NULL, env[i], ERR_EMPTY_ENV, FORCE_EXIT);
 	sv->cmd->root_dir = env[i] + 4;
+	sv->cmd->bin = NULL;
+	sv->cmd->cmda = NULL;
+	sv->cmd->cmd = NULL;
 }
 
 void				init_command_list(t_sv_prop *sv)

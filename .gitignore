@@ -2,6 +2,6 @@
 *.swp
 *.out
 *.a
-
+.obj/
 ## projet ftp
 ftp/bin

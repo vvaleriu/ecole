@@ -20,5 +20,6 @@
 # define ERR_MAX_CONNECTIONS	"Maximum connections reached, no more slots available. Go fuck yoursefl. Thanks."
 # define ERR_ACCEPT_FAILURE		"Accept function failure."
 # define ERR_RECV				"Recv function error."
+# define ERR_SV_SOCK			"Create server socket failed."
 
 #endif

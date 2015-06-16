@@ -22,8 +22,7 @@ int			sv_create(t_sv_prop *sv)
 	struct sockaddr_in			sin;
 
 	proto = (struct protoent *)EV(NULL, getprotobyname("tcp"), "getprotobyname error", NO_EXIT);
-	if (!(SV_SOCK = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
-		return (-1);
+	E(-1, (SV_SOCK = socket(PF_INET, SOCK_STREAM, proto->p_proto)), ERR_SV_SOCK , FORCE_EXIT);
 	sv->fds[0].type = SK_SERV;
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(sv->port);
@@ -32,6 +31,7 @@ int			sv_create(t_sv_prop *sv)
 	listen(SV_SOCK, QUEUE_LENGTH);
 	sv->max = SV_SOCK;
 	sv->fds[0].ft_read = sv_accept;
+	sv->fds[0].ft_write = NULL;
 	sv_status(SV_STARTED);
 	return (1);
 }

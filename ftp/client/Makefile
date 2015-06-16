@@ -41,7 +41,7 @@ SRC = main.c								\
 all: $(NAME)
 
 deb: 
-	gcc -g3 -I./libft/includes main.c libft/srcs/*.c libft/srcs/printf/*.c libft/srcs/printf/conversions/*.c libft/srcs/printf/flags/*.c
+	@(sh deb.sh)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(BIN_PATH)/$@ $(OBJ) $(HEADERS) $(LIBS)
