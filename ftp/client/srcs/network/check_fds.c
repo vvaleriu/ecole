@@ -4,7 +4,7 @@ void		check_fds(t_cl_prop *cl)
 {
 	if (FD_ISSET(SOCK, &(cl->readfds)))
 	{
-		ft_printf("On rrecoit des donnees du socket.\n");
+		ft_printf("On rrecoit des donnees sur le socket.\n");
 		cl->fd.ft_read(cl);
 	}
 	if (FD_ISSET(0, &(cl->readfds)))

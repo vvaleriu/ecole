@@ -60,6 +60,18 @@ int 			main_loop(t_cl_prop *cl)
 }
 */
 
+int 			main_loop(t_cl_prop *cl)
+{
+	while(1)
+	{
+		init_fds(cl);
+		cl_select(cl);
+		check_fds(cl);
+	}
+	return (1);
+}
+
+/*
 static void		input_loop(t_cl_prop *cl, char *line, char *tmp)
 {
 	//if (cl->max == 423423)
@@ -107,4 +119,4 @@ int 			main_loop(t_cl_prop *cl)
 	else
 		transmission_loop(cl, line);
 	return (1);
-}
+}*/
