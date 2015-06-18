@@ -15,7 +15,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-//#include <fcntl.h>
 
 /*
 ** fill_tab fill the array of structure t_pcom with fonctions and how to
@@ -33,7 +32,6 @@ int				exe_command(t_sv_prop *sv, int i)
 	pid_t		father;
 	char		*binpath;
 
-	//i++;
 	binpath = NULL;
 	father = fork();
 	if (!father && (binpath = get_path(sv)))
@@ -41,8 +39,8 @@ int				exe_command(t_sv_prop *sv, int i)
 		dup2(CL_SOCK(i), 1);
 		execve(binpath, sv->cmd->cmda, sv->cmd->env);
 		ft_strdel(&binpath);
-		close(CL_SOCK(i));
-		//exit(1);
+		//close(CL_SOCK(i));
+		exit(1);
 	}
 	else
 		wait(0);

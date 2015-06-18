@@ -27,7 +27,6 @@ SRC = main.c								\
 		init.c 								\
 		cl_connect.c						\
 		cl_kill.c 							\
-		cmd_input.c							\
 		usage.c 							\
 		pterr.c 							\
 		error_checker.c 					\
@@ -37,6 +36,7 @@ SRC = main.c								\
 		check_fds.c 						\
 		main_loop.c 						\
 		cl_receive.c 						\
+		sig_handler.c 						\
 
 all: $(NAME)
 

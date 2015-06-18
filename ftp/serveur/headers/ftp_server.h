@@ -31,6 +31,18 @@
 typedef struct s_cmd		t_cmd;
 typedef struct s_cl_prop	t_cl_prop;
 typedef struct s_sv_prop	t_sv_prop;
+typedef struct s_bin 		t_bin;
+
+/*
+**	name	name of the command
+**	f		function associated with the command
+*/
+
+struct			s_bin
+{
+	char		*name;
+	int			(*f)();
+};
 
 /*
 **	root_dir	dir of the binary, can't go upper than that (STACK)
@@ -43,10 +55,10 @@ typedef struct s_sv_prop	t_sv_prop;
 
 struct			s_cmd
 {
+	t_bin				*bin;
 	char				*root_dir;
 	char				**env;
 	char				**path;
-	char				**bin;
 	char				**cmda;
 	char				*cmd;
 };
@@ -110,6 +122,12 @@ void						lex_space(char **buf);
 void						lex_char(char **buf, t_list **alst);
 char						**list_to_tab(t_list *l);
 
+/*
+** 			LEXING FUNCTIONS
+*/
+
+int							bin_cd(t_sv_prop *sv, i);
+int							bin_help(t_sv_prop *sv, i);
 /*
 **				INPUT LISTENER
 */

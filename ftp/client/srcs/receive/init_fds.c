@@ -13,16 +13,3 @@ void			init_fds(t_cl_prop *cl)
 	FD_SET(SOCK, &cl->readfds);
 	FD_SET(0, &cl->readfds);
 }
-
-/*void			init_fds(t_cl_prop *cl)
-{
-	//ft_printf("%s\n", "On rentre dans init_fds");
-	FD_ZERO(&cl->readfds);
-	FD_SET(SOCK, &cl->readfds);
-	//FD_SET(SOCK, &cl->writefds);
-	if (ft_strlen(cl->fd.wr))
-	{
-		ft_printf("fd_set en ecriture.\n");
-		FD_SET(SOCK, &cl->writefds);
-	}
-}*/

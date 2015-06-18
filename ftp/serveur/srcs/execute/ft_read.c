@@ -12,15 +12,16 @@ void		ft_read(t_sv_prop *sv, int i)
 	int 	rd;
 	int		ret_cmd;
 
-	if ((rd = E(-1, recv(CL_SOCK(i), sv->fds[i].rd, BUF_SIZE, 0), ERR_RECV, NO_EXIT)) != -1)
+	if ((rd = E(-1, recv(CL_SOCK(i), sv->fds[i].rd, BUF_SIZE, 0), ERR_RECV, NO_EXIT)) > 0)
 	{
-		printf("%s\n", sv->fds[i].rd);
+		printf("ft_read [client : %d] [commande : %s] [lu : %d]\n", i, sv->fds[i].rd, rd);
 		sv->cmd->cmda = lexer(sv->fds[i].rd);
-		if ((ret_cmd = check_command(sv)) > 0)
-			exe_command(sv, i);
+		ret_cmd = check_command(sv, i);
 		else if (!ret_cmd)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));
 		ft_bzero(sv->fds[i].rd, rd);
+		// Une fois la commande lue, on peut fermer le socket ?
+		//clean_fd(&(sv->fds[i]));
 	}
 }

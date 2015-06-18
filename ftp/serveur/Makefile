@@ -18,7 +18,7 @@ HEADERS = -I./headers -I../libs/libft/headers -I../common/headers
 LIBS = -L../libs -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/execute ./srcs/lexer ./srcs/network \
-			./srcs/tools ../common/srcs
+			./srcs/tools ./srcs/commands ../common/srcs
 vpath %.h ./headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -49,6 +49,8 @@ SRC = main.c								\
 		sv_socket_state.c 					\
 		sig_handler.c 						\
 		sv_prop.c 							\
+		bin_cd.c 							\
+		bin_help.c							\
 
 all: $(NAME)
 

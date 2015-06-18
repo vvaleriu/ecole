@@ -11,7 +11,6 @@ int					main(int ac, char **av)
 	cl_connect(&cl);
 	//cmd_input(&cl);
 	main_loop(&cl);
-	close(cl.fd.sock);
 	return (0);
 }
 

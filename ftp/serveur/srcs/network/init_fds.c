@@ -6,6 +6,7 @@ void				init_fds(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
+	printf("init_fds\n");
 	FD_ZERO(&(sv->readfds));
 	FD_ZERO(&(sv->writefds));
 	while (i < MAX_SOCKETS)

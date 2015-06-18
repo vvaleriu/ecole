@@ -17,9 +17,9 @@ typedef struct			s_cl_prop
 	fd_set				readfds;
 	fd_set				writefds;
 	int					max;
+	char				*gnl;
 	unsigned short		port;
 	char				*ip;
-
 }						t_cl_prop;
 
 /*
@@ -27,13 +27,12 @@ typedef struct			s_cl_prop
 */
 
 int							cl_connect(t_cl_prop *prop);
-void						cl_kill(t_cl_prop *cl, char **cmd);
+void						cl_kill(t_cl_prop *cl);
 void						check_fds(t_cl_prop *cl);
 void						init_fds(t_cl_prop *cl);
 void						cl_select(t_cl_prop *cl);
 int							main_loop(t_cl_prop *cl);
 void						init_fds(t_cl_prop *cl);
-int							cmd_input(t_cl_prop * cl);
 
 /*
 **				CLIENT SEND

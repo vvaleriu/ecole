@@ -62,4 +62,10 @@ void						pterr(char *err);
 int							err_int(int err, int res, char *str, int quit);
 void						*err_void(void *err, void *res, char *str, int quit);
 
+/*
+**				SIGNAL MANAGEMENT
+*/
+
+void						sig_handler(int signo);
+
 #endif

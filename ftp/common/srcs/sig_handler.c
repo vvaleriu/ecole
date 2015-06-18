@@ -11,12 +11,17 @@
 /* ************************************************************************** */
 
 #include <signal.h>
-#include <ftp_server.h>
+#include <ftp_common.h>
 
-void sig_handler(int signo)
+void	sig_handler(int signo)
 {
 	if (signo == SIGUSR1)
 		ft_printf("received SIGUSR1\n");
+	else if (signo == SIGINT)
+	{
+		ft_printf("received SIGINT\n");
+		exit(1);
+	}
 	else if (signo == SIGKILL)
 		ft_printf("received SIGKILL\n");
 	else if (signo == SIGSTOP)

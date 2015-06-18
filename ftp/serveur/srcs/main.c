@@ -17,6 +17,7 @@ int					main(int ac, char **av, char **env)
 
 	i = 1;
 	usage(2, ac, av);
+	signal(SIGINT, sig_handler);
 	init_sv_prop(&sv, av[1], env);
 	if (sv_create(&sv) != -1)
 	{
