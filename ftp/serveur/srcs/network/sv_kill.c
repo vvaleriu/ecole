@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-void		sv_kill(t_sv_prop *sv)
+int			sv_kill(t_sv_prop *sv)
 {
 	int		i;
 
@@ -15,13 +15,13 @@ void		sv_kill(t_sv_prop *sv)
 	if (sv->cmd->bin != NULL)
 	{
 		while (i < BIN_NB)
-		{
-			free(sv->cmd->bin[i]);
-			i++;
-		}
+			free(sv->cmd->bin[i++].name);
 		free(sv->cmd->bin);
 	}
+	kill_sockets(sv);
+	kill_cmd(sv);
 	close(sv->fds[0].sock);
+	return (1);
 }
 
 void		kill_sockets(t_sv_prop *sv)
@@ -37,7 +37,6 @@ void		kill_sockets(t_sv_prop *sv)
 void		kill_cmd(t_sv_prop *sv)
 {
 	ft_strarray_del(&(sv->cmd->path));
-	ft_strarray_del(&(sv->cmd->bin));
 	ft_strarray_del(&(sv->cmd->cmda));
 	ft_strdel(&sv->cmd->cmd);
 }

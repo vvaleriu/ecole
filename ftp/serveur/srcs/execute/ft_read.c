@@ -16,8 +16,8 @@ void		ft_read(t_sv_prop *sv, int i)
 	{
 		printf("ft_read [client : %d] [commande : %s] [lu : %d]\n", i, sv->fds[i].rd, rd);
 		sv->cmd->cmda = lexer(sv->fds[i].rd);
-		ret_cmd = check_command(sv, i);
-		else if (!ret_cmd)
+		ret_cmd = execute(sv, i);
+		if (!ret_cmd)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));
 		ft_bzero(sv->fds[i].rd, rd);

@@ -6,7 +6,7 @@
 ** j case du tableau,  savoir vers quel fd on doit rediriger.
 */
 
-int				check_command(t_sv_prop *sv, j)
+int				execute(t_sv_prop *sv, int j)
 {
 	int		i;
 

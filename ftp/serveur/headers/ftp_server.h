@@ -93,7 +93,7 @@ struct			s_sv_prop
 int							sv_launch(t_sv_prop *prop);
 int							sv_create(t_sv_prop *prop);
 void						sv_accept(t_sv_prop *sv);
-void						sv_kill(t_sv_prop *sv);
+int							sv_kill(t_sv_prop *sv);
 void						clean_fd(t_fd *fd);
 void						init_fds(t_sv_prop *sv);
 void						check_fds(t_sv_prop *sv);
@@ -102,6 +102,7 @@ void						main_loop(t_sv_prop *sv);
 void						sv_new_cl_info(struct sockaddr_in csin, int i);
 void						sv_socket_state(t_sv_prop *sv, char *tag);
 void						kill_sockets(t_sv_prop *sv);
+void						kill_cmd(t_sv_prop *sv);
 
 /*
 **			EXECUTION FUNCTIONS
@@ -109,7 +110,7 @@ void						kill_sockets(t_sv_prop *sv);
 
 char						*get_path(t_sv_prop *sv);
 int							exe_command(t_sv_prop *sv, int i);
-int							check_command(t_sv_prop *sv);
+int							execute(t_sv_prop *sv, int i);
 void						ft_read(t_sv_prop *sv, int i);
 void						ft_write(t_sv_prop *sv, int i);
 
@@ -123,11 +124,11 @@ void						lex_char(char **buf, t_list **alst);
 char						**list_to_tab(t_list *l);
 
 /*
-** 			LEXING FUNCTIONS
+** 			BUILT IN FUNCTIONS
 */
 
-int							bin_cd(t_sv_prop *sv, i);
-int							bin_help(t_sv_prop *sv, i);
+int							bin_cd(t_sv_prop *sv, int i);
+int							bin_help(t_sv_prop *sv, int i);
 /*
 **				INPUT LISTENER
 */

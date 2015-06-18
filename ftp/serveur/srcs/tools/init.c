@@ -49,19 +49,18 @@ void				init_env(t_sv_prop *sv, char **env)
 void				init_command_list(t_sv_prop *sv)
 {
 	sv->cmd->bin = (t_bin *)ft_memalloc(sizeof(*sv->cmd->bin) * BIN_NB + 1);
-	sv->cmd->bin[0]name = ft_strdup("ls");
+	sv->cmd->bin[0].name = ft_strdup("ls");
 	sv->cmd->bin[0].f = exe_command;
 	sv->cmd->bin[1].name = ft_strdup("cd");
 	sv->cmd->bin[1].f = bin_cd;
-	sv->cmd->bin[2]name = ft_strdup("get");
+	sv->cmd->bin[2].name = ft_strdup("get");
 	sv->cmd->bin[2].f = exe_command;
-	sv->cmd->bin[3]name = ft_strdup("put");
+	sv->cmd->bin[3].name = ft_strdup("put");
 	sv->cmd->bin[3].f = exe_command;
-	sv->cmd->bin[4]name = ft_strdup("pwd");
+	sv->cmd->bin[4].name = ft_strdup("pwd");
 	sv->cmd->bin[4].f = exe_command;
-	sv->cmd->bin[5]name = ft_strdup("help");
+	sv->cmd->bin[5].name = ft_strdup("help");
 	sv->cmd->bin[5].f = bin_help;
-	sv->cmd->bin[6]name = ft_strdup("quit");
+	sv->cmd->bin[6].name = ft_strdup("quit");
 	sv->cmd->bin[6].f = sv_kill;
-	sv->cmd->bin[BIN_NB] = 0;
 }

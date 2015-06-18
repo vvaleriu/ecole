@@ -1,5 +1,5 @@
 #include <ftp_server.h>
-
+/*
 void		ft_mod_pwd(char **env)
 {
 	char	path[1000];
@@ -46,28 +46,29 @@ int			ft_find_env(char *exe, char **env)
 		j = 0;
 	}
 	return (-1);
-}
+}*/
 
-void		bin_cd(t_sv_prop *sv)
+int			bin_cd(t_sv_prop *sv, int i)
 {
-	int		ret;
-	char	*path;
-	t_var	*var1;
+	int	ret;
 
-	path = NULL;
-	var1 = (t_var *)var;
-	if (!exe[1] || (exe[1] && !ft_strncmp(exe[1], "~", 1)))
+	i++;
+	// Repertoire home
+	/*if (!exe[1] || (exe[1] && !ft_strncmp(exe[1], "~", 1)))
 	{
 		path = ft_strdup(var1->tenv[ft_find_env("HOME", var1->tenv)] + 5);
 		ret = chdir(path);
-	}
-	else if (!ft_strcmp(exe[1], "-"))
-		ret = chdir(var1->tenv[ft_find_env("OLDPWD", var1->tenv)] + 7);
-	else
-		ret = chdir(exe[1]);
+	}*/
+	// Repertoire precendant
+	/*else if (!ft_strcmp(exe[1], "-"))
+		ret = chdir(var1->tenv[ft_find_env("OLDPWD", var1->tenv)] + 7);*/
+	// Repertoire en argument
+	if (sv->cmd->cmda[1])
+		ret = chdir(sv->cmd->cmda[1]);
 	if (ret == -1)
 		ft_putendl("Could not access directory");
-	else
+	/*else
 		ft_mod_pwd(var1->tenv);
-	ft_strdel(&path);
+	ft_strdel(&path);*/
+	return (1);
 }

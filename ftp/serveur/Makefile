@@ -26,7 +26,7 @@ OP = ./.obj/
 SRC = main.c								\
 		exe_command.c						\
 		get_path.c							\
-		command_checker.c					\
+		execute.c 							\
 		lex_char.c							\
 		lex_space.c							\
 		lexer.c								\
