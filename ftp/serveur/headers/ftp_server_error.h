@@ -22,6 +22,8 @@
 # define ERR_RECV				"Recv function error."
 # define ERR_SV_SOCK			"Create server socket failed."
 
+# define ERR_NO_FILE			"No file specified. You have to specify a file. Preck !"
+
 # define INFO_EXIT				"Server is closing, Connection will be lost."
 
 #endif

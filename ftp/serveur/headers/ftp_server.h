@@ -132,6 +132,11 @@ char						**list_to_tab(t_list *l);
 int							bin_cd(t_sv_prop *sv, int i);
 int							bin_help(t_sv_prop *sv, int i);
 int							bin_pwd(t_sv_prop *sv, int i);
+int							bin_get(t_sv_prop *sv, int i);
+int							bin_put(t_sv_prop *sv, int i);
+int							send_file_info(t_sv_prop *sv, char *fname, int file_fd, int cl);
+int							err_no_file(t_sv_prop *sv, int cl);
+int							send_file(t_sv_prop *sv, char *filename, int i);
 
 /*
 **				INPUT LISTENER
