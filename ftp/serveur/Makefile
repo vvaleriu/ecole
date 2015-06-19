@@ -51,6 +51,9 @@ SRC = main.c								\
 		sv_prop.c 							\
 		bin_cd.c 							\
 		bin_help.c							\
+		bin_pwd.c 							\
+		bin_get.c 							\
+		bin_put.c 							\
 
 all: $(NAME)
 

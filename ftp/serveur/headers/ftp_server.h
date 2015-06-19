@@ -23,6 +23,7 @@
 */
 
 # define BUF_SIZE			4096
+# define BUF_CWD			1024
 # define QUEUE_LENGTH		10
 # define BIN_NB				7
 # define MAX_CLIENTS		10
@@ -103,6 +104,7 @@ void						sv_new_cl_info(struct sockaddr_in csin, int i);
 void						sv_socket_state(t_sv_prop *sv, char *tag);
 void						kill_sockets(t_sv_prop *sv);
 void						kill_cmd(t_sv_prop *sv);
+void 						exit_announce(t_sv_prop *sv);
 
 /*
 **			EXECUTION FUNCTIONS
@@ -129,6 +131,8 @@ char						**list_to_tab(t_list *l);
 
 int							bin_cd(t_sv_prop *sv, int i);
 int							bin_help(t_sv_prop *sv, int i);
+int							bin_pwd(t_sv_prop *sv, int i);
+
 /*
 **				INPUT LISTENER
 */

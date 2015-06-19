@@ -15,7 +15,7 @@ int				execute(t_sv_prop *sv, int j)
 	{
 		if (!sv->cmd->cmda[0])
 			return (-1);
-		if (ft_strcmp(sv->cmd->cmda[0], sv->cmd->bin[i].name))
+		if (!ft_strcmp(sv->cmd->cmda[0], sv->cmd->bin[i].name))
 			return (sv->cmd->bin[i].f(sv, j));
 		i++;
 	}

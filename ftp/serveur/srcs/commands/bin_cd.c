@@ -53,6 +53,7 @@ int			bin_cd(t_sv_prop *sv, int i)
 	int	ret;
 
 	i++;
+	ret = 0;
 	// Repertoire home
 	/*if (!exe[1] || (exe[1] && !ft_strncmp(exe[1], "~", 1)))
 	{
@@ -63,6 +64,7 @@ int			bin_cd(t_sv_prop *sv, int i)
 	/*else if (!ft_strcmp(exe[1], "-"))
 		ret = chdir(var1->tenv[ft_find_env("OLDPWD", var1->tenv)] + 7);*/
 	// Repertoire en argument
+	printf("bin_cd (%s)\n", sv->cmd->cmda[1]);
 	if (sv->cmd->cmda[1])
 		ret = chdir(sv->cmd->cmda[1]);
 	if (ret == -1)

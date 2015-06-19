@@ -12,6 +12,7 @@ int			sv_kill(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
+	exit_announce(sv);
 	if (sv->cmd->bin != NULL)
 	{
 		while (i < BIN_NB)
@@ -39,4 +40,14 @@ void		kill_cmd(t_sv_prop *sv)
 	ft_strarray_del(&(sv->cmd->path));
 	ft_strarray_del(&(sv->cmd->cmda));
 	ft_strdel(&sv->cmd->cmd);
+}
+
+void 		exit_announce(t_sv_prop *sv)
+{
+	int		i;
+
+	i = 1;
+	while (i < MAX_SOCKETS)
+		if (sv->fds[i].type != SK_FREE)
+			send(CL_SOCK(i++), INFO_EXIT, ft_strlen(INFO_EXIT), 0);
 }

@@ -31,6 +31,7 @@ char		*ft_readdir(char *exe, char *rep)
 	if ((dir = opendir(rep)))
 	{
 		while ((fo = readdir(dir)) != NULL)
+		{
 			if (ft_strcmp(fo->d_name, exe) == 0)
 			{
 				ret = ft_strjoin(rep, "/");
@@ -41,6 +42,7 @@ char		*ft_readdir(char *exe, char *rep)
 					printf("closedir() failed");
 				return (ret);
 			}
+		}
 		if (closedir(dir) == -1)
 			printf("closedir() failed");
 	}
@@ -57,6 +59,6 @@ char		*get_path(t_sv_prop *sv)
 	while (sv->cmd->path[++i])
 		if ((ret = ft_readdir(sv->cmd->cmda[0], sv->cmd->path[i])) != NULL)
 			return (ret);
-	ft_putendl("command not found");
+	ft_putendl("commadn not found");
 	return (NULL);
 }

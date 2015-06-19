@@ -21,7 +21,7 @@ void		ft_read(t_sv_prop *sv, int i)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));
 		ft_bzero(sv->fds[i].rd, rd);
-		// Une fois la commande lue, on peut fermer le socket ?
-		//clean_fd(&(sv->fds[i]));
 	}
+	else
+		clean_fd(&(sv->fds[i]));
 }

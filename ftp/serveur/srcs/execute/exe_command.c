@@ -29,15 +29,15 @@
 
 int				exe_command(t_sv_prop *sv, int i)
 {
-	pid_t		father;
 	char		*binpath;
 
+	//printf("exe_command\n");
 	binpath = NULL;
-	father = fork();
-	if (!father && (binpath = get_path(sv)))
+	if (!fork() && (binpath = get_path(sv)))
 	{
 		dup2(CL_SOCK(i), 1);
-		execve(binpath, sv->cmd->cmda, sv->cmd->env);
+		//execve(binpath, sv->cmd->cmda, sv->cmd->env);
+		execv(binpath, sv->cmd->cmda);
 		ft_strdel(&binpath);
 		//close(CL_SOCK(i));
 		exit(1);

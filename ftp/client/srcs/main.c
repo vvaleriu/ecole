@@ -9,7 +9,6 @@ int					main(int ac, char **av)
 	usage(3, ac, av);
 	init_cl_prop(&cl, av[1], av[2]);
 	cl_connect(&cl);
-	//cmd_input(&cl);
 	main_loop(&cl);
 	return (0);
 }
