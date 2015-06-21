@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <netinet/in.h>
 # include <sys/socket.h>
+# include <fcntl.h>
 
 # define SOCK			cl->fd.sock
 

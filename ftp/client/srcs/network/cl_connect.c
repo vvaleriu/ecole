@@ -21,8 +21,8 @@ int			cl_connect(t_cl_prop *cl)
 	EV(NULL, (proto = getprotobyname("tcp")), ERR_UNKNOWN_PROTOCOL, FORCE_EXIT);
 	if (!(cl->fd.sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);
-	cl->fd.ft_read = cl_receive;
-	cl->fd.ft_write = cl_send;
+	cl->fd.ft_read = cl_receive_prepare;
+	cl->fd.ft_write = cl_send_prepare;
 	cl->max = cl->fd.sock + 1;
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(cl->port);

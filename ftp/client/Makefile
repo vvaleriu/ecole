@@ -18,7 +18,8 @@ HEADERS = -I./headers -I../libs/libft/headers  -I../common/headers
 LIBS = -L../libs -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs \
-			./srcs/send ./srcs/receive 
+			./srcs/send ./srcs/receive ../common/srcs/lexer \
+			../common/srcs/network
 vpath %.h headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -31,12 +32,21 @@ SRC = main.c								\
 		pterr.c 							\
 		error_checker.c 					\
 		init_fds.c 							\
-		cl_send.c 							\
+		cl_send_command.c					\
+		cl_send_files.c 					\
+		cl_send_prepare.c 					\
 		cl_select.c 						\
 		check_fds.c 						\
 		main_loop.c 						\
-		cl_receive.c 						\
+		cl_receive_prepare.c 				\
+		cl_receive_files.c 					\
+		cl_receive_output.c 				\
 		sig_handler.c 						\
+		cl_send_file.c 						\
+		lex_char.c							\
+		lex_space.c							\
+		lexer.c								\
+		nt_send_info.c 						\
 
 all: $(NAME)
 

@@ -62,6 +62,7 @@ struct			s_cmd
 	char				**path;
 	char				**cmda;
 	char				*cmd;
+	char				*gnl;
 };
 	
 /*
@@ -115,15 +116,7 @@ int							exe_command(t_sv_prop *sv, int i);
 int							execute(t_sv_prop *sv, int i);
 void						ft_read(t_sv_prop *sv, int i);
 void						ft_write(t_sv_prop *sv, int i);
-
-/*
-** 			LEXING FUNCTIONS
-*/
-
-char						**lexer(char *buf);
-void						lex_space(char **buf);
-void						lex_char(char **buf, t_list **alst);
-char						**list_to_tab(t_list *l);
+void						execute_sv(t_sv_prop *sv);
 
 /*
 ** 			BUILT IN FUNCTIONS

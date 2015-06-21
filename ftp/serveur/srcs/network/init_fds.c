@@ -1,6 +1,11 @@
 #include <ftp_server.h>
 #include <sys/select.h>
 
+/*
+**	On ajoute aussi l'entree standard pour lire les
+**	commandes serveur.
+*/
+
 void				init_fds(t_sv_prop *sv)
 {
 	int		i;
@@ -9,6 +14,7 @@ void				init_fds(t_sv_prop *sv)
 	printf("init_fds\n");
 	FD_ZERO(&(sv->readfds));
 	FD_ZERO(&(sv->writefds));
+	FD_SET(0, &(sv->readfds));
 	while (i < MAX_SOCKETS)
 	{
 		if (sv->fds[i].type != SK_FREE)
@@ -19,5 +25,4 @@ void				init_fds(t_sv_prop *sv)
 		}
 		i++;
 	}
-	//sv_socket_state(sv, "init_fds");
 }
