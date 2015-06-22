@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = serveur
-BIN_PATH = ../bin
+BIN_PATH = ../bin/s
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 HEADERS = -I./headers -I../libs/libft/headers -I../common/headers

@@ -27,19 +27,29 @@
 ** father == 0 means we are into the child
 */
 
-int				exe_command(t_sv_prop *sv, int i)
+static void		send_cmd_info(int sock)
+{
+	t_send_info info;
+
+	info.type = T_OUTPUT;
+	info.size = 1;
+	ft_bzero(info.fname, NAME_SIZE);
+	nt_send_info(sock, &info);
+}
+
+int				exe_command(t_sv_prop *sv, int cl)
 {
 	char		*binpath;
 
-	//printf("exe_command\n");
+	printf("exe_command\n");
 	binpath = NULL;
 	if (!fork() && (binpath = get_path(sv)))
 	{
-		dup2(CL_SOCK(i), 1);
-		//execve(binpath, sv->cmd->cmda, sv->cmd->env);
+		send_cmd_info(CL_SOCK(cl));
+		dup2(CL_SOCK(cl), 1);
 		execv(binpath, sv->cmd->cmda);
 		ft_strdel(&binpath);
-		//close(CL_SOCK(i));
+		//close(CL_SOCK(cl));
 		exit(1);
 	}
 	else

@@ -23,6 +23,7 @@ void		sv_receive_prepare(t_sv_prop *sv, int cl)
 	// A transformer en while
 	if ((ret_info = nt_receive_info(CL_SOCK(cl), &info)) != -1 && ret_info != 0)
 	{
+		nt_display_send_info(info);
 		if (info.type == T_COMMAND)
 			sv_receive_command(sv, cl);
 		else if (info.type == T_BINARY)

@@ -28,6 +28,8 @@ $(BIN): libft.a $(BIN_PATH) $(CLIENT) $(SERVEUR)
 
 $(BIN_PATH):
 	@(mkdir -p $@)
+	@(mkdir -p $@/c)
+	@(mkdir -p $@/s)
 
 libft.a:
 	@$(MAKE) -C $(LIBS)

@@ -4,8 +4,9 @@ int			cl_receive_output(t_cl_prop *cl, int sock, char *buf, t_send_info *info)
 {
 	int 	rd;
 
-	printf("On rentre dans nt_receive_output.\n");
-	if ((rd = E(-1, recv(sock, buf, (long int)info->size, 0), ERR_RECV, NO_EXIT)) > 0)
+	printf("On rentre dans cl_receive_output.\n");
+	nt_display_send_info(*info);
+	if ((rd = E(-1, recv(sock, buf, BUF_SIZE - 1, 0), ERR_RECV, NO_EXIT)) > 0)
 	{
 		buf[rd] = '\0';
 		printf("Message recu : \n%s\n", buf);

@@ -15,7 +15,8 @@ static int 		send_file_info(int sock, char *fname, int file_fd)
 	t_send_info		info;
 	struct stat		stat;
 
-	if (fstat(file_fd, &stat) > 0)
+	printf("send_file_info.\n");
+	if (!fstat(file_fd, &stat))
 	{ 
 		info.type = T_BINARY;
 		info.size = stat.st_size;
@@ -34,6 +35,7 @@ static int		send_file(int sock, char *buf, int file_fd)
 {
 	int		rd;
 
+	printf("send_file.\n");
 	while ((rd = read(file_fd, buf, BUF_SIZE - 1)) > 0)
 		send(sock, buf, rd, 0);
 	if (rd == -1)
@@ -50,10 +52,12 @@ int				nt_send_files(char **files, int sock)
 	int		file_fd;
 
 	i = 1;
+	printf("nt_send_files.\n");
 	while (files[i])
 	{
 		if ((file_fd = open(files[i], O_RDONLY)))
 		{
+			printf("open success.\n");
 			send_file_info(sock, files[i], file_fd);
 			send_file(sock, files[i], file_fd);
 			if (close(file_fd) == -1)
