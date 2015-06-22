@@ -16,11 +16,18 @@ int			cl_connect(t_cl_prop *cl)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
+	int							yes;
 
 	proto = NULL;
+	yes = 1;
 	EV(NULL, (proto = getprotobyname("tcp")), ERR_UNKNOWN_PROTOCOL, FORCE_EXIT);
 	if (!(cl->fd.sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);
+	if (setsockopt(SOCK, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
+	{
+    	perror("setsockopt");
+    	exit(1);
+	}  
 	cl->fd.ft_read = cl_receive_prepare;
 	cl->fd.ft_write = cl_send_prepare;
 	cl->max = cl->fd.sock + 1;

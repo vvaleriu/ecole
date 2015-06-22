@@ -12,6 +12,8 @@ void			cl_receive_prepare(t_cl_prop *cl)
 
 	if ((rd = E(-1, recv(SOCK, &info, sizeof(info), 0), ERR_RECV, NO_EXIT)) > 0)
 	{
+		printf("cl_receive_prepare.\n");
+		nt_display_send_info(info);
 		if (info.type == T_OUTPUT)
 			cl_receive_output(cl, SOCK, cl->fd.rd, &info);
 		else if (info.type == T_BINARY)
