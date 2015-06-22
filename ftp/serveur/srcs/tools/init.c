@@ -55,12 +55,10 @@ void				init_command_list(t_sv_prop *sv)
 	sv->cmd->bin[1].f = bin_cd;
 	sv->cmd->bin[2].name = ft_strdup("get");
 	sv->cmd->bin[2].f = bin_get;
-	sv->cmd->bin[3].name = ft_strdup("put");
-	sv->cmd->bin[3].f = bin_put;
-	sv->cmd->bin[4].name = ft_strdup("pwd");
-	sv->cmd->bin[4].f = bin_pwd;
-	sv->cmd->bin[5].name = ft_strdup("help");
-	sv->cmd->bin[5].f = bin_help;
-	sv->cmd->bin[6].name = ft_strdup("quit");
-	sv->cmd->bin[6].f = sv_kill;
+	sv->cmd->bin[3].name = ft_strdup("pwd");
+	sv->cmd->bin[3].f = bin_pwd;
+	sv->cmd->bin[4].name = ft_strdup("help");
+	sv->cmd->bin[4].f = bin_help;
+	sv->cmd->bin[5].name = ft_strdup("quit");
+	sv->cmd->bin[5].f = sv_kill;
 }

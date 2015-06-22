@@ -13,7 +13,7 @@ void			cl_receive_prepare(t_cl_prop *cl)
 	if ((rd = E(-1, recv(SOCK, &info, sizeof(info), 0), ERR_RECV, NO_EXIT)) > 0)
 	{
 		if (info.type == T_OUTPUT)
-			nt_receive_output(SOCK, cl->fd.rd, &info);
+			cl_receive_output(cl, SOCK, cl->fd.rd, &info);
 		else if (info.type == T_BINARY)
 			nt_receive_files(SOCK, cl->fd.rd, &info);
 	}

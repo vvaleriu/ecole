@@ -13,12 +13,14 @@ void		cl_send_prepare(t_cl_prop * cl)
 
 	printf("valeur de rd : %d\n", get_next_line(0, &(cl->gnl)));
 	if (ft_strlen(cl->gnl))
-		if (!ft_strncmp(cl->gnl, "put "))
+	{
+		if (!ft_strncmp(cl->gnl, "put ", 4))
 		{
 			files = lexer(cl->gnl);
-			nt_send_file(files, sock);
+			nt_send_files(files, SOCK);
 			ft_strarray_del(&files);
 		}
 		else
 			nt_send_command(SOCK, cl->gnl);
+	}
 }

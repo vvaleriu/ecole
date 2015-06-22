@@ -7,6 +7,15 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <sys/socket.h>
+
+/*
+**				ERRORS
+*/
+
+# define ERR_RECV			"Error with received data. Recv function error."
+# define ERR_WRITE_FILE		"Could not write to this file descriptor"
+# define ERR_FILE_NOT_FOUND		"File not found on the client. Check file path and name."
 
 /*
 **	SK_SERV, SK_CLIENT : Types contained in t_fd structure
@@ -27,9 +36,9 @@
 **	T_OUTPUT	: message te be printed on stdout
 */
 
-# define T_COMMAND			0;
-# define T_BINARY			1;
-# define T_OUTPUT			2;
+# define T_COMMAND			0
+# define T_BINARY			1
+# define T_OUTPUT			2
 
 /*
 **	BUF_SIZE: size of the buffer for read and write operation for each socket
@@ -100,7 +109,10 @@ char						**list_to_tab(t_list *l);
 
 int							nt_send_info(int socket, t_send_info *info);
 int							nt_receive_info(int socket, t_send_info *info);
-void						nt_display_send_info(t_send_info info);
+int							nt_display_send_info(t_send_info info);
+int							nt_receive_files(int sock, char *buf, t_send_info *info);
+int							nt_send_command(int sock, char *com);
+int							nt_send_files(char **files, int sock);
 
 /*
 **				ERROR MANAGEMENT

@@ -18,8 +18,8 @@ HEADERS = -I./headers -I../libs/libft/headers -I../common/headers
 LIBS = -L../libs -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/execute ./srcs/lexer ./srcs/network ./srcs/tools \
-		./srcs/commands ../common/srcs ../common/srcs/lexer \
-		../common/srcs/network
+		./srcs/commands ./srcs/send ../common/srcs ./srcs/receive \
+		../common/srcs/lexer ../common/srcs/network
 vpath %.h ./headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -44,10 +44,6 @@ SRC = main.c								\
 		init_fds.c 							\
 		check_fds.c 						\
 		select_fds.c 						\
-		sv_receive_prepare.c 				\
-		sv_receive_command.c 				\
-		sv_receive_files.c 					\
-		sv_send_files.c 					\
 		sv_status.c 						\
 		sv_socket_state.c 					\
 		sig_handler.c 						\
@@ -56,10 +52,15 @@ SRC = main.c								\
 		bin_help.c							\
 		bin_pwd.c 							\
 		bin_get.c 							\
-		bin_put.c 							\
 		execute_sv.c 						\
+		nt_display_send_info.c 				\
+		nt_receive_files.c 					\
+		nt_receive_info.c 					\
+		nt_send_files.c 					\
 		nt_send_info.c 						\
-
+		sv_receive_command.c 				\
+		sv_receive_prepare.c 				\
+		sv_send_prepare.c 					\
 
 all: $(NAME)
 

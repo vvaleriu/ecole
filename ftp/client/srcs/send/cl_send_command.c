@@ -16,6 +16,6 @@ void		cl_send_command(t_cl_prop *cl)
 	info.size = ft_strlen(cl->gnl);
 	ft_bzero(info.fname, NAME_SIZE);
 	nt_send_info(SOCK, &info);
-	printf("Envoie de la command : %d\n",
+	printf("Envoie de la command : %zu\n",
 		send(SOCK, cl->gnl, ft_strlen(cl->gnl), 0));
 }

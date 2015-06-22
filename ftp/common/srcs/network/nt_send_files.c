@@ -1,4 +1,4 @@
-#include <ftp_client.h>
+#include <ftp_common.h>
 
 /*
 ** cmda : lex the entered command to have all files that must be sent.
@@ -10,48 +10,27 @@
 ** then if first send the structure and second the file itself
 */
 
-void		nt_send_files(char **files, int sock)
-{
-	int 	i;
-	int		file_fd;
-
-	i = 1;
-	while (files[i])
-	{
-		if (file_fd = open(files[i], O_RDONLY))
-		{
-			send_file_info(sock, files[i], file_fd);
-			send_file(sock, files[i]);
-			if (close(file_fd) == -1)
-				printf("%s\n", "Closing file error.");
-		}
-		else
-			printf("%s\n", ERR_FILE_NOT_FOUND);
-		i++;
-	}
-}
-
-int 	send_file_info(int sock, char *fname, int file_fd)
+static int 		send_file_info(int sock, char *fname, int file_fd)
 {
 	t_send_info		info;
-	struct stat		fstat;
+	struct stat		stat;
 
-	if (fstat(file_fd, *fstat) > 0)
+	if (fstat(file_fd, &stat) > 0)
 	{ 
 		info.type = T_BINARY;
-		info.size = fstat.st_size;
+		info.size = stat.st_size;
 		ft_strcpy(info.fname, fname);
 		nt_send_info(sock, &info);
 	}
 	else
 	{
 		printf("%s\n", "fstat error.");
-		return (-1)
+		return (-1);
 	}
 	return (1);
 }
 
-int		send_file(int sock, char *buf, int file_fd)
+static int		send_file(int sock, char *buf, int file_fd)
 {
 	int		rd;
 
@@ -61,6 +40,28 @@ int		send_file(int sock, char *buf, int file_fd)
 	{
 		printf("%s\n", "read error while trying to send the file.");
 		return (rd);
+	}
+	return (1);
+}
+
+int				nt_send_files(char **files, int sock)
+{
+	int 	i;
+	int		file_fd;
+
+	i = 1;
+	while (files[i])
+	{
+		if ((file_fd = open(files[i], O_RDONLY)))
+		{
+			send_file_info(sock, files[i], file_fd);
+			send_file(sock, files[i], file_fd);
+			if (close(file_fd) == -1)
+				printf("%s\n", "Closing file error.");
+		}
+		else
+			printf("%s\n", ERR_FILE_NOT_FOUND);
+		i++;
 	}
 	return (1);
 }

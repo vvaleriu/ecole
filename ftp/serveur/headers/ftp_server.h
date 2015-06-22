@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <netinet/in.h>
 # include <sys/socket.h>
+# include <sys/types.h>
 
 /*
 **	CL_SOCK(i): macro to access a client socket (= files descriptor) value
@@ -25,12 +26,11 @@
 # define BUF_SIZE			4096
 # define BUF_CWD			1024
 # define QUEUE_LENGTH		10
-# define BIN_NB				7
+# define BIN_NB				6
 # define MAX_CLIENTS		10
 # define MAX_SOCKETS		1 + MAX_CLIENTS
 
 typedef struct s_cmd		t_cmd;
-typedef struct s_cl_prop	t_cl_prop;
 typedef struct s_sv_prop	t_sv_prop;
 typedef struct s_bin 		t_bin;
 
@@ -119,6 +119,14 @@ void						ft_write(t_sv_prop *sv, int i);
 void						execute_sv(t_sv_prop *sv);
 
 /*
+** 			SEND / RECEIVE FUNCTIONS
+*/
+
+void						sv_receive_command(t_sv_prop *sv, int cl);
+void						sv_receive_prepare(t_sv_prop *sv, int cl);
+void						sv_send_prepare(t_sv_prop *sv, int cl);
+
+/*
 ** 			BUILT IN FUNCTIONS
 */
 
@@ -126,7 +134,6 @@ int							bin_cd(t_sv_prop *sv, int i);
 int							bin_help(t_sv_prop *sv, int i);
 int							bin_pwd(t_sv_prop *sv, int i);
 int							bin_get(t_sv_prop *sv, int i);
-int							bin_put(t_sv_prop *sv, int i);
 int							send_file_info(t_sv_prop *sv, char *fname, int file_fd, int cl);
 int							err_no_file(t_sv_prop *sv, int cl);
 int							send_file(t_sv_prop *sv, char *filename, int i);

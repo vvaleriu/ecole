@@ -3,7 +3,8 @@
 #include <sys/socket.h>
 
 /*
-** i : case du tableau de sockets clients (= client)
+** cl : case du tableau de sockets clients (= client)
+** remplacer if par un while en cas de commande extrement longue
 **
 */
 
@@ -25,4 +26,3 @@ void		sv_receive_command(t_sv_prop *sv, int cl)
 	else
 		clean_fd(&(sv->fds[cl]));
 }
-sv->cmd->cmda = lexer(sv->fds[cl].rd);

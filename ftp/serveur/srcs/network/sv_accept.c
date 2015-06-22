@@ -28,8 +28,8 @@ void			sv_accept(t_sv_prop *sv)
 	{
 		sv_new_cl_info(csin, sv->fds[i].sock);
 		sv->fds[i].type = SK_CLIENT;
-		sv->fds[i].ft_read = ft_read;
-		sv->fds[i].ft_write = ft_write;
+		sv->fds[i].ft_read = sv_receive_prepare;
+		sv->fds[i].ft_write = sv_send_prepare;
 		sv->max = max(sv->max, CL_SOCK(i));
 	}
 	else

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ftp_server.h>
+#include <ftp_common.h>
 
 void	lex_space(char **buf)
 {

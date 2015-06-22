@@ -39,13 +39,14 @@ void						init_fds(t_cl_prop *cl);
 **				CLIENT SEND
 */
 
-void						cl_send(t_cl_prop * cl);
-
+void						cl_send_prepare(t_cl_prop * cl);
+void						cl_send_command(t_cl_prop *cl);
 /*
 **				CLIENT RECEIVE
 */
 
-void						cl_receive(t_cl_prop *cl);
+void						cl_receive_prepare(t_cl_prop *cl);
+int							cl_receive_output(t_cl_prop *cl, int sock, char *buf, t_send_info *info);
 
 /*
 **				INITIALISATION

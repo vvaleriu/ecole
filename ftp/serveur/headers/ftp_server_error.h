@@ -19,7 +19,6 @@
 								Please type help to display a list of available commands."
 # define ERR_MAX_CONNECTIONS	"Maximum connections reached, no more slots available. Go fuck yoursefl. Thanks."
 # define ERR_ACCEPT_FAILURE		"Accept function failure."
-# define ERR_RECV				"Recv function error."
 # define ERR_SV_SOCK			"Create server socket failed."
 
 # define ERR_NO_FILE			"No file specified. You have to specify a file. Preck !"

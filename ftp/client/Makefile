@@ -33,19 +33,21 @@ SRC = main.c								\
 		error_checker.c 					\
 		init_fds.c 							\
 		cl_send_command.c					\
-		cl_send_files.c 					\
 		cl_send_prepare.c 					\
 		cl_select.c 						\
 		check_fds.c 						\
 		main_loop.c 						\
 		cl_receive_prepare.c 				\
-		cl_receive_files.c 					\
 		cl_receive_output.c 				\
 		sig_handler.c 						\
-		cl_send_file.c 						\
 		lex_char.c							\
 		lex_space.c							\
 		lexer.c								\
+		nt_display_send_info.c 				\
+		nt_receive_files.c 					\
+		nt_receive_info.c 					\
+		nt_send_command.c 					\
+		nt_send_files.c 					\
 		nt_send_info.c 						\
 
 all: $(NAME)

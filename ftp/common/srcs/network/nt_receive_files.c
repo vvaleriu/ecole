@@ -1,8 +1,9 @@
-#include <ftp_client.h>
+#include <ftp_common.h>
 
-void			nt_receive_files(int sock, char *buf, t_send_info *info)
+int			nt_receive_files(int sock, char *buf, t_send_info *info)
 {
 	int		fd;
+	int		rd;
 
 	printf("On rentre dans receice_file.\n");
 	if ((fd = open(info->fname, O_RDWR | O_CREAT | O_EXCL)) > 0)
