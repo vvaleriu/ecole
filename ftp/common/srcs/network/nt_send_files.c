@@ -21,6 +21,7 @@ static int 		send_file_info(int sock, char *fname, int file_fd)
 		info.type = T_BINARY;
 		info.size = stat.st_size;
 		ft_strcpy(info.fname, fname);
+		printf("Copie du nom de fichier : %s\n", info.fname);
 		nt_send_info(sock, &info);
 	}
 	else
