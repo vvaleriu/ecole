@@ -6,6 +6,7 @@
 ** size of the command: ft_strlen(cl->gnl)
 ** no file name cause it is a command
 ** then if first send the structure and second the command itself
+** and finally wipe all possible residual char in fd buffers (wipe_fd)
 */
 
 void		cl_send_command(t_cl_prop *cl)
@@ -14,8 +15,9 @@ void		cl_send_command(t_cl_prop *cl)
 
 	info.type = T_COMMAND;
 	info.size = ft_strlen(cl->gnl);
-	ft_bzero(info.fname, NAME_SIZE);
+	ft_strcpy(info.fname, cl->gnl);
 	nt_send_info(SOCK, &info);
-	printf("Envoie de la command : %zu\n",
+	printf("cl_send_command - [commande envoyee : %s] [octets envoyes : %zu]\n", cl->gnl,
 		send(SOCK, cl->gnl, ft_strlen(cl->gnl), 0));
+	wipe_fd(&(cl->fd));
 }

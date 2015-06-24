@@ -15,7 +15,8 @@
 
 # define ERR_RECV			"Error with received data. Recv function error."
 # define ERR_WRITE_FILE		"Could not write to this file descriptor"
-# define ERR_FILE_NOT_FOUND		"File not found on the client. Check file path and name."
+# define ERR_FILE_NOT_FOUND	"File not found on the client. Check file path and name."
+# define ERR_INVALID_PORT	"This is not a valid port."
 
 /*
 **	SK_SERV, SK_CLIENT : Types contained in t_fd structure
@@ -88,9 +89,9 @@ struct			s_fd
 
 struct			s_send_info
 {
-	short		type;
 	off_t		size;
 	char		fname[NAME_SIZE];
+	int			type;
 };
 
 
@@ -113,6 +114,14 @@ int							nt_display_send_info(t_send_info info);
 int							nt_receive_files(int sock, char *buf, t_send_info *info);
 int							nt_send_command(int sock, char *com);
 int							nt_send_files(char **files, int sock);
+
+/*
+** 			TOOLS FUNCTIONS
+*/
+
+void						clean_fd(t_fd *fd);
+void						wipe_fd(t_fd *fd);
+void						check_port(char *port);
 
 /*
 **				ERROR MANAGEMENT

@@ -9,6 +9,7 @@
 # include <netinet/in.h>
 # include <sys/socket.h>
 # include <sys/types.h>
+#include <stdio.h>
 
 /*
 **	CL_SOCK(i): macro to access a client socket (= files descriptor) value
@@ -23,7 +24,6 @@
 **	MAX_SOCKETS: MAX_CLIENTS + server socket (1)
 */
 
-# define BUF_SIZE			4096
 # define BUF_CWD			1024
 # define QUEUE_LENGTH		10
 # define BIN_NB				6
@@ -96,7 +96,6 @@ int							sv_launch(t_sv_prop *prop);
 int							sv_create(t_sv_prop *prop);
 void						sv_accept(t_sv_prop *sv);
 int							sv_kill(t_sv_prop *sv);
-void						clean_fd(t_fd *fd);
 void						init_fds(t_sv_prop *sv);
 void						check_fds(t_sv_prop *sv);
 void						select_fds(t_sv_prop *sv);

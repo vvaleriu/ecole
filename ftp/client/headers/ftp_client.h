@@ -19,8 +19,8 @@ typedef struct			s_cl_prop
 	fd_set				writefds;
 	int					max;
 	char				*gnl;
-	unsigned short		port;
 	char				*ip;
+	unsigned short		port;
 }						t_cl_prop;
 
 /*

@@ -11,7 +11,7 @@ void				init_fds(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
-	printf("init_fds\n");
+	printf("[init_fds]\n");
 	FD_ZERO(&(sv->readfds));
 	FD_ZERO(&(sv->writefds));
 	FD_SET(0, &(sv->readfds));

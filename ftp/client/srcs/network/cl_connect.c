@@ -23,11 +23,7 @@ int			cl_connect(t_cl_prop *cl)
 	EV(NULL, (proto = getprotobyname("tcp")), ERR_UNKNOWN_PROTOCOL, FORCE_EXIT);
 	if (!(cl->fd.sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
 		return (-1);
-	if (setsockopt(SOCK, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
-	{
-    	perror("setsockopt");
-    	exit(1);
-	}  
+	E(-1, setsockopt(SOCK, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)), "setsockopt", NO_EXIT);
 	cl->fd.ft_read = cl_receive_prepare;
 	cl->fd.ft_write = cl_send_prepare;
 	cl->max = cl->fd.sock + 1;

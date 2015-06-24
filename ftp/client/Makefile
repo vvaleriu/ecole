@@ -19,7 +19,7 @@ LIBS = -L../libs -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs \
 			./srcs/send ./srcs/receive ../common/srcs/lexer \
-			../common/srcs/network
+			../common/srcs/network ../common/srcs/tools
 vpath %.h headers ../libs/libft/headers ../common/headers
 vpath %.a ../libs/
 OBJ = $(SRC:%.c=$(OP)%.o)
@@ -49,6 +49,10 @@ SRC = main.c								\
 		nt_send_command.c 					\
 		nt_send_files.c 					\
 		nt_send_info.c 						\
+		clean_fd.c 							\
+		wipe_fd.c 							\
+		check_port.c 						\
+
 
 all: $(NAME)
 

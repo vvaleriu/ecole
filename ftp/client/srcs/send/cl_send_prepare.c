@@ -11,7 +11,7 @@ void		cl_send_prepare(t_cl_prop * cl)
 {
 	char	**files;
 
-	printf("valeur de rd : %d\n", get_next_line(0, &(cl->gnl)));
+	printf("cl_send_prepare - [retour gnl : %d] [commande : %s]\n", get_next_line(0, &(cl->gnl)), cl->gnl);
 	if (ft_strlen(cl->gnl))
 	{
 		if (!ft_strncmp(cl->gnl, "put ", 4))

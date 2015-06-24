@@ -27,7 +27,7 @@ static int		ct_wd(const char *s, char c)
 			s++;
 		while (*s && *s != c)
 			s++;
-		nb = (*(s - 1) != ' ' ? nb + 1 : nb);
+		nb = (*(s - 1) != c ? nb + 1 : nb);
 	}
 	return (nb);
 }
@@ -57,7 +57,7 @@ char			**ft_strsplit(const char *s, char c)
 	int		i;
 
 	i = ct_wd(s, c);
-	ret = (char **)ft_memalloc(sizeof(*ret) * i + 1);
+	ret = (char **)ft_memalloc(sizeof(*ret) * (i + 1));
 	str = (char *)ft_memalloc(sizeof(*str) * ct_c(s, c) + i);
 	i = 0;
 	while (*s)
@@ -70,6 +70,5 @@ char			**ft_strsplit(const char *s, char c)
 		if (*s)
 			*str++ = '\0';
 	}
-	ret[i] = 0;
 	return (ret);
 }

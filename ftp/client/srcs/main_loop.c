@@ -3,14 +3,7 @@
 #include <sys/wait.h>
 
 /*
-**	1/ proc fils : on boucle sur la lecture des fds.
-**	si on a recu qqc de get next line, alors on le copie dans le buffer
-**	d'ecriture
-** 	on continue la boucle
 **
-**	2/ proc pere : on boucle sur le get next line
-**
-**	line est partage entre les deux processus
 */
 
 int 			main_loop(t_cl_prop *cl)

@@ -8,8 +8,9 @@
 
 void			init_fds(t_cl_prop *cl)
 {
-	ft_printf("%s\n", "On rentre dans init_fds");
+	ft_printf("%s\n", "init_fds");
 	FD_ZERO(&cl->readfds);
 	FD_SET(SOCK, &cl->readfds);
+	printf(">");
 	FD_SET(0, &cl->readfds);
 }
