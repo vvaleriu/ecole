@@ -52,7 +52,9 @@ SRC = main.c								\
 		clean_fd.c 							\
 		wipe_fd.c 							\
 		check_port.c 						\
-
+		is_client_side_command.c 			\
+		exe_command.c 						\
+		get_path.c 							\
 
 all: $(NAME)
 

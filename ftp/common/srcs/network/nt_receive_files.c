@@ -4,10 +4,10 @@
 
 int			nt_receive_files(int sock, char *buf, t_send_info *info)
 {
-	int			fd;
-	int			rd;
-	long int	to_read;
-	long int	already_read;
+	int				fd;
+	int				rd;
+	long long int	to_read;
+	long long int	already_read;
 
 	already_read = 0;
 	printf("[nt_receice_file]\n");
@@ -21,7 +21,7 @@ int			nt_receive_files(int sock, char *buf, t_send_info *info)
 			already_read += rd; 
 			write(fd, buf, rd);
 		}
-		printf("[files sent to the socket] [fsize: %lu] [sent size: %lu]\n", info->size, already_read);
+		printf("[files sent to the socket] [fsize: %lld] [sent size: %lld]\n", info->size, already_read);
 		close(fd);
 		ft_bzero(buf, BUF_SIZE);
 	}

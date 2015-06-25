@@ -13,12 +13,8 @@ int			sv_kill(t_sv_prop *sv)
 
 	i = 0;
 	exit_announce(sv);
-	if (sv->cmd->bin != NULL)
-	{
-		while (i < BIN_NB)
-			free(sv->cmd->bin[i++].name);
-		free(sv->cmd->bin);
-	}
+	while (i < BIN_NB)
+		free(sv->cmd->bin[i++].name);
 	kill_sockets(sv);
 	kill_cmd(sv);
 	close(sv->fds[0].sock);

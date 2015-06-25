@@ -17,6 +17,8 @@
 # define ERR_WRITE_FILE		"Could not write to this file descriptor"
 # define ERR_FILE_NOT_FOUND	"File not found on the client. Check file path and name."
 # define ERR_INVALID_PORT	"This is not a valid port."
+# define ERR_EMPTY_ENV		"env not found."
+
 
 /*
 **	SK_SERV, SK_CLIENT : Types contained in t_fd structure
@@ -78,6 +80,19 @@ struct			s_fd
 	int		type;
 	char	rd[BUF_SIZE + 1];
 	char	wr[BUF_SIZE + 1];
+};
+
+typedef struct s_bin 		t_bin;
+
+/*
+**	name	name of the command
+**	f		function associated with the command
+*/
+
+struct			s_bin
+{
+	char		*name;
+	int			(*f)();
 };
 
 /*

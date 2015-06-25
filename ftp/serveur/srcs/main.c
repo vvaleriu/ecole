@@ -20,12 +20,7 @@ int					main(int ac, char **av, char **env)
 	signal(SIGINT, sig_handler);
 	init_sv_prop(&sv, av[1], env);
 	if (sv_create(&sv) != -1)
-	{
-		//while (i < MAX_SOCKETS)
-		//	clean_fd(&(sv.fds[i++]));
-		sv_socket_state(&sv, "MAIN");
 		main_loop(&sv);
-	}
 	sv_kill(&sv);
 	return (0);
 }

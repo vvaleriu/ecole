@@ -18,14 +18,16 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 	sv->max = 0;
 	sv->left = 0;
 	check_port(port);
-	sv->port = (unsigned short) ft_atoi(port);
-	sv->cmd = (t_cmd *)malloc(sizeof(*(sv->cmd)));
+	sv->port = (unsigned short)ft_atoi(port);
+	sv->cmd = ft_memalloc(sizeof(*(sv->cmd)));
 	init_env(sv, env);
 	init_command_list(sv);
-	//sv->fds = (t_fd *)malloc(sizeof(*(sv->fds)) * MAX_SOCKETS);
-	sv->fds = (t_fd *)malloc(sizeof(t_fd) * MAX_SOCKETS);
+	sv->fds = ft_memalloc(sizeof(*(sv->fds)) * MAX_SOCKETS);
 	while (i < MAX_SOCKETS)
-		clean_fd(&(sv->fds[i++]));
+	{
+		clean_fd(&(sv->fds[i]));
+		i++;
+	}
 }
 
 void				init_env(t_sv_prop *sv, char **env)
@@ -44,7 +46,6 @@ void				init_env(t_sv_prop *sv, char **env)
 		i++;
 	EV(NULL, env[i], ERR_EMPTY_ENV, FORCE_EXIT);
 	sv->cmd->root_dir = env[i] + 4;
-	sv->cmd->bin = NULL;
 	sv->cmd->cmda = NULL;
 	sv->cmd->cmd = NULL;
 	sv->cmd->gnl = NULL;
@@ -52,7 +53,6 @@ void				init_env(t_sv_prop *sv, char **env)
 
 void				init_command_list(t_sv_prop *sv)
 {
-	sv->cmd->bin = (t_bin *)malloc(sizeof(*(sv->cmd->bin)) * BIN_NB);
 	sv->cmd->bin[0].name = ft_strdup("ls");
 	sv->cmd->bin[0].f = exe_command;
 	sv->cmd->bin[1].name = ft_strdup("cd");

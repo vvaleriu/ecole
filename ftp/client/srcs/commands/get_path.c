@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ftp_server.h>
-#include <libft.h>
+#include <ftp_client.h>
 #include <dirent.h>
-#include <stdlib.h>
 
 /*
 ** exe_path[0] = exec name
@@ -39,26 +37,26 @@ char		*ft_readdir(char *exe, char *rep)
 				ret = ft_strjoin(ret, fo->d_name);
 				ft_strdel(&tmp);
 				if (closedir(dir) == -1)
-					printf("[ERR] [closedir() failed]");
+					printf("closedir() failed");
 				return (ret);
 			}
 		}
 		if (closedir(dir) == -1)
-			printf("[ERR] [closedir() failed]");
+			printf("closedir() failed");
 	}
 	return (ret);
 }
 
-char		*get_path(t_sv_prop *sv)
+char		*get_path(t_cl_prop *cl, char **cmda)
 {
 	int		i;
 	char	*ret;
 
 	ret = NULL;
 	i = 0;
-	while (sv->cmd->path[++i])
-		if ((ret = ft_readdir(sv->cmd->cmda[0], sv->cmd->path[i])) != NULL)
+	while (cl->path[++i])
+		if ((ret = ft_readdir(cmda[0] + 1, cl->path[i])) != NULL)
 			return (ret);
-	ft_putendl("[command not found]");
+	ft_putendl("command not found");
 	return (NULL);
 }

@@ -28,22 +28,10 @@
 # define QUEUE_LENGTH		10
 # define BIN_NB				6
 # define MAX_CLIENTS		10
-# define MAX_SOCKETS		1 + MAX_CLIENTS
+# define MAX_SOCKETS		(1 + MAX_CLIENTS)
 
 typedef struct s_cmd		t_cmd;
 typedef struct s_sv_prop	t_sv_prop;
-typedef struct s_bin 		t_bin;
-
-/*
-**	name	name of the command
-**	f		function associated with the command
-*/
-
-struct			s_bin
-{
-	char		*name;
-	int			(*f)();
-};
 
 /*
 **	root_dir	dir of the binary, can't go upper than that (STACK)
@@ -56,7 +44,7 @@ struct			s_bin
 
 struct			s_cmd
 {
-	t_bin				*bin;
+	t_bin				bin[BIN_NB];
 	char				*root_dir;
 	char				**env;
 	char				**path;
@@ -64,7 +52,7 @@ struct			s_cmd
 	char				*cmd;
 	char				*gnl;
 };
-	
+
 /*
 **	fds:	array of socks, 0: is "master server socket",
 **			the rest are clients
@@ -85,7 +73,7 @@ struct			s_sv_prop
 	fd_set				writefds;
 	int					max;
 	int					left;
-	unsigned short		port;
+	int					port;
 };
 
 /*

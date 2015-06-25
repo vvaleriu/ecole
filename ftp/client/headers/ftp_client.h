@@ -12,11 +12,15 @@
 
 # define SOCK			cl->fd.sock
 
+# define CL_BIN			3
+
 typedef struct			s_cl_prop
 {
 	t_fd				fd;
 	fd_set				readfds;
 	fd_set				writefds;
+	t_bin				bin[CL_BIN];
+	char				**path;
 	int					max;
 	char				*gnl;
 	char				*ip;
@@ -41,6 +45,7 @@ void						init_fds(t_cl_prop *cl);
 
 void						cl_send_prepare(t_cl_prop * cl);
 void						cl_send_command(t_cl_prop *cl);
+int							is_client_side_command(t_cl_prop *cl, char *s);
 /*
 **				CLIENT RECEIVE
 */
@@ -49,9 +54,20 @@ void						cl_receive_prepare(t_cl_prop *cl);
 int							cl_receive_output(t_cl_prop *cl, int sock, char *buf, t_send_info *info);
 
 /*
+**				CLIENT SEND
+*/
+
+
+int							exe_command(t_cl_prop *cl, char **cmda);
+char						*get_path(t_cl_prop *cl, char **cmda);
+char						*ft_readdir(char *exe, char *rep);
+
+/*
 **				INITIALISATION
 */
 
-void						init_cl_prop(t_cl_prop *cl, char *ip, char *port);
+void						init_cl_prop(t_cl_prop *cl, char *ip, char *port, char **env);
+void						init_env(t_cl_prop *cl, char **env);
+void						init_command_list(t_cl_prop *cl);
 
 #endif

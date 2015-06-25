@@ -34,11 +34,11 @@ void			sv_accept(t_sv_prop *sv)
 	}
 	else
 		pterr(ERR_ACCEPT_FAILURE);
-	printf("valeur du sockfd client : %i\n", sv->fds[i].sock);
+	printf("[valeur du sockfd client : %i]\n", sv->fds[i].sock);
 }
 
 void			sv_new_cl_info(struct sockaddr_in csin, int sock)
 {
-	ft_printf("New client #%d from %s:%d\n", sock,
+	ft_printf("[INFO][New client #%d from %s:%d]\n", sock,
 		inet_ntoa(csin.sin_addr), ntohs(csin.sin_port));
 }

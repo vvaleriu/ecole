@@ -20,7 +20,7 @@ void		cl_send_prepare(t_cl_prop * cl)
 			nt_send_files(files, SOCK);
 			ft_strarray_del(&files);
 		}
-		else
+		else if (!is_client_side_command(cl, cl->gnl))
 			nt_send_command(SOCK, cl->gnl);
 	}
 }

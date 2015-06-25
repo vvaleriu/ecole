@@ -12,7 +12,7 @@ void			check_fds(t_sv_prop *sv)
 	int		i;
 
 	i = 0;
-	printf("check_fds\n");
+	printf("[check_fds]\n");
 	if (FD_ISSET(0, &(sv->readfds)))
 		execute_sv(sv);
 	while (i < MAX_SOCKETS && sv->left > 0)
