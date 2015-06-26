@@ -51,7 +51,9 @@ int							is_client_side_command(t_cl_prop *cl, char *s);
 */
 
 void						cl_receive_prepare(t_cl_prop *cl);
-int							cl_receive_output(t_cl_prop *cl, int sock, char *buf, t_send_info *info);
+//int							cl_receive_output(t_cl_prop *cl, int sock, char *buf, t_send_info *info);
+//int							cl_receive_output(t_cl_prop *cl, t_send_info *info);
+int							cl_receive_output(t_cl_prop *cl);
 
 /*
 **				CLIENT SEND

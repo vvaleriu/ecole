@@ -12,21 +12,14 @@
 
 static int 		send_file_info(int sock, char *fname, int file_fd)
 {
-	t_send_info		info;
 	struct stat		stat;
 
-	printf("send_file_info.\n");
+	printf("[send_file_info]\n");
 	if (!fstat(file_fd, &stat))
-	{ 
-		info.type = T_BINARY;
-		info.size = stat.st_size;
-		ft_strcpy(info.fname, fname);
-		printf("Copie du nom de fichier : %s\n", info.fname);
-		nt_send_info(sock, &info);
-	}
+		nt_send_info(sock, T_BINARY, stat.st_size, fname);
 	else
 	{
-		printf("%s\n", "fstat error.");
+		printf("%s\n", "[ERR] [fstat error]");
 		return (-1);
 	}
 	return (1);
@@ -36,12 +29,12 @@ static int		send_file(int sock, char *buf, int file_fd)
 {
 	int		rd;
 
-	printf("send_file.\n");
+	printf("[send_file]\n");
 	while ((rd = read(file_fd, buf, BUF_SIZE - 1)) > 0)
 		send(sock, buf, rd, 0);
 	if (rd == -1)
 	{
-		printf("%s\n", "read error while trying to send the file.");
+		printf("%s\n", "[ERR] [read error while trying to send the file]");
 		return (rd);
 	}
 	return (1);
@@ -53,16 +46,15 @@ int				nt_send_files(char **files, int sock)
 	int		file_fd;
 
 	i = 1;
-	printf("nt_send_files.\n");
+	printf("[nt_send_files]\n");
 	while (files[i])
 	{
 		if ((file_fd = open(files[i], O_RDONLY)))
 		{
-			printf("open success.\n");
 			send_file_info(sock, files[i], file_fd);
 			send_file(sock, files[i], file_fd);
 			if (close(file_fd) == -1)
-				printf("%s\n", "Closing file error.");
+				printf("%s\n", "[ERR] [Closing file error]");
 		}
 		else
 			printf("%s\n", ERR_FILE_NOT_FOUND);

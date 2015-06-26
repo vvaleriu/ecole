@@ -11,6 +11,7 @@ int 			main_loop(t_cl_prop *cl)
 	while(1)
 	{
 		//printf("main_loop.\n");
+		printf("===============================================================\n");
 		init_fds(cl);
 		cl_select(cl);
 		check_fds(cl);

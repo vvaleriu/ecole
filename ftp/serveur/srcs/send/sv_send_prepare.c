@@ -20,4 +20,3 @@ void				sv_send_prepare(t_sv_prop *sv, int cl)
 	else
 		clean_fd(&(sv->fds[cl]));
 }
-	

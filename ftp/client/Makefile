@@ -46,7 +46,6 @@ SRC = main.c								\
 		nt_display_send_info.c 				\
 		nt_receive_files.c 					\
 		nt_receive_info.c 					\
-		nt_send_command.c 					\
 		nt_send_files.c 					\
 		nt_send_info.c 						\
 		clean_fd.c 							\

@@ -90,6 +90,7 @@ void						select_fds(t_sv_prop *sv);
 void						main_loop(t_sv_prop *sv);
 void						sv_new_cl_info(struct sockaddr_in csin, int i);
 void						sv_socket_state(t_sv_prop *sv, char *tag);
+void						sv_socket_status(t_sv_prop *sv, int cl, char *tag);
 void						kill_sockets(t_sv_prop *sv);
 void						kill_cmd(t_sv_prop *sv);
 void 						exit_announce(t_sv_prop *sv);
@@ -112,6 +113,7 @@ void						execute_sv(t_sv_prop *sv);
 void						sv_receive_command(t_sv_prop *sv, int cl);
 void						sv_receive_prepare(t_sv_prop *sv, int cl);
 void						sv_send_prepare(t_sv_prop *sv, int cl);
+int							sv_send_message(int sock, char *mess);
 
 /*
 ** 			BUILT IN FUNCTIONS

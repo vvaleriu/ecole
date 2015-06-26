@@ -15,13 +15,14 @@ void		sv_receive_command(t_sv_prop *sv, int cl)
 
 	if ((rd = E(-1, recv(CL_SOCK(cl), sv->fds[cl].rd, BUF_SIZE, 0), ERR_RECV, NO_EXIT)) > 0)
 	{
-		printf("ft_read [client : %d] [commande : %s] [lu : %d]\n", cl, sv->fds[cl].rd, rd);
+		printf("[sv_receive_command] [client : %d] [commande : %s] [lu : %d]\n", cl, sv->fds[cl].rd, rd);
 		sv->cmd->cmda = lexer(sv->fds[cl].rd);
 		ret_cmd = execute(sv, cl);
 		if (!ret_cmd)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));
-		ft_bzero(sv->fds[cl].rd, rd);
+		//ft_bzero(sv->fds[cl].rd, rd);
+		ft_bzero(sv->fds[cl].rd, BUF_SIZE + 1);		
 	}
 	else
 		clean_fd(&(sv->fds[cl]));

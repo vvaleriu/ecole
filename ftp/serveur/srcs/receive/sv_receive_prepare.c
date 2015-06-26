@@ -21,7 +21,7 @@ void		sv_receive_prepare(t_sv_prop *sv, int cl)
 	int				ret_info;
 
 	// A transformer en while
-	printf("receive prepare\n");
+	printf("[sv_receive_prepare]\n");
 	if ((ret_info = nt_receive_info(CL_SOCK(cl), &info)) != -1 && ret_info != 0)
 	{
 		nt_display_send_info(info);

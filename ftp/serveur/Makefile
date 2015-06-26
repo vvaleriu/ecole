@@ -63,6 +63,8 @@ SRC = main.c								\
 		sv_send_prepare.c 					\
 		wipe_fd.c							\
 		check_port.c 						\
+		sv_socket_status.c 					\
+		sv_send_message.c 					\
 
 all: $(NAME)
 

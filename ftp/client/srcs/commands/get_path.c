@@ -47,6 +47,12 @@ char		*ft_readdir(char *exe, char *rep)
 	return (ret);
 }
 
+/*
+** cmda[0] est le nomde le'executable entre. Comme il s'agit d'une commande
+** client, toutes les commandes prennent un c devant (ex : cls, cmkdir), on 
+** cherche donc dans le path a partir de cmda[0] + 1 (donc : ls, mkdir)
+*/
+
 char		*get_path(t_cl_prop *cl, char **cmda)
 {
 	int		i;

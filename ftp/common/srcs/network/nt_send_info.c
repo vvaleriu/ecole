@@ -1,15 +1,26 @@
 #include <ftp_common.h>
 
-int			nt_send_info(int sock, t_send_info *info)
-{
-	int		ret;
+/*
+** Arg: type name and size of data to be transmit
+*/
 
-	ret = send(sock, info, sizeof(*info), 0);
+int			nt_send_info(int sock, int type, off_t size, char *name)
+{
+	int			ret;
+	t_send_info	info;
+
+	info.type = type;
+	info.size = size;
+	if (name)
+		ft_strcpy(info.fname, name);
+	else
+		ft_bzero(info.fname, NAME_SIZE);
+	ret = send(sock, &info, sizeof(info), 0);
 	if (ret > 0)
-		printf("Envoi des infos de transfert (send_type).\n");
+		printf("[nt_send_info] [envoi info]\n");
 	else
 	{
-		printf("Erreur envoi des infos de transfert.\n");
+		printf("[nt_send_info] [erreur envoi info ]\n");
 		return (-1);
 	}
 	return (1);

@@ -14,7 +14,7 @@ void				init_fds(t_sv_prop *sv)
 	printf("[init_fds]\n");
 	FD_ZERO(&(sv->readfds));
 	FD_ZERO(&(sv->writefds));
-	FD_SET(0, &(sv->readfds));
+	//FD_SET(0, &(sv->readfds));
 	while (i < MAX_SOCKETS)
 	{
 		if (sv->fds[i].type != SK_FREE)

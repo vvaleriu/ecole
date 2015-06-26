@@ -11,13 +11,10 @@
 
 void		cl_send_command(t_cl_prop *cl)
 {
-	t_send_info		info;
-
-	info.type = T_COMMAND;
-	info.size = ft_strlen(cl->gnl);
-	ft_strcpy(info.fname, cl->gnl);
-	nt_send_info(SOCK, &info);
-	printf("cl_send_command - [commande envoyee : %s] [octets envoyes : %zu]\n", cl->gnl,
-		send(SOCK, cl->gnl, ft_strlen(cl->gnl), 0));
+	printf("[cl_send_command] [gnl : %s]\n", cl->gnl);
+	nt_send_info(SOCK, T_COMMAND, 0, cl->gnl);
+	//printf("cl_send_command - [commande envoyee : %s] [octets envoyes : %zu]\n", cl->gnl,
+	//	send(SOCK, cl->gnl, ft_strlen(cl->gnl), 0));
+	send(SOCK, cl->gnl, ft_strlen(cl->gnl), 0);
 	wipe_fd(&(cl->fd));
 }

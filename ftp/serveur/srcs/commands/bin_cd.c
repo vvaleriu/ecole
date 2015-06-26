@@ -26,7 +26,7 @@ int			ft_find_env(char *exe, char **env)
 	return (-1);
 }*/
 
-int			bin_cd(t_sv_prop *sv, int i)
+int				bin_cd(t_sv_prop *sv, int i)
 {
 	char	*prev_dir;
 	char	*new_dir;
@@ -42,9 +42,11 @@ int			bin_cd(t_sv_prop *sv, int i)
 			{
 				printf("%s\n", ERR_FORB_FOLDER);
 				chdir(prev_dir);
+				sv_send_message(i, ERR_FORB_FOLDER);
 			}
 			ft_strdel(&prev_dir);
 			ft_strdel(&new_dir);
+			sv_send_message(i, "DIR successfully changed.");
 		}
 		else
 			printf("%s\n", ERR_FORB_FOLDER);

@@ -10,12 +10,7 @@
 
 int		nt_send_command(int sock, char *com)
 {
-	t_send_info		info;
-
-	info.type = T_COMMAND;
-	info.size = ft_strlen(com);
-	ft_bzero(info.fname, NAME_SIZE);
-	nt_send_info(sock, &info);
+	nt_send_info(sock, T_COMMAND, ft_strlen(com), NULL);
 	printf("Envoie de la command : %zu\n",
 		send(sock, com, ft_strlen(com), 0));
 	return (1);

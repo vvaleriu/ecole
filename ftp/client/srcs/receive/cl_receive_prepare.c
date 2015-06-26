@@ -15,7 +15,8 @@ void			cl_receive_prepare(t_cl_prop *cl)
 		printf("[cl_receive_prepare]\n");
 		nt_display_send_info(info);
 		if (info.type == T_OUTPUT)
-			cl_receive_output(cl, SOCK, cl->fd.rd, &info);
+			//cl_receive_output(cl, SOCK, cl->fd.rd, &info);
+			cl_receive_output(cl);
 		else if (info.type == T_BINARY)
 			nt_receive_files(SOCK, cl->fd.rd, &info);
 	}
