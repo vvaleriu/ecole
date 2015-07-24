@@ -31,11 +31,11 @@ void			ft_unsetenv(char **exe, void *var1)
 	v = (t_var *)var1;
 	if ((exe[1] && ft_strcmp(exe[1], "PATH")))
 	{
-		if ((I = ft_find_env(exe[1], v->tenv)) != -1)
+		if ((I = find_env(exe[1], v->tenv)) != -1)
 		{
 			ft_printf("Numero de varenv trouve : %d\n", I);
 			ft_printf("Valeur de varenv trouve : %s\n", v->tenv[I]);
-			//ft_strarray_del_one(&(v->tenv), I);
+			ft_strarray_del_one(&(v->tenv), I);
 		}
 	}
 }

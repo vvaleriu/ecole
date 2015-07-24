@@ -191,6 +191,7 @@ int					is_space(char c);
 int					is_operator(char c);
 int					is_text(char c);
 void				ft_strarray_del(char ***c);
+void				ft_strarray_del_one(char ***c, int pos);
 int      			ft_strarray_len(char **ar);
 int 				ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);

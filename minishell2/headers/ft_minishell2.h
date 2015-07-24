@@ -165,7 +165,7 @@ void		ft_env(char **exe, void *var);
 void		ft_setenv(char **exe, void *var);
 void		ft_unsetenv(char **exe, void *var);
 void		ft_exit(char **exe, void *var);
-int			ft_find_env(char *exe, char **env);
+int			find_env(char *exe, char **env);
 
 /*
 **			TOOLS

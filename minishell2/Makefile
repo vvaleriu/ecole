@@ -51,6 +51,7 @@ SRC = main.c					\
 		clean_env.c				\
 		signals_handlers.c		\
 		get_env_value.c			\
+		find_env.c              \
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

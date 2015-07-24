@@ -15,15 +15,15 @@
 #include <unistd.h>
 #include <ft_minishell2.h>
 
-void		ft_mod_pwd(char **env)
+static void		mod_pwd(char **env)
 {
 	char	path[1000];
 	int		i;
 	int		j;
 	char	*del;
 
-	i = ft_find_env("PWD", env);
-	del = ((j = ft_find_env("OLDPWD", env)) != -1 ? env[j] : NULL);
+	i = find_env("PWD", env);
+	del = ((j = find_env("OLDPWD", env)) != -1 ? env[j] : NULL);
 	if (del)
 		free(del);
 	if (j != -1)
@@ -38,31 +38,6 @@ void		ft_mod_pwd(char **env)
 	env[i] = ft_strjoin("PWD=", getcwd(path, 1000));
 }
 
-int			ft_find_env(char *exe, char **env)
-{
-	int		i;
-	int		j;
-	char	*cmp;
-
-	i = 0;
-	j = 0;
-	while (env[i])
-	{
-		while (env[i][j] && env[i][j] != '=')
-			j++;
-		cmp = ft_strndup(env[i], j);
-		if (!ft_strcmp(cmp, exe))
-		{
-			ft_strdel(&cmp);
-			return (i);
-		}
-		ft_strdel(&cmp);
-		i++;
-		j = 0;
-	}
-	return (-1);
-}
-
 void		ft_cd(char **exe, void *var)
 {
 	int		ret;
@@ -73,16 +48,16 @@ void		ft_cd(char **exe, void *var)
 	var1 = (t_var *)var;
 	if (!exe[1] || (exe[1] && !ft_strncmp(exe[1], "~", 1)))
 	{
-		path = ft_strdup(var1->tenv[ft_find_env("HOME", var1->tenv)] + 5);
+		path = ft_strdup(var1->tenv[find_env("HOME", var1->tenv)] + 5);
 		ret = chdir(path);
 	}
 	else if (!ft_strcmp(exe[1], "-"))
-		ret = chdir(var1->tenv[ft_find_env("OLDPWD", var1->tenv)] + 7);
+		ret = chdir(var1->tenv[find_env("OLDPWD", var1->tenv)] + 7);
 	else
 		ret = chdir(exe[1]);
 	if (ret == -1)
 		ft_putendl("Could not access directory");
 	else
-		ft_mod_pwd(var1->tenv);
+		mod_pwd(var1->tenv);
 	ft_strdel(&path);
 }

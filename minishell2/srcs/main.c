@@ -115,3 +115,15 @@ void		check_tree(t_token *root)
 	else
 		ft_printf("liste vide");
 }
+
+/*
+int main()
+{
+    char **ret;
+
+    ret = ft_strsplit("coco bongo caca banga", ' ');
+    lol(&ret, 1);
+    ft_putstr_array(ret);
+    ft_strarray_del(&ret);
+    return 0;
+}*/

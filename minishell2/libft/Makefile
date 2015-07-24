@@ -161,8 +161,7 @@ SRC = ft_putchar.c			\
 		ft_strarray_char_len.c\
 		ft_strarray_add_first.c\
 		ft_strarray_add_last.c\
-
-
+		ft_strarray_del_one.c\
 
 $(NAME): libft.h $(OBJ)
 	@ar rc $(FOLDER)/$@ $(OBJ)
