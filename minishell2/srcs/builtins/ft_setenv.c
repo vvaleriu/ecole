@@ -28,9 +28,8 @@ static void		ft_add_env(char **exe, t_var *var, int i)
 
 static void		ft_modify_env(char **exe, t_var *var, int i, int n)
 {
-    ft_strarray_del_one(&(v->tenv), I);
-	ft_strarray_del_one(&(var->tenv[n]));
-	var->tenv[n] = ft_strdup(exe[i]);
+    ft_strarray_del_one(&(var->tenv), n);
+    ft_strarray_add_last(&(var->tenv), exe[i]);
 }
 
 static int		check_already_env(char *newenv, t_var *var)

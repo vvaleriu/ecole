@@ -34,6 +34,7 @@ int			main(int ac, char **av, char **envp)
 		var.list = lexer(var.line, var.lex);
 		var.list = create_tokens(var.list);
 		var.root = parser(var.list);
+        check_tree(var.root);
 		execute_tree(&var, var.root);
 		clean_tree(var.root);
 		var.root = NULL;

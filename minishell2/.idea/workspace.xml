@@ -19,21 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c90bafd-f400-4fa7-80a7-674f68030fb3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/srcs/tools/find_env.c" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/caca" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cici" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coco" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/com" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ft_minishell_2" afterPath="$PROJECT_DIR$/ft_minishell_2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libft/Makefile" afterPath="$PROJECT_DIR$/libft/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcs/builtins/ft_cd.c" afterPath="$PROJECT_DIR$/srcs/builtins/ft_cd.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/headers/ft_minishell2.h" afterPath="$PROJECT_DIR$/headers/ft_minishell2.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcs/builtins/ft_setenv.c" afterPath="$PROJECT_DIR$/srcs/builtins/ft_setenv.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libft/srcs/ft_strarray_del_one.c" afterPath="$PROJECT_DIR$/libft/srcs/ft_strarray_del_one.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcs/builtins/ft_unsetenv.c" afterPath="$PROJECT_DIR$/srcs/builtins/ft_unsetenv.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcs/tools/get_env_value.c" afterPath="$PROJECT_DIR$/srcs/tools/get_env_value.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libft/header/libft.h" afterPath="$PROJECT_DIR$/libft/header/libft.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcs/main.c" afterPath="$PROJECT_DIR$/srcs/main.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -60,7 +47,7 @@
                 <file leaf-file-name="ft_minishell2.h" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/headers/ft_minishell2.h">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="0.22857143">
+                      <state vertical-scroll-proportion="0.0">
                         <caret line="12" column="12" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="12" />
                         <folding />
                       </state>
@@ -94,7 +81,7 @@
                 <file leaf-file-name="libft.h" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/libft/header/libft.h">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="-0.34285715">
+                      <state vertical-scroll-proportion="0.0">
                         <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                         <folding />
                       </state>
@@ -128,21 +115,21 @@
         <splitter split-orientation="horizontal" split-proportion="0.5134423">
           <split-first>
             <leaf>
-              <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+              <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/srcs/main.c">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.0">
-                      <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+                    <state vertical-scroll-proportion="-1.4051725">
+                      <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="ft_setenv.c" pinned="false" current-in-tab="true">
+              <file leaf-file-name="ft_setenv.c" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/srcs/builtins/ft_setenv.c">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.71146244">
-                      <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+                    <state vertical-scroll-proportion="0.0">
+                      <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
@@ -175,7 +162,7 @@
               <file leaf-file-name="ft_strarray_del_one.c" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/libft/srcs/ft_strarray_del_one.c">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.5256917">
+                    <state vertical-scroll-proportion="0.4827586">
                       <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
                       <folding />
                     </state>
@@ -192,7 +179,7 @@
             <entry file="file://$PROJECT_DIR$/srcs/init/init_function.c">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+                  <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -231,9 +218,9 @@
         <option value="$PROJECT_DIR$/libft/Makefile" />
         <option value="$PROJECT_DIR$/libft/header/libft.h" />
         <option value="$PROJECT_DIR$/libft/srcs/ft_strarray_del_one.c" />
-        <option value="$PROJECT_DIR$/srcs/main.c" />
         <option value="$PROJECT_DIR$/srcs/builtins/ft_unsetenv.c" />
         <option value="$PROJECT_DIR$/srcs/builtins/ft_setenv.c" />
+        <option value="$PROJECT_DIR$/srcs/main.c" />
       </list>
     </option>
   </component>
@@ -245,10 +232,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1919" />
-    <option name="y" value="-26" />
-    <option name="width" value="1922" />
-    <option name="height" value="1107" />
+    <option name="x" value="1920" />
+    <option name="width" value="1920" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -377,6 +363,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minishell2_clion" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$1$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minishell2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="srcs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="execute" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -486,10 +490,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="-26" width="1922" height="1107" extended-state="0" />
+    <frame x="1920" y="0" width="1920" height="1050" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1270427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12664908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948583" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -551,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="128" column="26" selection-start-line="128" selection-start-column="26" selection-end-line="128" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -574,7 +577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -605,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -620,7 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="128" column="26" selection-start-line="128" selection-start-column="26" selection-end-line="128" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -643,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,13 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53114754">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/parser/parser.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.058441557">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -747,14 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/init/init_function.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libft/srcs/ft_strcpy.c">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27">
@@ -770,19 +753,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libft/srcs/ft_strsplit.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/srcs/tools/get_env_value.c">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18972331">
           <caret line="8" column="79" selection-start-line="8" selection-start-column="79" selection-end-line="8" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,7 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1027668">
           <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,7 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5019763">
           <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,7 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28853756">
           <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,31 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7826087">
           <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/headers/ft_minishell2.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22857143">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libft/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -846,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.85375494">
           <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,7 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.023715414">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35573122">
           <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,16 +819,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/libft/srcs/ft_strarray_del_one.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5256917">
+        <state vertical-scroll-proportion="0.4827586">
           <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libft/header/libft.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.34285715">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -894,7 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -902,7 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,15 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.73913044">
           <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcs/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,10 +854,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/srcs/init/init_function.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/headers/ft_minishell2.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libft/srcs/ft_strsplit.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libft/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/srcs/builtins/ft_setenv.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71146244">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srcs/parser/parser.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.4066092">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srcs/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.4051725">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libft/header/libft.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

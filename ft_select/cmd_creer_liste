@@ -1,0 +1,1 @@
+printf 'Bonjour%d %.0s' $N {1..$N} > liste
