@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/08/02 01:39:49 by vincent          ###   ########.fr        #
+#    Updated: 2015/08/02 17:12:37 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 I_LINKS = -I./headers -I./libft/header
 L_LINKS = -L./libft -lft -ltermcap
 RM = rm -rf
-vpath %.c ./srcs ./srcs/key_handlers ./srcs/sig_handlers ./srcs/init \
-		./srcs/term_setup ./srcs/tools
+vpath %.c ./srcs ./srcs/key_handlers ./srcs/sig_handlers \
+		./srcs/term_setup ./srcs/tools ./srcs/printing
 vpath %.h includes libft/header
 vpath %.a libft
 OBJ = $(SRC:%.c=$(O_P)%.o)
@@ -25,12 +25,10 @@ O_P = ./obj/
 SRC = main.c					\
 		init_terminal.c 		\
 		load_term_prop.c		\
-		get_screen_size.c		\
+		resize_list.c			\
 		sig_handler.c			\
 		sig_catcher.c			\
 		get_key.c				\
-		handle_arrow.c 			\
-		handle_return.c			\
 		change_term_attr.c		\
 		print_list.c			\
 		putchar_int.c			\
@@ -44,6 +42,9 @@ SRC = main.c					\
 		move_to.c				\
 		get_instance.c			\
 		exit_clean.c			\
+		move_cursor.c			\
+		key_identifier.c		\
+		close_program.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
