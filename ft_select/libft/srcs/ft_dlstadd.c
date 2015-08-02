@@ -12,16 +12,18 @@
 
 #include <libft.h>
 
+/*
+**	A inserer apres 'if (*alst == NULL)' si necessaire
+**	new->next = NULL; 
+**	new->prev = NULL;
+*/
+
 void	ft_dlstadd(t_dlist **alst, t_dlist *new)
 {
 	t_dlist	*tmp;
 
 	if (*alst == NULL)
-	{
 		*alst = new;
-		new->next = NULL;
-		new->prev = NULL;
-	}
 	else if ((*alst)->next == NULL)
 	{
 		(*alst)->next = new;

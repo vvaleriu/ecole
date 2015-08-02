@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/01 01:37:12 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/02 03:11:47 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int 		main(int ac, char **av)
 {
+	t_tconf	*conf;
+
+	conf = get_instance();
 	sig_catcher();
 	ft_putstr("\033[?1049h\033[H");
 	if (ac < 2 || !av)
@@ -21,8 +24,10 @@ int 		main(int ac, char **av)
 		ft_printf("See usage.\n");
 		return (0);
 	}
-	init_terminal(&conf);
-	print_list(++av);
-	get_key();
+	init_terminal(conf);
+	build_list(conf, ++av);
+	//deb_list(conf);
+	print_list(conf);
+	get_key(conf);
 	return (0);
 }

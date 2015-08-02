@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
+#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/03/04 14:15:28 by vvaleriu         ###   ########.fr        #
+#    Updated: 2015/08/02 01:39:49 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,16 @@ SRC = main.c					\
 		change_term_attr.c		\
 		print_list.c			\
 		putchar_int.c			\
-		toggle_str_cap.c 		\
+		set_str_cap.c 			\
 		new_item.c				\
 		build_list.c			\
+		deb_list.c				\
+		deb_item.c				\
+		del_list_elem.c			\
+		print_item.c			\
+		move_to.c				\
+		get_instance.c			\
+		exit_clean.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

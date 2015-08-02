@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/01 01:52:39 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/02 03:05:12 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <signal.h>
 
 # define KEY_SIZE		3
+
+# define LONGEST			ftsel[0]
+# define ROWS				ftsel[1]
+# define LIST_LEN			ftsel[2]
+# define TMP				ftsel[3]
+# define Y_OFFSET			ftsel[4]
 
 /*
 **	TERMCAPS CAPS List
@@ -53,6 +59,9 @@ typedef struct s_item	t_item;
 /*
 **	run: 1 program runs, 0 program has to quit
 **	list: circular list of items
+**	cur_item: item in the list the cursor is on
+**	row: number of row of items
+**	col: number of col of items
 **	term_buffer	: stock le
 **	w		: structure containing window's number of col and row 
 **	def		: default terminal conf (restore at when leaves)
@@ -63,6 +72,9 @@ struct s_tconf
 {
 	int				run;
 	t_dlist			*list;
+	t_dlist			*cur_item;
+	int				row;
+	int				col;
 	struct winsize	w;
 	struct termios 	def;
 	struct termios 	cur;
@@ -89,14 +101,14 @@ struct s_item
 ** GLOBAL TO HANDLE SIGNALS
 */
 
-t_tconf				conf;
-
 /*
 ** MAIN
 */
 
 int					init_terminal(t_tconf *conf);
-void				print_list(char **av);
+t_tconf 			*get_instance();
+void				print_list(t_tconf *conf);
+void				exit_clean(t_tconf *conf);
 
 /*
 ** SIGNALS MANAGER
@@ -113,13 +125,14 @@ void				sig_catcher();
 int 				load_term_prop(t_tconf *conf);
 void				get_screen_size(int signo);
 int					change_term_attr(t_tconf *conf);
-void				toggle_str_cap(char *cap_str);
+void				set_str_cap(char *cap_str);
+size_t				print_item(t_dlist *elem, int x, int y);
 
 /*
 ** KEY HANDLING
 */
 
-int					get_key();
+int					get_key(t_tconf *conf);
 void				handle_arrow();
 void				handle_return(t_tconf *conf);
 
@@ -128,6 +141,14 @@ void				handle_return(t_tconf *conf);
 */
 int					putchar_int(int c);
 t_item				*new_item(char *s);
-t_dlist				*build_list(char **list);
+void				build_list(t_tconf *conf, char **list);
+void				deb_list(t_tconf *conf);
+void				del_list_elem(void *content, size_t size);
+void 				move_to(int x, int y);
+
+/*
+** TOOLS
+*/
+void				deb_item(t_item *item);
 
 #endif

@@ -168,6 +168,8 @@ SRC = ft_putchar.c			\
 		ft_dlstdel.c		\
 		ft_dlstlen.c		\
 		ft_dlstnew.c		\
+		ft_dlstiter.c 		\
+		ft_dlstdelone.c		\
 
 $(NAME): libft.h $(OBJ)
 	@ar rc $(FOLDER)/$@ $(OBJ)

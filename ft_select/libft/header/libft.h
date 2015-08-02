@@ -180,6 +180,9 @@ void				ft_dlstadd(t_dlist **alst, t_dlist *new);
 int					ft_dlstlen(t_dlist *alst);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
+void				ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t));
+
 
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
