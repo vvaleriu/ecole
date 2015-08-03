@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   resize_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 17:48:32 by vincent          ###   ########.fr       */
+/*   Created: 2015/07/31 18:03:18 by vincent           #+#    #+#             */
+/*   Updated: 2015/08/02 13:22:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-int 		main(int ac, char **av)
+void		resize_list(int signo)
 {
-	t_tconf	*conf;
+	t_tconf		*conf;
+	struct		winsize new_size;
 
-	conf = get_instance();
-	sig_catcher();
-	if (ac < 2 || !av)
+	if (signo == SIGWINCH)
 	{
-		ft_printf("See usage.\n");
-		return (0);
+		conf = get_instance();
+		ioctl(0, TIOCGWINSZ, &new_size);
+		conf->w.ws_row = new_size.ws_row;
+		conf->w.ws_col = new_size.ws_col;
+		set_str_cap("cl");
+		//ft_printf("List_size: %d, row: %d - col: %d\n", ft_dlstlen(conf->list), conf->w.ws_row, conf->w.ws_col);
+		print_list(conf);
 	}
-	ft_putstr("\033[?1049h\033[H");
-	init_terminal(conf);
-	build_list(conf, ++av);
-	print_list(conf);
-	get_key(conf);
-	return (0);
 }

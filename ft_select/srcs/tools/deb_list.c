@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   build_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 17:48:32 by vincent          ###   ########.fr       */
+/*   Created: 2015/08/01 01:39:35 by vincent           #+#    #+#             */
+/*   Updated: 2015/08/01 11:16:04 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-int 		main(int ac, char **av)
+static void		pt_elem(t_dlist *elem)
 {
-	t_tconf	*conf;
+	t_item	*item;
 
-	conf = get_instance();
-	sig_catcher();
-	if (ac < 2 || !av)
-	{
-		ft_printf("See usage.\n");
-		return (0);
-	}
-	ft_putstr("\033[?1049h\033[H");
-	init_terminal(conf);
-	build_list(conf, ++av);
-	print_list(conf);
-	get_key(conf);
-	return (0);
+	item = (t_item*)elem->content;
+	printf("%s [len: %zu, x: %d, y: %d, sel: %d]\n", item->s, item->len,
+		item->x, item->y, item->sel);
+}
+
+
+void			deb_list(t_tconf *conf)
+{
+	ft_printf("[deb_list]\nLongueur de la liste : %u\n", ft_dlstlen(conf->list));
+	ft_dlstiter(conf->list, pt_elem);
 }

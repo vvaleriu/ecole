@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_dlstadd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/01/16 10:57:27 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2015/08/03 18:15:03 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_dlstadd(t_dlist **alst, t_dlist *new)
 
 	if (*alst == NULL)
 		*alst = new;
-	else if ((*alst)->next == NULL)
+	else if ((*alst)->next == *alst)
 	{
 		(*alst)->next = new;
 		(*alst)->prev = new;

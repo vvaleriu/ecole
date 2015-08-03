@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/10 10:48:46 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/08/01 23:32:21 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/03 18:15:57 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_dlstadd_last(t_dlist **alst, t_dlist *new)
 
 	if (*alst == NULL)
 		*alst = new;
-	else if ((*alst)->next == NULL)
+	else if ((*alst)->next == *alst)
 	{
 		(*alst)->next = new;
 		(*alst)->prev = new;

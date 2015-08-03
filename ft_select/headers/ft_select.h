@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/02 17:29:12 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/03 18:05:01 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define KBKSP				conf->keyman[6]
 # define KDEL				conf->keyman[7]
 
+# define ESC 				4
+# define RET				5
+
 # define DOWN_ARROW			'B'
 # define UP_ARROW			'A'
 # define RIGHT_ARROW		'C'
@@ -90,7 +93,7 @@ struct s_key_man
 {
 	size_t	seq_len;
 	char 	seq[KEY_SIZE];
-	void	(*f)(t_tconf *, char *);
+	int		(*f)(t_tconf *, char *);
 };
 
 
@@ -148,8 +151,7 @@ int					init_terminal(t_tconf *conf);
 t_tconf 			*get_instance();
 void				print_list(t_tconf *conf);
 void				exit_clean(t_tconf *conf);
-int					key_identifier(t_tconf *conf, char *key_buf);
-void				move_cursor(t_tconf *conf, char *key_buf);
+int					move_cursor(t_tconf *conf, char *key_buf);
 
 /*
 ** SIGNALS MANAGER
@@ -174,7 +176,7 @@ size_t				print_item(t_dlist *elem, int x, int y);
 */
 
 int					get_key(t_tconf *conf);
-void				close_program(t_tconf *conf, char *key_buf);
+int					close_program(t_tconf *conf, char *key_buf);
 
 /*
 ** TOOLS

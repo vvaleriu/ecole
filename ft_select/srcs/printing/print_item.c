@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_item.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 17:48:32 by vincent          ###   ########.fr       */
+/*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
+/*   Updated: 2015/08/02 00:36:23 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-int 		main(int ac, char **av)
-{
-	t_tconf	*conf;
+/*
+** print a col of item.
+** x and y have to be set up in the item properties for later use
+** returns the size od the longest word to know which X_offest to start to with
+** the next column
+*/
 
-	conf = get_instance();
-	sig_catcher();
-	if (ac < 2 || !av)
-	{
-		ft_printf("See usage.\n");
-		return (0);
-	}
-	ft_putstr("\033[?1049h\033[H");
-	init_terminal(conf);
-	build_list(conf, ++av);
-	print_list(conf);
-	get_key(conf);
-	return (0);
+size_t			print_item(t_dlist *elem, int x, int y)
+{
+	t_item	*item;
+
+	item = (t_item*)elem->content;
+	item->x = x;
+	item->y = y;
+	ft_putstr(item->s);
+	return (item->len);
 }

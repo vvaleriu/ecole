@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_dlstdelone.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 17:48:32 by vincent          ###   ########.fr       */
+/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
+/*   Updated: 2015/08/03 19:43:56 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <libft.h>
+#include <stdlib.h>
 
-int 		main(int ac, char **av)
+void	ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t))
 {
-	t_tconf	*conf;
+	t_dlist		*prev;
+	t_dlist		*next;
 
-	conf = get_instance();
-	sig_catcher();
-	if (ac < 2 || !av)
+	if (alst && *alst != NULL && del != NULL)
 	{
-		ft_printf("See usage.\n");
-		return (0);
+		if ((*alst)->next != *alst)
+		{
+			next = (*alst)->next;
+			prev = (*alst)->prev;
+			next->prev = prev;
+			prev->next = next;
+		}
+		del((*alst)->content, (*alst)->content_size);
+		free(*alst);
+		*alst = NULL;
 	}
-	ft_putstr("\033[?1049h\033[H");
-	init_terminal(conf);
-	build_list(conf, ++av);
-	print_list(conf);
-	get_key(conf);
-	return (0);
 }
