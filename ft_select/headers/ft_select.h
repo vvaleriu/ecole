@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 18:05:01 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/03 19:51:18 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ t_tconf 			*get_instance();
 void				print_list(t_tconf *conf);
 void				exit_clean(t_tconf *conf);
 int					move_cursor(t_tconf *conf, char *key_buf);
+int					delete_item(t_tconf *conf, char *key_buf);
 
 /*
 ** SIGNALS MANAGER

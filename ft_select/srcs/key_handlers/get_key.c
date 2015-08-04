@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 18:10:00 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/04 17:05:22 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,36 @@ static int			key_identifier(t_tconf *conf, char *key_buf)
 	return (0);
 }
 
+/*int			get_key(t_tconf *conf)
+{
+	char	key_buf[KEY_SIZE];
+	int		loop;
+
+	loop = 1;
+	while (loop != -1)
+	{
+		read(0, key_buf, KEY_SIZE);
+		loop = key_identifier(conf, key_buf);
+		if (loop == 2)
+			print_list(conf);
+	}
+	return (0);
+}*/
+
 int			get_key(t_tconf *conf)
 {
-	int		key_ident_ret;
 	char	key_buf[KEY_SIZE];
+	int		loop;
 
-	key_ident_ret = 1;
+	key_buf[0] = '\0';
+	key_buf[1] = '\0';
+	key_buf[2] = '\0';
 	while (read(0, key_buf, KEY_SIZE))
 	{
-		key_ident_ret = key_identifier(conf, key_buf);
-		if (key_ident_ret == 2)
+		loop = key_identifier(conf, key_buf);
+		if (loop == 2)
 			print_list(conf);
-		else if (key_ident_ret == -1)
+		if (loop == -1)
 			break;
 	}
 	return (0);
