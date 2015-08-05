@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/08/03 19:54:18 by vincent          ###   ########.fr        #
+#    Updated: 2015/08/05 02:01:43 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC = main.c					\
 		init_terminal.c 		\
 		load_term_prop.c		\
 		resize_list.c			\
-		sig_handler.c			\
 		sig_catcher.c			\
 		get_key.c				\
 		change_term_attr.c		\
@@ -45,6 +44,9 @@ SRC = main.c					\
 		move_cursor.c			\
 		close_program.c			\
 		delete_item.c			\
+		select_item.c			\
+		go_background.c			\
+		go_foreground.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

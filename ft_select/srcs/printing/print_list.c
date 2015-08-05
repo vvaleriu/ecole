@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/04 12:59:24 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/05 00:14:27 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 	while (ROWS && *toprint)
 	{
 		move_to(x_offset, Y_OFFSET);
-		TMP = (int)print_item(*list, x_offset, Y_OFFSET);
+		TMP = (int)print_item(CUR_ITM, *list, x_offset, Y_OFFSET);
 		LONGEST = (LONGEST < TMP ? TMP : LONGEST);
 		*list = (*list)->next;
 		ROWS--;
@@ -54,6 +54,7 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 ** Launch a first draw of items. If some items are left to be drawn then we enter
 ** the loop until no item left. Each time we enter the loop we update the number
 ** of columns (conf->col) of items inside conf.
+** At the end of printing, it moves the cursors to the current selected item.
 **
 */
 
@@ -62,10 +63,14 @@ void			print_list(t_tconf *conf)
 	t_dlist	*tmp;
 	int		toprint;
 	int		x_offset;
+	t_item	*item;
 
+	set_str_cap("cl");
+	CUR_ITM = (CUR_ITM == NULL ? LIST_ST : CUR_ITM);
+	item = (t_item *)CUR_ITM->content;
 	x_offset = 0;
 	tmp = conf->list;
-	conf->col = 0;
+	conf->col = 1;
 	toprint = ft_dlstlen(tmp);
 	x_offset += print_col(conf, &tmp, x_offset, &toprint) + 1;
 	while (tmp != conf->list)
@@ -73,4 +78,5 @@ void			print_list(t_tconf *conf)
 		conf->col++;
 		x_offset += print_col(conf, &tmp, x_offset, &toprint) + 1;
 	}
+	move_to(item->x, item->y);
 }

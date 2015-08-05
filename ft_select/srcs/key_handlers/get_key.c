@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/04 17:05:22 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/05 02:07:05 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int			key_identifier(t_tconf *conf, char *key_buf)
 	i = 0;
 	while (i < KEY_NUMBER)
 	{
+		//printf("%d\n", ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len));
 		if (!ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len))
 			return (KEY_TAB(i).f(conf, key_buf));
 		i++;
@@ -35,31 +36,13 @@ static int			key_identifier(t_tconf *conf, char *key_buf)
 	return (0);
 }
 
-/*int			get_key(t_tconf *conf)
-{
-	char	key_buf[KEY_SIZE];
-	int		loop;
-
-	loop = 1;
-	while (loop != -1)
-	{
-		read(0, key_buf, KEY_SIZE);
-		loop = key_identifier(conf, key_buf);
-		if (loop == 2)
-			print_list(conf);
-	}
-	return (0);
-}*/
-
 int			get_key(t_tconf *conf)
 {
-	char	key_buf[KEY_SIZE];
+	char	key_buf[SEL_KEY_SIZE];
 	int		loop;
+	int		rd;
 
-	key_buf[0] = '\0';
-	key_buf[1] = '\0';
-	key_buf[2] = '\0';
-	while (read(0, key_buf, KEY_SIZE))
+	while ((rd = read(0, key_buf, SEL_KEY_SIZE)))
 	{
 		loop = key_identifier(conf, key_buf);
 		if (loop == 2)

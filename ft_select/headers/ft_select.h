@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/03 19:51:18 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/05 02:17:47 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 ** CUR_ITEM: current selected item on the list
 */
 
-# define KEY_SIZE			3
-# define KEY_NUMBER			8
+# define SEL_KEY_SIZE		3
+# define KEY_NUMBER			9
 # define LIST_ST			conf->list
 # define CUR_ITM			conf->cur_item
 # define LONGEST			ftsel[0]
@@ -48,6 +48,7 @@
 # define KRET				conf->keyman[5]
 # define KBKSP				conf->keyman[6]
 # define KDEL				conf->keyman[7]
+# define KSPACE				conf->keyman[8]
 
 # define ESC 				4
 # define RET				5
@@ -63,6 +64,7 @@
 **	enable / disable underline:	us / ue
 **	enable			 reverse mode: mr
 **	------- CURSOR
+**	hide / show cursor: vi / ve
 **	move cursor left one column: le
 **	move cursor right one column: nd
 **	move cursor to next line: nw
@@ -92,7 +94,7 @@ typedef struct s_key_man	t_key_man;
 struct s_key_man
 {
 	size_t	seq_len;
-	char 	seq[KEY_SIZE];
+	char 	seq[SEL_KEY_SIZE];
 	int		(*f)(t_tconf *, char *);
 };
 
@@ -140,57 +142,50 @@ struct s_item
 };
 
 /*
-** GLOBAL TO HANDLE SIGNALS
-*/
-
-/*
 ** MAIN
 */
-
 int					init_terminal(t_tconf *conf);
 t_tconf 			*get_instance();
 void				print_list(t_tconf *conf);
-void				exit_clean(t_tconf *conf);
+void				build_list(t_tconf *conf, char **list);
+
+/*
+** KEY MANAGERS
+*/
+int					get_key(t_tconf *conf);
 int					move_cursor(t_tconf *conf, char *key_buf);
 int					delete_item(t_tconf *conf, char *key_buf);
+int					select_item(t_tconf *conf, char *key_buf);
+int					close_program(t_tconf *conf, char *key_buf);
 
 /*
 ** SIGNALS MANAGER
 */
-
-
-void				sig_handler(int signo);
 void				sig_catcher();
+void				go_background(int signo);
+void				go_foreground(int signo);
 
 /*
 ** TERM MANAGER
 */
-
 int 				load_term_prop(t_tconf *conf);
 void				resize_list(int signo);
 int					change_term_attr(t_tconf *conf);
 void				set_str_cap(char *cap_str);
-size_t				print_item(t_dlist *elem, int x, int y);
-
-/*
-** KEY HANDLING
-*/
-
-int					get_key(t_tconf *conf);
-int					close_program(t_tconf *conf, char *key_buf);
+size_t				print_item(t_dlist *current, t_dlist *elem, int x, int y);
 
 /*
 ** TOOLS
 */
+void				exit_clean(t_tconf *conf);
 int					putchar_int(int c);
 t_item				*new_item(char *s);
-void				build_list(t_tconf *conf, char **list);
 void				deb_list(t_tconf *conf);
 void				del_list_elem(void *content, size_t size);
 void 				move_to(int x, int y);
 
 /*
-** TOOLS
+** DEBUG
 */
 void				deb_item(t_item *item);
 

@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/04 17:07:08 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/05 00:12:30 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ int			move_cursor(t_tconf *conf, char *key_buf)
 {
 	t_item	*item;
 
-	move_to(0, 0);
-	printf("============================ON RENTRE DANS MOVE CURSOR\n");
 	CUR_ITM = (CUR_ITM == NULL ? LIST_ST : new_selected_item(conf, key_buf[2]));
 	item = (t_item *)CUR_ITM->content;
 	move_to(item->x, item->y);
-	return (1);
+	return (2);
 }

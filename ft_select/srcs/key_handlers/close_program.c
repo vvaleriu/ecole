@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/02 17:12:15 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/04 13:48:52 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/05 02:23:08 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,30 @@
 **
 */
 
+static void print_sel_item_s(t_dlist *el)
+{
+	t_item	*item;
+
+	item = (t_item *)el->content;
+	if (item->sel == 1)
+	{
+		ft_putstr(item->s);
+		ft_putstr(" ");
+	}
+}
+
 int			close_program(t_tconf *conf, char *key_buf)
 {
-	printf("============================ON RENTRE DANS CLODE PROG\n");
 	if (tcsetattr(0, TCSADRAIN, &conf->def) == -1)
+	{
 		ft_putendl("Error restoring default terminal capabilities.");
-	exit_clean(conf);
-	if (ft_strlen(key_buf) < 1000)
-		ft_putstr("lol_close");
+		exit(-1);
+	}
 	ft_putstr("\033[?1049l");
+	if (!ft_strcmp(key_buf, "\012"))
+		ft_dlstiter(LIST_ST, print_sel_item_s);
+	set_str_cap("ve");
+	exit_clean(conf);
+	exit(0);
 	return (-1);
 }
