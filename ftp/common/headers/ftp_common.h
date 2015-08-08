@@ -51,17 +51,6 @@
 # define BUF_SIZE			4096
 # define NAME_SIZE			512
 
-/*	
-**	ERROR FUNCTIONS
-**	Used in error checking functions
-**	Tells the function wether an error has to exit or continue running the exe.
-*/
-
-# define E(e, r, s, q)		err_int(e, r, s, q)
-# define EV(e, r, s, q)		err_void(e, r, s, q)
-# define NO_EXIT			0
-# define FORCE_EXIT			1
-
 typedef struct s_fd			t_fd;
 typedef struct s_send_info	t_send_info;
 

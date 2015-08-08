@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/11 12:41:28 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2015/08/05 15:03:00 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@
 
 # define PF_NUM_OF_FCT	14
 
+/*
+**	PRINTF : FLAGS POSITION
+*/
 # define PF_H_CQ		1
 # define PF_HH_CQ		2
 # define PF_L_CQ		3
@@ -52,9 +55,15 @@
 # define PF_J_CQ		5
 # define PF_Z_CQ		6
 
-/*
-**	PRINTF : FLAGS POSITION
+/*	
+**	ERROR FUNCTIONS
+**	Used in error checking functions
+**	Tells the function wether an error has to exit or continue running the exe.
 */
+# define E(e, r, s, q)		err_int(e, r, s, q)
+# define EV(e, r, s, q)		err_void(e, r, s, q)
+# define NO_EXIT			0
+# define FORCE_EXIT			1
 
 typedef struct		s_list
 {
@@ -62,6 +71,14 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_dlist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
+}					t_dlist;
 
 typedef struct		s_pf_flag
 {
@@ -161,8 +178,20 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list				*ft_lstsplit(t_list *alst, t_list *elem);
 t_list				*ft_elemdup(t_list *elem);
+
+/*
+**	t_dlist functions
+*/
+void				ft_dlstadd_last(t_dlist **alst, t_dlist *new);
+void				ft_dlstadd(t_dlist **alst, t_dlist *new);
+int					ft_dlstlen(t_dlist *alst);
+t_dlist				*ft_dlstnew(void const *content, size_t content_size);
+void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
+void				ft_dlstdelone(t_dlist **alst, t_dlist *d, void (*del)(void *, size_t));
+
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
 char				*ft_itoh(unsigned int n);
@@ -191,6 +220,18 @@ int					is_space(char c);
 int					is_operator(char c);
 int					is_text(char c);
 void				ft_strarray_del(char ***c);
+void				ft_strarray_del_one(char ***c, int pos);
+int      			ft_strarray_len(char **ar);
+int 				ft_strarray_char_len(char **ar);
+void				ft_strarray_add_first(char ***ar, char *str);
+void				ft_strarray_add_last(char ***ar, char *str);
+
+/*
+**		ERROR CHECKER
+*/
+
+int					err_int(int err, int res, char *str, int quit);
+void				*err_void(void *err, void *res, char *str, int quit);
 
 /*
 **		============================
@@ -249,7 +290,6 @@ int					pf_print_u_long(unsigned long int n, t_pf_flag *flags);
 int					pf_print_u_h(unsigned int n, t_pf_flag *flags);
 int					pf_print_u_hh(unsigned int n, t_pf_flag *flags);
 int					pf_print_pos(char *s, t_pf_flag *flags);
-int					pf_print_f(double f, t_pf_flag *fl);
 int					pf_print_neg(char *s, t_pf_flag *flags);
 int					pf_print_purcentage(t_pf_flag *fl);
 int					pf_print_spaces(t_pf_flag *fl, char **t);
