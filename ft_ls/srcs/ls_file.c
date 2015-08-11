@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 17:10:44 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/11 16:26:18 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 17:53:09 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,6 @@ static void	ls_folder(t_lsprop *prop, t_list *il, int print_title)
 ** - else, we have to check wether it's a real hidden folder or a reference to
 ** '.' or '..'. It it's a real folder we can then run the recursive function
 */
-
-/*static void	ls_recursive(t_lsprop *prop, t_list *elem)
-{
-	t_file	*file;
-	t_list	*new_list;
-
-	reset_print_prop(prop->pp);
-	file = (t_file *)elem->content;
-	if (!is_curr_prev_folder(file))
-		ft_printf("%s:\n", file->fullpath);
-	ft_printf("%s:\n", file->fullpath);
-	if (!OPT_A)
-	{
-		if (file->name[0] != '.')
-		{
-			new_list = get_file_in_dir_info(prop, file->fullpath);
-			ls_file(prop, &new_list, SHOW_TITLE);
-		}
-	}
-	else
-	{
-		if (file->name[0] = '.' && file->name[1] != '.' && file->name[0] != '.')
-			if (file->name[1] != '.' ||)
-		else
-		{
-			new_list = get_file_in_dir_info(prop, file->fullpath);
-			ls_file(prop, &new_list, SHOW_TITLE);
-		}
-	}
-}*/
 
 static void	ls_recursive(t_lsprop *prop, t_list *elem)
 {
@@ -120,14 +90,27 @@ static void	ls_first_time(t_lsprop *prop, t_list **il, int print_title)
 		reset_print_prop(prop->pp);
 		while (tmp != NULL)
 		{
+			file = (t_file *)(tmp->content);
 			if (file->type == 'd')
+			{
+				ft_putchar('\n');
 				ls_folder(prop, tmp, SHOW_TITLE);
-			if (OPT_RC)
-				ls_recursive(prop, tmp);
+				if (OPT_RC)
+					ls_recursive(prop, tmp);
+			}
 			tmp = tmp->next;
 		}
 	}
 }
+
+/*
+** the next time we enter the function means we have to print the whole list,
+** making no distinction between files and folders and eventually deal with the 
+** recursive option if selected
+** - Print all elements received
+** - if recursive activated, go back to start of the list, and launch recursive
+** function each time the we have a folder.
+*/
 
 static void	ls_next_times(t_lsprop *prop, t_list **il, int print_title)
 {

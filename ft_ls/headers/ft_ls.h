@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/30 16:08:17 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/11 16:05:08 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 17:22:17 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ struct s_lsprop
 	short		pp[PRINT_PROP_NB];
 	t_list		*il;
 	short		first_time;
+	int			total;
 };
 
 /*
