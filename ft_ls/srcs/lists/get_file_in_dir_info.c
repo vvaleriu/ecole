@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 15:11:28 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/08 19:30:58 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 14:38:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 ** file_tmp: temporary pointer on the t_file struct returned by get_file_info
 */
 
-t_list		*get_file_in_dir_info(char *dirname, short *pp)
+t_list		*get_file_in_dir_info(t_lsprop *prop, char *dirname)
 {
 	DIR				*dir;
 	t_list			*alst;
@@ -39,10 +39,13 @@ t_list		*get_file_in_dir_info(char *dirname, short *pp)
 	{
 		while ((tmp = readdir(dir)) != NULL)
 		{	
-			//get_file_path_name(dirname, tmp->d_name);
-			file_tmp = get_file_info(get_file_path_name(dirname, tmp->d_name));
-			set_print_prop(file_tmp, pp);
-			ft_lstadd_last(&alst, ft_lstnew(file_tmp, sizeof(t_file)));
+			file_tmp = get_file_info(prop, get_file_path_name(dirname, tmp->d_name));
+			if (file_tmp)
+			{
+				if (OPT_L)
+					set_print_prop(file_tmp, prop->pp);
+				ft_lstadd_last(&alst, ft_lstnew(file_tmp, sizeof(t_file)));
+			}
 		}
 		if (closedir(dir) != 0)
 			ft_putstr_fd("closedir() failed.\n", 2);

@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/01 19:22:50 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/08/08 23:25:17 by vincent          ###   ########.fr        #
+#    Updated: 2015/08/11 16:00:50 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC = main.c						\
 		reset_print_prop.c 			\
 		get_file_in_dir_info.c		\
 		print_elem.c				\
+		is_curr_prev_folder.c		\
 
 all: $(NAME)
 

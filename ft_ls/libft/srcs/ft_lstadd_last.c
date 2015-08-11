@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/10 10:48:46 by vvaleriu          #+#    #+#             */
-/*   Updated: 2013/12/20 22:30:23 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 11:13:24 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstadd_last(t_list **alst, t_list *elem)
 	tmp = *alst;
 	if (*alst == NULL)
 		*alst = elem;
-	else
+	else if (elem)
 	{
 		while (tmp)
 		{

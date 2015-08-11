@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/30 15:58:00 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/09 00:24:58 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 15:48:55 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int				main(int ac, char **av)
 		fnames_list = ft_lstnew(".", sizeof(char *));
 	prop.il = create_initial_list(&prop, &fnames_list);
 	//first_list_sort(&(prop.il));
+	/*ls_file(&prop, &(prop.il),
+		(ft_lstlen(prop.il) && prop.opt[VAL_OPT_RC] > 1 ? SHOW_TITLE : HIDE_TITLE));*/
 	ls_file(&prop, &(prop.il),
-		(ft_lstlen(prop.il) && prop.opt[VAL_OPT_RC] > 1 ? SHOW_TITLE : HIDE_TITLE));
+		(prop.opt[VAL_OPT_RC] ? SHOW_TITLE : HIDE_TITLE));
 	return (0);
 }

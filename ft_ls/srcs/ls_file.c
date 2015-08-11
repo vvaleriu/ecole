@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 17:10:44 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/09 01:00:57 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 16:26:18 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,51 @@ static void	ls_folder(t_lsprop *prop, t_list *il, int print_title)
 	t_file	*file;
 	t_list	*new_list;
 
-	(void)print_title;
 	file = (t_file *)il->content;
-	new_list = get_file_in_dir_info(file->name, prop->pp);
-	ls_file(prop, &new_list, SHOW_TITLE);
+	if (print_title)
+		ft_printf("%s:\n", file->fullpath);
+	new_list = get_file_in_dir_info(prop, file->fullpath);
+	ls_file(prop, &new_list, print_title);
 }
+
+/*
+** - As we gonna ls another folder we reset print_prop
+** - if *file doesnt refers to '.' or '..', we can print folder title
+** - if option A is not activated then when can run the recursive portion on
+** the folder if it's not starting by '.'
+** - else, we have to check wether it's a real hidden folder or a reference to
+** '.' or '..'. It it's a real folder we can then run the recursive function
+*/
+
+/*static void	ls_recursive(t_lsprop *prop, t_list *elem)
+{
+	t_file	*file;
+	t_list	*new_list;
+
+	reset_print_prop(prop->pp);
+	file = (t_file *)elem->content;
+	if (!is_curr_prev_folder(file))
+		ft_printf("%s:\n", file->fullpath);
+	ft_printf("%s:\n", file->fullpath);
+	if (!OPT_A)
+	{
+		if (file->name[0] != '.')
+		{
+			new_list = get_file_in_dir_info(prop, file->fullpath);
+			ls_file(prop, &new_list, SHOW_TITLE);
+		}
+	}
+	else
+	{
+		if (file->name[0] = '.' && file->name[1] != '.' && file->name[0] != '.')
+			if (file->name[1] != '.' ||)
+		else
+		{
+			new_list = get_file_in_dir_info(prop, file->fullpath);
+			ls_file(prop, &new_list, SHOW_TITLE);
+		}
+	}
+}*/
 
 static void	ls_recursive(t_lsprop *prop, t_list *elem)
 {
@@ -37,8 +77,19 @@ static void	ls_recursive(t_lsprop *prop, t_list *elem)
 
 	reset_print_prop(prop->pp);
 	file = (t_file *)elem->content;
-	new_list = get_file_in_dir_info(file->name, prop->pp);
-	ls_file(prop, &new_list, SHOW_TITLE);
+	if (!is_curr_prev_folder(file))
+		ft_printf("%s:\n", file->fullpath);
+	if (!OPT_A && file->name[0] != '.')
+	{
+		new_list = get_file_in_dir_info(prop, file->fullpath);
+		ls_file(prop, &new_list, HIDE_TITLE);
+	}
+	else
+		if (!is_curr_prev_folder(file))
+		{
+			new_list = get_file_in_dir_info(prop, file->fullpath);
+			ls_file(prop, &new_list, HIDE_TITLE);
+		}
 }
 
 static void	ls_first_time(t_lsprop *prop, t_list **il, int print_title)
@@ -47,7 +98,6 @@ static void	ls_first_time(t_lsprop *prop, t_list **il, int print_title)
 	t_file	*file;
 
 	tmp = *il;
-	(void)print_title;
 	prop->first_time = 0;
 	if (ft_lstlen(tmp) == 1)
 	{
@@ -55,7 +105,7 @@ static void	ls_first_time(t_lsprop *prop, t_list **il, int print_title)
 		if (file->type != 'd')
 			print_elem(prop, file);
 		else
-			ls_folder(prop, tmp, HIDE_TITLE);
+			ls_folder(prop, tmp, print_title);
 	}
 	else
 	{
@@ -97,8 +147,12 @@ static void	ls_next_times(t_lsprop *prop, t_list **il, int print_title)
 		tmp = *il;
 		while (tmp != NULL)
 		{
-			if (file->type == 'd')
+			file = (t_file *)(tmp->content);
+			if (file->type == 'd' && !is_curr_prev_folder(file))
+			{
+				ft_putchar('\n');
 				ls_recursive(prop, tmp);
+			}
 			tmp = tmp->next;
 		}
 	}

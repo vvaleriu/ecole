@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/06 00:36:18 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/09 00:56:39 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 12:52:44 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,13 @@ t_list		*create_initial_list(t_lsprop *prop, t_list **fnames)
 	tmp = *fnames;
 	while (tmp)
 	{
-		file = get_file_info((char *)(tmp->content));
-		set_print_prop(file, prop->pp);
-		ft_lstadd_last(&list, ft_lstnew(file, sizeof(t_file)));
+		file = get_file_info(prop, (char *)(tmp->content));
+		if (file)
+		{
+			if (OPT_L)
+				set_print_prop(file, prop->pp);
+			ft_lstadd_last(&list, ft_lstnew(file, sizeof(t_file)));
+		}
 		tmp = tmp->next;
 	}
 	ft_lstdel(fnames, NULL);

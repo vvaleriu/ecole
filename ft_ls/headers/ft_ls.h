@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/30 16:08:17 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/08 19:12:38 by vincent          ###   ########.fr       */
+/*   Updated: 2015/08/11 16:05:08 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 
 # define SHOW_TITLE			1
 # define HIDE_TITLE			0
+# define FIRST_TIME			1
 
 typedef struct stat			t_stat;
 typedef struct dirent		t_dirent;
@@ -85,6 +86,7 @@ typedef struct s_lsprop		t_lsprop;
 typedef struct		s_file
 {
 	char		*name;
+	char		*fullpath;
 	char		type;
 	char		rights[9];
 	char		xattr;
@@ -144,6 +146,7 @@ int			set_options(t_lsprop *prop, int ac, char **av);
 int			ft_count_files(int ac, char **av);
 void 		del_t_file_list(void *content, size_t size);
 char		*get_file_path_name(char *directory, char *filename);
+short		is_curr_prev_folder(t_file *file);
 
 /*
 **	PRINTING
@@ -157,8 +160,8 @@ void		reset_print_prop(short *pp);
 */
 t_list		*create_filenames_list(int ac, char **av);
 t_list		*create_initial_list(t_lsprop *prop, t_list **fnames);
-t_file		*get_file_info(char *filename);
-t_list		*get_file_in_dir_info(char *dirname, short *pp);
+t_file		*get_file_info(t_lsprop *prop, char *filename);
+t_list		*get_file_in_dir_info(t_lsprop *prop, char *dirname);
 
 /*
 **	PROPERTIES FINDERS

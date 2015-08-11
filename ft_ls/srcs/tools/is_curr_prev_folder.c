@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   is_curr_prev_folder.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/08/11 11:11:58 by vincent          ###   ########.fr       */
+/*   Created: 2015/08/11 16:00:51 by vincent           #+#    #+#             */
+/*   Updated: 2015/08/11 16:05:09 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <ft_ls.h>
 
-void	ft_lstadd(t_list **alst, t_list *new)
+/*
+** determines wether the cirrent file refers to current ('.') or previous ('..')
+** dir
+*/
+
+short		is_curr_prev_folder(t_file *file)
 {
-	if (*alst == NULL && new)
-		*alst = new;
-	else if (*alst && new)
-	{
-		new->next = (*alst);
-		(*alst) = new;
-	}
+	if (file->name[0] != '.')
+		return (0);
+	if (file->name[1] == '\0')
+		return (1);
+	if (file->name[1] == '.' && file->name[2] == '\0')
+		return (1);
+	return (0);
 }
