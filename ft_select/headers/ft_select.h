@@ -146,6 +146,7 @@ struct s_item
 */
 int					init_terminal(t_tconf *conf);
 t_tconf 			*get_instance();
+void				print_small_size_error();
 void				print_list(t_tconf *conf);
 void				build_list(t_tconf *conf, char **list);
 

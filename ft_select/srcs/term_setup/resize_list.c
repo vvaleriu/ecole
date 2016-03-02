@@ -24,8 +24,10 @@ void		resize_list(int signo)
 		conf->w.ws_row = new_size.ws_row;
 		conf->w.ws_col = new_size.ws_col;
 		//ft_printf("List_size: %d, row: %d - col: %d\n", ft_dlstlen(conf->list), conf->w.ws_row, conf->w.ws_col);
-		if (conf->w.ws_row < 5 || conf->w.ws_col < 15)
-			resize_list(SIGWINCH);
+		/*iif (conf->w.ws_row < 5 || conf->w.ws_col < 15)
+			resize_list(SIGWINCH);*/
+		if (conf->w.ws_row < 2 || conf->w.ws_col < 10)
+			print_small_size_error();
 		print_list(conf);
 	}
 }
