@@ -12,6 +12,11 @@
 
 #include <ft_select.h>
 
+/*
+** Change terminam
+**
+**
+*/
 int 		main(int ac, char **av)
 {
 	t_tconf	*conf;

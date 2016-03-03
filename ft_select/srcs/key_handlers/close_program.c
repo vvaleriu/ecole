@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/02 17:12:15 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 02:37:52 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/03 09:38:08 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			close_program(t_tconf *conf, char *key_buf)
 	ft_putstr("\033[?1049l");
 	if (!ft_strcmp(key_buf, "\012"))
 		ft_dlstiter(LIST_ST, print_sel_item_s);
-	set_str_cap("ve");
+	set_str_cap("ve");	
 	exit_clean(conf);
 	exit(0);
 	return (-1);

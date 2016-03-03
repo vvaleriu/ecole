@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_item.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 00:12:32 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/03 11:29:40 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 ** at the end.
 */
 
-size_t			print_item(t_dlist *current, t_dlist *elem, int x, int y)
+size_t			print_item(t_tconf *conf, t_dlist *elem, int x, int y)
 {
 	t_item	*item;
 
-	if (current == elem)
+	if (CUR_ITM == elem)
 		set_str_cap("us");
 	item = (t_item*)elem->content;
 	if (item->sel == 1)

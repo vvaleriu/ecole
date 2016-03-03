@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 00:14:27 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/03 12:17:41 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 	ROWS = conf->w.ws_row;
 	while (ROWS && *toprint)
 	{
+		ft_printf("%d - %d", (int)ft_strlen(((t_item*)((*list)->content))->s), ((int)conf->w.ws_col - x_offset));
+		if ((int)ft_strlen(((t_item*)((*list)->content))->s) >= ((int)conf->w.ws_col - x_offset))
+			return (-1);
 		move_to(x_offset, Y_OFFSET);
-		TMP = (int)print_item(CUR_ITM, *list, x_offset, Y_OFFSET);
+		TMP = (int)print_item(conf, *list, x_offset, Y_OFFSET);
 		LONGEST = (LONGEST < TMP ? TMP : LONGEST);
 		*list = (*list)->next;
 		ROWS--;
@@ -49,8 +52,9 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 }
 
 /*
-** tmp is a marker on the list sent to print_col
-** offest is set to 1 more space of the longest word from the latest column
+** tmp : is a marker on the list sent to print_col
+** offest : is set to 1 more space of the longest word from the latest column
+** toprint : number of item left to print
 ** Launch a first draw of items. If some items are left to be drawn then we enter
 ** the loop until no item left. Each time we enter the loop we update the number
 ** of columns (conf->col) of items inside conf.
@@ -63,6 +67,7 @@ void			print_list(t_tconf *conf)
 	t_dlist	*tmp;
 	int		toprint;
 	int		x_offset;
+	int		print_col_ret;
 	t_item	*item;
 
 	set_str_cap("cl");
@@ -73,10 +78,17 @@ void			print_list(t_tconf *conf)
 	conf->col = 1;
 	toprint = ft_dlstlen(tmp);
 	x_offset += print_col(conf, &tmp, x_offset, &toprint) + 1;
-	while (tmp != conf->list)
+	while (tmp != conf->list && print_col_ret != -1)
 	{
 		conf->col++;
-		x_offset += print_col(conf, &tmp, x_offset, &toprint) + 1;
+		print_col_ret = print_col(conf, &tmp, x_offset, &toprint) + 1;
+		x_offset += print_col_ret;
+	}
+	if (print_col_ret == -1)
+	{
+		set_str_cap("cl");
+		move_to(0, 0);
+		ft_printf("Agrandir la fenêtre.");
 	}
 	move_to(item->x, item->y);
 }

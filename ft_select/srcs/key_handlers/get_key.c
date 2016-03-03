@@ -28,7 +28,7 @@ static int			key_identifier(t_tconf *conf, char *key_buf)
 	i = 0;
 	while (i < KEY_NUMBER)
 	{
-		//printf("%d\n", ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len));
+		printf("%d\n", ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len));
 		if (!ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len))
 			return (KEY_TAB(i).f(conf, key_buf));
 		i++;
@@ -45,10 +45,12 @@ int			get_key(t_tconf *conf)
 	while ((rd = read(0, key_buf, SEL_KEY_SIZE)))
 	{
 		loop = key_identifier(conf, key_buf);
-		if (loop == 2)
+		ft_printf("Valeur de key : %d", loop);
+		if (loop == 2 || loop == 0)
 			print_list(conf);
-		if (loop == -1)
+		else if (loop == -1)
 			break;
+		ft_bzero((void *)key_buf, SEL_KEY_SIZE);
 	}
 	return (0);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_instance.c                                     :+:      :+:    :+:   */
+/*   print_small_size_error.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/02 01:27:32 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 07:28:44 by vvaleriu         ###   ########.fr       */
+/*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
+/*   Updated: 2015/08/05 02:44:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
 /*
-** Return a singleton of conf structure
+** Print an error message when screen to small to print full list
 */
-t_tconf 		*get_instance()
+
+void		print_small_size_error()
 {
-	static t_tconf *conf = NULL;
- 
-	if (conf == NULL)
-	{
-		conf = (t_tconf *)ft_memalloc(sizeof(*conf));
-		return (conf);
-	}
-	return (conf);
+	move_to(0, 0);
+	ft_putstr("test");
 }

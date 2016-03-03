@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_select.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 02:17:47 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/03 12:09:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@
 # define LEFT_ARROW			'D'
 /*
 **	TERMCAPS CAPS List
+**
+**
+** Enter fullscreen mode : ti: <Esc> 7 <Esc> [ ? 47 h
+** Exit fullscreen mode :  te: <Esc> [ 2 J <Esc> [ ? 4 7 l <Esc> 8
 **
 **	------- GRAPHIC
 **	enable / disable underline:	us / ue
@@ -173,7 +177,7 @@ int 				load_term_prop(t_tconf *conf);
 void				resize_list(int signo);
 int					change_term_attr(t_tconf *conf);
 void				set_str_cap(char *cap_str);
-size_t				print_item(t_dlist *current, t_dlist *elem, int x, int y);
+size_t				print_item(t_tconf *conf, t_dlist *elem, int x, int y);
 
 /*
 ** TOOLS
