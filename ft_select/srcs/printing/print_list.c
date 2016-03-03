@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 12:17:41 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/03 13:21:11 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 ** toprint: number of elements left to print
 ** returns the size od the longest word to know which X_offest to start to with
 ** the next column
+** return -1 if a not enough space in column to print the longest word
 */
 
 static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
@@ -36,7 +37,6 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 	ROWS = conf->w.ws_row;
 	while (ROWS && *toprint)
 	{
-		ft_printf("%d - %d", (int)ft_strlen(((t_item*)((*list)->content))->s), ((int)conf->w.ws_col - x_offset));
 		if ((int)ft_strlen(((t_item*)((*list)->content))->s) >= ((int)conf->w.ws_col - x_offset))
 			return (-1);
 		move_to(x_offset, Y_OFFSET);
@@ -81,14 +81,10 @@ void			print_list(t_tconf *conf)
 	while (tmp != conf->list && print_col_ret != -1)
 	{
 		conf->col++;
-		print_col_ret = print_col(conf, &tmp, x_offset, &toprint) + 1;
-		x_offset += print_col_ret;
+		print_col_ret = print_col(conf, &tmp, x_offset, &toprint);
+		x_offset += print_col_ret + 1;
 	}
 	if (print_col_ret == -1)
-	{
-		set_str_cap("cl");
-		move_to(0, 0);
-		ft_printf("Agrandir la fenêtre.");
-	}
+		print_small_size_error();
 	move_to(item->x, item->y);
 }

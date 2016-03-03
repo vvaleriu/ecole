@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 02:44:49 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/03 13:11:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int			get_key(t_tconf *conf)
 	while ((rd = read(0, key_buf, SEL_KEY_SIZE)))
 	{
 		loop = key_identifier(conf, key_buf);
-		ft_printf("Valeur de key : %d", loop);
 		if (loop == 2 || loop == 0)
 			print_list(conf);
 		else if (loop == -1)
