@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/04 11:50:19 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 15:04:31 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		putchar_int(int c)
 {
-	static int	fd;
+	/*static int	fd;
 
 	if (fd == 0)
-		fd = init_fd(fd);
-	write(fd, &c, 1);
+		fd = init_fd(fd);*/
+	write((get_instance())->fd, &c, 1);
 	return (1);
 }

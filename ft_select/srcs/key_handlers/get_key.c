@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 13:11:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:10:01 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int			key_identifier(t_tconf *conf, char *key_buf)
 	i = 0;
 	while (i < KEY_NUMBER)
 	{
-		printf("%d\n", ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len));
 		if (!ft_strncmp(key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len))
 			return (KEY_TAB(i).f(conf, key_buf));
 		i++;

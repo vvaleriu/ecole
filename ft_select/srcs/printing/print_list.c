@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 13:21:11 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:42:23 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ void			print_list(t_tconf *conf)
 		x_offset += print_col_ret + 1;
 	}
 	if (print_col_ret == -1)
-		print_small_size_error();
+		print_small_size_error(conf);
 	move_to(item->x, item->y);
 }

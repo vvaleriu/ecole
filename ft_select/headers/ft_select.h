@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 11:50:40 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 14:43:56 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ struct s_item
 int					init_fd(int fd);
 int					init_terminal(t_tconf *conf);
 t_tconf 			*get_instance();
-void				print_small_size_error();
+void				print_small_size_error(t_tconf *conf);
 void				print_list(t_tconf *conf);
 void				build_list(t_tconf *conf, char **list);
 
