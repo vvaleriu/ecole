@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 01:22:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 11:52:39 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int 		main(int ac, char **av)
 		ft_printf("See usage.\n");
 		return (0);
 	}
-	ft_putstr("\033[?1049h\033[H");
-	init_terminal(conf);
+	if (init_terminal(conf) == -1)
+		exit(0);
 	build_list(conf, ++av);
 	print_list(conf);
 	get_key(conf);

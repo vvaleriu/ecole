@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_item.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 13:08:22 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:04:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t			print_item(t_tconf *conf, t_dlist *elem, int x, int y)
 		set_str_cap("mr");
 	item->x = x;
 	item->y = y;
-	ft_putstr(item->s);
+	ft_putstr_fd(item->s, conf->fd);
 	set_str_cap("me");
 	return (item->len);
 }

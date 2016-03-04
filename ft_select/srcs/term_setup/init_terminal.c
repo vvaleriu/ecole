@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 00:20:23 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 12:04:41 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,21 @@ static void	fill_keyman_tab(t_tconf *conf)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
 }
 
+int			init_fd(int fd)
+{
+	fd = open(ttyname(0), O_RDWR | O_NONBLOCK);
+	return (fd);
+}
+
 int			init_terminal(t_tconf *conf)
 {
 	fill_keyman_tab(conf);
+	conf->fd = 0;
 	conf->run = 1;
 	conf->list = NULL;
 	conf->cur_item = NULL;
+	if ((conf->fd = init_fd(conf->fd)) == -1)
+		return (-1);
 	ioctl(0, TIOCGWINSZ, &(conf->w));
 	if (load_term_prop(conf) <= 0)
 		return (-1);

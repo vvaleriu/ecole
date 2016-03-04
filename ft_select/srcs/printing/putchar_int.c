@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   putchar_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2013/12/20 22:01:38 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 11:50:19 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <ft_select.h>
 
 int		putchar_int(int c)
 {
-	write(1, &c, 1);
+	static int	fd;
+
+	if (fd == 0)
+		fd = init_fd(fd);
+	write(fd, &c, 1);
 	return (1);
 }

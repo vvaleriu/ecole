@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_select.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 13:21:12 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/04 11:50:40 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <term.h>
 # include <sys/ioctl.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 /*
 ** KEY_SIZE : size of the str to check when a key is pressed
@@ -122,6 +125,7 @@ struct s_tconf
 	t_dlist			*cur_item;
 	int				row;
 	int				col;
+	int				fd;
 	struct winsize	w;
 	struct termios 	def;
 	struct termios 	cur;
@@ -148,6 +152,7 @@ struct s_item
 /*
 ** MAIN
 */
+int					init_fd(int fd);
 int					init_terminal(t_tconf *conf);
 t_tconf 			*get_instance();
 void				print_small_size_error();

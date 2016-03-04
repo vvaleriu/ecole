@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:23:21 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/02 00:47:45 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/04 11:46:45 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			set_str_cap(char *cap_str)
 	{
 		res = err_void(NULL, tgetstr(*cap, NULL), ERR_TERM_CAP_UNDEF, 0);
 		if (res)
-			tputs(res, 0, putchar_int);
+			tputs(res, 1, putchar_int);
 		cap++;
 	}
 	ft_strarray_del(&tmp);

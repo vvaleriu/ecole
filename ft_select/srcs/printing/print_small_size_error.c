@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_small_size_error.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/03 13:08:21 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/04 12:05:27 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 ** Print an error message when screen to small to print full list
 */
 
-void		print_small_size_error()
+void		print_small_size_error(t_tconf *conf)
 {
 	set_str_cap("cl");
 	move_to(0, 0);
-	ft_printf("Agrandir la fenêtre.");
+	ft_putstr_fd("Agrandir la fenêtre.", conf->fd);
 }
