@@ -18,5 +18,7 @@ ft_ls :
   - Reglage du recursif
   - Memoire
   
-ft_minishell2:
+21sh:
   -verification ordre creation/execution de l'arbre
+  - pipe genere la fermeture du GNL
+  - gerer les termcaps
