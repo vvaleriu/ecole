@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/16 15:19:26 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/02/10 16:20:44 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/10 11:59:17 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,6 +162,14 @@ SRC = ft_putchar.c			\
 		ft_strarray_add_first.c\
 		ft_strarray_add_last.c\
 		ft_strarray_del_one.c\
+		error_checker.c		\
+		ft_dlstadd.c 		\
+		ft_dlstadd_last.c	\
+		ft_dlstdel.c		\
+		ft_dlstlen.c		\
+		ft_dlstnew.c		\
+		ft_dlstiter.c 		\
+		ft_dlstdelone.c		\
 
 $(NAME): libft.h $(OBJ)
 	@ar rc $(FOLDER)/$@ $(OBJ)

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_cursor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2015/03/06 14:16:52 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/03/10 11:26:54 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/10 12:47:41 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
+
 #include <ft_minishell2.h>
 
-void sig_handler(int signo)
+void		ft_putstr_cursor(char *str)
 {
-	if (signo == SIGUSR1)
-		ft_printf("received SIGUSR1\n");
-	else if (signo == SIGKILL)
-		ft_printf("received SIGKILL\n");
-	else if (signo == SIGSTOP)
-		ft_printf("received SIGSTOP\n");
+	t_tconf	*conf;
+
+	conf = get_instance()->conf;
+	while (*str != '\0')
+	{
+		ft_putchar_cursor(*str);
+		str++;
+	}
 }

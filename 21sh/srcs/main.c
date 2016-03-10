@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/08 15:07:17 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:17:03 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,21 @@
 #include <unistd.h>
 #include <signal.h>
 
-
-
-
-static int		end_of_file1(t_str_prop *p, char **line)
-{
-	ft_strdel(&(p->buf));
-	*line = p->file;
-	if (ft_strlen(p->file))
-	{
-		p->rd = -3;
-		return (1);
-	}
-	return (0);
-}
-
-int				get_next_line1(int const fd, char **line)
-{
-	static t_str_prop	p = {-2, NULL, NULL, NULL, NULL};
-
-	if (p.rd == -3)
-		return (0);
-	p.buf = (p.rd == -2 ? (char *)malloc(sizeof(char) * GNL_BUFFER + 1) : p.buf);
-	if (fd < 0 || GNL_BUFFER < 1 || !p.buf)
-		return (-1);
-	ft_strdel(&p.tmp);
-	while ((p.end = ft_strchr(p.file, '\n')) == NULL && p.rd != 0)
-	{
-		ft_bzero((void *)p.buf, GNL_BUFFER + 1);
-		p.rd = read(fd, p.buf, GNL_BUFFER);
-		if (!p.rd)
-			return (end_of_file1(&p, line));
-		p.tmp = p.file;
-		p.file = ft_strjoin(p.file, p.buf);
-		ft_strdel(&p.tmp);
-	}
-	*p.end = '\0';
-	*line = p.tmp = p.file;
-	p.file = ft_strdup(p.end + 1);
-	return (1);
-}
-
-
-
-
-
-int			main(int ac, char **av, char **envp)
+/*int			main(int ac, char **av, char **envp)
 {
 	t_var	var;
 
 	(void)ac;
 	(void)av;
 	init_function(&var, envp);
+	init_terminal(&var);
 	signal(SIGINT, sig_handler);
 	signal(SIGTSTP, SIG_IGN);
 	while (18)
 	{
 		ft_putstr("$>");
 		//if (get_next_line(0, &(var.line)) == -2)
-		if (!get_next_line1(0, &(var.line)))
+		if (!get_next_line(0, &(var.line)))
 			ft_exit(NULL, (void *)&var);
 		var.list = lexer(var.line, var.lex);
 		var.list = create_tokens(var.list);
@@ -83,6 +39,32 @@ int			main(int ac, char **av, char **envp)
 		execute_tree(&var, var.root);
 		clean_tree(var.root);
 		var.root = NULL;
+	}
+	return (0);
+}*/
+
+int			main(int ac, char **av, char **envp)
+{
+	t_var	*var;
+
+	(void)ac;
+	(void)av;
+	var = get_instance();
+	init_function(var, envp);
+	init_terminal(var);
+	sig_catcher();
+	while (18)
+	{
+		//ft_putstr_cursor("$>");
+		ft_putstr_fd("$>", var->conf->fd);
+		read_key(var);
+		/*var->list = lexer(var->line, var->lex);
+		var->list = create_tokens(var->list);
+		var->root = parser(var->list);
+        check_tree(var->root);
+		execute_tree(var, var->root);
+		clean_tree(var->root);
+		var->root = NULL;*/
 	}
 	return (0);
 }

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_small_size_error.c                           :+:      :+:    :+:   */
+/*   ft_putchar_cursor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 14:43:49 by vincent          ###   ########.fr       */
+/*   Created: 2016/03/10 10:40:11 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/10 15:12:26 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
-/*
-** Print an error message when screen to small to print full list
-*/
-
-void		print_small_size_error(t_tconf *conf)
+void		ft_putchar_cursor(char c)
 {
-	set_str_cap("cl");
-	move_to(0, 0);
-	ft_putstr_fd("Agrandir la fenêtre.", conf->fd);
+	t_tconf	*conf;
+
+	conf = get_instance()->conf;
+	write(conf->fd, &c, 1);
+	//move_to_next_char(get_instance());
 }

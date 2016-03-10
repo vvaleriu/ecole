@@ -3,49 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 14:43:48 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/10 15:11:51 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 /*
-** Only checks if it down up or right arrow cause if its not one of them then if
-** surely left arrow.
-** returns a pointer to the elem of the list where the cursor will be set
-** repeat next calculate how much time you have to go next on list to select
-** the right element
+** Delace le curseur sur la prochaine/precedente case. Calcule le retour a la
+** ligne si necessaire
 */
-
-static t_dlist	*new_selected_item(t_tconf *conf, char arrow)
+int		move_to_next_char(t_var *var)
 {
-	int		repeat_next;
+	t_tconf		*conf;
 
-	if (arrow == DOWN_ARROW)
-		return (CUR_ITM->next != NULL ? CUR_ITM->next : CUR_ITM);
-	else if (arrow == UP_ARROW)
-		return (CUR_ITM->prev != NULL ? CUR_ITM->prev : CUR_ITM);
-	repeat_next = (conf->col > 0 ? conf->row : 0);
-	if (arrow == RIGHT_ARROW)
-	{
-		while (repeat_next-- >= 0)
-			CUR_ITM = CUR_ITM->next;
-		return (CUR_ITM);
-	}
-	while (repeat_next-- >= 0)
-		CUR_ITM = CUR_ITM->prev;
-	return (CUR_ITM);
+	conf = var->conf;
+	/*if (CUR_X == WIN_X)
+		move_to(0, CUR_Y + 1);
+	else
+		move_to(CUR_X + 1, CUR_Y);*/
+	set_str_cap("nd");
+	return (2);
 }
 
-int			move_cursor(t_tconf *conf, char *key_buf)
+int		move_to_previous_char(t_var *var)
 {
-	t_item	*item;
+	t_tconf		*conf;
 
-	CUR_ITM = (CUR_ITM == NULL ? LIST_ST : new_selected_item(conf, key_buf[2]));
-	item = (t_item *)CUR_ITM->content;
-	move_to(item->x, item->y);
+	conf = var->conf;
+	/*if (CUR_X == 0)
+		move_to(WIN_X, CUR_Y - 1);
+	else
+		move_to(CUR_X - 1, CUR_Y);*/
+	set_str_cap("le");
+	return (2);
+}
+
+int		move_cursor(t_var *var)
+{
+	t_tconf		*conf;
+	
+	conf = var->conf;
+	move_to(0, 0);
 	return (2);
 }

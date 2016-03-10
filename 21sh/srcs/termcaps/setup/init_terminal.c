@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 15:12:08 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/10 15:20:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 /*
 ** On va utiliser ft_strncmp pour identifier la sequence capturee
@@ -25,23 +25,23 @@ static void	fill_keyman_tab(t_tconf *conf)
 
 	i = -1;
 	ft_strcpy(KLEFT.seq, "\033[D");
-	KLEFT.f = move_cursor;
+	KLEFT.f = move_to_previous_char;
 	ft_strcpy(KRIGHT.seq, "\033[C");
-	KRIGHT.f = move_cursor;
+	KRIGHT.f = move_to_next_char;
 	ft_strcpy(KUP.seq, "\033[A");
-	KUP.f = move_cursor;
+	KUP.f = move_to_previous_char;
 	ft_strcpy(KDOWN.seq, "\033[B");
-	KDOWN.f = move_cursor;
+	KDOWN.f = move_to_next_char;
 	ft_strcpy(KSPACE.seq, "\040");
-	KSPACE.f = select_item;
+	KSPACE.f = move_to_previous_char;
 	ft_strcpy(KESC.seq, "\033");
-	KESC.f = close_program;
+	KESC.f = move_to_previous_char;
 	ft_strcpy(KRET.seq, "\012");
-	KRET.f = close_program;
+	KRET.f = return_command;
 	ft_strcpy(KBKSP.seq, "\010");
-	KBKSP.f = delete_item;
+	KBKSP.f = move_to_previous_char;
 	ft_strcpy(KDEL.seq, "\177");
-	KDEL.f = delete_item;
+	KDEL.f = move_to_previous_char;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
 }
@@ -52,18 +52,17 @@ int			init_fd(int fd)
 	return (fd);
 }
 
-int			init_terminal(t_tconf *conf)
+int			init_terminal(t_var *var)
 {
-	fill_keyman_tab(conf);
-	conf->fd = 0;
-	conf->run = 1;
-	conf->list = NULL;
-	conf->cur_item = NULL;
-	if ((conf->fd = init_fd(conf->fd)) == -1)
+	fill_keyman_tab(var->conf);
+	var->conf->fd = 0;
+	var->CUR_X = 0;
+	var->CUR_Y = 0;
+	if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
 		return (-1);
-	ioctl(0, TIOCGWINSZ, &(conf->w));
-	if (load_term_prop(conf) <= 0)
+	ioctl(0, TIOCGWINSZ, &(var->conf->w));
+	if (load_term_prop(var->conf) <= 0)
 		return (-1);
-	return (change_term_attr(conf));
+	return (change_term_attr(var->conf));
 	return (1);
 }

@@ -1,4 +1,4 @@
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 /*
 ** getenv : Recupere le nom du terminal dans les vars env

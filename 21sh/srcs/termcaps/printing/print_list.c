@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:39:17 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 14:42:23 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/10 14:01:23 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 /*
 ** print a col of item.

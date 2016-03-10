@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   putchar_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/04 15:04:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/10 12:21:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 int		putchar_int(int c)
 {
@@ -18,6 +18,6 @@ int		putchar_int(int c)
 
 	if (fd == 0)
 		fd = init_fd(fd);*/
-	write((get_instance())->fd, &c, 1);
+	write(get_instance()->conf->fd, &c, 1);
 	return (1);
 }

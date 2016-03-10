@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_str_cap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:23:21 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/04 15:07:50 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/10 10:07:26 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
 /*
 ** List of capabilities string is sent with a ":" separator

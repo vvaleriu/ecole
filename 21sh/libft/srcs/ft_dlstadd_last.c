@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   go_background.c                                    :+:      :+:    :+:   */
+/*   ft_dlstadd_last.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/05 01:48:19 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 02:39:54 by vincent          ###   ########.fr       */
+/*   Created: 2013/12/10 10:48:46 by vvaleriu          #+#    #+#             */
+/*   Updated: 2015/08/03 18:15:57 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <libft.h>
 
-void		go_background(int signo)
+void	ft_dlstadd_last(t_dlist **alst, t_dlist *new)
 {
-	char	cp[2];
-	t_tconf *conf;
+	t_dlist	*tmp;
 
-	conf = get_instance();
-	(void)signo;
-	if (isatty(1))
+	if (*alst == NULL)
+		*alst = new;
+	else if ((*alst)->next == *alst)
 	{
-		cp[0] = conf->cur.c_cc[VSUSP];
-		cp[1] = 0;
-		tputs(tgetstr("te", NULL), 1, putchar_int);
-		signal(SIGTSTP, SIG_DFL);
-		ioctl(0, TIOCSTI, cp);
+		(*alst)->next = new;
+		(*alst)->prev = new;
+		new->next = *alst;
+		new->prev = *alst;
+	}
+	else
+	{
+		tmp = (*alst)->prev;
+		tmp->next = new;
+		(*alst)->prev = new;
+		new->prev = tmp;
+		new->next = *alst;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 12:24:43 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 12:42:16 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,25 @@ void		check_tabs_init(t_var *var)
 		ft_printf("Adresse ef[%d]\n", var->ef[i]);
 }
 
+/*
+** initialise les pointeurs a NULL
+** remplit les tableaux de fonctions de lexing / parsing / execution
+** copie l'environnement
+*/
 void		init_function(t_var *var, char **envp)
 {
 	var->root = NULL;
 	var->line = NULL;
+	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);
 	ft_copy_env(var, envp);
 	fill_exec_funct_array(var->ef);
 }
 
+/*
+** initialisation des fonctions de lexing via remplissage du tableau
+*/
 void		fill_lex_ft(t_lexing_ft *lex)
 {
 	lex[0].s = ";";
@@ -59,6 +68,9 @@ void		fill_lex_ft(t_lexing_ft *lex)
 	lex[5].f = lex_char;
 }
 
+/*
+** remplissage du tableau des fonctions incluses dans le terminal
+*/
 void		ft_fill_tab(t_builtin *bin)
 {
 	bin[0].na = "cd";
@@ -73,6 +85,9 @@ void		ft_fill_tab(t_builtin *bin)
 	bin[4].f = &ft_exit;
 }
 
+/*
+** remplissage du tableau des fonctions d'execution de l'arbre des commandes
+*/
 void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
 {
 	ef[OPS_SEMIC] = exe_semi;

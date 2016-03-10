@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_list.c                                       :+:      :+:    :+:   */
+/*   ft_dlstdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/01 01:39:35 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/02 13:21:34 by vincent          ###   ########.fr       */
+/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
+/*   Updated: 2015/08/04 17:04:26 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <libft.h>
+#include <stdlib.h>
 
-void	build_list(t_tconf *conf, char **list)
+void	ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
 {
-	t_dlist	*elem;
+	t_dlist	*tmp;
+	t_dlist	*swap;
 
-	while (*list)
+	tmp = *alst;
+	(*alst)->prev->next = NULL;
+	swap = NULL;
+	while (tmp)
 	{
-		elem = ft_dlstnew(new_item(*list), sizeof(t_item));
-		ft_dlstadd_last(&(conf->list), elem);
-		list++;
+		swap = tmp->next;
+		del(tmp->content, tmp->content_size);
+		free(tmp);
+		tmp = swap;
 	}
+	*alst = NULL;
 }

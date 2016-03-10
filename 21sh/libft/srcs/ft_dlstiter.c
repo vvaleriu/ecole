@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_catcher.c                                      :+:      :+:    :+:   */
+/*   ft_dlstiter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/05 01:59:46 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/05 02:41:40 by vincent          ###   ########.fr       */
+/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
+/*   Updated: 2015/08/03 18:15:47 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <libft.h>
 
-/*static void		sig_int(int signo)
+void	ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem))
 {
-	t_tconf *conf;
+	t_dlist	*tmp;
 
-	if (signo == SIGINT)
+	tmp = lst;
+	if (tmp != NULL)
 	{
-		conf = get_instance();
-		close_program(conf, NULL);
+		f(tmp);
+		tmp = tmp->next;
+		while (tmp != lst)
+		{
+			f(tmp);
+			tmp = tmp->next;
+		}
 	}
-}*/
-
-void			sig_catcher()
-{
-	signal(SIGINT, SIG_IGN);
-	signal(SIGWINCH, resize_list);
-	signal(SIGTSTP, go_background);
-	signal(SIGCONT, go_foreground);
 }

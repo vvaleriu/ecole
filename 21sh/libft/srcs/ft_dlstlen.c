@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_env.c                                        :+:      :+:    :+:   */
+/*   ft_dlstlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/23 14:23:20 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 08:51:19 by vvaleriu         ###   ########.fr       */
+/*   Created: 2013/12/10 09:24:22 by vvaleriu          #+#    #+#             */
+/*   Updated: 2015/08/03 18:14:38 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <libft.h>
-#include <ft_minishell2.h>
 
-void		clean_env(t_var *var)
+int		ft_dlstlen(t_dlist *alst)
 {
+	t_dlist	*tmp;
 	int		i;
 
-	i = 0;
-	if (var->tenv)
+	i = 1;
+	tmp = alst;
+	if (alst == NULL)
+		return (0);
+	if (alst->next == alst)
+		return (i);
+	while (tmp->next != alst)
 	{
-		while (var->tenv[i])
-		{
-			free(var->tenv[i]);
-			i++;
-		}
-		free(var->tenv);
-		var->tenv = NULL;
+		i++;
+		tmp = tmp->next;
 	}
+	return (i);
 }

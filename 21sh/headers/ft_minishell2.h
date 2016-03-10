@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/08 09:55:23 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:34:20 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MINISHELL2_H
 
 # include <libft.h>
+# include <ft_termcaps.h>
 
 /*
 ** BIN_NB		: Number of personal binary functions
@@ -98,7 +99,10 @@ typedef struct		s_builtin
 ** hist :
 ** list :
 ** root : root of the token tree
-** lex : array of lexung functions
+** lex : array of lexing functions
+** conf : conf structure of a terminal (see ft_termcaps.h)
+** key_buf : buffer contenant la suite de caractere qui represente
+** la touche appuyee
 ** ef : function that execute the necessary token
 */
 
@@ -106,11 +110,14 @@ typedef struct		s_var
 {
 	t_builtin		bin[BIN_NB];
 	char			*line;
+	int				position;
 	t_list			*hist;
 	t_list			*list;
 	t_token			*root;
 	t_lexing_ft		lex[6];
+	t_tconf			*conf;
 	char			**tenv;
+	char			key_buf[SEL_KEY_SIZE];
 	int 			(*ef[6])(struct s_var *, t_token *);
 }					t_var;
 
@@ -163,7 +170,10 @@ int			exe_command(t_var *var, t_token *tk);
 **			SIGNAL HANDLERS
 */
 
+void		sig_catcher();
 void		sig_handler(int signo);
+void		go_background(int signo);
+void		go_foreground(int signo);
 
 /*
 **			BINS
@@ -178,13 +188,15 @@ int			find_env(char *exe, char **env);
 /*
 **			TOOLS
 */
-
+t_var		*get_instance();
+t_tconf		*get_conf();
 int			is_text(char c);
 int			is_space(char c);
 int			is_operator(char c);
 void		free_all_list(t_list *alst);
 void		clean_tree(t_token *root);
 void		clean_env(t_var *var);
+void		clean_term_conf(t_var *var);
 
 void		print_token(t_token *tk);
 void		deb_print_first_list(t_list *list);

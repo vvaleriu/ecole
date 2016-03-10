@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/11 12:41:28 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 11:59:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define K				t[2]
 # define L				t[3]
 # define GNL_BUFFER		1024
+
 /*
 **	PRINTF : FLAGS POSITION
 **	CONVERSION QUALIFIER DEFINE
@@ -62,6 +63,14 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_dlist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
+}					t_dlist;
 
 typedef struct		s_pf_flag
 {
@@ -163,6 +172,18 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstsplit(t_list *alst, t_list *elem);
 t_list				*ft_elemdup(t_list *elem);
+
+/*
+**	t_dlist functions
+*/
+void				ft_dlstadd_last(t_dlist **alst, t_dlist *new);
+void				ft_dlstadd(t_dlist **alst, t_dlist *new);
+int					ft_dlstlen(t_dlist *alst);
+t_dlist				*ft_dlstnew(void const *content, size_t content_size);
+void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
+void				ft_dlstdelone(t_dlist **alst, t_dlist *d, void (*del)(void *, size_t));
+
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
 char				*ft_itoh(unsigned int n);
@@ -192,10 +213,17 @@ int					is_operator(char c);
 int					is_text(char c);
 void				ft_strarray_del(char ***c);
 void				ft_strarray_del_one(char ***c, int pos);
-int      			ft_strarray_len(char **ar);
+int	    			ft_strarray_len(char **ar);
 int 				ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);
 void				ft_strarray_add_last(char ***ar, char *str);
+
+/*
+**		ERROR CHECKER
+*/
+
+int					err_int(int err, int res, char *str, int quit);
+void				*err_void(void *err, void *res, char *str, int quit);
 
 /*
 **		============================

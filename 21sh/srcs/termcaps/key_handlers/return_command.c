@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   return_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2015/08/02 13:21:51 by vincent          ###   ########.fr       */
+/*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/10 15:32:58 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_select.h>
+#include <ft_minishell2.h>
 
-void		sig_handler(int signo)
+int			return_command(t_var *var)
 {
-	if (signo == SIGUSR1)
-		ft_printf("received SIGUSR1\n");
-	else if (signo == SIGKILL)
-		ft_printf("received SIGKILL\n");
-	else if (signo == SIGSTOP)
-		ft_printf("received SIGSTOP\n");
+	ft_putstr_fd("Salut les loulous.", var->conf->fd);
+	return (2);
 }
