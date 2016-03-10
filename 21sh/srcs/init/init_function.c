@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 12:42:16 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 22:33:42 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ void		check_tabs_init(t_var *var)
 ** initialise les pointeurs a NULL
 ** remplit les tableaux de fonctions de lexing / parsing / execution
 ** copie l'environnement
+** on initialise le buffer contenant la ligne actuelle avec un taille donnee
+** ainsi que renseignement de la taille maxi du buffer
 */
 void		init_function(t_var *var, char **envp)
 {
 	var->root = NULL;
 	var->line = NULL;
 	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
+	var->line.s = ft_strnew(CMD_LENGTH);
+	var->line.max = CMD_LENGTH;
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);
 	ft_copy_env(var, envp);

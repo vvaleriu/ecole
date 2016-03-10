@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_cursor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 11:26:54 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 12:47:41 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 18:24:05 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 void		ft_putstr_cursor(char *str)
 {
-	t_tconf	*conf;
-
-	conf = get_instance()->conf;
 	while (*str != '\0')
 	{
 		ft_putchar_cursor(*str);

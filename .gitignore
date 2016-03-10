@@ -3,6 +3,7 @@
 *.out
 *.a
 .obj/
+.DS_Store
 
 ## projet ftp
 ftp/bin

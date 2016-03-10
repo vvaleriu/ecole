@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 15:34:20 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/10 22:32:38 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@
 # define PTY_EXEC		3
 
 /*
+** CMD_LENGTH : lonngeur d'une ligne de commande par defaut
+*/
+# define CMD_LENGTH		10
+
+/*
 ** tokens to be executed
 ** no 	: operation number
 ** pty	: operation's priority
@@ -90,13 +95,36 @@ typedef struct		s_builtin
 	char	*na;
 	void	(*f)(char **, void *);
 }					t_builtin;
+/*
+** Structure representant la ligne de commande actuelle.
+** line : ligne de commande
+** position : sur quel caractere de cette ligne le curseur se trouve
+** max : longueur max de la chaine avant de devoir realloc
+*/
+typedef struct		s_cmd_line
+{
+	char	*s;
+	int		pos;
+	size_t	max;
+}					t_cmd_line;
+
+/*
+** Structure representant l'historique des commandes entrees
+** start : pointeur sur le debut de cette liste (LIFO)
+** position actuelle dans la liste
+*/
+typedef struct		s_cmd_hist
+{
+	t_dlist	*start;
+	t_dlist *cur;
+}					t_cmd_hist;
 
 /*
 **			GENERAL VARIABLES STRUCTURE
 **
 ** bin : array of builtins structures (set a app start)
 ** line : current command line
-** hist :
+** hist : liste de l'hitorique des commandes rentrees.
 ** list :
 ** root : root of the token tree
 ** lex : array of lexing functions
@@ -109,10 +137,8 @@ typedef struct		s_builtin
 typedef struct		s_var
 {
 	t_builtin		bin[BIN_NB];
-	char			*line;
-	int				position;
-	t_list			*hist;
-	t_list			*list;
+	t_cmd_line		line;
+	t_cmd_hist		hist;
 	t_token			*root;
 	t_lexing_ft		lex[6];
 	t_tconf			*conf;
