@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 22:33:42 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/11 14:34:58 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ void		check_tabs_init(t_var *var)
 void		init_function(t_var *var, char **envp)
 {
 	var->root = NULL;
-	var->line = NULL;
 	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
 	var->line.s = ft_strnew(CMD_LENGTH);
 	var->line.max = CMD_LENGTH;
+	var->line.pos = 0;
+	var->hist.cur = NULL;
+	var->hist.start = NULL;
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);
 	ft_copy_env(var, envp);

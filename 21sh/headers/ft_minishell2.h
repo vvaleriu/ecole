@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 22:32:38 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/11 14:34:37 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ typedef struct		s_cmd_line
 */
 typedef struct		s_cmd_hist
 {
-	t_dlist	*start;
+	t_dlist	**start;
 	t_dlist *cur;
+	char	*unfinished;
 }					t_cmd_hist;
 
 /*

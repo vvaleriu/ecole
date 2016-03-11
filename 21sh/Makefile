@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/10 22:14:29 by vincent          ###   ########.fr        #
+#    Updated: 2016/03/11 08:10:27 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -rf
 vpath %.c ./srcs ./srcs/builtins ./srcs/init/ ./srcs/lexer/ ./srcs/tools/ \
 			./srcs/execute ./srcs/parser ./srcs/signals ./srcs/termcaps/ \
 			./srcs/termcaps/key_handlers ./srcs/termcaps/setup \
-			./srcs/termcaps/printing ./srcs/termcaps/tools
+			./srcs/termcaps/printing ./srcs/termcaps/tools ./srcs/inputs
 vpath %.h includes libft/header
 vpath %.a libft
 OBJ = $(SRC:%.c=$(O_P)%.o)
@@ -73,6 +73,7 @@ SRC = main.c					\
 		move_to.c				\
 		return_command.c 		\
 		build_line.c			\
+		history.c				\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

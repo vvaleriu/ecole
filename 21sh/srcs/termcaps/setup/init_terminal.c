@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 15:20:42 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:43:11 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 ** Comme la taille de la sequence a comparer differe selon la touche,
 ** on mesure la taille de la sequence pour un faire strncmp de la bonne taille
 */
-
 static void	fill_keyman_tab(t_tconf *conf)
 {
 	int		i;
@@ -31,17 +30,19 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KUP.seq, "\033[A");
 	KUP.f = move_to_previous_char;
 	ft_strcpy(KDOWN.seq, "\033[B");
-	KDOWN.f = move_to_next_char;
-	ft_strcpy(KSPACE.seq, "\040");
-	KSPACE.f = move_to_previous_char;
+	KDOWN.f = delete_char;
 	ft_strcpy(KESC.seq, "\033");
 	KESC.f = move_to_previous_char;
 	ft_strcpy(KRET.seq, "\012");
 	KRET.f = return_command;
-	ft_strcpy(KBKSP.seq, "\010");
-	KBKSP.f = move_to_previous_char;
-	ft_strcpy(KDEL.seq, "\177");
-	KDEL.f = move_to_previous_char;
+	ft_strcpy(KBKSP.seq, "\177");
+	KBKSP.f = erase_char;
+	ft_strcpy(KDEL.seq, "\010");
+	KDEL.f = delete_char;
+	ft_strcpy(KHOME.seq, "\033[1");
+	KHOME.f = cursor_to_origin;
+	ft_strcpy(KEND.seq, "\033[4");
+	KEND.f = cursor_to_origin;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
 }

@@ -6,9 +6,10 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 15:17:03 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 09:46:50 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <libft.h>
 #include <ft_minishell2.h>
@@ -58,7 +59,7 @@ int			main(int ac, char **av, char **envp)
 		//ft_putstr_cursor("$>");
 		ft_putstr_fd("$>", var->conf->fd);
 		read_key(var);
-		/*var->list = lexer(var->line, var->lex);
+		/*var->list = lexer(var->line.s, var->lex);
 		var->list = create_tokens(var->list);
 		var->root = parser(var->list);
         check_tree(var->root);

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 12:54:43 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 09:46:44 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			read_key(t_var *var)
 	{
 		loop = key_identifier(var);
 		if (!loop)
-			ft_putchar_cursor(var->key_buf[0]);
+			insert_char(var);
 		ft_bzero((void *)(var->key_buf), SEL_KEY_SIZE);
 	}
 	return (0);

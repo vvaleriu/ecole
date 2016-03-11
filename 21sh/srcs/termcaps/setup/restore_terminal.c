@@ -6,13 +6,16 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 08:16:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 12:04:43 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:03:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 
-
+/*
+** te : fin du programme permettant de bouger le curseur
+** ei : fin du mode d'insertion
+*/
 int			restore_terminal(t_var *var)
 {
 	t_tconf		*conf;

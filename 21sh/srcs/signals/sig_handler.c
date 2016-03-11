@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2016/03/10 15:17:05 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:01:04 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void		sig_handler(int signo)
 	if (signo == SIGUSR1)
 	{
 		ft_printf("received SIGUSR1\n");
+		restore_terminal(get_instance());
 		exit(0);
 	}
 	else if (signo == SIGKILL)
 	{
 		ft_printf("received SIGKILL\n");
+		restore_terminal(get_instance());
 		exit(0);
 	}
 	else if (signo == SIGSTOP)
 	{
 		ft_printf("received SIGSTOP\n");
+		restore_terminal(get_instance());
 		exit(0);
 	}
 	else

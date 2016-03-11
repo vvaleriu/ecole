@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 18:25:10 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/11 09:37:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ int		move_to_next_char(t_var *var)
 	else
 		move_to(CUR_X + 1, CUR_Y);*/
 	set_str_cap("nd");
+	var->line.pos++;
 	return (2);
 }
 
+/*
+** On deplace le curseur et on met a jour la position
+*/
 int		move_to_previous_char(t_var *var)
 {
 	t_tconf		*conf;
@@ -41,6 +45,7 @@ int		move_to_previous_char(t_var *var)
 	else
 		move_to(CUR_X - 1, CUR_Y);*/
 	set_str_cap("le");
+	var->line.pos--;
 	return (2);
 }
 

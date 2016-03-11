@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 23:04:35 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/11 12:57:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,50 +19,102 @@
 */
 static void	extend_line_capacity(t_var *var)
 {
-	char	*newline;
+	char	*new_line_buffer;
 
-	newline = ft_strnew(var->line->max + CMD_LENGTH);
+	new_line_buffer = ft_strnew(var->line.max + CMD_LENGTH);
 	var->line.max += CMD_LENGTH;
-	ft_strcpy(newline, var->line.s);
+	ft_strcpy(new_line_buffer, var->line.s);
 	free(var->line.s);
-	var->line.s = newline;
+	var->line.s = new_line_buffer;
 }
 
-static void insert_character(t_var *var)
+/*
+** Si la chaine est trop courte on l'agrandit. Tant qu'on n'a pas atteint la
+** position du curseur, on copie chaque caractere dans la case suivane. Enfin
+** on insere le caractere
+** Pour finir on affiche la ligne
+*/
+int			insert_char(t_var *var)
 {
 	size_t	len;
 
+	if (ft_strlen(var->line.s) == var->line.max)
+		extend_line_capacity(var);
 	len = ft_strlen(var->line.s);
-	while (len > var->line.pos)
+	while ((int)len > var->line.pos)
 	{
 		var->line.s[len] = var->line.s[len - 1];
 		len--;
 	}
 	var->line.s[var->line.pos] = var->key_buf[0];
+	set_str_cap("im");
+	ft_putchar_cursor(var->line.s[var->line.pos]);
+	set_str_cap("ei");
 	(var->line.pos)++;
+	return (2);
 }
 
-
-static void delete_character(t_var *var)
+/*
+** Fonction executee lors d'un appui sur retour arriere
+** on bouge le curseur sur le caractere precedent
+*/
+int			erase_char(t_var *var)
 {
-	size_t	len;
-	int 	i;
+	size_t			len;
+	unsigned long 	i;
 
 	len = ft_strlen(var->line.s);
-	(var->line.pos)--;
+	move_to_previous_char(var);
 	var->line.s[var->line.pos] = '\0';
+	set_str_cap("dc");
 	i = var->line.pos;
 	while (i < len)
 	{
 		var->line.s[i] = var->line.s[i + 1];
 		i++;
 	}
+	var->line.s[i] = '\0';
+	return (2);
 }
 
-void		build_line(t_var *var)
+/*
+** Fonction executee lors d'un appui sur delete / suppr
+*/
+int			delete_char(t_var *var)
 {
-	if (ft_strlen(var->line) == var->line->max)
-		extend_line_capacity(var);
-	var->line.s[var->line->pos] = var->key_buf[0];
-	(var->line.pos)++;
+	size_t			len;
+	unsigned long 	i;
+
+	len = ft_strlen(var->line.s);
+	var->line.s[var->line.pos] = '\0';
+	set_str_cap("ec");
+	i = var->line.pos;
+	while (i < len)
+	{
+		var->line.s[i] = var->line.s[i + 1];
+		i++;
+	}
+	var->line.s[i] = '\0';
+	return (2);
 }
+
+/*
+** Fonction executee lors d'un appui sur home
+*/
+int			cursor_to_origin(t_var *var)
+{
+	ft_putchar_cursor('Y');
+	set_str_cap("ho");
+	var->line.pos = 0;
+	return (2);
+}
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 15:32:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:46:04 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 ** CUR_ITEM: current selected item on the list
 */
 
-# define SEL_KEY_SIZE		3
-# define KEY_NUMBER			7
+# define SEL_KEY_SIZE		4
+# define KEY_NUMBER			10
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
 # define WIN_X				conf->w.ws_col
@@ -51,9 +51,10 @@
 # define KDOWN				conf->keyman[3]
 # define KESC				conf->keyman[4]
 # define KRET				conf->keyman[5]
-# define KBKSP				conf->keyman[6]
-# define KDEL				conf->keyman[7]
-# define KSPACE				conf->keyman[8]
+# define KDEL				conf->keyman[6]
+# define KBKSP				conf->keyman[7]
+# define KHOME				conf->keyman[8]
+# define KEND				conf->keyman[9]
 
 # define ESC 				4
 # define RET				5
@@ -147,6 +148,10 @@ int					restore_terminal(t_var *var);
 int					move_to_next_char(t_var *var);
 int					move_to_previous_char(t_var *var);
 int					move_cursor(t_var *var);
+int					insert_char(t_var *var);
+int					erase_char(t_var *var);
+int					delete_char(t_var *var);
+int					cursor_to_origin(t_var *var);
 
 /*
 ** PRINTING
