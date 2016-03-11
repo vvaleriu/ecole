@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 12:43:11 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/11 23:37:44 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int			init_terminal(t_var *var)
 	ioctl(0, TIOCGWINSZ, &(var->conf->w));
 	if (load_term_prop(var->conf) <= 0)
 		return (-1);
-	return (change_term_attr(var->conf));
+	//return (change_term_attr(var->conf));
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 12:46:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/12 00:00:00 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,8 @@ int					init_terminal(t_var *var);
 ** TERM MANAGER
 */
 int 				load_term_prop(t_tconf *conf);
-int					change_term_attr(t_tconf *conf);
+int					terminal_input_mode(t_tconf *conf);
+int					terminal_execute_mode(t_tconf *conf);
 void				set_str_cap(char *cap_str);
 
 /*
@@ -147,6 +148,7 @@ int					return_command(t_var *var);
 int					restore_terminal(t_var *var);
 int					move_to_next_char(t_var *var);
 int					move_to_previous_char(t_var *var);
+int					move_to_next_line(t_var *var);
 int					move_cursor(t_var *var);
 int					insert_char(t_var *var);
 int					erase_char(t_var *var);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 09:46:44 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/12 00:20:53 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ static int			key_identifier(t_var *var)
 }
 
 /*
+** On nettoie le buffer, et on stocke la position du curseur.
 ** On stocke la touche pressee dans key_buf. Une fois identifiee, on vide le
 ** buffer de lecture
 ** loop : retour de l'identificateur de touche pressee
 ** rd : nombre de caracteres lus
+** 4 = retour
 */
 int			read_key(t_var *var)
 {
@@ -55,6 +57,8 @@ int			read_key(t_var *var)
 		if (!loop)
 			insert_char(var);
 		ft_bzero((void *)(var->key_buf), SEL_KEY_SIZE);
+		if (loop == RET)
+			return (RET);
 	}
 	return (0);
 }

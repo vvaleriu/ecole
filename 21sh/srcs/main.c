@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/11 09:46:50 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/12 00:24:25 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
-
-/*int			main(int ac, char **av, char **envp)
-{
-	t_var	var;
-
-	(void)ac;
-	(void)av;
-	init_function(&var, envp);
-	init_terminal(&var);
-	signal(SIGINT, sig_handler);
-	signal(SIGTSTP, SIG_IGN);
-	while (18)
-	{
-		ft_putstr("$>");
-		//if (get_next_line(0, &(var.line)) == -2)
-		if (!get_next_line(0, &(var.line)))
-			ft_exit(NULL, (void *)&var);
-		var.list = lexer(var.line, var.lex);
-		var.list = create_tokens(var.list);
-		var.root = parser(var.list);
-        check_tree(var.root);
-		execute_tree(&var, var.root);
-		clean_tree(var.root);
-		var.root = NULL;
-	}
-	return (0);
-}*/
 
 int			main(int ac, char **av, char **envp)
 {
@@ -56,9 +29,11 @@ int			main(int ac, char **av, char **envp)
 	sig_catcher();
 	while (18)
 	{
-		//ft_putstr_cursor("$>");
 		ft_putstr_fd("$>", var->conf->fd);
+		set_str_cap("sc");
+		terminal_input_mode(var->conf);
 		read_key(var);
+		terminal_execute_mode(var->conf);
 		/*var->list = lexer(var->line.s, var->lex);
 		var->list = create_tokens(var->list);
 		var->root = parser(var->list);

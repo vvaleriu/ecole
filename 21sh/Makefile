@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
+#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/11 08:10:27 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/12 00:09:21 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ SRC = main.c					\
 		get_env_value.c			\
 		find_env.c              \
 		init_terminal.c			\
-		change_term_attr.c		\
+		terminal_modes.c		\
 		load_term_prop.c		\
 		set_str_cap.c			\
 		go_background.c			\
