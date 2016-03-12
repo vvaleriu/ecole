@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/11 23:19:21 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 23:35:50 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct		s_cmd_line
 */
 typedef struct		s_cmd_hist
 {
-	t_dlist	**start;
+	t_dlist	*start;
 	t_dlist *cur;
 	char	*tmp;
 }					t_cmd_hist;
@@ -211,6 +211,14 @@ void		ft_setenv(char **exe, void *var);
 void		ft_unsetenv(char **exe, void *var);
 void		ft_exit(char **exe, void *var);
 int			find_env(char *exe, char **env);
+
+/*
+**			INPUTS
+*/
+void		save_current_input(t_var *var);
+int			add_to_history(t_var *var);
+int			history_next(t_var *var);
+int 		history_prev(t_var *var);
 
 /*
 **			TOOLS

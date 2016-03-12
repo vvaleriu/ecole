@@ -6,11 +6,18 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:51:42 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 23:36:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/13 00:00:39 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
+
+static void	print_history_line(t_var *var)
+{
+	move_cursor_to_origin(var);
+	set_str_cap("cd");
+	ft_putstr_cursor(var->line.s);
+}
 
 /*
 ** Si on appuie sur les fleches de l'historique sans avoir valide la commande.
@@ -33,13 +40,13 @@ int			add_to_history(t_var *var)
 	t_dlist	*elem;
 
 	elem = ft_dlstnew((void *)ft_strdup(var->line.s), sizeof(char *));
-	ft_dlstadd(var->hist.start, elem);
-	if (var->hist.tmp)
-		ft_strdel(&(var->hist.tmp));
+	ft_dlstadd(&(var->hist.start), elem);
+	ft_strdel(&(var->hist.tmp));
 	return (2);
 }
 
 /*
+** Remonte dans l'historique. Correspond a la touche UP
 ** Retourne :
 ** - 2 si on a affiche une nouvelle entree de l'historique
 ** - 1 si on a atteint la derniere entree
@@ -51,11 +58,12 @@ int			history_next(t_var *var)
 {
 	if (var->hist.cur != NULL)
 	{
-		if (var->hist.cur->next != *(var->hist.start))
+		if (var->hist.cur->next != var->hist.start)
 		{
 			var->hist.cur = var->hist.cur->next;
 			ft_strdel(&(var->line.s));
 			var->line.s = ft_strdup((char *)((var->hist.cur)->content));
+			print_history_line(var);
 			return (2);
 		}
 		return (1);
@@ -64,9 +72,11 @@ int			history_next(t_var *var)
 	{
 		if (var->hist.start != NULL)
 		{
-			var->hist.cur = *(var->hist.start);
+			save_current_input(var);
+			var->hist.cur = var->hist.start;
 			ft_strdel(&(var->line.s));
 			var->line.s = ft_strdup((char *)((var->hist.cur)->content));
+			print_history_line(var);
 			return (2);
 		}
 		return (-1);
@@ -75,6 +85,7 @@ int			history_next(t_var *var)
 }
 
 /*
+** Redescend dans l'historique. Correspond a la touche DOWN
 ** Retourne :
 ** - -1 si on n'a pas encore demarre dans l'historique
 */
@@ -82,11 +93,12 @@ int 		history_prev(t_var *var)
 {
 	if (var->hist.cur != NULL)
 	{
-		if (var->hist.cur->prev != *(var->hist.start))
+		if (var->hist.cur->prev != var->hist.start)
 		{
 			var->hist.cur = var->hist.cur->prev;
 			ft_strdel(&(var->line.s));
 			var->line.s = ft_strdup((char *)((var->hist.cur)->content));
+			print_history_line(var);
 			return (2);
 		}
 		else
@@ -95,6 +107,7 @@ int 		history_prev(t_var *var)
 			var->line.s = ft_strdup(var->hist.tmp);
 			ft_strdel(&(var->hist.tmp));
 			var->hist.cur = NULL;
+			print_history_line(var);
 			return (1);
 		}
 	}

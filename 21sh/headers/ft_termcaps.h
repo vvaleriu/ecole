@@ -170,7 +170,7 @@ int					move_cursor(t_var *var);
 int					insert_char(t_var *var);
 int					erase_char(t_var *var);
 int					delete_char(t_var *var);
-int					cursor_to_origin(t_var *var);
+int					move_cursor_to_origin(t_var *var);
 
 /*
 ** PRINTING

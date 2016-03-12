@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/12 00:24:25 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/13 00:05:58 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			main(int ac, char **av, char **envp)
 		terminal_input_mode(var->conf);
 		read_key(var);
 		terminal_execute_mode(var->conf);
+		ft_putendl_fd(var->line.s, var->conf->fd);
 		/*var->list = lexer(var->line.s, var->lex);
 		var->list = create_tokens(var->list);
 		var->root = parser(var->list);
@@ -41,6 +42,7 @@ int			main(int ac, char **av, char **envp)
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;*/
+		ft_strdel(&(var->line.s));
 	}
 	return (0);
 }

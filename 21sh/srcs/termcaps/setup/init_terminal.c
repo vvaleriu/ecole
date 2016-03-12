@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 12:17:38 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 23:48:11 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KRIGHT.seq, "\033[C");
 	KRIGHT.f = move_to_next_char;
 	ft_strcpy(KUP.seq, "\033[A");
-	KUP.f = move_to_previous_char;
+	KUP.f = history_next;
 	ft_strcpy(KDOWN.seq, "\033[B");
-	KDOWN.f = delete_char;
+	KDOWN.f = history_prev;
 	ft_strcpy(KESC.seq, "\033");
 	KESC.f = move_to_previous_char;
 	ft_strcpy(KRET.seq, "\012");
@@ -40,9 +40,9 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KDEL.seq, "\033[3~");
 	KDEL.f = delete_char;
 	ft_strcpy(KHOME.seq, "\033OH");
-	KHOME.f = cursor_to_origin;
+	KHOME.f = move_cursor_to_origin;
 	ft_strcpy(KEND.seq, "\033OF");
-	KEND.f = cursor_to_origin;
+	KEND.f = move_cursor_to_origin;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
 }

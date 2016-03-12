@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_cursor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:40:11 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 15:12:26 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/12 22:54:35 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 void		ft_putchar_cursor(char c)
 {
+	t_var	*var;
 	t_tconf	*conf;
 
-	conf = get_instance()->conf;
+	var = get_instance();
+	conf = var->conf;
+	set_str_cap("im");
 	write(conf->fd, &c, 1);
-	//move_to_next_char(get_instance());
+	set_str_cap("ei");
+	var->line.pos++;
 }

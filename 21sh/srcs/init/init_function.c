@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/11 23:20:25 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 23:31:18 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void		init_function(t_var *var, char **envp)
 {
 	var->root = NULL;
 	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
-	var->line.s = ft_strnew(CMD_LENGTH);
-	var->line.max = CMD_LENGTH;
-	var->line.pos = 0;
 	var->hist.cur = NULL;
 	var->hist.start = NULL;
 	var->hist.tmp = NULL;

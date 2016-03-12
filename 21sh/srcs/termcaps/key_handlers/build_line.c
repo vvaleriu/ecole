@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 12:26:45 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 23:49:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ int			insert_char(t_var *var)
 		len--;
 	}
 	var->line.s[var->line.pos] = var->key_buf[0];
-	set_str_cap("im");
 	ft_putchar_cursor(var->line.s[var->line.pos]);
-	set_str_cap("ei");
-	(var->line.pos)++;
 	return (2);
 }
 
@@ -97,23 +94,4 @@ int			delete_char(t_var *var)
 	var->line.s[i] = '\0';
 	return (2);
 }
-
-/*
-** Fonction executee lors d'un appui sur home
-*/
-int			cursor_to_origin(t_var *var)
-{
-	set_str_cap("rc");
-	var->line.pos = 0;
-	return (2);
-}
-
-
-
-
-
-
-
-
-
 
