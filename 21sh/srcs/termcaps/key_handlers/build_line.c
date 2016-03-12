@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 12:57:30 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/12 12:26:45 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			delete_char(t_var *var)
 
 	len = ft_strlen(var->line.s);
 	var->line.s[var->line.pos] = '\0';
-	set_str_cap("ec");
+	set_str_cap("dl");
 	i = var->line.pos;
 	while (i < len)
 	{
@@ -103,8 +103,7 @@ int			delete_char(t_var *var)
 */
 int			cursor_to_origin(t_var *var)
 {
-	ft_putchar_cursor('Y');
-	set_str_cap("ho");
+	set_str_cap("rc");
 	var->line.pos = 0;
 	return (2);
 }

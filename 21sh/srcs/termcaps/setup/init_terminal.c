@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/11 23:37:44 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 12:17:38 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void	fill_keyman_tab(t_tconf *conf)
 	KRET.f = return_command;
 	ft_strcpy(KBKSP.seq, "\177");
 	KBKSP.f = erase_char;
-	ft_strcpy(KDEL.seq, "\010");
+	ft_strcpy(KDEL.seq, "\033[3~");
 	KDEL.f = delete_char;
-	ft_strcpy(KHOME.seq, "\033[1");
+	ft_strcpy(KHOME.seq, "\033OH");
 	KHOME.f = cursor_to_origin;
-	ft_strcpy(KEND.seq, "\033[4");
+	ft_strcpy(KEND.seq, "\033OF");
 	KEND.f = cursor_to_origin;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);

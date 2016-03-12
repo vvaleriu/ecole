@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 00:00:00 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/12 12:26:44 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,37 @@
 # define TMP				ftsel[3]
 # define Y_OFFSET			ftsel[4]
 
+
+# define ESC 				9
+# define RET				5
+/*
+** SEQUENCE DE CARACTERES RETOURNEE PAR LA PRESSION DE LA TOUCHE
+**
+*/
+# define LEFT_SEQ			"\033[D"
+# define RIGHT_SEQ			"\033[C"
+# define UP_SEQ				"\033[A"
+# define DOWN_SEQ			"\033[B"
+# define ESC_SEQ			"\033"
+# define RET_SEQ			"\012"
+# define BKSP_SEQ			"\177"
+# define DEL_SEQ			"\033[3~"
+# define HOME_SEQ			"\033OH"
+# define END_SEQ			"\033OF"
+# define PGUP_SEQ			"\033[5~"
+# define PGDOWN_SEQ			"\033[6~"
+
 # define KEY_TAB(i)			conf->keyman[i]
 # define KLEFT				conf->keyman[0]
 # define KRIGHT				conf->keyman[1]
 # define KUP				conf->keyman[2]
 # define KDOWN				conf->keyman[3]
-# define KESC				conf->keyman[4]
+# define KEND				conf->keyman[4]
 # define KRET				conf->keyman[5]
 # define KDEL				conf->keyman[6]
 # define KBKSP				conf->keyman[7]
 # define KHOME				conf->keyman[8]
-# define KEND				conf->keyman[9]
-
-# define ESC 				4
-# define RET				5
+# define KESC				conf->keyman[ESC]
 
 # define DOWN_ARROW			'B'
 # define UP_ARROW			'A'
