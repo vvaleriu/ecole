@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 10:58:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/14 14:18:58 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,11 @@ int					erase_char(t_var *var);
 /*
 ** PRINTING
 */
+void				ft_putstr_cursor_wrap(t_var *var);
 void				ft_putchar_cursor(char c);
-void				ft_putcstr_cursor(char *str);
+void				ft_putstr_cursor(char *str);
+void				ft_putchar_fixed(char c);
+void				ft_putstr_fixed(char *str);
 
 /*
 ** TOOLS

@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/14 12:15:18 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/14 13:56:00 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ SRC = main.c					\
 		update_win_size.c 		\
 		ft_putstr_cursor.c		\
 		ft_putchar_cursor.c		\
+		ft_putstr_fixed.c		\
+		ft_putchar_fixed.c		\
 		move_cursor.c			\
 		move_cursor2.c			\
 		putchar_int.c 			\
