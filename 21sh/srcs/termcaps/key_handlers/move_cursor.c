@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 23:48:53 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/14 11:48:59 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ int		move_to_next_line(t_var *var)
 /*
 ** Fonction executee lors d'un appui sur home
 */
-int		move_cursor_to_origin(t_var *var)
+int		move_to_origin(t_var *var)
 {
 	set_str_cap("rc");
 	var->line.pos = 0;
 	return (2);
 }
 
-int		move_cursor(t_var *var)
+/*
+** Fonction executee lors d'un appui sur end
+*/
+int		move_to_end(t_var *var)
 {
-	t_tconf		*conf;
-	
-	conf = var->conf;
-	(void)conf;
-	move_to(0, 0);
+	while (var->line.pos < (int)ft_strlen(var->line.s))
+		move_to_next_char(var);
 	return (2);
 }

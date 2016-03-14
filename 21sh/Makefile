@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/12 00:09:21 by vincent          ###   ########.fr        #
+#    Updated: 2016/03/14 12:15:18 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,11 +69,14 @@ SRC = main.c					\
 		ft_putstr_cursor.c		\
 		ft_putchar_cursor.c		\
 		move_cursor.c			\
+		move_cursor2.c			\
 		putchar_int.c 			\
 		move_to.c				\
 		return_command.c 		\
 		build_line.c			\
 		history.c				\
+		setup_line_struct.c		\
+		cursor_pos.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

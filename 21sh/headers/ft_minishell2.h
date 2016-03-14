@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/12 23:35:50 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/14 10:40:21 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 # define LEX_NB			6
 # define BIN_NB			5
 
+/*
+**
+*/
+# define LN_S			var->line.s
+# define LN_POS			var->line.pos
 /*
 ** OPS_NB	nb of ops :
 ** OPS_SEMIC	";":	0
@@ -54,7 +59,7 @@
 # define PTY_EXEC		3
 
 /*
-** CMD_LENGTH : lonngeur d'une ligne de commande par defaut
+** CMD_LENGTH : taille du buffer d'une ligne de commande par defaut
 */
 # define CMD_LENGTH		10
 
@@ -244,5 +249,8 @@ void		lex_alnum(char **buf, t_list **alst);
 
 char		*get_env_value(char *var, char **env);
 void		check_tabs_init(t_var *var);
+
+void		init_line_struct(t_var *var);
+void		update_line_struct(t_var *var);
 
 #endif

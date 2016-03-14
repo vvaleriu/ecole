@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 23:48:11 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/14 11:58:25 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,49 @@
 */
 static void	fill_keyman_tab(t_tconf *conf)
 {
+	ft_strcpy(KLEFT.seq, LEFT_SEQ);
+	KLEFT.f = move_to_previous_char;
+	ft_strcpy(KRIGHT.seq, RIGHT_SEQ);
+	KRIGHT.f = move_to_next_char;
+	ft_strcpy(KUP.seq, UP_SEQ);
+	KUP.f = history_next;
+	ft_strcpy(KDOWN.seq, DOWN_SEQ);
+	KDOWN.f = history_prev;
+	ft_strcpy(KESC.seq, ESC_SEQ);
+	KESC.f = move_to_previous_char;
+	ft_strcpy(KRET.seq, RET_SEQ);
+	KRET.f = return_command;
+	ft_strcpy(KBKSP.seq, BKSP_SEQ);
+	KBKSP.f = erase_char;
+	ft_strcpy(KDEL.seq, DEL_SEQ);
+	KDEL.f = delete_char;
+	ft_strcpy(KHOME.seq, HOME_SEQ);
+	KHOME.f = move_to_origin;
+	ft_strcpy(KEND.seq, END_SEQ);
+	KEND.f = move_to_origin;
+	ft_strcpy(KPGUP.seq, PGUP_SEQ);
+	KPGUP.f = move_to_origin;
+	ft_strcpy(KPGDOWN.seq, PGDOWN_SEQ);
+	KPGDOWN.f = move_to_end;
+}
+
+static void	fill_keyman_tab1(t_tconf *conf)
+{
+	ft_strcpy(KNEXTWD.seq, NEXTWD_SEQ);
+	KNEXTWD.f = move_to_next_word;
+	ft_strcpy(KPREVWD.seq, PREVWD_SEQ);
+	KPREVWD.f = move_to_previous_word;
+	ft_strcpy(KLNUP.seq, LNUP_SEQ);
+	KLNUP.f = move_to_origin;
+	ft_strcpy(KLNDOWN.seq, LNDOWN_SEQ);
+	KLNDOWN.f = move_to_origin;
+}
+
+static void	fill_keyman_tab2(t_tconf *conf)
+{
 	int		i;
 
 	i = -1;
-	ft_strcpy(KLEFT.seq, "\033[D");
-	KLEFT.f = move_to_previous_char;
-	ft_strcpy(KRIGHT.seq, "\033[C");
-	KRIGHT.f = move_to_next_char;
-	ft_strcpy(KUP.seq, "\033[A");
-	KUP.f = history_next;
-	ft_strcpy(KDOWN.seq, "\033[B");
-	KDOWN.f = history_prev;
-	ft_strcpy(KESC.seq, "\033");
-	KESC.f = move_to_previous_char;
-	ft_strcpy(KRET.seq, "\012");
-	KRET.f = return_command;
-	ft_strcpy(KBKSP.seq, "\177");
-	KBKSP.f = erase_char;
-	ft_strcpy(KDEL.seq, "\033[3~");
-	KDEL.f = delete_char;
-	ft_strcpy(KHOME.seq, "\033OH");
-	KHOME.f = move_cursor_to_origin;
-	ft_strcpy(KEND.seq, "\033OF");
-	KEND.f = move_cursor_to_origin;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
 }
@@ -56,6 +76,8 @@ int			init_fd(int fd)
 int			init_terminal(t_var *var)
 {
 	fill_keyman_tab(var->conf);
+	fill_keyman_tab1(var->conf);
+	fill_keyman_tab2(var->conf);
 	var->conf->fd = 0;
 	var->CUR_X = 0;
 	var->CUR_Y = 0;

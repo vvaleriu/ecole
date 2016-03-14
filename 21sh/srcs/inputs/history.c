@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:51:42 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/13 00:00:39 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/14 09:39:08 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void	print_history_line(t_var *var)
 {
-	move_cursor_to_origin(var);
+	move_to_origin(var);
 	set_str_cap("cd");
 	ft_putstr_cursor(var->line.s);
+	update_line_struct(var);
 }
 
 /*

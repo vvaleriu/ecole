@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/12 12:26:44 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/14 10:58:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@
 # include <fcntl.h>
 
 /*
-** KEY_SIZE : size of the str to check when a key is pressed
-** KEY_NUMBER : number of key actively defined and to check
-** LIST_ST: first item of the list
-** CUR_ITEM: current selected item on the list
+** - SEL_KEY_SIZE : size of the str to check when a key is pressed
+** - KEY_NUMBER : number of key actively defined and to check. Nombre de touches
+**	auxquelles sont associees des fonctions speciales.
+** - ESC : case de la touche ESC dans le tableau de touches
+** - RET : case de la touche RET dans le tableau de touches
+** - LIST_ST: first item of the list
+** - CUR_ITEM: current selected item on the list
 */
-
-# define SEL_KEY_SIZE		4
-# define KEY_NUMBER			10
+# define SEL_KEY_SIZE		7
+# define KEY_NUMBER			16
+# define ESC 				15
+# define RET				5
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
 # define WIN_X				conf->w.ws_col
@@ -44,12 +48,22 @@
 # define TMP				ftsel[3]
 # define Y_OFFSET			ftsel[4]
 
+//************************
+//
+//A VOIR POUR LE REMPLISSAGE DES FONCTIONS. ON DEFINIT LA MACRO COMME CA PAR DE REMPLISSAGE MANUEL A FAIRE
+/*#define COLOR_STR(color)                            \
+    (RED       == color ? "red"    :                \
+     (BLUE     == color ? "blue"   :                \
+      (GREEN   == color ? "green"  :                \
+       (YELLOW == color ? "yellow" : "unknown"))))   */
 
-# define ESC 				9
-# define RET				5
 /*
 ** SEQUENCE DE CARACTERES RETOURNEE PAR LA PRESSION DE LA TOUCHE
-**
+** DEPEND DU SYSTEME SUR LEQUEL EST COMPILE LE PROGRAMME
+** NEXTWD : navigation par mot, aller au prochain mot
+** PREVWD : navigatino par mot, aller au mot precedent
+** LNUP : bouger ligne par ligne, aller a la ligne du dessus
+** LNDOWN : bouger ligne par ligne, aller a la ligne inferieur
 */
 # define LEFT_SEQ			"\033[D"
 # define RIGHT_SEQ			"\033[C"
@@ -64,6 +78,24 @@
 # define PGUP_SEQ			"\033[5~"
 # define PGDOWN_SEQ			"\033[6~"
 
+# ifdef __APPLE__
+#  define NEXTWD_SEQ		"\e[1;5C"
+#  define PREVWD_SEQ		"\e[1;5D"
+#  define LNUP_SEQ			"LOL"
+#  define LNDOWN_SEQ		"LOL"
+# endif
+
+# ifdef __linux__
+#  define NEXTWD_SEQ		"LOL"
+#  define PREVWD_SEQ		"LOL"
+#  define LNUP_SEQ			"LOL"
+#  define LNDOWN_SEQ		"LOL"
+# endif
+
+/*
+** MACRO PERMETTANT D'acceder a la structure contenant la gestion
+** de la touche
+*/
 # define KEY_TAB(i)			conf->keyman[i]
 # define KLEFT				conf->keyman[0]
 # define KRIGHT				conf->keyman[1]
@@ -74,6 +106,12 @@
 # define KDEL				conf->keyman[6]
 # define KBKSP				conf->keyman[7]
 # define KHOME				conf->keyman[8]
+# define KPGUP				conf->keyman[9]
+# define KPGDOWN			conf->keyman[10]
+# define KNEXTWD			conf->keyman[11]
+# define KPREVWD			conf->keyman[12]
+# define KLNUP				conf->keyman[13]
+# define KLNDOWN			conf->keyman[14]
 # define KESC				conf->keyman[ESC]
 
 # define DOWN_ARROW			'B'
@@ -166,11 +204,15 @@ int					restore_terminal(t_var *var);
 int					move_to_next_char(t_var *var);
 int					move_to_previous_char(t_var *var);
 int					move_to_next_line(t_var *var);
-int					move_cursor(t_var *var);
+int					move_to_next_word(t_var *var);
+int					move_to_previous_word(t_var *var);
+int					move_to_up_line(t_var *var);
+int					move_to_origin(t_var *var);
+int					move_to_end(t_var *var);
+int					move_to_down_line(t_var *var);
 int					insert_char(t_var *var);
-int					erase_char(t_var *var);
 int					delete_char(t_var *var);
-int					move_cursor_to_origin(t_var *var);
+int					erase_char(t_var *var);
 
 /*
 ** PRINTING
