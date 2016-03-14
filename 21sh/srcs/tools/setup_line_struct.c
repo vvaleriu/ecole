@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_line_struct.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 09:15:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/14 10:40:45 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/14 21:51:29 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Initialise la structure ligne qui contient la chaine de caracteres tapee
 ** la longueur max du buffer ainsi que la position actuelle dans la chaine
 **
+** initialise la position du curseur
 ** initialise la struture pour son utilisation lors de la capture de la commande
 */
 void			init_line_struct(t_var *var)
@@ -26,6 +27,8 @@ void			init_line_struct(t_var *var)
 	var->line.max = CMD_LENGTH;
 	var->line.pos = 0;
 	var->hist.cur = NULL;
+	var->conf->cur_pos[0] = PROMPT_LEN;
+	var->conf->cur_pos[1] = 0;
 }
 
 /*

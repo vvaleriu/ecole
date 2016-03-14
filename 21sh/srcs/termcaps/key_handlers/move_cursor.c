@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 11:48:59 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/14 23:22:45 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,31 @@
 /*
 ** Delace le curseur sur la prochaine/precedente case. Calcule le retour a la
 ** ligne si necessaire
+**
+** - Si on n'est pas au bout de la string
+**	- Si la position actuelle est sur la derniere case, alors on passe le curseur
+**	la ligne suivante
+** 	- Si non on deplace simplement le curseur vers la gauche
 */
 int		move_to_next_char(t_var *var)
 {
-	t_tconf		*conf;
-
+	int		i;
 	if (var->line.pos < (int)ft_strlen(var->line.s))
 	{
-		conf = var->conf;
-		(void)conf;
-		set_str_cap("nd");
+		if (!((CUR_POS_X + 1) % var->conf->w.ws_col))
+		{
+			i = var->conf->w.ws_col;
+			set_str_cap("do");
+			while (--i > 0)
+				set_str_cap("le");
+			CUR_POS_X = 0;
+			CUR_POS_Y++;
+		}
+		else
+		{
+			set_str_cap("nd");
+			CUR_POS_X++;
+		}
 		var->line.pos++;
 	}
 	return (2);
@@ -32,16 +47,31 @@ int		move_to_next_char(t_var *var)
 
 /*
 ** On deplace le curseur et on met a jour la position
+** - Si on n'est pas au debut de la string
+**	- Si la position actuelle est sur la premiere case, alors on passe le curseur
+**		sur la ligne precedente
+** 	- Si non on deplace simplement le curseur vers la gauche
 */
 int		move_to_previous_char(t_var *var)
 {
-	t_tconf		*conf;
+	int		i;
 
 	if (var->line.pos > 0)
 	{
-		conf = var->conf;
-		(void)conf;
-		set_str_cap("le");
+		if (!(CUR_POS_X))
+		{
+			set_str_cap("up");
+			i = -1;
+			while (++i < var->conf->w.ws_col - 1)
+				set_str_cap("nd");
+			CUR_POS_X = var->conf->w.ws_col - 1;
+			CUR_POS_Y--;
+		}
+		else
+		{
+			set_str_cap("le");
+			CUR_POS_X--;
+		}
 		var->line.pos--;
 	}
 	return (2);
@@ -65,6 +95,8 @@ int		move_to_origin(t_var *var)
 {
 	set_str_cap("rc");
 	var->line.pos = 0;
+	CUR_POS_X = PROMPT_LEN;
+	CUR_POS_Y = 0;
 	return (2);
 }
 

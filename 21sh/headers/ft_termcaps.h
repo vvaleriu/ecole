@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 14:18:58 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/14 21:51:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@
 # define UP_ARROW			'A'
 # define RIGHT_ARROW		'C'
 # define LEFT_ARROW			'D'
+
+/*
+** LONGUEUR DU PROMPT. UTILE dans init_line_struct, pour definir la
+** position de depart du curseur
+*/
+# define PROMPT_LEN			2
+
 /*
 **	TERMCAPS CAPS List
 **

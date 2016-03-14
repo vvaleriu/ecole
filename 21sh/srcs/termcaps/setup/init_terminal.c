@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 13:57:27 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/14 23:05:19 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int 		test_input_ol(t_var *var)
 	return (2);
 }
 
+int 		test_input_ol1(t_var *var)
+{
+	(void)var;
+	set_str_cap("cd");
+	return (2);
+}
 /*
 ** On va utiliser ft_strncmp pour identifier la sequence capturee
 ** a celle enregistrer pour chaque touche.
@@ -48,7 +54,7 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KEND.seq, END_SEQ);
 	KEND.f = move_to_end;
 	ft_strcpy(KPGUP.seq, PGUP_SEQ);
-	KPGUP.f = move_to_origin;
+	KPGUP.f = test_input_ol1;
 	ft_strcpy(KPGDOWN.seq, PGDOWN_SEQ);
 	KPGDOWN.f = test_input_ol;
 }
