@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_line_struct.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 09:15:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/14 21:51:29 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/15 08:44:53 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void			init_line_struct(t_var *var)
 	var->line.max = CMD_LENGTH;
 	var->line.pos = 0;
 	var->hist.cur = NULL;
-	var->conf->cur_pos[0] = PROMPT_LEN;
-	var->conf->cur_pos[1] = 0;
+	CUR_POS_X = PROMPT_LEN;
+	CUR_POS_Y = 0;
 }
 
 /*
