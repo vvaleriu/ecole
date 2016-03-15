@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 23:05:19 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/15 16:53:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,19 @@ static void	fill_keyman_tab1(t_tconf *conf)
 	ft_strcpy(KLNUP.seq, LNUP_SEQ);
 	KLNUP.f = move_to_origin;
 	ft_strcpy(KLNDOWN.seq, LNDOWN_SEQ);
-	KLNDOWN.f = move_to_origin;
+	KLNDOWN.f = move_to_end;
+	ft_strcpy(KCLEARSCR.seq, CLEARSCR_SEQ);
+	KCLEARSCR.f = cl_screen;
+	ft_strcpy(KCUTST_CUR.seq, CUTST_CUR_SEQ);
+	KCUTST_CUR.f = cut_from_start;
+	ft_strcpy(KCUTCUR_END.seq, CUTCUR_END_SEQ);
+	KCUTCUR_END.f = cut_from_end;
+	ft_strcpy(KCPYST_CUR.seq, CPYST_CUR_SEQ);
+	KCPYST_CUR.f = copy_from_start;
+	ft_strcpy(KCPYCUR_END.seq, CPYCUR_END_SEQ);
+	KCPYCUR_END.f = copy_from_end;
+	ft_strcpy(KPASTE.seq, PASTE_SEQ);
+	KPASTE.f = paste;
 }
 
 static void	fill_keyman_tab2(t_tconf *conf)
@@ -94,6 +106,7 @@ int			init_terminal(t_var *var)
 	var->conf->fd = 0;
 	var->CUR_X = 0;
 	var->CUR_Y = 0;
+	var->line.cpy = NULL;
 	if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
 		return (-1);
 	ioctl(0, TIOCGWINSZ, &(var->conf->w));

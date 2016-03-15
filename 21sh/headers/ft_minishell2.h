@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 08:44:53 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/15 18:14:19 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,16 @@
 # define BIN_NB			5
 
 /*
+** LONGUEUR DU PROMPT. UTILE dans init_line_struct, pour definir la
+** position de depart du curseur
+*/
+# define PROMPT_LEN			2
+
+/*
 **
 */
 # define LN_S			var->line.s
+# define LN_CPY			var->line.cpy
 # define LN_POS			var->line.pos
 # define CUR_POS_X		var->conf->cur_pos[0]
 # define CUR_POS_Y		var->conf->cur_pos[1]
@@ -106,12 +113,14 @@ typedef struct		s_builtin
 /*
 ** Structure representant la ligne de commande actuelle.
 ** line : ligne de commande
+** cpy : chaine de caractere copiee par l'utilisateur
 ** position : sur quel caractere de cette ligne le curseur se trouve
 ** max : longueur max de la chaine avant de devoir realloc
 */
 typedef struct		s_cmd_line
 {
 	char	*s;
+	char	*cpy;
 	int		pos;
 	size_t	max;
 }					t_cmd_line;

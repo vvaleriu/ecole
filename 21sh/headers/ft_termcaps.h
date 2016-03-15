@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 21:51:06 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/15 18:14:19 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 ** - CUR_ITEM: current selected item on the list
 */
 # define SEL_KEY_SIZE		7
-# define KEY_NUMBER			16
-# define ESC 				15
+# define KEY_NUMBER			22
+# define ESC 				21
 # define RET				5
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
@@ -64,6 +64,13 @@
 ** PREVWD : navigatino par mot, aller au mot precedent
 ** LNUP : bouger ligne par ligne, aller a la ligne du dessus
 ** LNDOWN : bouger ligne par ligne, aller a la ligne inferieur
+** CLEARSCR_SEQ : effacer l'ecran
+** CUTST_CUR : couper depuis le debut jusqu'au curseur (Ctrl-J)
+** CUTCUR_END : coupe depuis le curseur jusqu'a la fin (Ctrl-K)
+** CPYST_CUR : couper depuis le debut jusqu'au curseur (Ctrl-U)
+** CPYCUR_END : coupe depuis le curseur jusqu'a la fin (Ctrl-I)
+** CUTLINE : couper l'ensemble de la ligne (Ctrl-U)
+** PASTE : coller le texte precedemment coupe (Ctrl-Y)
 */
 # define LEFT_SEQ			"\033[D"
 # define RIGHT_SEQ			"\033[C"
@@ -83,13 +90,25 @@
 #  define PREVWD_SEQ		"\e[1;5D"
 #  define LNUP_SEQ			"LOL"
 #  define LNDOWN_SEQ		"LOL"
+#  define CLEARSCR_SEQ		"\f\000\000\000\000\000"
+#  define CUTST_CUR_SEQ		"\n\000\000\000\000\000"
+#  define CUTCUR_END_SEQ	"\v\000\000\000\000\000"
+#  define CPYST_CUR_SEQ		"\v\000\000\000\000\000"
+#  define CPYCUR_END_SEQ	"\v\000\000\000\000\000"
+#  define PASTE_SEQ			"\v\000\000\000\000\000"
 # endif
 
 # ifdef __linux__
-#  define NEXTWD_SEQ		"LOL"
-#  define PREVWD_SEQ		"LOL"
-#  define LNUP_SEQ			"LOL"
-#  define LNDOWN_SEQ		"LOL"
+#  define NEXTWD_SEQ		"\033[1;5C"
+#  define PREVWD_SEQ		"\033[1;5D"
+#  define LNUP_SEQ			"\033[1;5A"
+#  define LNDOWN_SEQ		"\033[1;5B"
+#  define CLEARSCR_SEQ		"\f\000\000\000\000\000"
+#  define CUTST_CUR_SEQ		"\n\000\000\000\000\000"
+#  define CUTCUR_END_SEQ	"\v\000\000\000\000\000"
+#  define CPYST_CUR_SEQ		"\025\000\000\000\000\000"
+#  define CPYCUR_END_SEQ	"\t\000\000\000\000\000"
+#  define PASTE_SEQ			"\031\000\000\000\000\000"
 # endif
 
 /*
@@ -112,18 +131,18 @@
 # define KPREVWD			conf->keyman[12]
 # define KLNUP				conf->keyman[13]
 # define KLNDOWN			conf->keyman[14]
+# define KCLEARSCR			conf->keyman[15]
+# define KCUTST_CUR			conf->keyman[16]
+# define KCUTCUR_END		conf->keyman[17]
+# define KCPYST_CUR			conf->keyman[18]
+# define KCPYCUR_END		conf->keyman[19]
+# define KPASTE				conf->keyman[20]
 # define KESC				conf->keyman[ESC]
 
 # define DOWN_ARROW			'B'
 # define UP_ARROW			'A'
 # define RIGHT_ARROW		'C'
 # define LEFT_ARROW			'D'
-
-/*
-** LONGUEUR DU PROMPT. UTILE dans init_line_struct, pour definir la
-** position de depart du curseur
-*/
-# define PROMPT_LEN			2
 
 /*
 **	TERMCAPS CAPS List
@@ -210,6 +229,8 @@ int					return_command(t_var *var);
 int					restore_terminal(t_var *var);
 int					move_to_next_char(t_var *var);
 int					move_to_previous_char(t_var *var);
+int					move_to_next_char1(t_var *var);
+int					move_to_previous_char1(t_var *var);
 int					move_to_next_line(t_var *var);
 int					move_to_next_word(t_var *var);
 int					move_to_previous_word(t_var *var);
@@ -220,6 +241,12 @@ int					move_to_down_line(t_var *var);
 int					insert_char(t_var *var);
 int					delete_char(t_var *var);
 int					erase_char(t_var *var);
+int					cl_screen(t_var *var);
+int					copy_from_start(t_var *var);
+int					copy_from_end(t_var *var);
+int					cut_from_start(t_var *var);
+int					cut_from_end(t_var *var);
+int					paste(t_var *var);
 
 /*
 ** PRINTING
@@ -238,5 +265,7 @@ void				ft_putchar_cursor(char c);
 void				ft_putstr_cursor(char *str);
 void 				move_to(int x, int y);
 void				update_win_size(int signo);
+void				print_term_status(t_var *var);
+void				print_term_set_cap(char *str);
 
 #endif

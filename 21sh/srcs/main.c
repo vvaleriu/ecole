@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/13 00:05:58 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/15 16:10:34 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			main(int ac, char **av, char **envp)
 		var->root = NULL;*/
 		ft_strdel(&(var->line.s));
 	}
+	ft_strdel(&(var->line.cpy));
 	return (0);
 }
 

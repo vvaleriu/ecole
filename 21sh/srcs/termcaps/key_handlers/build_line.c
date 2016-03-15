@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 21:03:02 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/15 12:45:22 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int			insert_char(t_var *var)
 		len--;
 	}
 	var->line.s[var->line.pos] = var->key_buf[0];
-	// ft_putchar_cursor(var->line.s[var->line.pos]);
-	ft_putstr_cursor_wrap(var);
+	ft_putchar_cursor(var->line.s[var->line.pos]);
+	// ft_putstr_cursor_wrap(var);
 	return (2);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_cursor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 11:26:54 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 09:19:14 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/15 13:06:56 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		ft_putstr_cursor(char *str)
 		else
 			CUR_POS_X++;
 	}
+	//print_term_status(var);
 	set_str_cap("ei");
 }
 
@@ -60,5 +61,4 @@ void	ft_putstr_cursor_wrap(t_var *var)
 			original_position--;
 		}
 	}
-
 }

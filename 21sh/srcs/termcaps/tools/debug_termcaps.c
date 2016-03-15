@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_str_cap.c                                      :+:      :+:    :+:   */
+/*   debug_termcaps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/01 01:23:21 by vincent           #+#    #+#             */
+/*   Created: 2016/03/15 11:38:06 by vincent           #+#    #+#             */
 /*   Updated: 2016/03/15 12:36:46 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 
-/*
-** List of capabilities string is sent with a ":" separator
-** The function then split the cap and set them one after the other.
-*/
-
-void			set_str_cap(char *cap_str)
+void		print_term_status(t_var *var)
 {
-	char	**cap;
-	char	**tmp;
-	char    *res;
+	FILE *fp;
 
-	cap = ft_strsplit(cap_str, ':');
-	tmp = cap;
-	while (*cap != 0)
-	{
-		res = err_void(NULL, tgetstr(*cap, NULL), ERR_TERM_CAP_UNDEF, 0);
-		if (res)
-		{
-			tputs(res, 1, putchar_int);
-			print_term_set_cap(*cap);
-		}
-		cap++;
-	}
-	ft_strarray_del(&tmp);
+	fp = fopen("./debug_term.txt", "a+");
+	fprintf(fp, "line->pos : %4d | POS_X POS_Y : (%d,%d)\n", \
+	var->line.pos, var->conf->cur_pos[0], var->conf->cur_pos[1]);
+	fclose(fp);
+}
+
+void		print_term_set_cap(char *str)
+{
+	FILE *fp;
+
+	fp = fopen("./debug_term.txt", "a+");
+	if (ft_strcmp(str, "im") && ft_strcmp(str, "ei") && ft_strcmp(str, "te")\
+		&& ft_strcmp(str, "cd"))
+		fprintf(fp, "--- CAP : %s ---\n", str);
+	fclose(fp);
 }
