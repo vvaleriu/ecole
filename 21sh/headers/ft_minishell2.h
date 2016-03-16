@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 18:14:19 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/16 12:29:40 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@
 /*
 ** LONGUEUR DU PROMPT. UTILE dans init_line_struct, pour definir la
 ** position de depart du curseur
+** HIST_LEN : taille de la liste de l'historique
 */
 # define PROMPT_LEN			2
+# define HIST_LEN			500
 
 /*
-**
+** HELPERS
 */
 # define LN_S			var->line.s
 # define LN_CPY			var->line.cpy
@@ -162,7 +164,7 @@ typedef struct		s_var
 	t_tconf			*conf;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
-	int 			(*ef[6])(struct s_var *, t_token *);
+	int				(*ef[6])(struct s_var *, t_token *);
 }					t_var;
 
 /*
@@ -235,7 +237,7 @@ int			find_env(char *exe, char **env);
 void		save_current_input(t_var *var);
 int			add_to_history(t_var *var);
 int			history_next(t_var *var);
-int 		history_prev(t_var *var);
+int			history_prev(t_var *var);
 
 /*
 **			TOOLS
@@ -264,5 +266,6 @@ void		check_tabs_init(t_var *var);
 
 void		init_line_struct(t_var *var);
 void		update_line_struct(t_var *var);
+void		del_hist_el(void *p, size_t size);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/15 18:14:19 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/16 09:51:17 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@
 # define PGDOWN_SEQ			"\033[6~"
 
 # ifdef __APPLE__
-#  define NEXTWD_SEQ		"\e[1;5C"
-#  define PREVWD_SEQ		"\e[1;5D"
-#  define LNUP_SEQ			"LOL"
-#  define LNDOWN_SEQ		"LOL"
+#  define NEXTWD_SEQ		"\033[1;5C"
+#  define PREVWD_SEQ		"\033[1;5D"
+#  define LNUP_SEQ			"\033[1;5A"
+#  define LNDOWN_SEQ		"\e[1;5B"
 #  define CLEARSCR_SEQ		"\f\000\000\000\000\000"
 #  define CUTST_CUR_SEQ		"\n\000\000\000\000\000"
 #  define CUTCUR_END_SEQ	"\v\000\000\000\000\000"
-#  define CPYST_CUR_SEQ		"\v\000\000\000\000\000"
-#  define CPYCUR_END_SEQ	"\v\000\000\000\000\000"
-#  define PASTE_SEQ			"\v\000\000\000\000\000"
+#  define CPYST_CUR_SEQ		"\025\000\000\000\000\000"
+#  define CPYCUR_END_SEQ	"\t\000\000\000\000\000"
+#  define PASTE_SEQ			"\031\000\000\000\000\000"
 # endif
 
 # ifdef __linux__

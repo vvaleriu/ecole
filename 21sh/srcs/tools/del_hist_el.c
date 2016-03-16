@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_screen.c                                     :+:      :+:    :+:   */
+/*   del_hist_el.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/15 13:21:25 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 09:45:52 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/03/16 11:47:37 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/16 12:27:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 
-int			cl_screen(t_var *var)
+void		del_hist_el(void *p, size_t size)
 {
-	set_str_cap("cl");
-	set_str_cap("sc");
-	CUR_POS_X = PROMPT_LEN;
-	CUR_POS_Y = 0;
-	terminal_execute_mode(var->conf);
-	set_str_cap("rc");
-	ft_putstr_fd("$>", var->conf->fd);
-	set_str_cap("sc");
-	terminal_input_mode(var->conf);
-	set_str_cap("rc");
-	if (ft_strlen(LN_S))
-	{
-		ft_putstr_cursor(LN_S);
-		update_line_struct(var);
-		LN_POS = ft_strlen(LN_S);
-	}
-	return (2);
+	char	*str;
+
+	str = (char *)p;
+	(void)size;
+	ft_strdel(&str);
+	p = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:51:42 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 09:39:08 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/16 12:20:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	print_history_line(t_var *var)
 {
+	update_line_struct(var);
 	move_to_origin(var);
 	set_str_cap("cd");
 	ft_putstr_cursor(var->line.s);
-	update_line_struct(var);
 }
 
 /*
@@ -34,12 +34,16 @@ void		save_current_input(t_var *var)
 /*
 ** Lorsqu'on valide une commande. On enregistre la commande passee dans l'
 ** historique. On efface aussi la sauvegarde temporaire de la commande non finie
-** si celle ci avait ete faite.
+** si celle ci avait ete faite. En parallele on verifie que la taille de la
+** ne depasse pas un certain point, sans quoi on efface l'element le plus ancien
+* avant de rajouter le nouvel element.
 */
 int			add_to_history(t_var *var)
 {
 	t_dlist	*elem;
 
+	if ((int)ft_dlstlen(var->hist.start) == HIST_LEN)
+		ft_dlstdelone(&(var->hist.start), var->hist.start->prev, del_hist_el);
 	elem = ft_dlstnew((void *)ft_strdup(var->line.s), sizeof(char *));
 	ft_dlstadd(&(var->hist.start), elem);
 	ft_strdel(&(var->hist.tmp));
@@ -88,9 +92,38 @@ int			history_next(t_var *var)
 /*
 ** Redescend dans l'historique. Correspond a la touche DOWN
 ** Retourne :
-** - -1 si on n'a pas encore demarre dans l'historique
+** - Si l'entree actuelle est differente de la premiere
+**	- on va a la precedente, on efface la ligne actuelle, on la remplace par
+**	  l'entree actuelle et on affche l'historique
+** - Si la prochaine entree est celle du depart
+**	- on efface la ligne actuelle, on la remplace par la ligne temp
+**	  
 */
 int 		history_prev(t_var *var)
+{
+	if (var->hist.cur != NULL)
+	{
+		if (var->hist.cur != var->hist.start)
+		{
+			var->hist.cur = var->hist.cur->prev;
+			ft_strdel(&(var->line.s));
+			var->line.s = ft_strdup((char *)((var->hist.cur)->content));
+			print_history_line(var);
+			return (2);
+		}
+		else
+		{
+			ft_strdel(&(var->line.s));
+			var->line.s = ft_strdup(var->hist.tmp);
+			ft_strdel(&(var->hist.tmp));
+			var->hist.cur = NULL;
+			print_history_line(var);
+			return (1);
+		}
+	}
+	return (-1);
+}
+/*int 		history_prev(t_var *var)
 {
 	if (var->hist.cur != NULL)
 	{
@@ -113,4 +146,4 @@ int 		history_prev(t_var *var)
 		}
 	}
 	return (-1);
-}
+}*/
