@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_termcaps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 11:38:06 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/15 12:36:46 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/16 16:44:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ void		print_term_set_cap(char *str)
 		&& ft_strcmp(str, "cd"))
 		fprintf(fp, "--- CAP : %s ---\n", str);
 	fclose(fp);
+}
+
+void		print_trackers_status(t_var *var)
+{
+	ft_printf("strlen(%u), line.pos(%d), cur_pos(%d, %d)",\
+		ft_strlen(LN_S), LN_POS, CUR_POS_X, CUR_POS_Y);
 }

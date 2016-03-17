@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_cursor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 11:26:54 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 13:06:56 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/17 14:51:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <ft_minishell2.h>
 
+/*
+** Inserre une chaine de caracteres depuis la position du curseur. Met a jour
+** les positions necessaires
+*/
 void		ft_putstr_cursor(char *str)
 {
 	t_var	*var;
@@ -25,40 +29,27 @@ void		ft_putstr_cursor(char *str)
 	{
 		write(conf->fd, &(*str), 1);
 		str++;
-		var->line.pos++;
-		if (!((CUR_POS_X + 1) % var->conf->w.ws_col))
-		{
-			CUR_POS_X = 0;
-			CUR_POS_Y++;
-		}
-		else
-			CUR_POS_X++;
+		update_trackers(var, 1);
 	}
 	//print_term_status(var);
 	set_str_cap("ei");
 }
 
 /*
-** On part de la position actuelle. On efface tout, on imprime tout le reste
-** et on revient a la position
+** Choisit entre :
+** - Si position actuelle est celle de la fin de la ligne, alors on ne fait qu'
+**	ajouter les caracteres.
+** - Sinon, on efface tout ce qui suit le curseur pour reafficher ensuite la
+**	version mise a jour de la ligne
+** ||||||   ATTENTION : laisse le curseur en fin de ligne. ||||||||
 */
 void	ft_putstr_cursor_wrap(t_var *var)
 {
-	int		original_position;
-
-	original_position = var->line.pos;
-	if (var->line.pos == (int)ft_strlen(var->line.s))
-		ft_putstr_cursor((var->line.s) + original_position);
+	if (LN_POS == (int)ft_strlen(var->line.s))
+		ft_putstr_cursor((var->line.s) + LN_POS);
 	else
-	{	
+	{
 		set_str_cap("cd");
-		ft_putstr_cursor((var->line.s) + original_position);
-		original_position = ft_strlen(var->line.s) - original_position;
-		while (original_position - 1)
-		{
-			//set_str_cap("le");
-			move_to_previous_char(var);
-			original_position--;
-		}
+		ft_putstr_cursor(var->line.s + LN_POS);
 	}
 }

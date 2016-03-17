@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 09:51:17 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/17 14:20:46 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 # define RET				5
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
-# define WIN_X				conf->w.ws_col
-# define WIN_Y				conf->w.ws_row
 # define LONGEST			ftsel[0]
 # define ROWS				ftsel[1]
 # define LIST_LEN			ftsel[2]
@@ -239,6 +237,7 @@ int					move_to_origin(t_var *var);
 int					move_to_end(t_var *var);
 int					move_to_down_line(t_var *var);
 int					insert_char(t_var *var);
+int					insert_str(t_var *var, char *str);
 int					delete_char(t_var *var);
 int					erase_char(t_var *var);
 int					cl_screen(t_var *var);
@@ -251,6 +250,7 @@ int					paste(t_var *var);
 /*
 ** PRINTING
 */
+void				ft_putchar_cursor_wrap(char c);
 void				ft_putstr_cursor_wrap(t_var *var);
 void				ft_putchar_cursor(char c);
 void				ft_putstr_cursor(char *str);
@@ -261,11 +261,15 @@ void				ft_putstr_fixed(char *str);
 ** TOOLS
 */
 int					putchar_int(int c);
-void				ft_putchar_cursor(char c);
-void				ft_putstr_cursor(char *str);
 void 				move_to(int x, int y);
 void				update_win_size(int signo);
 void				print_term_status(t_var *var);
 void				print_term_set_cap(char *str);
+void				print_trackers_status(t_var *var);
+void				update_cur_pos(t_var *var, int movement);
+void				update_line_pos(t_var *var, int movement);
+void				update_trackers(t_var *var, int movement);
+
+
 
 #endif

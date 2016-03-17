@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/16 12:29:40 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/17 14:51:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define LN_POS			var->line.pos
 # define CUR_POS_X		var->conf->cur_pos[0]
 # define CUR_POS_Y		var->conf->cur_pos[1]
+# define WIN_X			var->conf->w.ws_col
+# define WIN_Y			var->conf->w.ws_row
 
 /*
 ** OPS_NB	nb of ops :
@@ -73,7 +75,7 @@
 /*
 ** CMD_LENGTH : taille du buffer d'une ligne de commande par defaut
 */
-# define CMD_LENGTH		10
+# define CMD_LENGTH		200
 
 /*
 ** tokens to be executed
