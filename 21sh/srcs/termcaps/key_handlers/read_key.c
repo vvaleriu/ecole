@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/14 09:38:55 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 15:54:45 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					read_key(t_var *var)
 
 	ft_bzero((void *)(var->key_buf), SEL_KEY_SIZE);
 	init_line_struct(var);
-	while ((rd = read(0, var->key_buf, SEL_KEY_SIZE)))
+	while ((rd = read(STDIN_FILENO, var->key_buf, SEL_KEY_SIZE)))
 	{
 		loop = key_identifier(var);
 		if (!loop)

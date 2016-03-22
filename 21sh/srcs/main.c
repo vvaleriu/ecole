@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 09:08:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 22:18:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int			main(int ac, char **av, char **envp)
 		terminal_input_mode(var->conf);
 		read_key(var);
 		terminal_execute_mode(var->conf);
-		//ft_putendl_fd(var->line.s, var->conf->fd);
 		var->list = lexer(var->line.s, var->lex);
+		deb_print_first_list(var->list);
 		var->list = create_tokens(var->list);
+		deb_print_token_list(var->list);
 		var->root = parser(var->list);
-        //check_tree(var->root);
+        check_tree(var->root);
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;
@@ -48,13 +49,21 @@ int			main(int ac, char **av, char **envp)
 	return (0);
 }
 
+/*void		print_prompt_routine(t_var *var)
+{
+
+}*/
+
 void		deb_print_first_list(t_list *list)
 {
+	ft_putstr("______________DEBUT (first list)_\n");
 	while (list)
 	{
 		ft_printf("element de la liste : %s\n", (char *)list->content);
 		list = list->next;
 	}
+	ft_putstr("______________FIN_____________\n\n");
+
 }
 
 void		deb_print_token_list(t_list *list)
@@ -68,7 +77,7 @@ void		deb_print_token_list(t_list *list)
 	a[3] = ">";
 	a[4] = "<<";
 	a[5] = ">>";
-	ft_putstr("______________DEBUT_____________\n");
+	ft_putstr("______________DEBUT (token_list)_\n");
 	while (list)
 	{
 		tmp = (t_token *)list->content;
@@ -85,7 +94,6 @@ void		deb_print_token_list(t_list *list)
 
 void		print_token(t_token *tk)
 {
-	int			i;
 	const char	*a[6];
 
 	a[0] = ";";
@@ -98,14 +106,7 @@ void		print_token(t_token *tk)
 	if (!tk->exe)
 		ft_printf("%s\n", a[tk->no]);
 	else
-	{
-		i = 0;
-		while (tk->exe[i])
-		{
-			ft_printf("%s ", tk->exe[i]);
-			i++;
-		}
-	}
+		ft_putstr_array(tk->exe);
 	ft_putchar('\n');
 }
 
@@ -117,7 +118,7 @@ void		check_tree(t_token *root)
 			check_tree(root->left);
 		if (root->right)
 			check_tree(root->right);
-		//print_token(root);
+		print_token(root);
 	}
 	else
 		ft_printf("liste vide\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 09:06:44 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 18:22:41 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@
 ** OPS_ROUT 	">":	3
 ** OPS_DRIN		"<<":	4
 ** OPS_DROUT	">>":	5
+**
+** Priorite : ordre de priorite associe a une operation
+** Permet de construire l'arbre en sachant quelle operations passent
+** avant ou apres les autres
+** PTY_NB			4 : nombre de priorite existante
 */
-
 # define OPS_NB			5
 # define OPS_SEMIC		0
 # define OPS_PIPE		1
@@ -63,6 +67,12 @@
 # define OPS_DROUT		5
 # define OPS_EXEC		6
 
+/*
+** Priorite : ordre de priorite associe a une operation
+** Permet de construire l'arbre en sachant quelle operations passent
+** avant ou apres les autres
+** PTY_NB			4 : nombre de priorite existante
+*/
 # define PTY_NB			4
 # define PTY_SEMIC		0
 # define PTY_PIPE		1
@@ -200,6 +210,7 @@ void		lex_char(char **buf, t_list **alst);
 ** 			PARSING FUNCTIONS
 */
 
+int			is_fd_aggregation(char *str);
 t_list		*create_tokens(t_list *alst);
 t_token		*parser(t_list *list);
 
@@ -261,6 +272,7 @@ void		deb_print_token_list(t_list *list);
 void		check_tree(t_token *root);
 
 void		print_missing_quote(char **buf, char *s, char qt, t_list **alst);
+void		lex_aggregation(char **buf, t_list **alst);
 void		lex_quote(char **buf, t_list **alst);
 void		lex_alnum(char **buf, t_list **alst);
 

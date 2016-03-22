@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
+#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/16 15:51:34 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/22 21:52:23 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,8 @@ SRC = main.c					\
 		copy_paste.c			\
 		del_hist_el.c			\
 		position_tracker.c		\
+		is_fd_aggregation.c		\
+		token_tools.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

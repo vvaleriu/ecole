@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:21:25 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 09:45:52 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 14:14:53 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int			cl_screen(t_var *var)
 	CUR_POS_Y = 0;
 	terminal_execute_mode(var->conf);
 	set_str_cap("rc");
+	/*if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
+			return (-1);*/
 	ft_putstr_fd("$>", var->conf->fd);
 	set_str_cap("sc");
 	terminal_input_mode(var->conf);

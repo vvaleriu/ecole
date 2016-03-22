@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   return_command.c                                   :+:      :+:    :+:   */
+/*   is_fd_aggregation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 14:11:55 by vincent          ###   ########.fr       */
+/*   Created: 2016/03/22 18:22:18 by vincent           #+#    #+#             */
+/*   Updated: 2016/03/22 23:48:37 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 
 /*
-** une fois la commande validee, on va a la ligne, on affiche ce que l'on veut
+** Elle verifie si on a ce patron : "N>x" avec N un nombre, le caractere
+** '>' et x une chaine de caracteres
+** Dans ce cas il s'agit d'une redirection et on la traite comme il se
+** doit
 */
-/*int			return_command(t_var *var)
+int		is_fd_aggregation(char *str)
 {
-	move_to_next_line(var);
-	ft_putstr_fd(var->line.s, var->conf->fd);
-	move_to_next_line(var);
-	set_str_cap("sc");
-	return (RET);
-}*/
+	int		i;
 
-int			return_command(t_var *var)
-{
-	add_to_history(var);
-	move_to_end(var);
-	move_to_next_line(var);
-	set_str_cap("sc");
-	return (RET);
+	i = 0;
+	if (*str && *str != '"' && *str != '\'')
+	{
+		while (ft_isdigit(str[i]))
+			i++;
+		if (str[i] == '>')
+			return (1);
+	}
+	return (0);
 }

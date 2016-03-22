@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/08 14:56:19 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 15:43:30 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		exe_pipe(t_var *var, t_token *tk)
 	{
 		close(fd[0]);
 		dup2(fd[1], 1);
-		close(fd[1]);
+		//close(fd[1]);
 		sloc = execute_tree(var, tk->left);
 		exit(sloc);
 	}
@@ -72,7 +72,7 @@ int		exe_pipe(t_var *var, t_token *tk)
 		waitpid(father, &sloc, 0);
 		close(fd[1]);
 		dup2(fd[0], 0);
-		close(fd[0]);
+		//close(fd[0]);
 		execute_tree(var, tk->right);
 	}
 	return (sloc);

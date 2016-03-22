@@ -3,46 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   create_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:09:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 12:26:45 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 23:08:32 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <ft_minishell2.h>
 
-int				get_op_no(char *s)
-{
-	if (!ft_strncmp(s, ";", 1))
-		return (OPS_SEMIC);
-	else if (!ft_strncmp(s, "|", 1))
-		return (OPS_PIPE);
-	else if (!ft_strncmp(s, "<<", 2))
-		return (OPS_DRIN);
-	else if (!ft_strncmp(s, ">>", 2))
-		return (OPS_DROUT);
-	else if (!ft_strncmp(s, "<", 1))
-		return (OPS_RIN);
-	else if (!ft_strncmp(s, ">", 1))
-		return (OPS_ROUT);
-	else
-		return (10);
-}
-
-int				get_op_pty(int no)
-{
-	if (no == 0)
-		return (0);
-	else if (no == 1)
-		return (1);
-	else if (no == 6)
-		return (3);
-	else
-		return (2);
-}
-
+/*
+** Permet de creer le tableau de chaine de caracteres que lorsqu'il s'agit d'
+** executer une commande (nom de l'executable plus les parametres).
+*/
 static char		**create_exe(t_list **list)
 {
 	int		i;
@@ -72,6 +46,10 @@ static char		**create_exe(t_list **list)
 	return (exe);
 }
 
+/*
+** Permet de creer un token d'operation.
+** On recupere ses caracteristiques puis on l'insere dans la liste
+*/
 static void		create_ops(t_list **ret, t_list **list, char *ops)
 {
 	t_list		*tmp;
@@ -92,6 +70,41 @@ static void		create_ops(t_list **ret, t_list **list, char *ops)
 	tmp = NULL;
 }
 
+/*
+** On cree un nouveau token lorsqu'on a une aggregation de FD
+*/
+static void		create_fd_aggregation(t_list **ret, t_list **list)
+{
+	t_list		*tmp;
+	t_token		*tk;
+
+	tk = (t_token *)ft_memalloc(sizeof(t_token));
+	tk->no = OPS_ROUT;
+	tk->pty = PTY_ROUT;
+	tk->exe = ft_strsplit((char *)(*list)->content, '>');
+	free((char *)(*list)->content);
+	tk->left = NULL;
+	tk->right = NULL;
+	tmp = ft_lstnew((void *)tk, sizeof(t_token));
+	ft_lstadd_last(ret, tmp);
+	tmp = *list;
+	*list = (*list)->next;
+	free(tmp);
+	tmp = NULL;
+}
+
+/*
+** Creer des tokens d'operation. Il contiennent :
+** - un numero
+** - une priorite
+** - un tableau de strings (en fonction du type d'operation)
+** - des pointeurs vers les tokens suivants
+**
+** Si le premier caractere du morceau de la commande n'est pas une operande,
+**	- On cree un token et on l'ajoute a la fin de la liste, on creant l'exe
+** Sinon
+**	- On lance creer l'operation
+*/
 t_list			*create_tokens(t_list *alst)
 {
 	t_list	*list;
@@ -103,7 +116,9 @@ t_list			*create_tokens(t_list *alst)
 	list = alst;
 	while (list)
 	{
-		if (!is_operator(*((char *)list->content)))
+		if (is_fd_aggregation((char *)list->content))
+			create_fd_aggregation(&ret, &list);
+		else if (!is_operator(*((char *)list->content)))
 		{
 			tk = (t_token *)ft_memalloc(sizeof(t_token));
 			tk->no = OPS_EXEC;

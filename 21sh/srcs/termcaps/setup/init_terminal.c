@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/22 07:45:19 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 15:59:09 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,14 @@ int			init_terminal(t_var *var)
 	fill_keyman_tab(var->conf);
 	fill_keyman_tab1(var->conf);
 	fill_keyman_tab2(var->conf);
-	var->conf->fd = 0;
+	var->conf->fd = STDIN_FILENO;
 	var->CUR_X = 0;
 	var->CUR_Y = 0;
 	var->line.cpy = NULL;
-	if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
-		return (-1);
+	/*if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
+		return (-1);*/
 	ioctl(0, TIOCGWINSZ, &(var->conf->w));
 	if (load_term_prop(var->conf) <= 0)
 		return (-1);
-	//return (change_term_attr(var->conf));
 	return (1);
 }
