@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/17 15:22:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 08:58:51 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,27 @@ int		move_to_previous_word(t_var *var)
 }
 
 /*
-** Si on se trouve sur la seconde ligne
-** - Si on se trouve apres le prompteur
+** - On se trouve sur la deuxieme ligne, sur une colonne avant le prompt
+**	On met le y a zero, le x de la taille du prompt, et on place le curseur
+** - On se trouve sur la deuxieme ligne, sur une colonne apres le prompt
+** Ou bien sur une ligne superieure a 1.
+**	On monte d'une ligne, on met a jour la position
 */
 int		move_to_up_line(t_var *var)
 {
 	int		i;
 
-	if (CUR_POS_Y == 1 && CUR_POS_X >= PROMPT_LEN)
-	{
-		set_str_cap("up");
-		CUR_POS_Y--;
-		LN_POS -= WIN_X;
-	}
-	else if (CUR_POS_Y == 1 && CUR_POS_X < PROMPT_LEN)
+	if (CUR_POS_Y == 1 && CUR_POS_X < PROMPT_LEN)
 	{
 		CUR_POS_Y--;
 		i = PROMPT_LEN - CUR_POS_X;
-		LN_POS -= WIN_X + i;
+		set_str_cap("up");
 		while (--i >= 0)
 			set_str_cap("nd");
 		LN_POS = 0;
+		CUR_POS_X = PROMPT_LEN;
 	}
-	else if (CUR_POS_Y > 1)
+	else if (CUR_POS_Y > 1 || (CUR_POS_Y == 1 && CUR_POS_X >= PROMPT_LEN))
 	{
 		set_str_cap("up");
 		CUR_POS_Y--;
@@ -100,21 +98,33 @@ int		move_to_up_line(t_var *var)
 	return (2);
 }
 
+/*
+** - Si la longueur de la chaine restante depuis le curseur est superieur
+** a la longeur restante de la ligne a afficher (en gros si une ligne suivante existe)
+**  - s'il existe une ligne complete depuis le curseur, on le descend
+**  - sinon on le met a la fin de la ligne du dessous
+*/
 int		move_to_down_line(t_var *var)
 {
 	int		i;
 
-	if (LN_POS + WIN_X <= (int)ft_strlen(LN_S))
+	if ((int)ft_strlen(LN_S + LN_POS) > WIN_X - CUR_POS_X)
 	{
-		set_str_cap("do");
-		CUR_POS_Y++;
-		LN_POS += WIN_X;
-	}
-	else if ((int)ft_strlen(LN_S + LN_POS) >= WIN_X - CUR_POS_X)
-	{
-		i = (int)ft_strlen(LN_S) - LN_POS;
-		while (--i >= 0)
-			move_to_next_char(var);
+		if ((int)ft_strlen(LN_S + LN_POS) >= WIN_X)
+		{
+			set_str_cap("do");
+			i = -1;
+			while (++i < CUR_POS_X)
+				set_str_cap("nd");
+			CUR_POS_Y++;
+			LN_POS += WIN_X;
+		}
+		else
+		{
+			i = (int)ft_strlen(LN_S + LN_POS);
+			while (--i >= 0)
+				move_to_next_char(var);
+		}
 	}
 	return (2);
 }

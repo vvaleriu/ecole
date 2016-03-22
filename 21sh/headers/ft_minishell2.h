@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/17 14:51:42 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 09:06:44 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct		s_var
 	t_builtin		bin[BIN_NB];
 	t_cmd_line		line;
 	t_cmd_hist		hist;
+	t_list			*list;
 	t_token			*root;
 	t_lexing_ft		lex[6];
 	t_tconf			*conf;

@@ -1,0 +1,16 @@
+21sh
+CMakeLists.txt
+Makefile
+a.out
+a.out.dSYM
+auteur
+debug.sh
+debug_term.txt
+e.o
+ft_minishell2.cfg
+headers
+libft
+o.txt
+obj
+srcs
+sujet

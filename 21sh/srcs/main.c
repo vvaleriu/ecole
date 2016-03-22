@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 16:10:34 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/22 09:08:04 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int			main(int ac, char **av, char **envp)
 		terminal_input_mode(var->conf);
 		read_key(var);
 		terminal_execute_mode(var->conf);
-		ft_putendl_fd(var->line.s, var->conf->fd);
-		/*var->list = lexer(var->line.s, var->lex);
+		//ft_putendl_fd(var->line.s, var->conf->fd);
+		var->list = lexer(var->line.s, var->lex);
 		var->list = create_tokens(var->list);
 		var->root = parser(var->list);
-        check_tree(var->root);
+        //check_tree(var->root);
 		execute_tree(var, var->root);
 		clean_tree(var->root);
-		var->root = NULL;*/
+		var->root = NULL;
 		ft_strdel(&(var->line.s));
 	}
 	ft_strdel(&(var->line.cpy));

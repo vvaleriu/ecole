@@ -6,25 +6,12 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 11:36:03 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/22 07:45:19 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 
-int 		test_input_ol(t_var *var)
-{
-	(void)var;
-	ft_putstr_fixed("SALUT COCO fnifowefijweiof ifewjiojfweoijfiofjwwfio jfiojwfiojfwiowjwiofjiofjfiewoj");
-	return (2);
-}
-
-int 		test_input_ol1(t_var *var)
-{
-	(void)var;
-	set_str_cap("cd");
-	return (2);
-}
 /*
 ** On va utiliser ft_strncmp pour identifier la sequence capturee
 ** a celle enregistrer pour chaque touche.
@@ -54,9 +41,9 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KEND.seq, END_SEQ);
 	KEND.f = move_to_end;
 	ft_strcpy(KPGUP.seq, PGUP_SEQ);
-	KPGUP.f = test_input_ol1;
+	KPGUP.f = move_to_up_line;
 	ft_strcpy(KPGDOWN.seq, PGDOWN_SEQ);
-	KPGDOWN.f = test_input_ol;
+	KPGDOWN.f = move_to_down_line;
 }
 
 static void	fill_keyman_tab1(t_tconf *conf)

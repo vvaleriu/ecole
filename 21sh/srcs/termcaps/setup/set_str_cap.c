@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_str_cap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:23:21 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/15 12:36:46 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/22 09:15:55 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			set_str_cap(char *cap_str)
 		if (res)
 		{
 			tputs(res, 1, putchar_int);
-			print_term_set_cap(*cap);
 		}
 		cap++;
 	}
