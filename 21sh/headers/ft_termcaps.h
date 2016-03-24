@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/17 14:20:46 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 09:55:52 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ struct s_key_man
 /*
 **	cur_pos : current cursor position [0] : x, [1] : y
 **	term_buffer	: stock le
-**	w		: structure containing window's number of col and row 
+**	w		: structure containing window's number of col and row
 **	def		: default terminal conf (restore at when leaves)
 **	cur		: current conf to apply
 ** 	keyman : tableau de  structure permettant d'identifier la touche pressee

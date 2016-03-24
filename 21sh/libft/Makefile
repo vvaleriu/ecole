@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/16 15:19:26 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/10 11:59:17 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/24 09:39:51 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,6 +155,7 @@ SRC = ft_putchar.c			\
 		is_text.c			\
 		is_space.c			\
 		is_operator.c		\
+		is_quote.c			\
 		ft_strarray_del.c	\
 		ft_putstr_array.c	\
 		ft_strarray_len.c   \

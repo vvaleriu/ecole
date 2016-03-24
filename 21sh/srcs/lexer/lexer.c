@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:30:32 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/13 17:51:23 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 10:50:58 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Receive text entered
 ** Go through it to lex and create a list
 ** go through list_to_tab to create a tab from this list
+** 6
 */
 
 t_list		*lexer(char *buf, t_lexing_ft *lex)
@@ -29,7 +30,7 @@ t_list		*lexer(char *buf, t_lexing_ft *lex)
 	{
 		if (is_operator(*buf))
 		{
-			while (i < 4)
+			while (i < 5)
 			{
 				if (!ft_strncmp(buf, lex[i].s, 1))
 					lex[i].f(&buf, &alst);
@@ -41,7 +42,7 @@ t_list		*lexer(char *buf, t_lexing_ft *lex)
 			while (is_space(*buf))
 				buf++;
 		else
-			lex[5].f(&buf, &alst);
+			lex[LEX_CHAR_NB].f(&buf, &alst);
 	}
 	return (alst);
 }

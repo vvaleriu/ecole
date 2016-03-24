@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 22:18:49 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 12:16:28 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ void		deb_print_first_list(t_list *list)
 void		deb_print_token_list(t_list *list)
 {
 	t_token		*tmp;
-	const char	*a[6];
+	const char	*a[8];
 
 	a[0] = ";";
 	a[1] = "|";
 	a[2] = "<";
 	a[3] = ">";
-	a[4] = "<<";
-	a[5] = ">>";
+	a[6] = "<<";
+	a[7] = ">>";
+	a[4] = "&&";
+	a[5] = "||";
 	ft_putstr("______________DEBUT (token_list)_\n");
 	while (list)
 	{
@@ -94,14 +96,16 @@ void		deb_print_token_list(t_list *list)
 
 void		print_token(t_token *tk)
 {
-	const char	*a[6];
+	const char	*a[8];
 
 	a[0] = ";";
 	a[1] = "|";
 	a[2] = "<";
 	a[3] = ">";
-	a[4] = "<<";
-	a[5] = ">>";
+	a[6] = "<<";
+	a[7] = ">>";
+	a[4] = "&&";
+	a[5] = "||";
 	ft_printf("pt_token(main)Op : %d, pty : %d, exe : ", tk->no, tk->pty);
 	if (!tk->exe)
 		ft_printf("%s\n", a[tk->no]);

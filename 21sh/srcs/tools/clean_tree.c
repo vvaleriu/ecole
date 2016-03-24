@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 18:07:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/26 11:54:41 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 12:09:39 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ void		clean_tree(t_token *root)
 			clean_tree(root->right);
 		if (root->exe)
 		{
-			i = 0;
-			while (root->exe[i] != 0)
+			if (root->no == OPS_ROUT)
+				ft_strdel(root->exe);
+			else
 			{
-				ft_strdel(&(root->exe[i]));
-				i++;
+				i = -1;
+				while ((++i != 0 || i == 0) && root->exe[i] != 0)
+					ft_strdel(&(root->exe[i]));
+				free(root->exe);
+				root->exe = NULL;
 			}
-			free(root->exe);
-			root->exe = NULL;
 		}
 		free(root);
 		root = NULL;

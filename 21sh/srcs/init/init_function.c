@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 22:40:00 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 11:28:17 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void		fill_lex_ft(t_lexing_ft *lex)
 	lex[2].f = lex_big;
 	lex[3].s = "|";
 	lex[3].f = lex_pipe;
-	lex[4].s = NULL;
-	lex[4].f = lex_space;
+	lex[4].s = "&";
+	lex[4].f = lex_and;
 	lex[5].s = NULL;
-	lex[5].f = lex_char;
+	lex[5].f = lex_space;
+	lex[6].s = NULL;
+	lex[6].f = lex_char;
 }
 
 /*
@@ -96,6 +98,8 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
 {
 	ef[OPS_SEMIC] = exe_semi;
 	ef[OPS_PIPE] = exe_pipe;
+	ef[OPS_AND] = exe_command;
+	ef[OPS_OR] = exe_command;
 	ef[OPS_RIN] = exe_redir_in;
 	ef[OPS_ROUT] = exe_redir_out;
 	ef[OPS_DRIN] = exe_redir_in;

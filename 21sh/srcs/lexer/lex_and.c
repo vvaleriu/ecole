@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_operator.c                                      :+:      :+:    :+:   */
+/*   lex_and.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/24 18:53:52 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 11:18:07 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/03/24 10:38:11 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/24 11:31:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		is_operator(char c)
+#include <ft_minishell2.h>
+
+void		lex_and(char **buf, t_list **alst)
 {
-	if (c == ';' || c == '<' || c == '>' || c == '|' || c == '&')
-		return (1);
-	return (0);
+	t_list	*tmp;
+
+	if (*((*buf) + 1) == '&')
+	{
+		tmp = ft_lstnew((void *)ft_strndup(*buf, 2), sizeof(char *));
+		ft_lstadd_last(alst, tmp);
+		(*buf) += 2;
+	}
+	else
+	{
+		// afficher une erreur de parsing
+		(*buf)++;
+	}
+
 }

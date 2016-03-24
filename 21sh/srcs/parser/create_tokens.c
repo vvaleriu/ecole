@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:09:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 23:08:32 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 12:16:29 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,44 @@
 #include <ft_minishell2.h>
 
 /*
-** Permet de creer le tableau de chaine de caracteres que lorsqu'il s'agit d'
-** executer une commande (nom de l'executable plus les parametres).
+** Permet de creer un token lorsqu'on a une aggregation de FD
 */
-static char		**create_exe(t_list **list)
+static void		create_fd_aggregation(t_list **ret, t_list **list)
 {
-	int		i;
-	int		j;
-	t_list	*tmp;
-	char	**exe;
+	t_list		*tmp;
+	t_token		*tk;
 
-	i = 0;
-	j = 0;
+	tk = (t_token *)ft_memalloc(sizeof(t_token));
+	tk->no = OPS_ROUT;
+	tk->pty = PTY_ROUT;
+	tk->exe = ft_strsplit((char *)(*list)->content, '>');
+	free((char *)(*list)->content);
+	tk->left = NULL;
+	tk->right = NULL;
+	tmp = ft_lstnew((void *)tk, sizeof(t_token));
+	ft_lstadd_last(ret, tmp);
 	tmp = *list;
-	while (tmp && !is_operator(*((char *)tmp->content)))
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	exe = (char **)ft_memalloc(sizeof(char *) * i + 1);
-	while (j < i)
-	{
-		exe[j] = (char *)(*list)->content;
-		tmp = *list;
-		*list = (*list)->next;
-		free(tmp);
-		tmp = NULL;
-		j++;
-	}
-	exe[j] = 0;
-	return (exe);
+	*list = (*list)->next;
+	free(tmp);
+	tmp = NULL;
+}
+
+/*
+** Permet de creer un token de commande classique a executer
+*/
+static void		create_command(t_list **ret, t_list **list)
+{
+	t_list		*tmp;
+	t_token		*tk;
+
+	tk = (t_token *)ft_memalloc(sizeof(t_token));
+	tk->no = OPS_EXEC;
+	tk->pty = PTY_EXEC;
+	tk->exe = create_exe(list);
+	tk->left = NULL;
+	tk->right = NULL;
+	tmp = ft_lstnew((void *)tk, sizeof(t_token));
+	ft_lstadd_last(ret, tmp);
 }
 
 /*
@@ -71,29 +79,9 @@ static void		create_ops(t_list **ret, t_list **list, char *ops)
 }
 
 /*
-** On cree un nouveau token lorsqu'on a une aggregation de FD
-*/
-static void		create_fd_aggregation(t_list **ret, t_list **list)
-{
-	t_list		*tmp;
-	t_token		*tk;
-
-	tk = (t_token *)ft_memalloc(sizeof(t_token));
-	tk->no = OPS_ROUT;
-	tk->pty = PTY_ROUT;
-	tk->exe = ft_strsplit((char *)(*list)->content, '>');
-	free((char *)(*list)->content);
-	tk->left = NULL;
-	tk->right = NULL;
-	tmp = ft_lstnew((void *)tk, sizeof(t_token));
-	ft_lstadd_last(ret, tmp);
-	tmp = *list;
-	*list = (*list)->next;
-	free(tmp);
-	tmp = NULL;
-}
-
-/*
+** list : pointeur qui parcourt la liste de string creee par le lexer
+** ret : liste de tokens a retourner
+** tmp : p
 ** Creer des tokens d'operation. Il contiennent :
 ** - un numero
 ** - une priorite
@@ -109,8 +97,8 @@ t_list			*create_tokens(t_list *alst)
 {
 	t_list	*list;
 	t_list	*ret;
-	t_list	*tmp;
-	t_token	*tk;
+	//t_list	*tmp;
+	//t_token	*tk;
 
 	ret = NULL;
 	list = alst;
@@ -119,16 +107,7 @@ t_list			*create_tokens(t_list *alst)
 		if (is_fd_aggregation((char *)list->content))
 			create_fd_aggregation(&ret, &list);
 		else if (!is_operator(*((char *)list->content)))
-		{
-			tk = (t_token *)ft_memalloc(sizeof(t_token));
-			tk->no = OPS_EXEC;
-			tk->pty = PTY_EXEC;
-			tk->exe = create_exe(&list);
-			tk->left = NULL;
-			tk->right = NULL;
-			tmp = ft_lstnew((void *)tk, sizeof(t_token));
-			ft_lstadd_last(&ret, tmp);
-		}
+			create_command(&ret, &list);
 		else if (list && is_operator(*((char *)list->content)))
 			create_ops(&ret, &list, (char *)list->content);
 	}

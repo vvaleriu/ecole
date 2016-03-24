@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 11:59:49 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 09:39:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ int					get_next_line(int const fd, char **line);
 int					is_space(char c);
 int					is_operator(char c);
 int					is_text(char c);
+int					is_quote(char c);
 void				ft_strarray_del(char ***c);
 void				ft_strarray_del_one(char ***c, int pos);
 int	    			ft_strarray_len(char **ar);

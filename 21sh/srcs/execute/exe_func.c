@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 15:43:30 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 11:37:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		exe_semi(t_var *var, t_token *tk)
 	if (!father)
 	{
 		execute_tree(var, tk->left);
-		exit(0	);
+		exit(0);
 	}
 	else
 	{

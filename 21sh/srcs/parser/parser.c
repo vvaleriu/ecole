@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:27:20 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 18:03:35 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 11:11:02 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ static t_token		*return_token(t_list *list, t_list *tmp, t_list *right,\
 
 /*
 ** right :
-** tmp : 
-** token : pointeur 
+** tmp :
+** token : pointeur
 ** pty : operateur de priorite
 **
 ** Recoit une liste de token.
 ** 	pour chaque element de cette liste, on repere de quoi il s'agit
 **	(operateur de priorite, etc), puis on effectue le traitement necessaire
+**	On traite bien evidemment les priorites de maniere decroissante, 0 etant la
+**	priorite la plus importante.
 */
 t_token				*parser(t_list *list)
 {

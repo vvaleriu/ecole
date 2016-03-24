@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/22 21:52:23 by vincent          ###   ########.fr        #
+#    Updated: 2016/03/24 10:39:28 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,14 @@ OBJ = $(SRC:%.c=$(O_P)%.o)
 O_P = ./obj/
 SRC = main.c					\
 		init_function.c			\
-	  	is_space.c				\
 	  	is_text.c				\
-	  	is_operator.c			\
 	  	lexer.c					\
 		lex_semicon.c			\
 		lex_small.c				\
 		lex_big.c				\
 		lex_pipe.c				\
 		lex_space.c				\
+		lex_and.c				\
 		lex_char.c				\
 		parser.c				\
 		exe_command.c			\

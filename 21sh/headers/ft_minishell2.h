@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 18:22:41 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 12:16:29 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # include <ft_termcaps.h>
 
 /*
-** BIN_NB		: Number of personal binary functions
+** LEX_NB		: Nombre de fonctions pour le lexer
+** BIN_NB		: Number of personal builtin functions
+** OPS_NB		: Nombre d'operations possibles
 */
 
 # define CMP			ft_strncmp
 # define LEN			ft_strlen
-# define LEX_NB			6
+# define LEX_NB			7
 # define BIN_NB			5
+# define OPS_NB			9
 
 /*
 ** LONGUEUR DU PROMPT. UTILE dans init_line_struct, pour definir la
@@ -43,6 +46,7 @@
 # define CUR_POS_Y		var->conf->cur_pos[1]
 # define WIN_X			var->conf->w.ws_col
 # define WIN_Y			var->conf->w.ws_row
+# define LEX_CHAR_NB	6
 
 /*
 ** OPS_NB	nb of ops :
@@ -50,22 +54,25 @@
 ** OPS_PIPE		"|":	1
 ** OPS_RIN		"<":	2
 ** OPS_ROUT 	">":	3
-** OPS_DRIN		"<<":	4
-** OPS_DROUT	">>":	5
+** OPS_AND		"&&":	4
+** OPS_AND		"||":	5
+** OPS_DRIN		"<<":	6
+** OPS_DROUT	">>":	7
 **
 ** Priorite : ordre de priorite associe a une operation
 ** Permet de construire l'arbre en sachant quelle operations passent
 ** avant ou apres les autres
 ** PTY_NB			4 : nombre de priorite existante
 */
-# define OPS_NB			5
 # define OPS_SEMIC		0
 # define OPS_PIPE		1
 # define OPS_RIN		2
 # define OPS_ROUT 		3
-# define OPS_DRIN		4
-# define OPS_DROUT		5
-# define OPS_EXEC		6
+# define OPS_AND		4
+# define OPS_OR			5
+# define OPS_DRIN		6
+# define OPS_DROUT		7
+# define OPS_EXEC		8
 
 /*
 ** Priorite : ordre de priorite associe a une operation
@@ -75,6 +82,8 @@
 */
 # define PTY_NB			4
 # define PTY_SEMIC		0
+# define PTY_AND		0
+# define PTY_OR			0
 # define PTY_PIPE		1
 # define PTY_RIN		2
 # define PTY_ROUT 		2
@@ -173,11 +182,11 @@ typedef struct		s_var
 	t_cmd_hist		hist;
 	t_list			*list;
 	t_token			*root;
-	t_lexing_ft		lex[6];
+	t_lexing_ft		lex[LEX_NB];
 	t_tconf			*conf;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
-	int				(*ef[6])(struct s_var *, t_token *);
+	int				(*ef[OPS_NB])(struct s_var *, t_token *);
 }					t_var;
 
 /*
@@ -197,13 +206,12 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *));
 */
 
 t_list		*lexer(char *buf, t_lexing_ft *lex);
-int			get_op_no(char *s);
-int			get_op_pty(int no);
 void		lex_semicon(char **buf, t_list **alst);
 void		lex_small(char **buf, t_list **alst);
 void		lex_big(char **buf, t_list **alst);
 void		lex_pipe(char **buf, t_list **alst);
 void		lex_space(char **buf, t_list **alst);
+void		lex_and(char **buf, t_list **alst);
 void		lex_char(char **buf, t_list **alst);
 
 /*
@@ -211,6 +219,10 @@ void		lex_char(char **buf, t_list **alst);
 */
 
 int			is_fd_aggregation(char *str);
+int			get_op_no(char *s);
+int			get_op_pty(int no);
+char		*del_quotes(void **str);
+char		**create_exe(t_list **list);
 t_list		*create_tokens(t_list *alst);
 t_token		*parser(t_list *list);
 
@@ -259,8 +271,6 @@ int			history_prev(t_var *var);
 t_var		*get_instance();
 t_tconf		*get_conf();
 int			is_text(char c);
-int			is_space(char c);
-int			is_operator(char c);
 void		free_all_list(t_list *alst);
 void		clean_tree(t_token *root);
 void		clean_env(t_var *var);

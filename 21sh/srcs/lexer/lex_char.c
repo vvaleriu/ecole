@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex_char.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:43:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 23:47:43 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 08:51:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,14 @@ void		print_missing_quote(char **buf, char *s, char qt, t_list **alst)
 		lex_quote(buf, alst);
 }
 
-void		lex_quote(char **buf, t_list **alst)
+/*
+** quote : type de quote : " ou '
+** On repere le type de quote, On avance jusqu'a ce qu'on trouve la meme sinon
+** on lance print missing quote
+** On garde les guillements dans la chaine trouvee pour eviter des bug d'
+** interpretation du parser
+*/
+/*void		lex_quote(char **buf, t_list **alst)
 {
 	char	quote;
 	char	*s;
@@ -53,6 +60,31 @@ void		lex_quote(char **buf, t_list **alst)
 	{
 		tmp = ((*(*buf + i) == quote) && (i >= 0) ? \
 			ft_lstnew((void *)ft_strndup(s, i), sizeof(char *)) : NULL);
+		while (*(*buf + i) != quote)
+			i++;
+		i++;
+		*buf += i;
+		ft_lstadd_last(alst, tmp);
+	}
+}*/
+void		lex_quote(char **buf, t_list **alst)
+{
+	char	quote;
+	char	*s;
+	t_list	*tmp;
+	int		i;
+
+	i = 1;
+	quote = **buf;
+	s = *buf;
+	while (*(*buf + i) && *(*buf + i) != quote)
+		i++;
+	if (!*(*buf + i))
+		print_missing_quote(buf, s, quote, alst);
+	else
+	{
+		tmp = ((*(*buf + i) == quote) && (i >= 1) ? \
+			ft_lstnew((void *)ft_strndup(s, i + 1), sizeof(char *)) : NULL);
 		while (*(*buf + i) != quote)
 			i++;
 		i++;
