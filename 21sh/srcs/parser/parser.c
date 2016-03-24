@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:27:20 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 11:11:02 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 12:48:06 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 #include <libft.h>
 #include <ft_minishell2.h>
 
+/*
+** list : liste de token non organisee
+** tmp : pointeur vers l'element actuel de cette liste de tokens
+** right :
+** tk : token de l'element actuel de la liste
+**
+** - Si la longueur de la liste est de 1, alors on n'a pas a ordonner cette
+**	 liste et on renvoie directement le seul token de cette liste. On efface
+**	 donc l'element de la liste et on retourne le token qui y etait associe
+** - Sinon :
+**	- On separe la liste depuis le debut jusqu'a l'element actuel
+**	- On relance une fonction de parseur sur la partie gauche
+**	- On relance une fonction de parseur sur la partie droite
+*/
 static t_token		*return_token(t_list *list, t_list *tmp, t_list *right,\
 									t_token *tk)
 {
@@ -40,15 +54,23 @@ static t_token		*return_token(t_list *list, t_list *tmp, t_list *right,\
 
 /*
 ** right :
-** tmp :
-** token : pointeur
+** tmp : pointe sur la liste de token non organise
+** token : token de l'element actuel de la liste
 ** pty : operateur de priorite
 **
-** Recoit une liste de token.
+** Recoit une liste de token non organiser par ordre.
 ** 	pour chaque element de cette liste, on repere de quoi il s'agit
 **	(operateur de priorite, etc), puis on effectue le traitement necessaire
 **	On traite bien evidemment les priorites de maniere decroissante, 0 etant la
 **	priorite la plus importante.
+**
+** - Si la liste existe de token existe
+**	- Tant que la priorite actuelle est inferieure au nombre total de priorites
+**	  - Tant que tmp existe (mis au debut de la liste la premiere fois)
+**		- Si la prio du token correspond a la prio que l'on traite, alors
+**		  on rentre dans return_token.
+**		- On traite l'element suivant de la liste
+**	  - On remet tmp au debut de la liste et on passe a la priorite suivante
 */
 t_token				*parser(t_list *list)
 {

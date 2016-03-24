@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 11:37:36 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 13:07:03 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,33 @@ int		exe_pipe(t_var *var, t_token *tk)
 	father = fork();
 	if (!father)
 	{
+		dup2(fd[1], 1);
+		close(fd[0]);
+		//close(fd[1]);
+		sloc = execute_tree(var, tk->left);
+		exit(sloc);
+	}
+	else
+	{
+		waitpid(father, &sloc, 0);
+		close(fd[1]);
+		dup2(fd[0], 0);
+		//close(fd[0]);
+		execute_tree(var, tk->right);
+	}
+	return (sloc);
+}
+/*int		exe_pipe(t_var *var, t_token *tk)
+{
+	pid_t	father;
+	int		sloc;
+	int		fd[2];
+
+	sloc = 1;
+	pipe(fd);
+	father = fork();
+	if (!father)
+	{
 		close(fd[0]);
 		dup2(fd[1], 1);
 		//close(fd[1]);
@@ -76,7 +103,7 @@ int		exe_pipe(t_var *var, t_token *tk)
 		execute_tree(var, tk->right);
 	}
 	return (sloc);
-}
+}*/
 
 int		exe_redir_in(t_var *var, t_token *tk)
 {

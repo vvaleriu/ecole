@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 12:16:28 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 13:13:50 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int			main(int ac, char **av, char **envp)
 		read_key(var);
 		terminal_execute_mode(var->conf);
 		var->list = lexer(var->line.s, var->lex);
-		deb_print_first_list(var->list);
+		//deb_print_first_list(var->list);
 		var->list = create_tokens(var->list);
-		deb_print_token_list(var->list);
+		//deb_print_token_list(var->list);
 		var->root = parser(var->list);
         check_tree(var->root);
 		execute_tree(var, var->root);
