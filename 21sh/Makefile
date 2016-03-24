@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/24 10:39:28 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/24 15:29:41 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRC = main.c					\
 		ft_copy_env.c			\
 		create_tokens.c			\
 		execute_tree.c			\
-		exe_func.c				\
 		free_all_list.c 		\
 		clean_tree.c			\
 		clean_env.c				\
@@ -85,6 +84,10 @@ SRC = main.c					\
 		position_tracker.c		\
 		is_fd_aggregation.c		\
 		token_tools.c			\
+		exe_semi.c				\
+		exe_pipe.c				\
+		exe_redir_in.c			\
+		exe_redir_out.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

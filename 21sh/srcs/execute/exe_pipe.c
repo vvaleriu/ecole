@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_func.c                                         :+:      :+:    :+:   */
+/*   exe_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 13:07:03 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:31:41 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,6 @@
 #include <fcntl.h>
 #include <libft.h>
 #include <ft_minishell2.h>
-
-/*
-**	On execute la fonction qui corespond
-** !father : child process
-** father : wait for the child process to finish first
-*/
-
-int		exe_semi(t_var *var, t_token *tk)
-{
-	pid_t	father;
-	int		sloc;
-
-	father = fork();
-	if (!father)
-	{
-		execute_tree(var, tk->left);
-		exit(0);
-	}
-	else
-	{
-		waitpid(father, &sloc, 0);
-		execute_tree(var, tk->right);
-	}
-	return (0);
-}
 
 /*
 ** father represente le PID du fils dans le pere
@@ -104,47 +79,3 @@ int		exe_pipe(t_var *var, t_token *tk)
 	}
 	return (sloc);
 }*/
-
-int		exe_redir_in(t_var *var, t_token *tk)
-{
-	pid_t	father;
-	int		sloc;
-	int		file;
-
-	father = fork();
-	if (father)
-		waitpid(father, &sloc, 0);
-	else
-	{
-		if (tk->no == OPS_RIN)
-			file = open(tk->right->exe[0], O_RDONLY);
-		else
-			file = open(tk->right->exe[0], O_RDONLY | O_APPEND);
-		dup2(file, 0);
-		sloc = execute_tree(var, tk->left);
-		exit(sloc);
-	}
-	return (0);
-}
-
-int		exe_redir_out(t_var *var, t_token *tk)
-{
-	pid_t	father;
-	int		sloc;
-	int		file;
-
-	father = fork();
-	if (father)
-		waitpid(father, &sloc, 0);
-	else
-	{
-		if (tk->no == OPS_ROUT)
-			file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		else
-			file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_APPEND, 0644);
-		dup2(file, 1);
-		sloc = execute_tree(var, tk->left);
-		exit(sloc);
-	}
-	return (0);
-}

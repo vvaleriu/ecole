@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_copy_env.c                                      :+:      :+:    :+:   */
+/*   exe_semi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/29 17:09:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 15:31:37 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/03/24 15:21:23 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/24 15:22:02 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 #include <libft.h>
 #include <ft_minishell2.h>
 
-void		ft_copy_env(t_var *var, char **env)
-{
-	int i;
+/*
+**	On execute la fonction qui corespond
+** !father : child process
+** father : wait for the child process to finish first
+*/
 
-	i = 0;
-	if (env)
+int		exe_semi(t_var *var, t_token *tk)
+{
+	pid_t	father;
+	int		sloc;
+
+	father = fork();
+	if (!father)
 	{
-		while (env[i])
-			i++;
-		var->tenv = (char **)ft_memalloc(sizeof(char *) * (i + 1));
-		while (--i >= 0)
-			var->tenv[i] = ft_strdup(env[i]);
+		execute_tree(var, tk->left);
+		exit(0);
 	}
+	else
+	{
+		waitpid(father, &sloc, 0);
+		execute_tree(var, tk->right);
+	}
+	return (0);
 }

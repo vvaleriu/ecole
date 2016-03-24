@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 12:16:29 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:31:45 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@
 /*
 ** CMD_LENGTH : taille du buffer d'une ligne de commande par defaut
 */
-# define CMD_LENGTH		200
+# define CMD_LENGTH		325
 
 /*
 ** tokens to be executed
@@ -182,7 +182,7 @@ typedef struct		s_var
 	t_cmd_hist		hist;
 	t_list			*list;
 	t_token			*root;
-	t_lexing_ft		lex[LEX_NB];
+	t_lexing_ft		lex[LEX_CHAR_NB];
 	t_tconf			*conf;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];

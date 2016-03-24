@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 13:27:20 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 12:48:06 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 14:11:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 **	 liste et on renvoie directement le seul token de cette liste. On efface
 **	 donc l'element de la liste et on retourne le token qui y etait associe
 ** - Sinon :
-**	- On separe la liste depuis le debut jusqu'a l'element actuel
+**	- On separe la liste depuis le debut jusqu'a l'element actuel (exclusif)
+**	  On a donc deux liste : debut -> (elem - 1) et elem -> fin
 **	- On relance une fonction de parseur sur la partie gauche
 **	- On relance une fonction de parseur sur la partie droite
 */

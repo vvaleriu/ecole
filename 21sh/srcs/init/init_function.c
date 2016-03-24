@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 11:28:17 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:26:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		check_tabs_init(t_var *var)
 			var->bin[i].f);
 	i = -1;
 	ft_printf("---------------------- TABLEAU DES EXE\n");
-	while (++i < 7)
+	while (++i < OPS_NB)
 		ft_printf("Adresse ef[%d]\n", var->ef[i]);
 }
 
@@ -98,10 +98,10 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
 {
 	ef[OPS_SEMIC] = exe_semi;
 	ef[OPS_PIPE] = exe_pipe;
-	ef[OPS_AND] = exe_command;
-	ef[OPS_OR] = exe_command;
 	ef[OPS_RIN] = exe_redir_in;
 	ef[OPS_ROUT] = exe_redir_out;
+	ef[OPS_AND] = exe_command;
+	ef[OPS_OR] = exe_command;
 	ef[OPS_DRIN] = exe_redir_in;
 	ef[OPS_DROUT] = exe_redir_out;
 	ef[OPS_EXEC] = exe_command;
