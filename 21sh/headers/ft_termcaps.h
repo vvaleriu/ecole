@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 09:55:52 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:43:57 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,5 @@ void				print_trackers_status(t_var *var);
 void				update_cur_pos(t_var *var, int movement);
 void				update_line_pos(t_var *var, int movement);
 void				update_trackers(t_var *var, int movement);
-
-
 
 #endif

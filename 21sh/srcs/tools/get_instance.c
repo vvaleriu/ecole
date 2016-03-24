@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 08:40:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 12:05:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 17:12:05 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 t_var		*get_instance()
 {
-	static t_var	*var;
+	static t_var	*var = NULL;
 
 	if (var == NULL)
-	{
 		var = (t_var *)ft_memalloc(sizeof(*var));
-	}
 	return (var);
 }
 
