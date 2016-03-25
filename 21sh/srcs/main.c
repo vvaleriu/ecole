@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 17:15:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/25 18:32:31 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <libft.h>
 #include <ft_minishell2.h>
@@ -27,10 +26,12 @@ int			main(int ac, char **av, char **envp)
 	init_function(var, envp);
 	init_terminal(var);
 	sig_catcher();
-	ft_env(NULL, (void *)var);
 	while (18)
 	{
-		ft_putstr_fd("$>", var->conf->fd);
+		//var->conf->rfd = init_fd(0);
+		/*ft_printf("ttyname(0) : %s, ttyname(1) : %s\nrfd : %d, wfd : %d\n", \
+			ttyname(0), ttyname(1),	var->conf->rfd, var->conf->wfd);*/
+		ft_putstr_fd("$>", var->conf->wfd);
 		set_str_cap("sc");
 		terminal_input_mode(var->conf);
 		read_key(var);
@@ -40,7 +41,7 @@ int			main(int ac, char **av, char **envp)
 		var->list = create_tokens(var->list);
 		//deb_print_token_list(var->list);
 		var->root = parser(var->list);
-        //check_tree(var->root);
+		//check_tree(var->root);
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;

@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 14:11:55 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 23:35:48 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /*int			return_command(t_var *var)
 {
 	move_to_next_line(var);
-	ft_putstr_fd(var->line.s, var->conf->fd);
+	ft_putstr_fd(var->line.s, var->conf->wfd);
 	move_to_next_line(var);
 	set_str_cap("sc");
 	return (RET);

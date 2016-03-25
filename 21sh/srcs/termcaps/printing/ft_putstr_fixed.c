@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fixed.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 13:40:58 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/14 14:07:38 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/25 17:55:03 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		ft_putstr_fixed(char *str)
 	while (*str != '\0')
 	{
 		set_str_cap("kI");
-		write(conf->fd, &(*str), 1);
+		write(conf->wfd, &(*str), 1);
 		set_str_cap("kM");
 		str++;
 	}

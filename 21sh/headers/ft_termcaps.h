@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 16:43:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/24 23:31:56 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,8 @@ struct s_key_man
 /*
 **	cur_pos : current cursor position [0] : x, [1] : y
 **	term_buffer	: stock le
+**	rfd : file descriptor de lecture (Entree standard)
+**	wfd : file descriptor d'ecriture (Sortie standard)
 **	w		: structure containing window's number of col and row
 **	def		: default terminal conf (restore at when leaves)
 **	cur		: current conf to apply
@@ -197,7 +199,8 @@ struct s_key_man
 struct s_tconf
 {
 	int				cur_pos[2];
-	int				fd;
+	int				rfd;
+	int				wfd;
 	struct winsize	w;
 	struct termios 	def;
 	struct termios 	cur;

@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/22 15:54:45 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 23:35:37 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					read_key(t_var *var)
 
 	ft_bzero((void *)(var->key_buf), SEL_KEY_SIZE);
 	init_line_struct(var);
-	while ((rd = read(STDIN_FILENO, var->key_buf, SEL_KEY_SIZE)))
+	while ((rd = read(var->conf->rfd, var->key_buf, SEL_KEY_SIZE)))
 	{
 		loop = key_identifier(var);
 		if (!loop)

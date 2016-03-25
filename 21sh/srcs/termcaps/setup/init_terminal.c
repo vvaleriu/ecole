@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_terminal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 16:35:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/25 18:01:25 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ static void	fill_keyman_tab2(t_tconf *conf)
 
 int			init_fd(int fd)
 {
-	fd = open(ttyname(0), O_RDWR | O_NONBLOCK);
-	return (fd);
+	return (open(ttyname(fd), O_RDWR | O_NONBLOCK));
 }
 
 int			init_terminal(t_var *var)
@@ -92,11 +91,16 @@ int			init_terminal(t_var *var)
 	fill_keyman_tab(var->conf);
 	fill_keyman_tab1(var->conf);
 	fill_keyman_tab2(var->conf);
-	var->conf->fd = STDIN_FILENO;
+	var->conf->rfd = STDIN_FILENO;
+	var->conf->wfd = STDOUT_FILENO;
+	var->conf->rfd = init_fd(0);
+	var->conf->wfd = init_fd(1);
+	/*var->conf->rfd = 0;
+	var->conf->wfd = 1;*/
 	var->CUR_X = 0;
 	var->CUR_Y = 0;
 	var->line.cpy = NULL;
-	/*if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
+	/*if ((var->conf->rfd = init_fd(var->conf->rfd)) == -1)
 		return (-1);*/
 	ioctl(0, TIOCGWINSZ, &(var->conf->w));
 	if (load_term_prop(var->conf) <= 0)

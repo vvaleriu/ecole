@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:21:25 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/22 14:14:53 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/24 23:41:35 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int			cl_screen(t_var *var)
 	CUR_POS_Y = 0;
 	terminal_execute_mode(var->conf);
 	set_str_cap("rc");
-	/*if ((var->conf->fd = init_fd(var->conf->fd)) == -1)
+	/*if ((var->conf->rfd = init_fd(var->conf->rfd)) == -1)
 			return (-1);*/
-	ft_putstr_fd("$>", var->conf->fd);
+	ft_putstr_fd("$>", var->conf->wfd);
 	set_str_cap("sc");
 	terminal_input_mode(var->conf);
 	set_str_cap("rc");

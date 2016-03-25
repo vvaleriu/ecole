@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 08:16:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/11 23:14:43 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/25 17:54:05 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			restore_terminal(t_var *var)
 		exit(-1);
 	}
 	set_str_cap("te");
-	close(conf->fd);
+	//close(conf->rfd);
 	conf->cur.c_lflag = (ICANON | ECHO | ISIG);
 	return (-1);
 }

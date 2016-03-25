@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 17:15:31 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/25 18:06:41 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define LN_S			var->line.s
 # define LN_CPY			var->line.cpy
 # define LN_POS			var->line.pos
+# define FD_IN			var->conf->rfd
+# define FD_OUT			var->conf->wfd
 # define CUR_POS_X		var->conf->cur_pos[0]
 # define CUR_POS_Y		var->conf->cur_pos[1]
 # define WIN_X			var->conf->w.ws_col
