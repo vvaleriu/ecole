@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 14:13:40 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 15:14:32 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				exe_command(t_var *var, t_token *tk)
 	{
 		if (com && (path = get_path(com[0], var->tenv)))
 		{
+			ft_strrev(com[0]);
 			father = fork();
 			if (father > 0)
 				wait(0);

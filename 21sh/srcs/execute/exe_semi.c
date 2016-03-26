@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 15:21:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 15:22:02 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 15:14:31 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,29 @@
 int		exe_semi(t_var *var, t_token *tk)
 {
 	pid_t	father;
-	int		sloc;
+	int		status;
 
+	status = 1;
 	father = fork();
 	if (!father)
 	{
 		execute_tree(var, tk->left);
-		exit(0);
+		//exit(0);
 	}
 	else
 	{
-		waitpid(father, &sloc, 0);
+		waitpid(father, &status, 0);
+		processus_end_analysis(status);
+		ft_printf("Etat de sortie du fils : %d\n");
 		execute_tree(var, tk->right);
 	}
 	return (0);
+}
+
+void	processus_end_analysis(int status)
+{
+	ft_printf("Le fils s'est termine normalement : %s\n", WIFEXITED(status) ? "vrai" : " faux");
+	ft_printf("Code de sortie du fils : %d\n", WEXITSTATUS(status));
+	ft_printf("Le fils s'est terminé à cause d'un signal.  : %s\n", WIFSIGNALED(status) ? "vrai" : " faux");
+	ft_printf("Le fils s'est termine normalement : %s\n", WIFEXITED(status) ? "vrai" : " faux");
 }

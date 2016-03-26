@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 10:24:50 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 14:24:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			main(int ac, char **av, char **envp)
 		//deb_print_token_list(var->list);
 		var->root = parser(var->list);
 		check_tree(var->root);
+		ft_putstr("___________________________\n");
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/26 09:47:01 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 12:07:47 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int			init_terminal(t_var *var)
 	var->CUR_X = 0;
 	var->CUR_Y = 0;
 	var->line.cpy = NULL;
-	/*if ((var->conf->rfd = init_fd(var->conf->rfd)) == -1)
-		return (-1);*/
 	ioctl(0, TIOCGWINSZ, &(var->conf->w));
 	if (load_term_prop(var->conf) <= 0)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 10:35:09 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 14:21:22 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 ** Permet de gerer la redirection des files descripteurs standards.
 ** exemple : ls 2>&-
 */
-static int		stdfd_redir(t_token *tk)
+/*O_NONBLOCK | */
+int				stdfd_redir(t_token *tk)
 {
 	int		fd;
 
@@ -34,14 +35,10 @@ static int		stdfd_redir(t_token *tk)
 		else if (ft_isdigit(tk->exe[1][1]))
 			dup2(ft_atoi(tk->exe[1] + 1), ft_atoi(tk->exe[0]));
 	}
-	else if (tk->exe[1] && tk->exe[1][0] == '\"' && tk->exe[1][ft_strlen(tk->exe[1]) - 1] == '\"')
+	else if (tk->exe[1] != 0 && (fd = open(tk->exe[1], O_WRONLY | O_CREAT | O_TRUNC, 0644)))
 	{
-		if ((fd = open(tk->exe[1], O_NONBLOCK | O_WRONLY | O_CREAT | O_TRUNC, 0644)) != -1)
-		{
-			dup2(fd, ft_atoi(tk->exe[0]));
-			close(ft_atoi(tk->exe[0]));
-			return (fd);
-		}
+		dup2(fd, ft_atoi(tk->exe[0]));
+		return (fd);
 	}
 	return (-1);
 }
@@ -55,26 +52,23 @@ int				exe_redir_out(t_var *var, t_token *tk)
 	int		sloc;
 	int		file;
 
-	file = -1;
 	father = fork();
 	if (!father)
 	{
-		if (tk->no == OPS_ROUT && tk->exe != NULL)
+		if (tk->no == OPS_ROUT && tk->exe != NULL && tk->exe[0] != NULL)
 			file = stdfd_redir(tk);
+		else if (tk->no == OPS_ROUT)
+			file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		else
-		{
-			if (tk->no == OPS_ROUT)
-				file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			else
-				file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (tk->exe == NULL || tk->exe[0] == NULL)
 			dup2(file, 1);
-		}
 		sloc = execute_tree(var, tk->left);
 		if (file != -1)
 			close(file);
 		exit(sloc);
 	}
 	else
-		wait(0);//waitpid(father, &sloc, 0);
+		waitpid(father, &sloc, 0);
 	return (0);
 }

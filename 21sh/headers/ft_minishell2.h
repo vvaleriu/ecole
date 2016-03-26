@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/25 18:06:41 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/26 15:14:33 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,11 @@ t_token		*parser(t_list *list);
 */
 
 int			execute_tree(t_var *var, t_token *tk);
+void		processus_end_analysis(int status);
 int			exe_semi(t_var *var, t_token *tk);
 int			exe_pipe(t_var *var, t_token *tk);
 int			exe_redir_in(t_var *var, t_token *tk);
+int			stdfd_redir(t_token *tk);
 int			exe_redir_out(t_var *var, t_token *tk);
 char		*get_path(char *exe, char **env);
 int			exe_command(t_var *var, t_token *tk);

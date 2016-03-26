@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/04 17:00:14 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/05 16:31:00 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/26 14:31:41 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		ft_strarray_del_one(char ***ar, int pos)
     s = NULL;
     J = 0;
     K = 0;
-    ft_putstr_array(*ar);
     if (pos >= 0 && pos < (I = ft_strarray_len(*ar)) && ar != NULL && *ar &&
         (ret = (char **)ft_memalloc(sizeof(char *) * I)) &&
         (s = (char *)ft_memalloc(sizeof(char) * ct_w(*ar, pos))))
