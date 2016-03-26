@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 08:11:06 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/26 10:24:50 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			main(int ac, char **av, char **envp)
 		var->list = create_tokens(var->list);
 		//deb_print_token_list(var->list);
 		var->root = parser(var->list);
-		//check_tree(var->root);
+		check_tree(var->root);
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;
@@ -70,7 +70,7 @@ void		deb_print_first_list(t_list *list)
 void		deb_print_token_list(t_list *list)
 {
 	t_token		*tmp;
-	const char	*a[8];
+	const char	*a[9];
 
 	a[0] = ";";
 	a[1] = "|";
@@ -80,6 +80,7 @@ void		deb_print_token_list(t_list *list)
 	a[7] = ">>";
 	a[4] = "&&";
 	a[5] = "||";
+	a[8] = "CMD";
 	ft_putstr("______________DEBUT (token_list)_\n");
 	while (list)
 	{
@@ -97,7 +98,7 @@ void		deb_print_token_list(t_list *list)
 
 void		print_token(t_token *tk)
 {
-	const char	*a[8];
+	const char	*a[9];
 
 	a[0] = ";";
 	a[1] = "|";
@@ -107,12 +108,10 @@ void		print_token(t_token *tk)
 	a[7] = ">>";
 	a[4] = "&&";
 	a[5] = "||";
-	ft_printf("pt_token(main)Op : %d, pty : %d, exe : ", tk->no, tk->pty);
-	if (!tk->exe)
-		ft_printf("%s\n", a[tk->no]);
-	else
+	a[8] = "CMD";
+	ft_printf("print_token - Op : %d, pty : %d, sym : %s\n", tk->no, tk->pty, a[tk->no]);
+	if (tk->exe)
 		ft_putstr_array(tk->exe);
-	ft_putchar('\n');
 }
 
 void		check_tree(t_token *root)

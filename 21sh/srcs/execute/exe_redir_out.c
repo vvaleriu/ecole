@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir_out.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 08:48:44 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/26 10:35:09 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ static int		stdfd_redir(t_token *tk)
 {
 	int		fd;
 
-	if (exe[1] && exe[1][0] == '&')
+	if (tk->exe[1] && tk->exe[1][0] == '&')
 	{
-		if (exe[1][1] == '-')
-			close(ft_atoi(exe[0]));
-		else if (ft_isdigit(exe[1][1]))
-			dup2(ft_atoi(exe[1] + 1), ft_atoi(exe[0]));
+		if (tk->exe[1][1] == '-')
+			close(ft_atoi(tk->exe[0]));
+		else if (ft_isdigit(tk->exe[1][1]))
+			dup2(ft_atoi(tk->exe[1] + 1), ft_atoi(tk->exe[0]));
 	}
-	else if (exe[1] && exe[1][0] == '\"' && exe[1][ft_strlen(exe[1]) - 1] == '\"')
+	else if (tk->exe[1] && tk->exe[1][0] == '\"' && tk->exe[1][ft_strlen(tk->exe[1]) - 1] == '\"')
 	{
-		if ((fd = open(exe[1])) != -1)
-			dup2(fd, ft_atoi(exe[0]));
+		if ((fd = open(tk->exe[1], O_NONBLOCK | O_WRONLY | O_CREAT | O_TRUNC, 0644)) != -1)
+		{
+			dup2(fd, ft_atoi(tk->exe[0]));
+			close(ft_atoi(tk->exe[0]));
+			return (fd);
+		}
 	}
 	return (-1);
 }
@@ -53,9 +57,7 @@ int				exe_redir_out(t_var *var, t_token *tk)
 
 	file = -1;
 	father = fork();
-	if (father)
-		waitpid(father, &sloc, 0);
-	else
+	if (!father)
 	{
 		if (tk->no == OPS_ROUT && tk->exe != NULL)
 			file = stdfd_redir(tk);
@@ -72,5 +74,7 @@ int				exe_redir_out(t_var *var, t_token *tk)
 			close(file);
 		exit(sloc);
 	}
+	else
+		wait(0);//waitpid(father, &sloc, 0);
 	return (0);
 }
