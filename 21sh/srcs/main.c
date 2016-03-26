@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/25 18:32:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/26 08:11:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int			main(int ac, char **av, char **envp)
 	sig_catcher();
 	while (18)
 	{
-		//var->conf->rfd = init_fd(0);
 		/*ft_printf("ttyname(0) : %s, ttyname(1) : %s\nrfd : %d, wfd : %d\n", \
 			ttyname(0), ttyname(1),	var->conf->rfd, var->conf->wfd);*/
 		ft_putstr_fd("$>", var->conf->wfd);

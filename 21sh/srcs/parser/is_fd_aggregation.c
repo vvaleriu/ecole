@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 18:22:18 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/22 23:48:37 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/26 08:05:51 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int		is_fd_aggregation(char *str)
 		while (ft_isdigit(str[i]))
 			i++;
 		if (str[i] == '>')
+		{
+			if (str[i + 1] == '>')
+				return (0);
 			return (1);
+		}
 	}
 	return (0);
 }
