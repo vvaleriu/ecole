@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 13:15:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 12:22:42 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:09:07 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@
 
 static void		ft_add_env(char **exe, t_var *var, int i)
 {
-	ft_strarray_add_last(&(var->tenv), exe[i]);
+	int		j;
+
+	j = 0;
+	while (exe[i][j] && exe[i][j] != '=')
+		j++;
+	if (exe[i][j] == '=')
+		ft_strarray_add_last(&(var->tenv), exe[i]);
 }
 
 static void		ft_modify_env(char **exe, t_var *var, int i, int n)
@@ -51,7 +57,7 @@ static int		check_already_env(char *newenv, t_var *var)
 	return (-1);
 }
 
-void			ft_setenv(char **exe, void *var)
+int				ft_setenv(char **exe, void *var)
 {
 	int		j;
 	int		n;
@@ -72,4 +78,5 @@ void			ft_setenv(char **exe, void *var)
 			j++;
 		}
 	}
+	return (0);
 }

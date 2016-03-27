@@ -6,14 +6,14 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:33:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 12:21:26 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:09:34 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <ft_minishell2.h>
 
-void		ft_env(char **exe, void *var)
+int			ft_env(char **exe, void *var)
 {
 	int		i;
 	t_var	*v;
@@ -26,4 +26,5 @@ void		ft_env(char **exe, void *var)
 		ft_putendl(v->tenv[i]);
 		i++;
 	}
+	return (0);
 }

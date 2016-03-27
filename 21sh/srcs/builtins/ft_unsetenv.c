@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:22:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/05 16:31:05 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:09:20 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** appropriate action
 */
 
-void			ft_unsetenv(char **exe, void *var1)
+int			ft_unsetenv(char **exe, void *var1)
 {
 	int		t[3];
 	t_var	*v;
@@ -38,4 +38,5 @@ void			ft_unsetenv(char **exe, void *var1)
 			ft_strarray_del_one(&(v->tenv), I);
 		}
 	}
+	return (0);
 }

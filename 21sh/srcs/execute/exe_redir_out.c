@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 14:21:22 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:40:29 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				stdfd_redir(t_token *tk)
 int				exe_redir_out(t_var *var, t_token *tk)
 {
 	pid_t	father;
-	int		sloc;
+	int		status;
 	int		file;
 
 	father = fork();
@@ -63,12 +63,12 @@ int				exe_redir_out(t_var *var, t_token *tk)
 			file = open(tk->right->exe[0], O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (tk->exe == NULL || tk->exe[0] == NULL)
 			dup2(file, 1);
-		sloc = execute_tree(var, tk->left);
+		status = execute_tree(var, tk->left);
 		if (file != -1)
 			close(file);
-		exit(sloc);
+		exit(status);
 	}
 	else
-		waitpid(father, &sloc, 0);
-	return (0);
+		waitpid(father, &status, 0);
+	return (WEXITSTATUS(status));
 }

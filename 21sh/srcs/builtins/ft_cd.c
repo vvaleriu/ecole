@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 12:01:43 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 15:33:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:06:05 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		mod_pwd(char **env)
 	env[i] = ft_strjoin("PWD=", getcwd(path, 1000));
 }
 
-void		ft_cd(char **exe, void *var)
+int		ft_cd(char **exe, void *var)
 {
 	int		ret;
 	char	*path;
@@ -60,4 +60,5 @@ void		ft_cd(char **exe, void *var)
 	else
 		mod_pwd(var1->tenv);
 	ft_strdel(&path);
+	return (0);
 }

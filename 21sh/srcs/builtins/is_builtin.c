@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_tree.c                                     :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 10:44:34 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/03/27 08:40:28 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/03/27 08:54:14 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
 #include <ft_minishell2.h>
 
-/*
-**	On execute la fonction qui corespond
-*/
-/*static void	display_current_executed_command(t_token *tk)
+int		is_builtin(char *exe, t_var *var)
 {
-	ft_putstr("______display_current_executed_command, commande executee : \n");
-	if (tk->exe)
-		ft_putstr_array(tk->exe);
-	else
-		ft_printf("ops : %d\n", tk->no);
-}*/
+	int		i;
 
-int		execute_tree(t_var *var, t_token *tk)
-{
-	if (tk)
-		return (var->ef[tk->no](var, tk));
+	i = 0;
+	while (i < BIN_NB)
+	{
+		if (!ft_strcmp(exe, var->bin[i].na))
+			return (1);
+		i++;
+	}
 	return (0);
 }

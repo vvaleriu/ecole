@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/25 18:27:13 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/27 10:37:50 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,33 @@
 ** !father : processus fils. Correspond a la branche gauche de l'arbre
 ** autre : on est dans le processus pere execute en second. Correspond a la
 ** branche droite de l'arbre
+**
+** Si lexecution de la premiere commande est ok alors le status devient celui
+** de l'execution de la commande de droite, sinon il reste le status d'erreur
 */
 int		exe_pipe(t_var *var, t_token *tk)
 {
 	pid_t	father;
-	int		sloc;
+	int		status;
 	int		fd[2];
 
-	sloc = 1;
 	pipe(fd);
 	father = fork();
 	if (!father)
 	{
 		dup2(fd[1], 1);
 		close(fd[0]);
-		//close(fd[1]);
-		sloc = execute_tree(var, tk->left);
-		exit(sloc);
+		exit(execute_tree(var, tk->left));
 	}
 	else
 	{
-		waitpid(father, &sloc, 0);
+		waitpid(father, &status, 0);
 		close(fd[1]);
 		dup2(fd[0], 0);
-		//close(fd[0]);
-		execute_tree(var, tk->right);
+		if (!WEXITSTATUS(status))
+			status = execute_tree(var, tk->right);
+		else
+			execute_tree(var, tk->right);
 	}
-	return (sloc);
+	return (status);
 }

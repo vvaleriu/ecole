@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 15:14:33 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:49:17 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct		s_lexing_ft
 typedef struct		s_builtin
 {
 	char	*na;
-	void	(*f)(char **, void *);
+	int		(*f)(char **, void *);
 }					t_builtin;
 /*
 ** Structure representant la ligne de commande actuelle.
@@ -235,6 +235,8 @@ t_token		*parser(t_list *list);
 int			execute_tree(t_var *var, t_token *tk);
 void		processus_end_analysis(int status);
 int			exe_semi(t_var *var, t_token *tk);
+int			exe_and(t_var *var, t_token *tk);
+int			exe_or(t_var *var, t_token *tk);
 int			exe_pipe(t_var *var, t_token *tk);
 int			exe_redir_in(t_var *var, t_token *tk);
 int			stdfd_redir(t_token *tk);
@@ -254,11 +256,12 @@ void		go_foreground(int signo);
 /*
 **			BINS
 */
-void		ft_cd(char **exe, void *var);
-void		ft_env(char **exe, void *var);
-void		ft_setenv(char **exe, void *var);
-void		ft_unsetenv(char **exe, void *var);
-void		ft_exit(char **exe, void *var);
+int			is_builtin(char *exe, t_var *var);
+int			ft_cd(char **exe, void *var);
+int			ft_env(char **exe, void *var);
+int			ft_setenv(char **exe, void *var);
+int			ft_unsetenv(char **exe, void *var);
+int			ft_exit(char **exe, void *var);
 int			find_env(char *exe, char **env);
 
 /*

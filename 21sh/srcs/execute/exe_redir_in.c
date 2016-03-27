@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_redir_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/25 18:24:04 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/27 10:38:34 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int		exe_redir_in(t_var *var, t_token *tk)
 	int		file;
 
 	father = fork();
-	if (father)
-		waitpid(father, &sloc, 0);
-	else
+	if (!father)
 	{
 		if (tk->no == OPS_RIN)
 			file = open(tk->right->exe[0], O_RDONLY);
@@ -38,5 +36,7 @@ int		exe_redir_in(t_var *var, t_token *tk)
 		sloc = execute_tree(var, tk->left);
 		exit(sloc);
 	}
+	else
+		waitpid(father, &sloc, 0);
 	return (0);
 }

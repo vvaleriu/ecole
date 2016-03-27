@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 15:14:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:56:45 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,42 @@ static int		exec_bin(char **com, t_var *var)
 	while (i < BIN_NB)
 	{
 		if (!ft_strcmp(com[0], var->bin[i].na))
-		{
-			var->bin[i].f(com, (void *)var);
-			return (1);
-		}
+			return (var->bin[i].f(com, (void *)var));
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
+/*
+** bin_exit : si le retour est -1 c'est que l'on n'a pas trouve le builtin. Il
+			  s'agit donc d'une commande systeme classique
+** 			  si le builtin a ete execute alors la variable contient le retour
+**			  de la fonction executee.
+*/
 int				exe_command(t_var *var, t_token *tk)
 {
 	pid_t		father;
 	char		*path;
 	char		**com;
+	int			status;
 
 	com = (tk->exe ? tk->exe : NULL);
-	if (com != NULL && !exec_bin(com, var))
+	status = exec_bin(com, var);
+	if (com != NULL && status == -1)
 	{
 		if (com && (path = get_path(com[0], var->tenv)))
 		{
 			ft_strrev(com[0]);
 			father = fork();
+			if (!father)
+				exit(execve(path, com, var->tenv));
 			if (father > 0)
-				wait(0);
-			if (father == 0)
 			{
-				execve(path, com, var->tenv);
-				exit(1);
+				waitpid(father, &status, 0);
+				status = WEXITSTATUS(status);
 			}
 			ft_strdel(&path);
 		}
 	}
-	return (1);
+	return (status);
 }

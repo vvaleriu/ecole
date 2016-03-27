@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:33:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/10 12:04:53 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:09:27 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <ft_minishell2.h>
 
-void	ft_exit(char **exe, void *var1)
+int		ft_exit(char **exe, void *var1)
 {
 	t_var	*var;
 	int		val;

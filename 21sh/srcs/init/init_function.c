@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 17:15:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 10:55:16 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
 	ef[OPS_PIPE] = exe_pipe;
 	ef[OPS_RIN] = exe_redir_in;
 	ef[OPS_ROUT] = exe_redir_out;
-	ef[OPS_AND] = exe_command;
-	ef[OPS_OR] = exe_command;
+	ef[OPS_AND] = exe_and;
+	ef[OPS_OR] = exe_or;
 	ef[OPS_DRIN] = exe_redir_in;
 	ef[OPS_DROUT] = exe_redir_out;
 	ef[OPS_EXEC] = exe_command;
