@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 10:37:50 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 13:13:24 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@
 ** Si lexecution de la premiere commande est ok alors le status devient celui
 ** de l'execution de la commande de droite, sinon il reste le status d'erreur
 */
-int		exe_pipe(t_var *var, t_token *tk)
+int			exe_pipe(t_var *var, t_token *tk)
 {
 	pid_t	father;
 	int		status;
 	int		fd[2];
+	int		saved_fds[2];
 
+	save_std_fds(saved_fds);
 	pipe(fd);
 	father = fork();
 	if (!father)
 	{
-		dup2(fd[1], 1);
 		close(fd[0]);
+		dup2(fd[1], 1);
 		exit(execute_tree(var, tk->left));
 	}
 	else
@@ -51,6 +53,7 @@ int		exe_pipe(t_var *var, t_token *tk)
 			status = execute_tree(var, tk->right);
 		else
 			execute_tree(var, tk->right);
+		restore_std_fds(saved_fds);
 	}
 	return (status);
 }

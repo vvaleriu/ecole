@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 10:49:17 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 12:06:47 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,8 @@ void		free_all_list(t_list *alst);
 void		clean_tree(t_token *root);
 void		clean_env(t_var *var);
 void		clean_term_conf(t_var *var);
+void		save_std_fds(int fds[2]);
+void		restore_std_fds(int fds[2]);
 
 void		print_token(t_token *tk);
 void		deb_print_first_list(t_list *list);

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/26 14:24:49 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 12:32:22 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int			main(int ac, char **av, char **envp)
 	sig_catcher();
 	while (18)
 	{
-		/*ft_printf("ttyname(0) : %s, ttyname(1) : %s\nrfd : %d, wfd : %d\n", \
-			ttyname(0), ttyname(1),	var->conf->rfd, var->conf->wfd);*/
 		ft_putstr_fd("$>", var->conf->wfd);
 		set_str_cap("sc");
 		terminal_input_mode(var->conf);
@@ -40,8 +38,8 @@ int			main(int ac, char **av, char **envp)
 		var->list = create_tokens(var->list);
 		//deb_print_token_list(var->list);
 		var->root = parser(var->list);
-		check_tree(var->root);
-		ft_putstr("___________________________\n");
+		//check_tree(var->root);
+		//ft_putstr("___________________________\n");
 		execute_tree(var, var->root);
 		clean_tree(var->root);
 		var->root = NULL;

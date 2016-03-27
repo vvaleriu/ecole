@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/26 12:07:47 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 13:31:00 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int			init_terminal(t_var *var)
 	fill_keyman_tab2(var->conf);
 	var->conf->rfd = STDIN_FILENO;
 	var->conf->wfd = STDOUT_FILENO;
-	/*var->conf->rfd = init_fd(0);
-	var->conf->wfd = init_fd(1);*/
 	var->CUR_X = 0;
 	var->CUR_Y = 0;
 	var->line.cpy = NULL;

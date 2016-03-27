@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/17 14:51:41 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/27 13:16:38 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,24 +133,25 @@ int			erase_char(t_var *var)
 /*
 ** Fonction executee lors d'un appui sur delete / suppr
 */
-/*int			delete_char(t_var *var)
+int			delete_char(t_var *var)
 {
-	size_t			len;
-	unsigned long 	i;
+	int		initial_pos;
 
-	len = ft_strlen(var->line.s);
-	var->line.s[var->line.pos] = '\0';
-	set_str_cap("dl");
-	i = var->line.pos;
-	while (i < len)
+	if (move_to_next_char(var) == 2)
+		erase_char(var);
+	if ((int)ft_strlen(LN_S + LN_POS) >= WIN_X - CUR_POS_X)
 	{
-		var->line.s[i] = var->line.s[i + 1];
-		i++;
+		initial_pos = LN_POS;
+		set_str_cap("sc");
+		set_str_cap("cd");
+		ft_putstr_cursor_wrap(var);
+		update_trackers(var, -(LN_POS - initial_pos));
+		set_str_cap("rc");
 	}
-	var->line.s[i] = '\0';
 	return (2);
-}*/
-	int			delete_char(t_var *var)
+}
+
+/*int			delete_char(t_var *var)
 {
 	set_str_cap("do:cr:sc");
 	terminal_execute_mode(var->conf);
@@ -169,5 +170,5 @@ int			erase_char(t_var *var)
 		LN_POS = ft_strlen(LN_S);
 	}
 	return (2);
-}
+}*/
 
