@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/27 13:31:00 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 12:51:31 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ static void	fill_keyman_tab(t_tconf *conf)
 	ft_strcpy(KESC.seq, ESC_SEQ);
 	KESC.f = move_to_previous_char;
 	ft_strcpy(KRET.seq, RET_SEQ);
-	KRET.f = return_command;
+	//KRET.f = return_command;
+	KRET.f = completion;
 	ft_strcpy(KBKSP.seq, BKSP_SEQ);
 	KBKSP.f = erase_char;
 	ft_strcpy(KDEL.seq, DEL_SEQ);
-	KDEL.f = delete_char;
+	//KDEL.f = delete_char;
+	KDEL.f = completion;
 	ft_strcpy(KHOME.seq, HOME_SEQ);
 	KHOME.f = move_to_origin;
 	ft_strcpy(KEND.seq, END_SEQ);
@@ -70,6 +72,8 @@ static void	fill_keyman_tab1(t_tconf *conf)
 	KCPYCUR_END.f = copy_from_end;
 	ft_strcpy(KPASTE.seq, PASTE_SEQ);
 	KPASTE.f = paste;
+	ft_strcpy(KTAB.seq, TAB_SEQ);
+	KTAB.f = completion;
 }
 
 static void	fill_keyman_tab2(t_tconf *conf)

@@ -6,13 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 23:28:18 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/27 12:07:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 10:12:07 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
-#include <string.h>
-#include <errno.h>
 
 /*
 ** cl : on nettoie l'ecran

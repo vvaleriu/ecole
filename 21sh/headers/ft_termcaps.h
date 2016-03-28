@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 23:31:56 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/28 09:54:51 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 ** - CUR_ITEM: current selected item on the list
 */
 # define SEL_KEY_SIZE		7
-# define KEY_NUMBER			22
-# define ESC 				21
+# define KEY_NUMBER			23
+# define ESC 				(KEY_NUMBER - 1)
 # define RET				5
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
@@ -82,6 +82,7 @@
 # define END_SEQ			"\033OF"
 # define PGUP_SEQ			"\033[5~"
 # define PGDOWN_SEQ			"\033[6~"
+# define TAB_SEQ			"\t"
 
 # ifdef __APPLE__
 #  define NEXTWD_SEQ		"\033[1;5C"
@@ -135,6 +136,7 @@
 # define KCPYST_CUR			conf->keyman[18]
 # define KCPYCUR_END		conf->keyman[19]
 # define KPASTE				conf->keyman[20]
+# define KTAB				conf->keyman[21]
 # define KESC				conf->keyman[ESC]
 
 # define DOWN_ARROW			'B'

@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/27 11:57:01 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/28 10:11:23 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ I_LINKS = -I./headers -I./libft/header
 L_LINKS = -L./libft -lft -ltermcap
 RM = rm -rf
 vpath %.c ./srcs ./srcs/builtins ./srcs/init/ ./srcs/lexer/ ./srcs/tools/ \
-			./srcs/execute ./srcs/parser ./srcs/signals ./srcs/termcaps/ \
+			./srcs/execute  ./srcs/parser ./srcs/signals ./srcs/termcaps/ \
 			./srcs/termcaps/key_handlers ./srcs/termcaps/setup \
+			./srcs/completion \
 			./srcs/termcaps/printing ./srcs/termcaps/tools ./srcs/inputs
 vpath %.h includes libft/header
 vpath %.a libft
@@ -92,6 +93,9 @@ SRC = main.c					\
 		exe_redir_out.c			\
 		is_builtin.c			\
 		fds_tools.c				\
+		completion.c			\
+		exe_list.c				\
+		files_list.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

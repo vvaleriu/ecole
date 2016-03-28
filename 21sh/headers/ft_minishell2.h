@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 12:06:47 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 12:57:59 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,19 @@ void		sig_catcher();
 void		sig_handler(int signo);
 void		go_background(int signo);
 void		go_foreground(int signo);
+
+/*
+**			COMPLETION
+*/
+
+int 		completion(t_var *var);
+int			look_for_exe(t_var *var);
+int			currently_on_a_word(t_var *var);
+char		*get_current_word(t_var *var);
+void		delete_completion_list(void *content, size_t size);
+void		get_word_and_folder(char *ret[], char *word);
+t_dlist		*create_exe_list(t_var *var, char *word);
+t_dlist		*create_files_list(char *word);
 
 /*
 **			BINS
