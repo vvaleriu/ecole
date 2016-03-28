@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 23:35:37 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/28 14:30:51 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ static int			key_identifier(t_var *var)
 	while (i < KEY_NUMBER)
 	{
 		if (!ft_strncmp(var->key_buf, KEY_TAB(i).seq, KEY_TAB(i).seq_len))
+		{
+			if (i != TAB)
+				ft_dlstdel(&(CLIST), delete_completion_list);
 			return (KEY_TAB(i).f(var));
+		}
 		i++;
 	}
 	return (0);

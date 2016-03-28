@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 12:38:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:30:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ t_dlist		*create_exe_list(t_var *var, char *word)
 
 	start = NULL;
 	i = 0;
-	path = get_path_from_env(var);
-	build_exe_list(&start, path, word);
-	ft_strarray_del(&path);
+	if (word)
+	{
+		path = get_path_from_env(var);
+		build_exe_list(&start, path, word);
+		ft_strarray_del(&path);
+	}
 	return (start);
 }
 

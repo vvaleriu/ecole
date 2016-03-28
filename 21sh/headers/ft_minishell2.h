@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 12:57:59 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:06:33 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define LN_S			var->line.s
 # define LN_CPY			var->line.cpy
 # define LN_POS			var->line.pos
+# define CLIST			var->clist
 # define FD_IN			var->conf->rfd
 # define FD_OUT			var->conf->wfd
 # define CUR_POS_X		var->conf->cur_pos[0]
@@ -172,6 +173,7 @@ typedef struct		s_cmd_hist
 ** root : root of the token tree
 ** lex : array of lexing functions
 ** conf : conf structure of a terminal (see ft_termcaps.h)
+** clist : liste contenant les noms des fichiers pour l'autocompletion
 ** key_buf : buffer contenant la suite de caractere qui represente
 ** la touche appuyee
 ** ef : function that execute the necessary token
@@ -186,6 +188,7 @@ typedef struct		s_var
 	t_token			*root;
 	t_lexing_ft		lex[LEX_NB];
 	t_tconf			*conf;
+	t_dlist			*clist;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
 	int				(*ef[OPS_NB])(struct s_var *, t_token *);

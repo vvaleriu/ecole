@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/28 09:54:51 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:42:48 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define SEL_KEY_SIZE		7
 # define KEY_NUMBER			23
 # define ESC 				(KEY_NUMBER - 1)
+# define TAB 				(18)
 # define RET				5
 # define CUR_X				conf->cur_pos[0]
 # define CUR_Y				conf->cur_pos[1]
@@ -133,10 +134,10 @@
 # define KCLEARSCR			conf->keyman[15]
 # define KCUTST_CUR			conf->keyman[16]
 # define KCUTCUR_END		conf->keyman[17]
-# define KCPYST_CUR			conf->keyman[18]
-# define KCPYCUR_END		conf->keyman[19]
-# define KPASTE				conf->keyman[20]
-# define KTAB				conf->keyman[21]
+# define KTAB				conf->keyman[18]
+# define KCPYST_CUR			conf->keyman[19]
+# define KCPYCUR_END		conf->keyman[20]
+# define KPASTE				conf->keyman[21]
 # define KESC				conf->keyman[ESC]
 
 # define DOWN_ARROW			'B'

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:11:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 12:59:44 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/28 13:34:57 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 
 /*
-** exe_path[0] = exec name
-** exe_path[1] = word path sent to the shell
+** ret[0] = folder;
+** ret[1] = file;
 */
 static void		build_files_list(t_dlist **start, char *path, char *word)
 {
@@ -88,5 +88,3 @@ t_dlist		*create_files_list(char *word)
 		free(wd[0]);
 	return (start);
 }
-
-
