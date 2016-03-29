@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:11:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 13:34:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:18:04 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		build_files_list(t_dlist **start, char *path, char *word)
 			{
 				str = (fo->d_type == DT_DIR ? ft_strjoin(fo->d_name, "/") : \
 					ft_strdup(fo->d_name));
-				ft_dlstadd(start, ft_dlstnew((void *)str, sizeof(char *)));
+				ft_dlstadd_last(start, ft_dlstnew((void *)str, sizeof(char *)));
 			}
 		}
 		closedir(dir);

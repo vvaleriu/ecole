@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/27 12:35:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 10:29:19 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		move_to_next_char(t_var *var)
 		var->line.pos++;
 		return (2);
 	}
-	return (0);
+	return (1);
 }
 
 /*

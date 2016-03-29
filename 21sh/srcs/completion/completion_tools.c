@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:53:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 13:54:48 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:19:18 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ int			currently_on_a_word(t_var *var)
 	return (0);
 }
 
+/*
+** Permet de recuperer le mot ou l'expression que l'on doit chercher pour
+** la completion
+** Si on n'est pas sur un mot on retourne null
+** Si on est deja sur un mot
+**	- Si on est a la fin de la ligne ou bien sur un espace, on recule d'une case
+**	- On sauvegarde la place
+*/
 char		*get_current_word(t_var *var)
 {
 	char	*ret;
@@ -73,8 +81,7 @@ char		*get_current_word(t_var *var)
 		j = i + 1;
 		while (i && ft_isalnum(LN_S[i]))
 			i--;
-		ft_printf("i : %d\n", i);
-		ret = ft_strndup(LN_S + i, j - i);
+		ret = ft_strndup(LN_S + i + 1, j - i);
 	}
 	return (ret);
 }

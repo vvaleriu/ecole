@@ -49,7 +49,7 @@ static void		build_exe_list(t_dlist **start, char **path, char *word)
 			while ((fo = readdir(dir)) != NULL)
 			{
 				if (!ft_strncmp(fo->d_name, word, ft_strlen(word)))
-					ft_dlstadd(start, ft_dlstnew((void *)ft_strdup(fo->d_name), sizeof(char *)));
+					ft_dlstadd_last(start, ft_dlstnew((void *)ft_strdup(fo->d_name), sizeof(char *)));
 			}
 			closedir(dir);
 		}

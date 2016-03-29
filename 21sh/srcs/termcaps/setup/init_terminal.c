@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/28 14:28:10 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 09:00:20 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ static void	fill_keyman_tab(t_tconf *conf)
 	KESC.f = move_to_previous_char;
 	ft_strcpy(KRET.seq, RET_SEQ);
 	KRET.f = return_command;
-	// KRET.f = completion;
 	ft_strcpy(KBKSP.seq, BKSP_SEQ);
 	KBKSP.f = erase_char;
 	ft_strcpy(KDEL.seq, DEL_SEQ);
 	KDEL.f = delete_char;
-	// KDEL.f = completion;
 	ft_strcpy(KHOME.seq, HOME_SEQ);
 	KHOME.f = move_to_origin;
 	ft_strcpy(KEND.seq, END_SEQ);

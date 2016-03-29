@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/27 13:16:38 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 10:51:59 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int			insert_char(t_var *var)
 ** On affche cette nouvelle ligne
 ** on place le curseur la ou il faut et on remet a jour les infos
 */
+
 int			insert_str(t_var *var, char *str)
 {
 	char	*tmp;
@@ -99,6 +100,7 @@ int			insert_str(t_var *var, char *str)
 	update_line_struct(var);
 	ft_putstr_cursor_wrap(var);
 	set_str_cap("rc");
+	LN_POS -= len;
 	while (len > 0)
 	{
 		move_to_next_char(var);
