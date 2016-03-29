@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 12:32:22 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/29 16:08:38 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,14 +127,19 @@ void		check_tree(t_token *root)
 		ft_printf("liste vide\n");
 }
 
-/*
-int main()
-{
-    char **ret;
 
-    ret = ft_strsplit("coco bongo caca banga", ' ');
-    lol(&ret, 1);
-    ft_putstr_array(ret);
-    ft_strarray_del(&ret);
+/*int main()
+{
+    int i;
+
+    //ft_printf("On verifie les leaks%d\n", 21);
+    //ft_printf("On verifie les leaks%f\n", 21.431f);
+    //ft_printf("On verifie les leaks%ld\n", 21);
+    //ft_printf("On verifie les leaks%s\n", "lolipop");
+    ft_printf("On verifie les leaks%u\n", 2143243223);
+    while (1)
+    {
+    	i = 1;
+    }
     return 0;
 }*/
