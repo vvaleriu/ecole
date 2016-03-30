@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 14:30:36 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/30 15:30:14 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void		delete_completion_list(void *content, size_t size)
 t_dlist		*create_exe_list(t_var *var, char *word)
 {
 	t_dlist		*start;
-	int			i;
 	char		**path;
 
 	start = NULL;
-	i = 0;
 	if (word)
 	{
 		path = get_path_from_env(var);

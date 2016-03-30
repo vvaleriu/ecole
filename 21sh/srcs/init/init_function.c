@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 14:05:15 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/30 22:31:15 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void		init_function(t_var *var, char **envp)
 	var->hist.cur = NULL;
 	var->hist.start = NULL;
 	var->hist.tmp = NULL;
+	var->line.tmp = NULL;
+	var->line.quote = '\0';
+	PROMPT_LEN = PROMPT_LEN_VALUE;
 	CLIST = NULL;
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);

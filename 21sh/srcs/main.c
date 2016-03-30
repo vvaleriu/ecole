@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/29 16:08:38 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/30 19:48:22 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,29 @@ int			main(int ac, char **av, char **envp)
 		terminal_input_mode(var->conf);
 		read_key(var);
 		terminal_execute_mode(var->conf);
-		var->list = lexer(var->line.s, var->lex);
-		//deb_print_first_list(var->list);
-		var->list = create_tokens(var->list);
-		//deb_print_token_list(var->list);
-		var->root = parser(var->list);
-		//check_tree(var->root);
-		//ft_putstr("___________________________\n");
-		execute_tree(var, var->root);
-		clean_tree(var->root);
-		var->root = NULL;
-		ft_strdel(&(var->line.s));
+		proceed_to_execution(var);
 	}
 	ft_strdel(&(var->line.cpy));
 	return (0);
 }
 
-/*void		print_prompt_routine(t_var *var)
+/*
+** Execute tout le processus d'execution de la commande jusqu'au nettoyage des
+*/
+void 		proceed_to_execution(t_var *var)
 {
-
-}*/
+	var->list = lexer(var, var->line.s, var->lex);
+	//deb_print_first_list(var->list);
+	var->list = create_tokens(var->list);
+	//deb_print_token_list(var->list);
+	var->root = parser(var->list);
+	//check_tree(var->root);
+	//ft_putstr("___________________________\n");
+	execute_tree(var, var->root);
+	clean_tree(var->root);
+	var->root = NULL;
+	ft_strdel(&(var->line.s));
+}
 
 void		deb_print_first_list(t_list *list)
 {

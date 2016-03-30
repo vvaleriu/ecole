@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/28 14:06:33 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/30 23:29:21 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,18 @@
 ** position de depart du curseur
 ** HIST_LEN : taille de la liste de l'historique
 */
-# define PROMPT_LEN			2
+# define PROMPT_LEN			var->line.prompt_len
+# define PROMPT_LEN_VALUE	2
 # define HIST_LEN			500
 
 /*
 ** HELPERS
 */
 # define LN_S			var->line.s
+# define LN_TMP			var->line.tmp
 # define LN_CPY			var->line.cpy
 # define LN_POS			var->line.pos
+# define LN_QUOTE		var->line.quote
 # define CLIST			var->clist
 # define FD_IN			var->conf->rfd
 # define FD_OUT			var->conf->wfd
@@ -99,6 +102,8 @@
 */
 # define CMD_LENGTH		325
 
+typedef struct s_var		t_var;
+
 /*
 ** tokens to be executed
 ** no 	: operation number
@@ -123,7 +128,7 @@ typedef struct		s_token
 typedef struct		s_lexing_ft
 {
 	char	*s;
-	void	(*f)(char **, t_list **alst);
+	void	(*f)(t_var *var, char **, t_list **alst);
 }					t_lexing_ft;
 
 /*
@@ -139,16 +144,22 @@ typedef struct		s_builtin
 /*
 ** Structure representant la ligne de commande actuelle.
 ** line : ligne de commande
+** tmp : sauvegarde temporaire de la ligne, utile pour les quotes non fermees
 ** cpy : chaine de caractere copiee par l'utilisateur
 ** position : sur quel caractere de cette ligne le curseur se trouve
 ** max : longueur max de la chaine avant de devoir realloc
+** prompt_len : longeur du prompt (parfois "$>" parfois "quote>")
+** quote : si different de \0 alors on a une quote non ferme et on attend sa fermeture
 */
 typedef struct		s_cmd_line
 {
 	char	*s;
+	char	*tmp;
 	char	*cpy;
 	int		pos;
 	size_t	max;
+	int		prompt_len;
+	char	quote;
 }					t_cmd_line;
 
 /*
@@ -210,14 +221,15 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *));
 ** 			LEXING FUNCTIONS
 */
 
-t_list		*lexer(char *buf, t_lexing_ft *lex);
-void		lex_semicon(char **buf, t_list **alst);
-void		lex_small(char **buf, t_list **alst);
-void		lex_big(char **buf, t_list **alst);
-void		lex_pipe(char **buf, t_list **alst);
-void		lex_space(char **buf, t_list **alst);
-void		lex_and(char **buf, t_list **alst);
-void		lex_char(char **buf, t_list **alst);
+t_list		*lexer(t_var *var, char *buf, t_lexing_ft *lex);
+void		lex_semicon(t_var *var, char **buf, t_list **alst);
+void		lex_small(t_var *var, char **buf, t_list **alst);
+void		lex_big(t_var *var, char **buf, t_list **alst);
+void		lex_pipe(t_var *var, char **buf, t_list **alst);
+void		lex_space(t_var *var, char **buf, t_list **alst);
+void		lex_and(t_var *var, char **buf, t_list **alst);
+void		lex_char(t_var *var, char **buf, t_list **alst);
+void		lex_quote(t_var *var, char **buf, t_list **alst);
 
 /*
 ** 			PARSING FUNCTIONS
@@ -235,6 +247,7 @@ t_token		*parser(t_list *list);
 **			EXECUTION FUNCTIONS
 */
 
+void		proceed_to_execution(t_var *var);
 int			execute_tree(t_var *var, t_token *tk);
 void		processus_end_analysis(int status);
 int			exe_semi(t_var *var, t_token *tk);
@@ -306,7 +319,7 @@ void		deb_print_first_list(t_list *list);
 void		deb_print_token_list(t_list *list);
 void		check_tree(t_token *root);
 
-void		print_missing_quote(char **buf, char *s, char qt, t_list **alst);
+void		missing_quote_loop(char **buf, char *s, char qt, t_list **alst);
 void		lex_aggregation(char **buf, t_list **alst);
 void		lex_quote(char **buf, t_list **alst);
 void		lex_alnum(char **buf, t_list **alst);

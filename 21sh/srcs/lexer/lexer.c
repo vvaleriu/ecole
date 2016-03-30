@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:30:32 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 10:50:58 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/30 22:55:15 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 ** 6
 */
 
-t_list		*lexer(char *buf, t_lexing_ft *lex)
+t_list		*lexer(t_var *var, char *buf, t_lexing_ft *lex)
 {
 	t_list	*alst;
 	int		i;
 
 	i = 0;
 	alst = NULL;
+	var->list = alst;
 	while (*buf)
 	{
 		if (is_operator(*buf))
@@ -33,7 +34,7 @@ t_list		*lexer(char *buf, t_lexing_ft *lex)
 			while (i < 5)
 			{
 				if (!ft_strncmp(buf, lex[i].s, 1))
-					lex[i].f(&buf, &alst);
+					lex[i].f(var, &buf, &alst);
 				i++;
 			}
 			i = 0;
@@ -42,7 +43,7 @@ t_list		*lexer(char *buf, t_lexing_ft *lex)
 			while (is_space(*buf))
 				buf++;
 		else
-			lex[LEX_CHAR_NB].f(&buf, &alst);
+			lex[LEX_CHAR_NB].f(var, &buf, &alst);
 	}
 	return (alst);
 }
