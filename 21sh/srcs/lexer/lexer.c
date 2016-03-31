@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 16:30:32 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 22:55:15 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 15:40:19 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,32 @@
 ** 6
 */
 
+t_list		*lexer(t_var *var, t_lexing_ft *lex)
+{
+	int		i;
+
+	i = 0;
+	while (*(LN_S))
+	{
+		if (is_operator(*(LN_S)))
+		{
+			while (i < 5)
+			{
+				if (!ft_strncmp((LN_S), lex[i].s, 1))
+					lex[i].f(var, &(LN_S), &(var->list));
+				i++;
+			}
+			i = 0;
+		}
+		else if (is_space(*(LN_S)))
+			while (is_space(*(LN_S)))
+				(LN_S)++;
+		else
+			lex[LEX_CHAR_NB].f(var, &(LN_S), &(var->list));
+	}
+	return (var->list);
+}
+/*
 t_list		*lexer(t_var *var, char *buf, t_lexing_ft *lex)
 {
 	t_list	*alst;
@@ -46,4 +72,4 @@ t_list		*lexer(t_var *var, char *buf, t_lexing_ft *lex)
 			lex[LEX_CHAR_NB].f(var, &buf, &alst);
 	}
 	return (alst);
-}
+}*/

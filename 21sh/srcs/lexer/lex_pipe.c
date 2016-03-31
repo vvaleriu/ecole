@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:09:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 19:53:08 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 12:06:35 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	lex_pipe(t_var *var, char **buf, t_list **alst)
 {
 	t_list	*tmp;
 
-	(void *)var;
+	var = (void *)var;
 	if (*((*buf) + 1) == '|')
 	{
 		tmp = ft_lstnew((void *)ft_strndup(*buf, 2), sizeof(char *));

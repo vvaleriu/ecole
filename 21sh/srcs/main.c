@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 19:48:22 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 21:52:38 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,24 @@ int			main(int ac, char **av, char **envp)
 */
 void 		proceed_to_execution(t_var *var)
 {
-	var->list = lexer(var, var->line.s, var->lex);
-	//deb_print_first_list(var->list);
+	var->list = lexer(var, var->lex);
+	// deb_print_first_list(var->list);
 	var->list = create_tokens(var->list);
-	//deb_print_token_list(var->list);
+	// deb_print_token_list(var->list);
 	var->root = parser(var->list);
-	//check_tree(var->root);
-	//ft_putstr("___________________________\n");
+	// check_tree(var->root);
+	// ft_putstr("___________________________\n");
 	execute_tree(var, var->root);
 	clean_tree(var->root);
 	var->root = NULL;
-	ft_strdel(&(var->line.s));
+	var->list = NULL;
+	clean_line_pointers(var);
+}
+
+void		clean_line_pointers(t_var *var)
+{
+	ft_strdel(&(LN_TMP));
+	LN_S = NULL;
 }
 
 void		deb_print_first_list(t_list *list)

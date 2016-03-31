@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 11:00:12 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/31 22:38:58 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,71 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+
+/*
+** Si on a un argument
+*/
+static void		check_for_back_quote(t_var *var, char **com)
+{
+	int		i;
+
+	i = 0;
+	while (com[i])
+	{
+		if (com[i][0] == '`')
+			execute_back_quote(var, &(com[i]));
+		i++;
+	}
+}
+
+static void		fill_argument(int fd, char **arg)
+{
+	int		rd;
+	char	*ret;
+	char	*del;
+	char	buf[500];
+
+	ft_strdel(arg);
+	ret = NULL;
+	while ((rd = read(fd, buf, 499)))
+	{
+		buf[rd] = '\0';
+		buf[rd - 1] = (buf[rd - 1] == '\n' ? '\0' : buf[rd - 1]);
+		del = ret;
+		ret = ft_strjoin(ret, buf);
+		ft_strdel(&del);
+	}
+	*arg = ret;
+}
+
+void			execute_back_quote(t_var *var, char **arg)
+{
+	pid_t	father;
+	int		status;
+	int		fd[2];
+	int		saved_fds[2];
+
+	save_std_fds(saved_fds);
+	pipe(fd);
+	father = fork();
+	if (!father)
+	{
+		close(fd[0]);
+		dup2(fd[1], 1);
+		var->line.s = ft_strndup((*arg) + 1, ft_strlen(*arg) - 2);
+		var->list = NULL;
+		proceed_to_execution(var);
+		exit(0);
+	}
+	else
+	{
+		waitpid(father, &status, 0);
+		close(fd[1]);
+		fill_argument(fd[0], arg);
+		close(fd[0]);
+		restore_std_fds(saved_fds);
+	}
+}
 
 /*
 ** fill_tab fill the array of structure t_pcom with fonctions and how to
@@ -55,6 +120,31 @@ int				exe_command(t_var *var, t_token *tk)
 
 	com = (tk->exe ? tk->exe : NULL);
 	status = exec_bin(com, var);
+	if (com && status == -1 && (path = get_path(com[0], var->tenv)))
+	{
+		ft_strrev(com[0]);
+		check_for_back_quote(var, com);
+		father = fork();
+		if (!father)
+			exit(execve(path, com, var->tenv));
+		if (father > 0)
+		{
+			waitpid(father, &status, 0);
+			status = WEXITSTATUS(status);
+		}
+		ft_strdel(&path);
+	}
+	return (status);
+}
+/*int				exe_command(t_var *var, t_token *tk)
+{
+	pid_t		father;
+	char		*path;
+	char		**com;
+	int			status;
+
+	com = (tk->exe ? tk->exe : NULL);
+	status = exec_bin(com, var);
 	if (com != NULL && status == -1)
 	{
 		if (com && (path = get_path(com[0], var->tenv)))
@@ -72,4 +162,4 @@ int				exe_command(t_var *var, t_token *tk)
 		}
 	}
 	return (status);
-}
+}*/

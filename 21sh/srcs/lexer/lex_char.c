@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:43:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 19:52:52 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 12:07:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ void		lex_alnum(char **buf, t_list **alst)
 */
 void		lex_char(t_var *var, char **buf, t_list **alst)
 {
-	(void *)var;
 	if (**buf == '\"' || **buf == '\'' || **buf == '`')
-		lex_quote(buf, alst);
+		lex_quote(var, buf, alst);
 	else if (is_fd_aggregation(*buf))
 		lex_aggregation(buf, alst);
 	else

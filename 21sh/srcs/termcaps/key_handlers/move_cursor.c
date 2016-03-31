@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_cursor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/29 10:29:19 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/31 16:21:23 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,7 @@ int		move_to_previous_char(t_var *var)
 
 int		move_to_next_line(t_var *var)
 {
-	t_tconf		*conf;
-
-
-	conf = var->conf;
-	(void)conf;
+	var = (void *)var;
 	set_str_cap("do");
 	return (2);
 }

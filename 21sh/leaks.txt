@@ -1,0 +1,113 @@
+==14025== Memcheck, a memory error detector
+==14025== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==14025== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==14025== Command: ./21sh
+==14025== Parent PID: 8778
+==14025== 
+==14025== Invalid write of size 8
+==14025==    at 0x4064B1: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==  Address 0x542ddb8 is 8 bytes inside a block of size 9 alloc'd
+==14025==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14025==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025== 
+==14034== Syscall param execve(argv) points to unaddressable byte(s)
+==14034==    at 0x5121337: execve (execve.c:33)
+==14034==    by 0x40260D: exe_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x4035CD: execute_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x401109: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==  Address 0x542ddb9 is 0 bytes after a block of size 9 alloc'd
+==14034==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14034==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14034== 
+==14025== Invalid read of size 8
+==14025==    at 0x4036D8: clean_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x40111C: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==  Address 0x542ddb8 is 8 bytes inside a block of size 9 alloc'd
+==14025==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14025==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025== 
+==14041== Syscall param execve(argv) points to unaddressable byte(s)
+==14041==    at 0x5121337: execve (execve.c:33)
+==14041==    by 0x40260D: exe_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x4035CD: execute_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x401109: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==  Address 0x5460719 is 0 bytes after a block of size 9 alloc'd
+==14041==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14041==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14041== 
+==14025== Invalid read of size 8
+==14025==    at 0x403096: ft_exit (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x402541: exec_bin (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x402583: exe_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4035CD: execute_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401109: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==  Address 0x54932f8 is 8 bytes inside a block of size 9 alloc'd
+==14025==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14025==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025== 
+==14025== Invalid read of size 8
+==14025==    at 0x4036D8: clean_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4030D9: ft_exit (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x402541: exec_bin (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x402583: exe_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4035CD: execute_tree (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401109: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==  Address 0x54932f8 is 8 bytes inside a block of size 9 alloc'd
+==14025==    at 0x4C2AB80: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==14025==    by 0x407E5D: ft_memalloc (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x40640F: create_exe (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4033A9: create_command (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x403540: create_tokens (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x4010C6: proceed_to_execution (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025==    by 0x401078: main (in /mnt/donnees/vincent/Travaux/ecole/21sh/21sh)
+==14025== 
+==14025== 
+==14025== HEAP SUMMARY:
+==14025==     in use at exit: 15,841 bytes in 24 blocks
+==14025==   total heap usage: 328 allocs, 304 frees, 428,418 bytes allocated
+==14025== 
+==14025== LEAK SUMMARY:
+==14025==    definitely lost: 0 bytes in 0 blocks
+==14025==    indirectly lost: 0 bytes in 0 blocks
+==14025==      possibly lost: 0 bytes in 0 blocks
+==14025==    still reachable: 15,841 bytes in 24 blocks
+==14025==         suppressed: 0 bytes in 0 blocks
+==14025== Reachable blocks (those to which a pointer was found) are not shown.
+==14025== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==14025== 
+==14025== For counts of detected and suppressed errors, rerun with: -v
+==14025== ERROR SUMMARY: 7 errors from 4 contexts (suppressed: 0 from 0)

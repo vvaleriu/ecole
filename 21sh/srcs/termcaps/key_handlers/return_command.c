@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 22:55:07 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 15:35:49 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			return_command(t_var *var)
 {
 	char	*s;
 
+	LN_TMP = LN_S;
 	if (LN_QUOTE == '\0')
 	{
 		add_to_history(var);
@@ -43,5 +44,8 @@ int			return_command(t_var *var)
 		return (RET);
 	}
 	else
-		missing_quote_loop(var, &(LN_S), (s = LN_S), &(var->list));
+	{
+		missing_quote_loop(var, (s = LN_S), &(var->list));
+		return (RET);
+	}
 }

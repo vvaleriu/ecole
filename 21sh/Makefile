@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
+#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/28 13:54:12 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/03/31 12:12:11 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC = main.c					\
 		lex_space.c				\
 		lex_and.c				\
 		lex_char.c				\
+		lex_quote.c				\
 		parser.c				\
 		exe_command.c			\
 		get_path.c				\

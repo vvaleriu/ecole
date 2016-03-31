@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 21:52:22 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/24 11:00:21 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/03/31 20:00:10 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char		*del_quotes(void **str)
 	char	*s;
 
 	s = *str;
+	if (*s == '`')
+		return (s);
 	if (s)
 	{
 		ret = (ft_strndup(s + 1, ft_strlen(s + 1) - 1));

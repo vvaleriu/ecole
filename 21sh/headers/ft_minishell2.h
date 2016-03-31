@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 23:29:21 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 19:39:42 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *));
 ** 			LEXING FUNCTIONS
 */
 
-t_list		*lexer(t_var *var, char *buf, t_lexing_ft *lex);
+t_list		*lexer(t_var *var, t_lexing_ft *lex);
 void		lex_semicon(t_var *var, char **buf, t_list **alst);
 void		lex_small(t_var *var, char **buf, t_list **alst);
 void		lex_big(t_var *var, char **buf, t_list **alst);
@@ -230,6 +230,9 @@ void		lex_space(t_var *var, char **buf, t_list **alst);
 void		lex_and(t_var *var, char **buf, t_list **alst);
 void		lex_char(t_var *var, char **buf, t_list **alst);
 void		lex_quote(t_var *var, char **buf, t_list **alst);
+void		missing_quote_loop(t_var *var, char *s, t_list **alst);
+void		lex_aggregation(char **buf, t_list **alst);
+void		lex_alnum(char **buf, t_list **alst);
 
 /*
 ** 			PARSING FUNCTIONS
@@ -249,6 +252,7 @@ t_token		*parser(t_list *list);
 
 void		proceed_to_execution(t_var *var);
 int			execute_tree(t_var *var, t_token *tk);
+void		clean_line_pointers(t_var *var);
 void		processus_end_analysis(int status);
 int			exe_semi(t_var *var, t_token *tk);
 int			exe_and(t_var *var, t_token *tk);
@@ -258,6 +262,7 @@ int			exe_redir_in(t_var *var, t_token *tk);
 int			stdfd_redir(t_token *tk);
 int			exe_redir_out(t_var *var, t_token *tk);
 char		*get_path(char *exe, char **env);
+void		execute_back_quote(t_var *var, char **arg);
 int			exe_command(t_var *var, t_token *tk);
 
 /*
@@ -318,11 +323,6 @@ void		print_token(t_token *tk);
 void		deb_print_first_list(t_list *list);
 void		deb_print_token_list(t_list *list);
 void		check_tree(t_token *root);
-
-void		missing_quote_loop(char **buf, char *s, char qt, t_list **alst);
-void		lex_aggregation(char **buf, t_list **alst);
-void		lex_quote(char **buf, t_list **alst);
-void		lex_alnum(char **buf, t_list **alst);
 
 char		*get_env_value(char *var, char **env);
 void		check_tabs_init(t_var *var);

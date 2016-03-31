@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:33:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 19:54:00 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/31 12:07:01 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	lex_space(t_var *var, char **buf, t_list **alst)
 {
-	(void *)var;
+	var = (void *)var;
 	while (is_space(**buf) == 1)
 		(*buf)++;
 	*alst = NULL;
