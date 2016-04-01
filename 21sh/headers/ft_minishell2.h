@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 19:39:42 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/02 00:16:14 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define LN_CPY			var->line.cpy
 # define LN_POS			var->line.pos
 # define LN_QUOTE		var->line.quote
+# define LN_HEREDOC		var->line.heredoc
 # define CLIST			var->clist
 # define FD_IN			var->conf->rfd
 # define FD_OUT			var->conf->wfd
@@ -160,6 +161,7 @@ typedef struct		s_cmd_line
 	size_t	max;
 	int		prompt_len;
 	char	quote;
+	int		heredoc;
 }					t_cmd_line;
 
 /*
@@ -259,6 +261,8 @@ int			exe_and(t_var *var, t_token *tk);
 int			exe_or(t_var *var, t_token *tk);
 int			exe_pipe(t_var *var, t_token *tk);
 int			exe_redir_in(t_var *var, t_token *tk);
+int			exe_dredir_in(t_var *var, t_token *tk);
+void		dredir_loop(t_var *var);
 int			stdfd_redir(t_token *tk);
 int			exe_redir_out(t_var *var, t_token *tk);
 char		*get_path(char *exe, char **env);

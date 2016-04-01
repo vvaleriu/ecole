@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/31 12:12:11 by vincent          ###   ########.fr        #
+#    Updated: 2016/04/01 23:23:03 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ SRC = main.c					\
 		exe_list.c				\
 		files_list.c			\
 		completion_tools.c		\
+		exe_dredir_in.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
