@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/02 00:29:27 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 11:14:06 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 int			return_command(t_var *var)
 {
 	char	*s;
-
 
 	if (LN_QUOTE == '\0' && !LN_HEREDOC)
 	{

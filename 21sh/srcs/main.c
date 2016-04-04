@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 21:52:38 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 19:26:40 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int			main(int ac, char **av, char **envp)
 	ft_strdel(&(var->line.cpy));
 	return (0);
 }
+
+/*int main()
+{
+    get_cursor_position();
+    return 0;
+}*/
 
 /*
 ** Execute tout le processus d'execution de la commande jusqu'au nettoyage des
@@ -136,20 +142,3 @@ void		check_tree(t_token *root)
 	else
 		ft_printf("liste vide\n");
 }
-
-
-/*int main()
-{
-    int i;
-
-    //ft_printf("On verifie les leaks%d\n", 21);
-    //ft_printf("On verifie les leaks%f\n", 21.431f);
-    //ft_printf("On verifie les leaks%ld\n", 21);
-    //ft_printf("On verifie les leaks%s\n", "lolipop");
-    ft_printf("On verifie les leaks%u\n", 2143243223);
-    while (1)
-    {
-    	i = 1;
-    }
-    return 0;
-}*/

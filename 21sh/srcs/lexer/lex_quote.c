@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 16:53:08 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/31 16:26:54 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 11:06:51 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 */
 static void	print_quote_prompt(t_var *var)
 {
-	move_to_next_line(var);
 	set_str_cap("sc");
 	terminal_execute_mode(var->conf);
 	if (LN_QUOTE == '\'' && (PROMPT_LEN = ft_strlen("quote>")))

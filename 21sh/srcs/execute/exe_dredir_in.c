@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/02 00:36:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 11:07:16 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 */
 static void	print_heredoc_prompt(t_var *var)
 {
-	move_to_next_line(var);
 	set_str_cap("sc");
 	terminal_execute_mode(var->conf);
 	PROMPT_LEN = ft_strlen("heredoc>");

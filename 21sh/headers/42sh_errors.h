@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_copy_env.c                                      :+:      :+:    :+:   */
+/*   42sh_errors.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/29 17:09:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:24:11 by vincent          ###   ########.fr       */
+/*   Created: 2016/04/04 19:17:10 by vincent           #+#    #+#             */
+/*   Updated: 2016/04/04 19:25:32 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <libft.h>
-#include <ft_minishell2.h>
+#ifndef SH_ERRORS
+# define SH_ERRORS
 
-int			ft_copy_env(t_var *var, char **env)
-{
-	int i;
+# define ERR_NO_ENV			"env must be set up to launch this application"
 
-	i = 0;
-	if (env)
-	{
-		while (env[i])
-			i++;
-		var->tenv = (char **)ft_memalloc(sizeof(char *) * (i + 1));
-		while (--i >= 0)
-			var->tenv[i] = ft_strdup(env[i]);
-		return (0);
-	}
-	return (-1);
-}
+#endif

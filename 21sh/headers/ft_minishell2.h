@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/02 00:16:14 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 19:23:57 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <libft.h>
 # include <ft_termcaps.h>
+# include <42sh_errors.h>
 
 /*
 ** LEX_NB		: Nombre de fonctions pour le lexer
@@ -214,7 +215,7 @@ typedef struct		s_var
 void		init_function(t_var *var, char **envp);
 void		ft_fill_tab(t_builtin *bin);
 void		fill_lex_ft(t_lexing_ft *lex);
-void		ft_copy_env(t_var *var, char **envp);
+int			ft_copy_env(t_var *var, char **envp);
 void		fill_env_array(t_var *var);
 void		fill_lex_ft_tab(t_lexing_ft *lex);
 void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *));
@@ -334,5 +335,7 @@ void		check_tabs_init(t_var *var);
 void		init_line_struct(t_var *var);
 void		update_line_struct(t_var *var);
 void		del_hist_el(void *p, size_t size);
+
+void 		get_cursor_position();
 
 #endif

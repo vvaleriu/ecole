@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/31 16:21:23 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 11:38:18 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ int		move_to_next_line(t_var *var)
 */
 int		move_to_origin(t_var *var)
 {
-	set_str_cap("rc");
-	var->line.pos = 0;
-	CUR_POS_X = PROMPT_LEN;
-	CUR_POS_Y = 0;
+	int		i;
+
+	i = LN_POS;
+	while (--i >= 0)
+		move_to_previous_char(var);
 	return (2);
 }
 

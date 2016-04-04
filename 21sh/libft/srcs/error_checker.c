@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 18:34:03 by vincent           #+#    #+#             */
-/*   Updated: 2015/08/01 01:37:40 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 19:27:34 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void		*err_void(void *err, void *res, char *str, int quit)
 		ft_printf("%s %s\n", (quit ? "Exit:" : NULL ), str);
 		if (quit)
 			exit(2);
-	} 
+	}
 	return (res);
 }

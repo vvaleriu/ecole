@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/01 23:38:21 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/04 19:33:58 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void		init_function(t_var *var, char **envp)
 	var->line.heredoc = 0;
 	PROMPT_LEN = PROMPT_LEN_VALUE;
 	CLIST = NULL;
+	err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 1);
+	//ft_copy_env(var, envp);
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);
-	ft_copy_env(var, envp);
 	fill_exec_funct_array(var->ef);
 }
 
