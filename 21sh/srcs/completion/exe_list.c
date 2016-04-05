@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/30 15:30:14 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 17:09:12 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static void		build_exe_list(t_dlist **start, char **path, char *word)
 			while ((fo = readdir(dir)) != NULL)
 			{
 				if (!ft_strncmp(fo->d_name, word, ft_strlen(word)))
+				{
+					ft_printf("on ajoute : %s\n", fo->d_name);
 					ft_dlstadd_last(start, ft_dlstnew((void *)ft_strdup(fo->d_name), sizeof(char *)));
+				}
 			}
 			closedir(dir);
 		}
@@ -74,6 +77,7 @@ t_dlist		*create_exe_list(t_var *var, char *word)
 	{
 		path = get_path_from_env(var);
 		build_exe_list(&start, path, word);
+		ft_printf("longeur de la liste : %u", ft_dlstlen(start));
 		ft_strarray_del(&path);
 	}
 	return (start);

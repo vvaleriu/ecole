@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:26:40 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 15:57:31 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int			main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	var = get_instance();
+	/*envp ? ft_putstr("env definis") : ft_putstr("env non definis");
+	if (envp)
+	{
+		ft_printf("longueur : %u", ft_strarray_len(envp));
+		ft_putstr_array(envp);
+	}
+	while (1)
+		ac = 4;*/
 	init_function(var, envp);
 	init_terminal(var);
 	sig_catcher();

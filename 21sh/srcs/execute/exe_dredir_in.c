@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_dredir_in.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 11:07:16 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 12:46:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	print_heredoc_prompt(t_var *var)
 ** line : chaine de caractere a peine lue
 ** on ne free pas LN-TMP car il pointe sur une zone qui sera liberee plus tard
 */
-int 		check_for_ending_sequence(t_var *var, char **tmp, char **line)
+int			check_for_ending_sequence(t_var *var, char **tmp, char **line)
 {
 
 	if (ft_strcmp(*line, LN_TMP))
@@ -85,7 +85,7 @@ void		dredir_loop(t_var *var)
 ** - Alonrs on recupere l'entree via dredir-loop qui va enregistrer l'entree
 ** standard dans LN_TMP.
 */
-int		exe_dredir_in(t_var *var, t_token *tk)
+int			exe_dredir_in(t_var *var, t_token *tk)
 {
 	pid_t	father;
 	int		status;

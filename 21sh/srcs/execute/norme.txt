@@ -1,0 +1,55 @@
+Norme: ./norme.txt
+Warning: Not a valid file
+Norme: ./exe_and.c
+Error (line 27): bad spacing before exe_and_builtins
+Error (line 43): bad spacing before exe_and_normal
+Error (line 71): bad spacing before exe_and
+Error (line 75, col 27): missing space around &&
+Norme: ./exe_pipe.c
+Error (line 22): comment not well formatted
+Error (line 31): bad spacing before exe_pipe
+Error (line 31): function exe_pipe has 26 lines
+Norme: ./exe_or.c
+Error (line 27): bad spacing before exe_or_builtins
+Error (line 43): bad spacing before exe_or_normal
+Error (line 71): bad spacing before exe_or
+Error (line 75, col 27): missing space around &&
+Norme: ./exe_redir_in.c
+Norme: ./exe_dredir_in.c
+Error (line 25): bad spacing before print_heredoc_prompt
+Error (line 42): bad spacing before check_for_ending_sequence
+Error (line 44): Empty line
+Error (line 64): bad spacing before dredir_loop
+Error (line 77): C++ comment
+Error (line 88): bad spacing before exe_dredir_in
+Error (line 88): function exe_dredir_in has 32 lines
+Norme: ./execute_tree.c
+Error (line 19): comment not well formatted
+Norme: ./exe_semi.c
+Error: file must end with a single empty line
+Error: global scope bad aligned
+Error (line 25): bad spacing before exe_semi_builtins
+Error (line 41): bad spacing before exe_semi_normal
+Error (line 60): comment not well formatted
+Error (line 72): bad spacing before exe_semi
+Error (line 76, col 27): missing space around &&
+Error (line 86): line has 97 characters
+Error (line 88): line has 109 characters
+Error (line 89): line has 97 characters
+Error (line 90, col 0): no newline after block
+Norme: ./exe_redir_out.c
+Error (line 26): comment not well formatted
+Error (line 27): bad spacing before stdfd_redir
+Error (line 38): line has 93 characters
+Error (line 46): comment not well formatted
+Error (line 49): bad spacing before exe_redir_out
+Norme: ./exe_command.c
+Error (line 23): bad spacing before check_for_back_quote
+Error (line 108): comment not well formatted
+Error (line 114): bad spacing before exe_command
+Error (line 139): comment not well formatted
+Norme: ./get_path.c
+Error: global scope bad aligned
+Error (line 56): line has 87 characters
+Error (line 82): C++ comment
+Error (line 100): function get_path has 27 lines

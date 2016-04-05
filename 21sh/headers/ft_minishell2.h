@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell2.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:23:57 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 15:48:45 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <libft.h>
 # include <ft_termcaps.h>
-# include <42sh_errors.h>
+# include <sh_errors.h>
 
 /*
 ** LEX_NB		: Nombre de fonctions pour le lexer
@@ -26,7 +26,7 @@
 # define CMP			ft_strncmp
 # define LEN			ft_strlen
 # define LEX_NB			7
-# define BIN_NB			5
+# define BIN_NB			6
 # define OPS_NB			9
 
 /*
@@ -48,6 +48,7 @@
 # define LN_QUOTE		var->line.quote
 # define LN_HEREDOC		var->line.heredoc
 # define CLIST			var->clist
+# define CPROSS			var->current_process
 # define FD_IN			var->conf->rfd
 # define FD_OUT			var->conf->wfd
 # define CUR_POS_X		var->conf->cur_pos[0]
@@ -203,6 +204,7 @@ typedef struct		s_var
 	t_lexing_ft		lex[LEX_NB];
 	t_tconf			*conf;
 	t_dlist			*clist;
+	pid_t			current_process;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
 	int				(*ef[OPS_NB])(struct s_var *, t_token *);
@@ -275,7 +277,9 @@ int			exe_command(t_var *var, t_token *tk);
 */
 
 void		sig_catcher();
+void		sig_catcher_fork();
 void		sig_handler(int signo);
+void		sig_handler_fork(int signo);
 void		go_background(int signo);
 void		go_foreground(int signo);
 
@@ -301,6 +305,7 @@ int			ft_env(char **exe, void *var);
 int			ft_setenv(char **exe, void *var);
 int			ft_unsetenv(char **exe, void *var);
 int			ft_exit(char **exe, void *var);
+int			ft_echo(char **exe, void *var);
 int			find_env(char *exe, char **env);
 
 /*

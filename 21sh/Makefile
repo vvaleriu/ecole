@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/04/04 19:25:53 by vincent          ###   ########.fr        #
+#    Updated: 2016/04/05 15:48:05 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC = main.c					\
 		ft_setenv.c				\
 		ft_exit.c				\
 		ft_unsetenv.c			\
+		ft_echo.c				\
 		ft_copy_env.c			\
 		create_tokens.c			\
 		execute_tree.c			\

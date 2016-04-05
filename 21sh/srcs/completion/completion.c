@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 08:12:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/29 12:42:59 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/05 17:03:00 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		create_list(t_var *var)
 	if (CLIST == NULL)
 	{
 		tmp = get_current_word(var);
-		//ft_printf("Mot actuel : %s\n", tmp);
-		//ft_printf("On cherche un %s\n", (look_for_exe(var) ? "exe" : "fichier"));
+		ft_printf("Mot actuel : %s\n", tmp);
+		ft_printf("On cherche un %s\n", (look_for_exe(var) ? "exe" : "fichier"));
 		if (look_for_exe(var))
 			CLIST = create_exe_list(var, tmp);
 		else

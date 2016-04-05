@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:33:58 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 12:58:02 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ void		check_tabs_init(t_var *var)
 		ft_printf("Adresse ef[%d]\n", var->ef[i]);
 }
 
+/*static void	empty_stdin()
+{
+	char	buf[200];
+	int		rd;
+
+	rd = 1;
+	while (rd)
+	{
+		rd = read(0, buf, 199);
+	}
+	ft_printf("AAFW");
+}*/
+
 /*
 ** initialise les pointeurs a NULL
 ** remplit les tableaux de fonctions de lexing / parsing / execution
@@ -42,7 +55,9 @@ void		check_tabs_init(t_var *var)
 */
 void		init_function(t_var *var, char **envp)
 {
+	//empty_stdin();
 	var->root = NULL;
+	CPROSS = 0;
 	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
 	var->hist.cur = NULL;
 	var->hist.start = NULL;
@@ -95,6 +110,8 @@ void		ft_fill_tab(t_builtin *bin)
 	bin[3].f = &ft_env;
 	bin[4].na = "exit";
 	bin[4].f = &ft_exit;
+	bin[5].na = "echo";
+	bin[5].f = &ft_echo;
 }
 
 /*

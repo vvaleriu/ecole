@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 01:59:46 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 15:16:00 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/05 16:04:28 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 void			sig_catcher()
 {
 	signal(SIGINT, sig_handler);
-	signal(SIGTSTP, SIG_IGN);
+	signal(SIGKILL, sig_handler);
+	//signal(SIGTSTP, SIG_IGN);
 	signal(SIGWINCH, update_win_size);
-	signal(SIGTSTP, SIG_IGN);
+}
+
+void			sig_catcher_fork()
+{
+	signal(SIGINT, sig_handler_fork);
 }

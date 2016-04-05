@@ -1,0 +1,8 @@
+Norme: ./norme.txt
+Warning: Not a valid file
+Norme: ./ft_minishell2.h
+Warning: /nfs/2013/v/vvaleriu/projets/ecole/21sh/headers/ft_minishell2.h may not compile or is invalid for some reasons.
+Norme: ./sh_errors.h
+Error: has double inclusion protection but not with the good define name
+Norme: ./ft_termcaps.h
+Error: global scope bad aligned

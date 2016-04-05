@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 22:38:58 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 16:06:52 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,10 @@ int				exe_command(t_var *var, t_token *tk)
 		check_for_back_quote(var, com);
 		father = fork();
 		if (!father)
+		{
+			sig_catcher_fork();
 			exit(execve(path, com, var->tenv));
+		}
 		if (father > 0)
 		{
 			waitpid(father, &status, 0);

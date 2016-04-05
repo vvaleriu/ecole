@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 12:01:43 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 10:06:05 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/05 12:40:03 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void		mod_pwd(char **env)
 	char	*del;
 
 	i = find_env("PWD", env);
-	del = ((j = find_env("OLDPWD", env)) != -1 ? env[j] : NULL);
+	j = find_env("OLDPWD", env);
+	del = (j != -1 ? env[j] : NULL);
 	if (del)
 		free(del);
 	if (j != -1)
@@ -38,7 +39,7 @@ static void		mod_pwd(char **env)
 	env[i] = ft_strjoin("PWD=", getcwd(path, 1000));
 }
 
-int		ft_cd(char **exe, void *var)
+int				ft_cd(char **exe, void *var)
 {
 	int		ret;
 	char	*path;
@@ -56,7 +57,10 @@ int		ft_cd(char **exe, void *var)
 	else
 		ret = chdir(exe[1]);
 	if (ret == -1)
+	{
 		ft_putendl("Could not access directory");
+		return (1);
+	}
 	else
 		mod_pwd(var1->tenv);
 	ft_strdel(&path);

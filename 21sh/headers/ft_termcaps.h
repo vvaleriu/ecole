@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/04 11:30:18 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/05 12:30:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,6 @@
 # define LIST_LEN			ftsel[2]
 # define TMP				ftsel[3]
 # define Y_OFFSET			ftsel[4]
-
-//************************
-//
-//A VOIR POUR LE REMPLISSAGE DES FONCTIONS. ON DEFINIT LA MACRO COMME CA PAR DE REMPLISSAGE MANUEL A FAIRE
-/*#define COLOR_STR(color)                            \
-    (RED       == color ? "red"    :                \
-     (BLUE     == color ? "blue"   :                \
-      (GREEN   == color ? "green"  :                \
-       (YELLOW == color ? "yellow" : "unknown"))))   */
 
 /*
 ** SEQUENCE DE CARACTERES RETOURNEE PAR LA PRESSION DE LA TOUCHE
@@ -147,11 +138,8 @@
 
 /*
 **	TERMCAPS CAPS List
-**
-**
 ** Enter fullscreen mode : ti: <Esc> 7 <Esc> [ ? 47 h
 ** Exit fullscreen mode :  te: <Esc> [ 2 J <Esc> [ ? 4 7 l <Esc> 8
-**
 **	------- GRAPHIC
 **	enable / disable underline:	us / ue
 **	enable			 reverse mode: mr
@@ -161,7 +149,7 @@
 **	move cursor right one column: nd
 **	move cursor to next line: nw
 **	says that `le' may be used in column
-**		zero to move to the last column of the preceding line: bw
+**	zero to move to the last column of the preceding line: bw
 */
 
 /*
@@ -182,11 +170,11 @@ typedef struct s_var		t_var;
 ** key sequence to identify
 ** function to execute when the corresponding key is pressed
 */
-struct s_key_man
+struct	s_key_man
 {
-	size_t	seq_len;
-	char 	seq[SEL_KEY_SIZE];
-	int		(*f)(t_var *var);
+	size_t					seq_len;
+	char					seq[SEL_KEY_SIZE];
+	int						(*f)(t_var *var);
 };
 
 /*
@@ -199,81 +187,81 @@ struct s_key_man
 **	cur		: current conf to apply
 ** 	keyman : tableau de  structure permettant d'identifier la touche pressee
 */
-struct s_tconf
+struct	s_tconf
 {
-	int				cur_pos[2];
-	int				rfd;
-	int				wfd;
-	struct winsize	w;
-	struct termios 	def;
-	struct termios 	cur;
-	char			term_buffer[2048];
-	t_key_man		keyman[KEY_NUMBER];
+	int						cur_pos[2];
+	int						rfd;
+	int						wfd;
+	struct winsize			w;
+	struct termios			def;
+	struct termios			cur;
+	char					term_buffer[2048];
+	t_key_man				keyman[KEY_NUMBER];
 };
 
 /*
 ** MAIN
 */
-int					init_fd(int fd);
-int					init_terminal(t_var *var);
+int							init_fd(int fd);
+int							init_terminal(t_var *var);
 
 /*
 ** TERM MANAGER
 */
-int 				load_term_prop(t_tconf *conf);
-int					terminal_input_mode(t_tconf *conf);
-int					terminal_execute_mode(t_tconf *conf);
-void				set_str_cap(char *cap_str);
+int							load_term_prop(t_tconf *conf);
+int							terminal_input_mode(t_tconf *conf);
+int							terminal_execute_mode(t_tconf *conf);
+void						set_str_cap(char *cap_str);
 
 /*
 ** KEY MANAGERS
 */
-int					read_key(t_var *var);
-int					return_command(t_var *var);
-int					restore_terminal(t_var *var);
-int					move_to_next_char(t_var *var);
-int					move_to_previous_char(t_var *var);
-int					move_to_next_char1(t_var *var);
-int					move_to_previous_char1(t_var *var);
-int					move_to_next_line(t_var *var);
-int					move_to_next_word(t_var *var);
-int					move_to_previous_word(t_var *var);
-int					move_to_up_line(t_var *var);
-int					move_to_origin(t_var *var);
-int					move_to_end(t_var *var);
-int					move_to_down_line(t_var *var);
-int					insert_char(t_var *var);
-int					insert_str(t_var *var, char *str);
-int					delete_char(t_var *var);
-int					erase_char(t_var *var);
-int					cl_screen(t_var *var);
-int					copy_from_start(t_var *var);
-int					copy_from_end(t_var *var);
-int					cut_from_start(t_var *var);
-int					cut_from_end(t_var *var);
-int					paste(t_var *var);
+int							read_key(t_var *var);
+int							return_command(t_var *var);
+int							restore_terminal(t_var *var);
+int							move_to_next_char(t_var *var);
+int							move_to_previous_char(t_var *var);
+int							move_to_next_char1(t_var *var);
+int							move_to_previous_char1(t_var *var);
+int							move_to_next_line(t_var *var);
+int							move_to_next_word(t_var *var);
+int							move_to_previous_word(t_var *var);
+int							move_to_up_line(t_var *var);
+int							move_to_origin(t_var *var);
+int							move_to_end(t_var *var);
+int							move_to_down_line(t_var *var);
+int							insert_char(t_var *var);
+int							insert_str(t_var *var, char *str);
+int							delete_char(t_var *var);
+int							erase_char(t_var *var);
+int							cl_screen(t_var *var);
+int							copy_from_start(t_var *var);
+int							copy_from_end(t_var *var);
+int							cut_from_start(t_var *var);
+int							cut_from_end(t_var *var);
+int							paste(t_var *var);
 
 /*
 ** PRINTING
 */
-void				ft_putchar_cursor_wrap(char c);
-void				ft_putstr_cursor_wrap(t_var *var);
-void				ft_putchar_cursor(char c);
-void				ft_putstr_cursor(char *str);
-void				ft_putchar_fixed(char c);
-void				ft_putstr_fixed(char *str);
+void						ft_putchar_cursor_wrap(char c);
+void						ft_putstr_cursor_wrap(t_var *var);
+void						ft_putchar_cursor(char c);
+void						ft_putstr_cursor(char *str);
+void						ft_putchar_fixed(char c);
+void						ft_putstr_fixed(char *str);
 
 /*
 ** TOOLS
 */
-int					putchar_int(int c);
-void 				move_to(int x, int y);
-void				update_win_size(int signo);
-void				print_term_status(t_var *var);
-void				print_term_set_cap(char *str);
-void				print_trackers_status(t_var *var);
-void				update_cur_pos(t_var *var, int movement);
-void				update_line_pos(t_var *var, int movement);
-void				update_trackers(t_var *var, int movement);
+int							putchar_int(int c);
+void						move_to(int x, int y);
+void						update_win_size(int signo);
+void						print_term_status(t_var *var);
+void						print_term_set_cap(char *str);
+void						print_trackers_status(t_var *var);
+void						update_cur_pos(t_var *var, int movement);
+void						update_line_pos(t_var *var, int movement);
+void						update_trackers(t_var *var, int movement);
 
 #endif
