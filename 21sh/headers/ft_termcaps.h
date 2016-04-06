@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 08:23:51 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 12:44:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,18 @@
 # define PGUP_SEQ			"\033[5~"
 # define PGDOWN_SEQ			"\033[6~"
 # define TAB_SEQ			"\t"
+# define CLEARSCR_SEQ		"\f\000\000\000\000\000"
+//# define CUTCUR_END_SEQ		"\v\000\000\000\000\000"
+# define CUTCUR_END_SEQ		"\x0e"
 
 # ifdef __APPLE__
 #  define NEXTWD_SEQ		"\033[1;5C"
-#  define PREVWD_SEQ		"\033[1;5D"
+#  define PREVWD_SEQ		"\x1b[D"
 #  define LNUP_SEQ			"\033[1;5A"
 #  define LNDOWN_SEQ		"\e[1;5B"
-#  define CLEARSCR_SEQ		"\f\000\000\000\000\000"
-#  define CUTST_CUR_SEQ		"\n\000\000\000\000\000"
-#  define CUTCUR_END_SEQ	"\v\000\000\000\000\000"
-#  define CPYST_CUR_SEQ		"\025\000\000\000\000\000"
-#  define CPYCUR_END_SEQ	"\t\000\000\000\000\000"
+#  define CUTST_CUR_SEQ		"\x02"
+#  define CPYST_CUR_SEQ		"\x17"
+#  define CPYCUR_END_SEQ	"\x05"
 #  define PASTE_SEQ			"\031\000\000\000\000\000"
 # endif
 
@@ -94,9 +95,7 @@
 #  define PREVWD_SEQ		"\033[1;5D"
 #  define LNUP_SEQ			"\033[1;5A"
 #  define LNDOWN_SEQ		"\033[1;5B"
-#  define CLEARSCR_SEQ		"\f\000\000\000\000\000"
 #  define CUTST_CUR_SEQ		"\n\000\000\000\000\000"
-#  define CUTCUR_END_SEQ	"\v\000\000\000\000\000"
 #  define CPYST_CUR_SEQ		"\025\000\000\000\000\000"
 #  define CPYCUR_END_SEQ	"\t\000\000\000\000\000"
 #  define PASTE_SEQ			"\031\000\000\000\000\000"

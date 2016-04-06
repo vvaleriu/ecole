@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/29 09:00:20 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 12:45:19 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ static void	fill_keyman_tab1(t_tconf *conf)
 	ft_strcpy(KCUTST_CUR.seq, CUTST_CUR_SEQ);
 	KCUTST_CUR.f = cut_from_start;
 	ft_strcpy(KCUTCUR_END.seq, CUTCUR_END_SEQ);
-	/*iiiiiiiiiiiii*/
-	//KCUTCUR_END.f = cut_from_end;
-	KCUTCUR_END.f = cut_from_start;
+	KCUTCUR_END.f = cut_from_end;
 	ft_strcpy(KCPYST_CUR.seq, CPYST_CUR_SEQ);
 	KCPYST_CUR.f = copy_from_start;
 	ft_strcpy(KCPYCUR_END.seq, CPYCUR_END_SEQ);

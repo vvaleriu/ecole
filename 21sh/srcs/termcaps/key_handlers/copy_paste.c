@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:56:27 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 11:35:53 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 12:22:32 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,8 @@ int			cut_from_start(t_var *var)
 	{
 		copy_from_start(var);
 		ft_strncpy(LN_S, LN_S + LN_POS + 1, i);
-		while (LN_S[i] != '\0')
-		{
-			LN_S[i] = '\0';
-			i++;
-		}
-		set_str_cap("rc");
-		set_str_cap("cd");
-		ft_putstr_cursor(LN_S);
-		move_to_origin(var);
+		while (--i >= 0)
+			erase_char(var);
 	}
 	return (2);
 }
