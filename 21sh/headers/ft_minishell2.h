@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 15:48:45 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 09:44:09 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define LN_QUOTE		var->line.quote
 # define LN_HEREDOC		var->line.heredoc
 # define CLIST			var->clist
-# define CPROSS			var->current_process
+# define ABORD			var->abord
 # define FD_IN			var->conf->rfd
 # define FD_OUT			var->conf->wfd
 # define CUR_POS_X		var->conf->cur_pos[0]
@@ -204,7 +204,7 @@ typedef struct		s_var
 	t_lexing_ft		lex[LEX_NB];
 	t_tconf			*conf;
 	t_dlist			*clist;
-	pid_t			current_process;
+	int				abord;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
 	int				(*ef[OPS_NB])(struct s_var *, t_token *);
@@ -322,6 +322,7 @@ int			history_prev(t_var *var);
 t_var		*get_instance();
 t_tconf		*get_conf();
 int			is_text(char c);
+int			is_filename(char c);
 void		free_all_list(t_list *alst);
 void		clean_tree(t_token *root);
 void		clean_env(t_var *var);

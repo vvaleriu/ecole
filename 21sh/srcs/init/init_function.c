@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 12:58:02 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 07:47:35 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void		init_function(t_var *var, char **envp)
 {
 	//empty_stdin();
 	var->root = NULL;
-	CPROSS = 0;
 	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
 	var->hist.cur = NULL;
 	var->hist.start = NULL;
@@ -65,6 +64,7 @@ void		init_function(t_var *var, char **envp)
 	var->line.tmp = NULL;
 	var->line.quote = '\0';
 	var->line.heredoc = 0;
+	ABORD = 0;
 	PROMPT_LEN = PROMPT_LEN_VALUE;
 	CLIST = NULL;
 	err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 1);

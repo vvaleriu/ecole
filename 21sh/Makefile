@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/04/05 15:48:05 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/04/06 09:22:32 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ SRC = main.c					\
 		completion_tools.c		\
 		exe_dredir_in.c			\
 		get_cursor_position.c	\
+		is_filename.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2016/04/05 16:20:09 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 07:50:16 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void		sig_handler(int signo)
 {
+	t_var	*var;
+
+	var = get_instance();
 	if (signo == SIGINT)
+	{
+		//ABORD = 1;
+		//return_command(var);
 		move_to_next_line(get_instance());
+	}
 }
 
 void		sig_handler_fork(int signo)

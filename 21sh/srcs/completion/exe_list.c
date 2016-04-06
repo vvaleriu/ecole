@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 17:09:12 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 07:16:52 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ static char		**get_path_from_env(t_var *var)
 ** exe_path[0] = exec name
 ** exe_path[1] = word path sent to the shell
 */
-static void		build_exe_list(t_dlist **start, char **path, char *word)
+static t_dlist	*build_exe_list(char **path, char *word)
 {
 	DIR					*dir;
 	struct dirent		*fo;
 	int					i;
+	t_dlist				*start;
 
 	i = 0;
+	start = NULL;
 	while (path[i])
 	{
 		if ((dir = opendir(path[i])))
@@ -49,16 +51,14 @@ static void		build_exe_list(t_dlist **start, char **path, char *word)
 			while ((fo = readdir(dir)) != NULL)
 			{
 				if (!ft_strncmp(fo->d_name, word, ft_strlen(word)))
-				{
-					ft_printf("on ajoute : %s\n", fo->d_name);
-					ft_dlstadd_last(start, ft_dlstnew((void *)ft_strdup(fo->d_name), sizeof(char *)));
-				}
+					ft_dlstadd_last(&start, ft_dlstnew((void *)\
+						ft_strdup(fo->d_name), sizeof(char *)));
 			}
 			closedir(dir);
 		}
 		i++;
 	}
-
+	return (start);
 }
 
 void		delete_completion_list(void *content, size_t size)
@@ -76,8 +76,7 @@ t_dlist		*create_exe_list(t_var *var, char *word)
 	if (word)
 	{
 		path = get_path_from_env(var);
-		build_exe_list(&start, path, word);
-		ft_printf("longeur de la liste : %u", ft_dlstlen(start));
+		start = build_exe_list(path, word);
 		ft_strarray_del(&path);
 	}
 	return (start);

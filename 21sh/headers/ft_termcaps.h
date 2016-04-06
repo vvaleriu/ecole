@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/05 12:30:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 08:23:51 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ int							putchar_int(int c);
 void						move_to(int x, int y);
 void						update_win_size(int signo);
 void						print_term_status(t_var *var);
+void						print_term_status1(t_var *var, char *tmp);
 void						print_term_set_cap(char *str);
 void						print_trackers_status(t_var *var);
 void						update_cur_pos(t_var *var, int movement);

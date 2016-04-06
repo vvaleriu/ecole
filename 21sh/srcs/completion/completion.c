@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 08:12:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 17:03:00 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:51:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		create_list(t_var *var)
 	if (CLIST == NULL)
 	{
 		tmp = get_current_word(var);
-		ft_printf("Mot actuel : %s\n", tmp);
-		ft_printf("On cherche un %s\n", (look_for_exe(var) ? "exe" : "fichier"));
+		//ft_printf("Mot actuel : %s\n", tmp);
+		//ft_printf("On cherche un %s\n", (look_for_exe(var) ? "exe" : "fichier"));
 		if (look_for_exe(var))
 			CLIST = create_exe_list(var, tmp);
 		else
@@ -46,10 +46,13 @@ int		create_list(t_var *var)
 
 int 		print_com(t_var *var)
 {
+	t_dlist		*tmp;
+
+	tmp = CLIST;
 	set_str_cap("do:cr:sc");
 	terminal_execute_mode(var->conf);
 	set_str_cap("rc");
-	ft_dlstiter(CLIST, print_current_list_elem);
+	ft_dlstiter(tmp, print_current_list_elem);
 	set_str_cap("sc");
 	terminal_input_mode(var->conf);
 	set_str_cap("rc");
@@ -80,20 +83,20 @@ int 		completion(t_var *var)
 	{
 		if (first)
 		{
-			while (LN_POS && !ft_isspace(LN_S[LN_POS - 1]))
+			while (LN_POS && is_filename(LN_S[LN_POS - 1]))
 				move_to_previous_char(var);
-			while (ft_isalnum(LN_S[LN_POS]))
+			while (is_filename(LN_S[LN_POS]))
 				delete_char(var);
 		}
 		else
 		{
-			while (LN_POS && is_text(LN_S[LN_POS - 1]))
+			while (LN_POS && is_filename(LN_S[LN_POS - 1]))
 				erase_char(var);
 		}
 		//print_com(var);
 		insert_str(var, (char *)CLIST->content);
 		CLIST = CLIST->next;
-		while (ft_isalnum(LN_S[LN_POS]))
+		while (is_filename(LN_S[LN_POS]))
 			move_to_next_char(var);
 	}
 	return (2);

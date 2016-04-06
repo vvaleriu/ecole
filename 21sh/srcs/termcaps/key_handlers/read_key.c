@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/28 14:30:51 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:54:37 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int			key_identifier(t_var *var)
 		}
 		i++;
 	}
+	ft_dlstdel(&(CLIST), delete_completion_list);
 	return (0);
 }
 

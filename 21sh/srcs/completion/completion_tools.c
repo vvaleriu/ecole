@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:53:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/29 15:25:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:21:55 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			look_for_exe(t_var *var)
 	if (LN_POS != 0 && currently_on_a_word(var))
 	{
 		i = (LN_S[i] == '\0' || ft_isspace(LN_S[i]) ? i - 1 : i);
-		while (i && ft_isalnum(LN_S[i]))
+		while (i && is_filename(LN_S[i]))
 			i--;
 		while (ft_isspace(LN_S[i]) || LN_S[i] == '\0')
 		i--;
@@ -46,6 +46,23 @@ int			look_for_exe(t_var *var)
 		return (1);
 	return (0);
 }
+/*int			look_for_exe(t_var *var)
+{
+	int		i;
+
+	i = LN_POS;
+	if (LN_POS != 0 && currently_on_a_word(var))
+	{
+		i = (LN_S[i] == '\0' || ft_isspace(LN_S[i]) ? i - 1 : i);
+		while (i && ft_isalnum(LN_S[i]))
+			i--;
+		while (ft_isspace(LN_S[i]) || LN_S[i] == '\0')
+		i--;
+	}
+	if (!i || LN_S[i] == '&' || LN_S[i] == '|' || LN_S[i] == ';')
+		return (1);
+	return (0);
+}*/
 
 /*
 ** Dit si on doit faire une recherche sur rien ou bien sur un mot
@@ -54,7 +71,7 @@ int			currently_on_a_word(t_var *var)
 {
 	if (LN_S[LN_POS] == '\0' && LN_POS == 0)
 		return (0);
-	if (ft_isalnum(LN_S[LN_POS]) || (LN_POS && ft_isalnum(LN_S[LN_POS - 1])))
+	if (is_filename(LN_S[LN_POS]) || (LN_POS && is_filename(LN_S[LN_POS - 1])))
 		return (1);
 	return (0);
 }
@@ -79,9 +96,11 @@ char		*get_current_word(t_var *var)
 	{
 		i = (LN_S[i] == '\0' || ft_isspace(LN_S[i]) ? i - 1 : i);
 		j = i + 1;
-		while (i && ft_isalnum(LN_S[i]))
+		while (LN_S[j] != '\0' && !ft_isspace(LN_S[j]))
+			j++;
+		while (i && is_filename(LN_S[i - 1]))
 			i--;
-		ret = ft_strndup(LN_S + i + 1, j - i);
+		ret = ft_strndup(LN_S + i, j - i);
 	}
 	return (ret);
 }

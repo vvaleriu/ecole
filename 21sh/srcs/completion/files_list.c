@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:11:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/29 12:18:04 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:52:32 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void		build_files_list(t_dlist **start, char *path, char *word)
 	DIR					*dir;
 	struct dirent		*fo;
 	char				*str;
+	char				*tmp;
 
 	if ((dir = opendir(path)))
 	{
@@ -34,6 +35,12 @@ static void		build_files_list(t_dlist **start, char *path, char *word)
 			{
 				str = (fo->d_type == DT_DIR ? ft_strjoin(fo->d_name, "/") : \
 					ft_strdup(fo->d_name));
+				if (ft_strcmp(path, "./"))
+				{
+					tmp = str;
+					str = ft_strjoin(path, str);
+					ft_strdel(&tmp);
+				}
 				ft_dlstadd_last(start, ft_dlstnew((void *)str, sizeof(char *)));
 			}
 		}
@@ -66,11 +73,17 @@ void	get_word_and_folder(char *ret[], char *word)
 			ret[0] = ft_strdup("./");
 			ret[1] = ft_strdup(word);
 		}
+		else if (!i)
+		{
+			ret[0] = ft_strdup(word);
+			ret[1] = 0;
+		}
 		else
 		{
 			ret[0] = ft_strndup(word, (int)ft_strlen(word) - i);
-			ret[1] = ft_strdup(word + i + 1);
+			ret[1] = ft_strdup(word + (int)ft_strlen(word) - i);
 		}
+		//ft_printf("0 : %s, 1 : %s", ret[0], ret[1]);
 	}
 }
 
