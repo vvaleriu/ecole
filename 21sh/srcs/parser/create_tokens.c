@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:09:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 12:16:29 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 10:50:00 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		create_fd_aggregation(t_list **ret, t_list **list)
 {
 	t_list		*tmp;
 	t_token		*tk;
+	//char		*del;
 
 	tk = (t_token *)ft_memalloc(sizeof(t_token));
 	tk->no = OPS_ROUT;
