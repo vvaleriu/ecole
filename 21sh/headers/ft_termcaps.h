@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/07 07:25:08 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:04:18 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@
 # define RET_SEQ			"\012"
 # define BKSP_SEQ			"\177"
 # define DEL_SEQ			"\033[3~"
-# define HOME_SEQ			"\033OH"
-# define END_SEQ			"\033OF"
 # define PGUP_SEQ			"\033[5~"
 # define PGDOWN_SEQ			"\033[6~"
 # define TAB_SEQ			"\t"
@@ -80,8 +78,10 @@
 # define CUTCUR_END_SEQ		"\x0e"
 
 # ifdef __APPLE__
-#  define NEXTWD_SEQ		"\033[1;5C"
-#  define PREVWD_SEQ		"\x1b[D"
+#  define HOME_SEQ			"\x01"
+#  define END_SEQ			"\x06"
+#  define NEXTWD_SEQ		"\a"
+#  define PREVWD_SEQ		"\b"
 #  define LNUP_SEQ			"\033[1;5A"
 #  define LNDOWN_SEQ		"\e[1;5B"
 #  define CUTST_CUR_SEQ		"\x02"
@@ -91,6 +91,8 @@
 # endif
 
 # ifdef __linux__
+#  define HOME_SEQ			"\033OH"
+#  define END_SEQ			"\033OF"
 #  define NEXTWD_SEQ		"\033[1;5C"
 #  define PREVWD_SEQ		"\033[1;5D"
 #  define LNUP_SEQ			"\033[1;5A"
