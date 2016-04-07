@@ -13,7 +13,7 @@
 #include <libft.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 static void		mod_pwd(char **env)
 {

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 09:39:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:43:21 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,8 @@ int					ft_dlstlen(t_dlist *alst);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
-void				ft_dlstdelone(t_dlist **alst, t_dlist *d, void (*del)(void *, size_t));
-
+void				ft_dlstdelone(t_dlist **alst, t_dlist *d, \
+	void (*del)(void *, size_t));
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
 char				*ft_itoh(unsigned int n);
@@ -214,8 +214,8 @@ int					is_text(char c);
 int					is_quote(char c);
 void				ft_strarray_del(char ***c);
 void				ft_strarray_del_one(char ***c, int pos);
-int	    			ft_strarray_len(char **ar);
-int 				ft_strarray_char_len(char **ar);
+int					ft_strarray_len(char **ar);
+int					ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);
 void				ft_strarray_add_last(char ***ar, char *str);
 

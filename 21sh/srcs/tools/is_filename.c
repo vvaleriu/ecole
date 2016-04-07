@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/06 09:17:42 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 10:24:24 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:14:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 int			is_filename(char c)
 {

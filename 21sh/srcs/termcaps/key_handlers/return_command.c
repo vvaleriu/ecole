@@ -6,11 +6,12 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 15:21:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 07:48:58 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:21:11 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
+
 /*
 ** On check d'abord si on attend la fermeture d'une quote ou non.
 ** Si non on renvoit la commande classique sinon on effectue les verifications
@@ -19,7 +20,7 @@
 ** ABORD COMMAND : lorsqu'on presse ctrl-c pour une ligne non finie
 */
 
-static int 	abord_command(t_var *var)
+static int	abord_command(t_var *var)
 {
 	ft_strdel(&(LN_S));
 	LN_HEREDOC = 0;

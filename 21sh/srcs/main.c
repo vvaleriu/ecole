@@ -6,12 +6,12 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 15:42:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 09:36:05 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:19:21 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
@@ -41,16 +41,17 @@ int			main(int ac, char **av, char **envp)
 
 /*
 ** Execute tout le processus d'execution de la commande jusqu'au nettoyage des
+** deb_print_first_list(var->list);
+** deb_print_token_list(var->list);
+** check_tree(var->root);
+** ft_putstr("___________________________\n");
 */
-void 		proceed_to_execution(t_var *var)
+
+void		proceed_to_execution(t_var *var)
 {
 	var->list = lexer(var, var->lex);
-	// deb_print_first_list(var->list);
 	var->list = create_tokens(var->list);
-	// deb_print_token_list(var->list);
 	var->root = parser(var->list);
-	// check_tree(var->root);
-	// ft_putstr("___________________________\n");
 	execute_tree(var, var->root);
 	clean_tree(var->root);
 	var->root = NULL;

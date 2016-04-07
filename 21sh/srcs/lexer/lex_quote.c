@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lex_quote.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 16:53:08 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/04 11:06:51 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:27:40 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** imprime la bonne valeur sur le prompteur lorsqu'on doit fermer une quote
 */
+
 static void	print_quote_prompt(t_var *var)
 {
 	set_str_cap("sc");
@@ -23,7 +24,7 @@ static void	print_quote_prompt(t_var *var)
 		ft_printf("quote>");
 	else if (LN_QUOTE == '\"' && (PROMPT_LEN = ft_strlen("dquote>")))
 		ft_printf("dquote>");
-	else if (LN_QUOTE == '`'  && (PROMPT_LEN = ft_strlen("bquote>")))
+	else if (LN_QUOTE == '`' && (PROMPT_LEN = ft_strlen("bquote>")))
 		ft_printf("bquote>");
 	set_str_cap("sc");
 	terminal_input_mode(var->conf);
@@ -34,6 +35,7 @@ static void	print_quote_prompt(t_var *var)
 ** l'on ne doit pas prendre en compte
 ** s : chaine de caractere sur laquelle on checke la validite de la quote
 */
+
 static int	is_valid_quote(t_var *var, char *s, int i)
 {
 	if (s[i] == LN_QUOTE)
@@ -42,18 +44,18 @@ static int	is_valid_quote(t_var *var, char *s, int i)
 			return (1);
 		if (!i)
 			return (1);
-		if (s[i -1] != '\\')
+		if (s[i - 1] != '\\')
 			return (1);
 	}
 	return (0);
 }
 
-
 /*
 ** retourne 0 si n'a pas trouve la quote fermante
 ** retourn 1 si c'est bon
 */
-int 		check_for_closing_quote(t_var *var, char **tmp, t_list **alst)
+
+int			check_for_closing_quote(t_var *var, char **tmp, t_list **alst)
 {
 	int		i;
 	char	*del[2];
@@ -92,6 +94,7 @@ int 		check_for_closing_quote(t_var *var, char **tmp, t_list **alst)
 **	- Si on ne l'a pas trouvee, alors on rentre dans missing_quote_loop
 **	- Sinon on continue le lexing classique
 */
+
 void		missing_quote_loop(t_var *var, char *s, t_list **alst)
 {
 	static char		*tmp = NULL;
@@ -116,16 +119,17 @@ void		missing_quote_loop(t_var *var, char *s, t_list **alst)
 ** s : ligne du terinal a l'endroit ou on repere la quote
 ** tmp : element que l'on va ajouter a la liste
 ** - On avance tant qu'on ne trouve pas la quote fermante
-**	- Si on ne l'a pas trouvee, alors on rentre dans missing_quote_loop et on sauvegarde
-**	  le ponteur sur l'espace memoire de la ligne
+**	- Si on ne l'a pas trouvee, alors on rentre dans missing_quote_loop et on
+** 	  sauvegarde le ponteur sur l'espace memoire de la ligne
 **	- Sinon on continue le lexing classique
-**
+** -----------------------------------------------------------------------------
 ** quote : type de quote : " ou '
 ** On repere le type de quote, On avance jusqu'a ce qu'on trouve la meme sinon
 ** on lance print missing quote
 ** On garde les guillements dans la chaine trouvee pour eviter des bug d'
 ** interpretation du parser
 */
+
 void		lex_quote(t_var *var, char **buf, t_list **alst)
 {
 	char	*s;

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 int			ft_env(char **exe, void *var)
 {

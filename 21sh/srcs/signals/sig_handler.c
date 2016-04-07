@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2016/04/06 07:50:16 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:48:31 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		sig_handler(int signo)
 {
@@ -18,11 +18,7 @@ void		sig_handler(int signo)
 
 	var = get_instance();
 	if (signo == SIGINT)
-	{
-		//ABORD = 1;
-		//return_command(var);
 		move_to_next_line(get_instance());
-	}
 }
 
 void		sig_handler_fork(int signo)

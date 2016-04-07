@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 int			ft_copy_env(t_var *var, char **env)
 {

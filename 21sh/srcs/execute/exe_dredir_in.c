@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 08:31:56 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:28:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** imprime la bonne valeur sur le prompteur lorsqu'on doit fermer une quote
 */
+
 static void	print_heredoc_prompt(t_var *var)
 {
 	set_str_cap("sc");
@@ -39,9 +40,9 @@ static void	print_heredoc_prompt(t_var *var)
 ** line : chaine de caractere a peine lue
 ** on ne free pas LN-TMP car il pointe sur une zone qui sera liberee plus tard
 */
+
 int			check_for_ending_sequence(t_var *var, char **tmp, char **line)
 {
-
 	if (ft_strcmp(*line, LN_TMP))
 		return (0);
 	PROMPT_LEN = PROMPT_LEN_VALUE;
@@ -61,6 +62,7 @@ int			check_for_ending_sequence(t_var *var, char **tmp, char **line)
 **	- Si on ne l'a pas trouvee, alors on rentre dans missing_quote_loop
 **	- Sinon on continue le lexing classique
 */
+
 void		dredir_loop(t_var *var)
 {
 	static char		*tmp = NULL;
@@ -79,11 +81,24 @@ void		dredir_loop(t_var *var)
 	}
 }
 
+static int	lolipop(t_var *var, t_token *tk, int fd[])
+{
+	LN_HEREDOC = 1;
+	dredir_loop(var);
+	ft_putstr_fd(LN_TMP, fd[1]);
+	ft_putstr_fd("\0", fd[1]);
+	dup2(fd[0], 0);
+	ft_strdel(&(LN_TMP));
+	LN_TMP = LN_S;
+	exit(execute_tree(var, tk->left));
+}
+
 /*
 ** Si on a bien une chaine de fin
 ** - Alonrs on recupere l'entree via dredir-loop qui va enregistrer l'entree
 ** standard dans LN_TMP.
 */
+
 int			exe_dredir_in(t_var *var, t_token *tk)
 {
 	pid_t	father;
@@ -97,16 +112,7 @@ int			exe_dredir_in(t_var *var, t_token *tk)
 	if (!father)
 	{
 		if ((LN_TMP = tk->right->exe[0]) != NULL && !status)
-		{
-			LN_HEREDOC = 1;
-			dredir_loop(var);
-			ft_putstr_fd(LN_TMP, fd[1]);
-			ft_putstr_fd("\0", fd[1]);
-			dup2(fd[0], 0);
-			ft_strdel(&(LN_TMP));
-			LN_TMP = LN_S;
-			exit(execute_tree(var, tk->left));
-		}
+			lolipop(var, tk, fd);
 		else
 			exit(0);
 	}

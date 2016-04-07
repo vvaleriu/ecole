@@ -6,19 +6,20 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:38:44 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 10:54:37 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:21:00 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
+
 /*
 ** browse key man array to identify the pressed key and execute the predefined
 ** action.
 ** Returns 1 if a registered key has been identified.
 ** Return 0 is the pressed key is not registered.
 ** Returns -1 if ESC or RET is pressed (program has to stop)
-**
 */
+
 static int			key_identifier(t_var *var)
 {
 	int			i;
@@ -48,6 +49,7 @@ static int			key_identifier(t_var *var)
 ** rd : nombre de caracteres lus
 ** 4 = retour
 */
+
 int					read_key(t_var *var)
 {
 	int		loop;

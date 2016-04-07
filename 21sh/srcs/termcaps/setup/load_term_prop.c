@@ -1,4 +1,16 @@
-#include <ft_minishell2.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_term_prop.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/07 10:01:31 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/04/07 11:51:16 by vvaleriu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <42sh.h>
 
 /*
 ** getenv : Recupere le nom du terminal dans les vars env
@@ -14,7 +26,6 @@ int			load_term_prop(t_tconf *conf)
 	int		success;
 
 	term_name = NULL;
-	//if (!(term_name = getenv("TERM")))
 	if (!(term_name = get_env_value("TERM", get_instance()->tenv)))
 		return (-1);
 	success = tgetent(conf->term_buffer, term_name);
@@ -23,6 +34,6 @@ int			load_term_prop(t_tconf *conf)
 	else if (success == 0)
 		ft_putendl(ERR_TERM_UNDEF);
 	if (tcgetattr(0, &conf->def) == -1 || tcgetattr(0, &conf->cur) == -1)
-    	return (-1);
+		return (-1);
 	return (success);
 }

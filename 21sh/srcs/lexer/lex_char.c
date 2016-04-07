@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lex_char.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:43:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 12:07:49 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 11:42:00 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		lex_aggregation(char **buf, t_list **alst)
 {
@@ -18,7 +18,7 @@ void		lex_aggregation(char **buf, t_list **alst)
 	t_list	*tmp;
 
 	i = 0;
-	while (buf[0][i] && ft_isdigit(buf[0][i]) )
+	while (buf[0][i] && ft_isdigit(buf[0][i]))
 		i++;
 	i++;
 	while (buf[0][i] && !is_space(buf[0][i]))
@@ -32,6 +32,7 @@ void		lex_aggregation(char **buf, t_list **alst)
 ** On recoit une position dans la commande.
 ** On lance la fonction de recherche d'aggregation de sorties
 */
+
 void		lex_alnum(char **buf, t_list **alst)
 {
 	t_list	*tmp;
@@ -49,6 +50,7 @@ void		lex_alnum(char **buf, t_list **alst)
 ** Si le caractere est une guillement, on applique un traitement special
 ** Sinon, on traite le caractere normalement
 */
+
 void		lex_char(t_var *var, char **buf, t_list **alst)
 {
 	if (**buf == '\"' || **buf == '\'' || **buf == '`')

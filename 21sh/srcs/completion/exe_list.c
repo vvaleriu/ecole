@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 08:02:35 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:22:25 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <libft.h>
 #include <dirent.h>
 #include <stdlib.h>
@@ -35,6 +35,7 @@ static char		**get_path_from_env(t_var *var)
 ** exe_path[0] = exec name
 ** exe_path[1] = word path sent to the shell
 */
+
 static t_dlist	*build_exe_list(char **path, char *word)
 {
 	DIR					*dir;
@@ -61,7 +62,7 @@ static t_dlist	*build_exe_list(char **path, char *word)
 	return (start);
 }
 
-void		delete_completion_list(void *content, size_t size)
+void			delete_completion_list(void *content, size_t size)
 {
 	if (size)
 	{
@@ -70,7 +71,7 @@ void		delete_completion_list(void *content, size_t size)
 	}
 }
 
-t_dlist		*create_exe_list(t_var *var, char *word)
+t_dlist			*create_exe_list(t_var *var, char *word)
 {
 	t_dlist		*start;
 	char		**path;
@@ -84,5 +85,3 @@ t_dlist		*create_exe_list(t_var *var, char *word)
 	}
 	return (start);
 }
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 18:34:03 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/04 19:27:34 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:30:54 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			err_int(int err, int res, char *str, int quit)
 {
 	if (err == res)
 	{
-		ft_printf("%s %s\n", (quit ? "Exit: " : NULL ), str);
+		ft_printf("%s %s\n", (quit ? "Exit: " : NULL), str);
 		if (quit)
 			exit(2);
 	}
@@ -34,7 +34,7 @@ void		*err_void(void *err, void *res, char *str, int quit)
 {
 	if (res == err)
 	{
-		ft_printf("%s %s\n", (quit ? "Exit:" : NULL ), str);
+		ft_printf("%s %s\n", (quit ? "Exit:" : NULL), str);
 		if (quit)
 			exit(2);
 	}

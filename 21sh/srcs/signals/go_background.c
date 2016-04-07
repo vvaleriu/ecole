@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 01:48:19 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/10 12:02:22 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:48:55 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		go_background(int signo)
 {

@@ -6,14 +6,14 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 09:37:50 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:39:57 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <stdio.h>
 
-static void			init_values(t_var *var)
+static void		init_values(t_var *var)
 {
 	var->root = NULL;
 	var->list = NULL;
@@ -35,26 +35,17 @@ static void			init_values(t_var *var)
 }
 
 /*
-** Check si l'entree standard est ouverte et qu'il s'agit bien d'un terminal
-*/
-int					chk_stdin()
-{
-	if (isatty(0))
-    	return (1);
-	return (-1);
-}
-
-/*
 ** initialise les pointeurs a NULL
 ** remplit les tableaux de fonctions de lexing / parsing / execution
 ** copie l'environnement
 ** on initialise le buffer contenant la ligne actuelle avec un taille donnee
 ** ainsi que renseignement de la taille maxi du buffer
 */
-void				init_function(t_var *var, char **envp)
+
+void			init_function(t_var *var, char **envp)
 {
 	init_values(var);
-	if (err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 0) < 0 || chk_stdin() < 0)
+	if (err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 0) < 0 || !isatty(0))
 	{
 		var->errstr = ERR_NO_ENV;
 		ft_exit(NULL, var);
@@ -67,7 +58,8 @@ void				init_function(t_var *var, char **envp)
 /*
 ** initialisation des fonctions de lexing via remplissage du tableau
 */
-void				fill_lex_ft(t_lexing_ft *lex)
+
+void			fill_lex_ft(t_lexing_ft *lex)
 {
 	lex[0].s = ";";
 	lex[0].f = lex_semicon;
@@ -88,7 +80,8 @@ void				fill_lex_ft(t_lexing_ft *lex)
 /*
 ** remplissage du tableau des fonctions incluses dans le terminal
 */
-void		ft_fill_tab(t_builtin *bin)
+
+void			ft_fill_tab(t_builtin *bin)
 {
 	bin[0].na = "cd";
 	bin[0].f = &ft_cd;
@@ -107,7 +100,8 @@ void		ft_fill_tab(t_builtin *bin)
 /*
 ** remplissage du tableau des fonctions d'execution de l'arbre des commandes
 */
-void		fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
+
+void			fill_exec_funct_array(int (*ef[])(struct s_var *, t_token *))
 {
 	ef[OPS_SEMIC] = exe_semi;
 	ef[OPS_PIPE] = exe_pipe;

@@ -6,21 +6,21 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:11:03 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 10:52:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:27:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <libft.h>
 #include <dirent.h>
 #include <stdlib.h>
-
 
 /*
 ** ret[0] = folder;
 ** ret[1] = file;
 */
-static void		build_files_list(t_dlist **start, char *path, char *word)
+
+static void		build_files_list(t_dlist **start, char *path, char *wd)
 {
 	DIR					*dir;
 	struct dirent		*fo;
@@ -31,7 +31,7 @@ static void		build_files_list(t_dlist **start, char *path, char *word)
 	{
 		while ((fo = readdir(dir)) != NULL)
 		{
-			if (word == NULL || (!ft_strncmp(fo->d_name, word, ft_strlen(word))))
+			if (wd == NULL || (!ft_strncmp(fo->d_name, wd, ft_strlen(wd))))
 			{
 				str = (fo->d_type == DT_DIR ? ft_strjoin(fo->d_name, "/") : \
 					ft_strdup(fo->d_name));
@@ -48,11 +48,31 @@ static void		build_files_list(t_dlist **start, char *path, char *word)
 	}
 }
 
+static void		lolipopu(char *ret[], char *word, int i)
+{
+	if (i == (int)ft_strlen(word))
+	{
+		ret[0] = ft_strdup("./");
+		ret[1] = ft_strdup(word);
+	}
+	else if (!i)
+	{
+		ret[0] = ft_strdup(word);
+		ret[1] = 0;
+	}
+	else
+	{
+		ret[0] = ft_strndup(word, (int)ft_strlen(word) - i);
+		ret[1] = ft_strdup(word + (int)ft_strlen(word) - i);
+	}
+}
+
 /*
 ** ret[0] = folder;
 ** ret[1] = file;
 */
-void	get_word_and_folder(char *ret[], char *word)
+
+void			get_word_and_folder(char *ret[], char *word)
 {
 	int		i;
 
@@ -68,26 +88,11 @@ void	get_word_and_folder(char *ret[], char *word)
 		while (word[i] && word[i] != '/')
 			i++;
 		ft_strrev(word);
-		if (i == (int)ft_strlen(word))
-		{
-			ret[0] = ft_strdup("./");
-			ret[1] = ft_strdup(word);
-		}
-		else if (!i)
-		{
-			ret[0] = ft_strdup(word);
-			ret[1] = 0;
-		}
-		else
-		{
-			ret[0] = ft_strndup(word, (int)ft_strlen(word) - i);
-			ret[1] = ft_strdup(word + (int)ft_strlen(word) - i);
-		}
-		//ft_printf("0 : %s, 1 : %s", ret[0], ret[1]);
+		lolipopu(ret, word, i);
 	}
 }
 
-t_dlist		*create_files_list(char *word)
+t_dlist			*create_files_list(char *word)
 {
 	t_dlist		*start;
 	char		*wd[2];

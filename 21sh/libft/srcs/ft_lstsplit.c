@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 12:55:02 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:32:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** on fait pointer l'element precedent vers null et on renvoir tmp = elem, comme
 ** debut de la nouvelle liste
 */
+
 t_list	*ft_lstsplit(t_list *alst, t_list *elem)
 {
 	t_list	*tmp;

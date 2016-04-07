@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:53:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 07:53:46 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:15:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Regarde la position du curseur pour savoir sur quel mot on se trouve. Si on
@@ -29,6 +29,7 @@
 ** dans ce cas on revoie vrai aussi.
 ** sinon on renvoie faux
 */
+
 int			look_for_exe(t_var *var)
 {
 	int		i;
@@ -40,7 +41,7 @@ int			look_for_exe(t_var *var)
 		while (i && is_filename(LN_S[i]))
 			i--;
 		while (ft_isspace(LN_S[i]) || LN_S[i] == '\0')
-		i--;
+			i--;
 	}
 	if (!i || LN_S[i] == '&' || LN_S[i] == '|' || LN_S[i] == ';')
 		return (1);
@@ -50,6 +51,7 @@ int			look_for_exe(t_var *var)
 /*
 ** Dit si on doit faire une recherche sur rien ou bien sur un mot
 */
+
 int			currently_on_a_word(t_var *var)
 {
 	if (LN_S[LN_POS] == '\0' && LN_POS == 0)
@@ -67,6 +69,7 @@ int			currently_on_a_word(t_var *var)
 **	- Si on est a la fin de la ligne ou bien sur un espace, on recule d'une case
 **	- On sauvegarde la place
 */
+
 char		*get_current_word(t_var *var)
 {
 	char	*ret;

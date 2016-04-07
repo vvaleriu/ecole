@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lex_and.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 10:38:11 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 12:07:06 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 11:41:38 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		lex_and(t_var *var, char **buf, t_list **alst)
 {
@@ -24,9 +24,5 @@ void		lex_and(t_var *var, char **buf, t_list **alst)
 		(*buf) += 2;
 	}
 	else
-	{
-		// afficher une erreur de parsing
 		(*buf)++;
-	}
-
 }

@@ -6,21 +6,21 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:09:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 10:50:00 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:00:10 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Permet de creer un token lorsqu'on a une aggregation de FD
 */
+
 static void		create_fd_aggregation(t_list **ret, t_list **list)
 {
 	t_list		*tmp;
 	t_token		*tk;
-	//char		*del;
 
 	tk = (t_token *)ft_memalloc(sizeof(t_token));
 	tk->no = OPS_ROUT;
@@ -40,6 +40,7 @@ static void		create_fd_aggregation(t_list **ret, t_list **list)
 /*
 ** Permet de creer un token de commande classique a executer
 */
+
 static void		create_command(t_list **ret, t_list **list)
 {
 	t_list		*tmp;
@@ -59,6 +60,7 @@ static void		create_command(t_list **ret, t_list **list)
 ** Permet de creer un token d'operation.
 ** On recupere ses caracteristiques puis on l'insere dans la liste
 */
+
 static void		create_ops(t_list **ret, t_list **list, char *ops)
 {
 	t_list		*tmp;
@@ -88,18 +90,17 @@ static void		create_ops(t_list **ret, t_list **list, char *ops)
 ** - une priorite
 ** - un tableau de strings (en fonction du type d'operation)
 ** - des pointeurs vers les tokens suivants
-**
+** -----------------------------------------------------------------------------
 ** Si le premier caractere du morceau de la commande n'est pas une operande,
 **	- On cree un token et on l'ajoute a la fin de la liste, on creant l'exe
 ** Sinon
 **	- On lance creer l'operation
 */
+
 t_list			*create_tokens(t_list *alst)
 {
 	t_list	*list;
 	t_list	*ret;
-	//t_list	*tmp;
-	//t_token	*tk;
 
 	ret = NULL;
 	list = alst;

@@ -6,13 +6,13 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 08:40:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/24 17:12:05 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:14:26 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
-t_var		*get_instance()
+t_var		*get_instance(void)
 {
 	static t_var	*var = NULL;
 
@@ -21,7 +21,7 @@ t_var		*get_instance()
 	return (var);
 }
 
-t_tconf		*get_conf()
+t_tconf		*get_conf(void)
 {
 	return (get_instance()->conf);
 }

@@ -6,15 +6,16 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 21:52:22 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/07 10:52:57 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:54:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Permet de recuperer le numero de l'operation a effectuer
 */
+
 int			get_op_no(char *s)
 {
 	if (!ft_strncmp(s, ";", 1))
@@ -41,6 +42,7 @@ int			get_op_no(char *s)
 ** Permet de recuperer la priorite de l'operation a effectuer en fonction de
 ** son numero
 */
+
 int			get_op_pty(int no)
 {
 	if (no == OPS_SEMIC || no == OPS_AND || no == OPS_OR)
@@ -53,9 +55,6 @@ int			get_op_pty(int no)
 		return (2);
 }
 
-/*
-**
-*/
 char		*del_quotes(void **str)
 {
 	char	*ret;
@@ -76,7 +75,7 @@ char		*del_quotes(void **str)
 /*
 ** Permet de creer le tableau de chaine de caracteres que lorsqu'il s'agit d'
 ** executer une commande (nom de l'executable plus les parametres).
-**
+** -----------------------------------------------------------------------------
 ** list : pointeur vers la liste de strings creee par le lexer
 ** tmp : pointeur pour parcourir cette liste
 ** i : nombre d'elements de cette liste n'etant ni des operateur ni des
@@ -84,32 +83,32 @@ char		*del_quotes(void **str)
 ** Pour chaque element trouve, on assigne la chaine de caracteres deja mallocee
 ** aux tableau exe qui represente l'executable et ses arguments.
 */
+
 char		**create_exe(t_list **list)
 {
-	int		i;
-	int		j;
+	int		t[2];
 	t_list	*tmp;
 	char	**exe;
 
-	i = 0;
-	j = 0;
+	I = 0;
+	J = 0;
 	tmp = *list;
 	while (tmp && !is_operator(*((char *)tmp->content)) && \
 		!is_fd_aggregation((char *)tmp->content))
 	{
 		tmp = tmp->next;
-		i++;
+		I++;
 	}
-	exe = (char **)ft_memalloc(sizeof(char *) * (i + 1));
-	while (j < i)
+	exe = (char **)ft_memalloc(sizeof(char *) * (I + 1));
+	while (J < I)
 	{
-		exe[j] = (!is_quote(*((char *)(*list)->content)) ? \
+		exe[J] = (!is_quote(*((char *)(*list)->content)) ? \
 			(char *)(*list)->content : del_quotes(&(*list)->content));
 		tmp = *list;
 		*list = (*list)->next;
 		free(tmp);
-		j++;
+		J++;
 	}
-	exe[j] = 0;
+	exe[J] = 0;
 	return (exe);
 }

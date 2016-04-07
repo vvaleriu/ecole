@@ -1,0 +1,4 @@
+Norme: ./headers/ft_termcaps.h
+Norme: ./headers/ft_sh_errors.h
+Norme: ./headers/42sh.h
+Warning: /nfs/2013/v/vvaleriu/projets/ecole/21sh/headers/42sh.h may not compile or is invalid for some reasons.

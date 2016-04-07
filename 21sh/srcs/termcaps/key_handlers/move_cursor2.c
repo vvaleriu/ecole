@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/22 08:58:51 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:07:07 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** -> Si le caractere suivant est un espace
@@ -22,6 +22,7 @@
 **		On avance jusqu'a la fin de l'operateur
 ** -> On avance une derniere fois pour etre juste apres le dernier caractere
 */
+
 int		move_to_next_word(t_var *var)
 {
 	if (LN_POS < (int)ft_strlen(LN_S))
@@ -47,6 +48,7 @@ int		move_to_next_word(t_var *var)
 /*
 ** On deplace le curseur et on met a jour la position
 */
+
 int		move_to_previous_word(t_var *var)
 {
 	if (LN_POS > 0)
@@ -75,6 +77,7 @@ int		move_to_previous_word(t_var *var)
 ** Ou bien sur une ligne superieure a 1.
 **	On monte d'une ligne, on met a jour la position
 */
+
 int		move_to_up_line(t_var *var)
 {
 	int		i;
@@ -100,10 +103,12 @@ int		move_to_up_line(t_var *var)
 
 /*
 ** - Si la longueur de la chaine restante depuis le curseur est superieur
-** a la longeur restante de la ligne a afficher (en gros si une ligne suivante existe)
+** a la longeur restante de la ligne a afficher (en gros si une ligne suivante
+** existe)
 **  - s'il existe une ligne complete depuis le curseur, on le descend
 **  - sinon on le met a la fin de la ligne du dessous
 */
+
 int		move_to_down_line(t_var *var)
 {
 	int		i;

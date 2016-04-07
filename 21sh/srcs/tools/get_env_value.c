@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <libft.h>
 
 char	*get_env_value(char *var, char **env)

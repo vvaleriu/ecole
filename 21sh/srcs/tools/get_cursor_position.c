@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_cursor_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/04 11:26:46 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/04 11:29:29 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:23:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
-void		get_cursor_position()
+void		get_cursor_position(void)
 {
 	char	buf[500];
 	int		rd;

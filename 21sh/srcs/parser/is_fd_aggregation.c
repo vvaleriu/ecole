@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_fd_aggregation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 18:22:18 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/26 08:05:51 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 11:46:30 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Elle verifie si on a ce patron : "N>x" avec N un nombre, le caractere
@@ -18,6 +18,7 @@
 ** Dans ce cas il s'agit d'une redirection et on la traite comme il se
 ** doit
 */
+
 int		is_fd_aggregation(char *str)
 {
 	int		i;

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lex_big.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 17:27:42 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/31 12:06:24 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 11:37:28 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Si le caractere suivant est un ">" alors on a ">>", sinon on a simplement ">"
 */
+
 void	lex_big(t_var *var, char **buf, t_list **alst)
 {
 	t_list	*tmp;

@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 15:48:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/17 14:36:48 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:03:09 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		update_cur_pos(t_var *var, int movement)
 {

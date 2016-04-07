@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 void		free_all_list(t_list *list)
 {

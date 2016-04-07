@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_str_cap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:23:21 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/04 19:24:12 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:01:44 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** List of capabilities string is sent with a ":" separator
@@ -21,7 +21,7 @@ void			set_str_cap(char *cap_str)
 {
 	char	**cap;
 	char	**tmp;
-	char    *res;
+	char	*res;
 
 	cap = ft_strsplit(cap_str, ':');
 	tmp = cap;

@@ -12,7 +12,7 @@
 
 #include <libft.h>
 #include <stdlib.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 int		ft_exit(char **exe, void *var1)
 {

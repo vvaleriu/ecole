@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:56:27 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 12:22:32 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:05:52 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** on part du debut de la chaine de caractere et on copy dans le buffer pour
@@ -18,6 +18,7 @@
 ** on copie le premier caractere sous le curseur. On va donc copier une
 ** longeur de 1 [position + 1])
 */
+
 int			copy_from_start(t_var *var)
 {
 	if (ft_strlen(LN_S))
@@ -33,6 +34,7 @@ int			copy_from_start(t_var *var)
 ** dans le buffer jusqu'a la fin de la chaine
 ** la position acutelle sur cette chaine de catacteres.
 */
+
 int			copy_from_end(t_var *var)
 {
 	if (ft_strlen(LN_S + LN_POS))
@@ -53,6 +55,7 @@ int			copy_from_end(t_var *var)
 **	- on affiche la chaine tronquee
 **	- on replace le curseur au depart.
 */
+
 int			cut_from_start(t_var *var)
 {
 	int		i;
@@ -74,6 +77,7 @@ int			cut_from_start(t_var *var)
 **	- on efface le reste de l'ecran
 **	- On met tous les caracteres depuis notre position jusqu'a la fin a zero
 */
+
 int			cut_from_end(t_var *var)
 {
 	int		i;
@@ -99,19 +103,18 @@ int			cut_from_end(t_var *var)
 ** - On copie dans TMP + position du curseur la chaine dans le buffer copy
 ** - On copie dans TMP + derniere position le reste de la chaine actuelle
 */
+
 int			paste(t_var *var)
 {
 	char	*tmp;
 
 	if (LN_CPY != NULL)
 	{
-		//set_str_cap("sc");
 		tmp = ft_strnew(ft_strlen(LN_S) + ft_strlen(LN_CPY));
 		ft_strncpy(tmp, LN_S, LN_POS);
 		ft_strcpy(tmp + LN_POS, LN_CPY);
 		ft_strcpy(tmp + LN_POS + ft_strlen(LN_CPY), LN_S + LN_POS);
 		ft_putstr_cursor(LN_CPY);
-		//set_str_cap("rc");
 		ft_strdel(&(LN_S));
 		LN_S = tmp;
 		update_line_struct(var);

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/07 11:04:18 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 13:00:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 ** - LIST_ST: first item of the list
 ** - CUR_ITEM: current selected item on the list
 */
+
 # define SEL_KEY_SIZE		7
 # define KEY_NUMBER			23
 # define ESC 				(KEY_NUMBER - 1)
@@ -62,6 +63,7 @@
 ** CUTLINE : couper l'ensemble de la ligne (Ctrl-U)
 ** PASTE : coller le texte precedemment coupe (Ctrl-Y)
 */
+
 # define LEFT_SEQ			"\033[D"
 # define RIGHT_SEQ			"\033[C"
 # define UP_SEQ				"\033[A"
@@ -74,14 +76,13 @@
 # define PGDOWN_SEQ			"\033[6~"
 # define TAB_SEQ			"\t"
 # define CLEARSCR_SEQ		"\f\000\000\000\000\000"
-//# define CUTCUR_END_SEQ		"\v\000\000\000\000\000"
 # define CUTCUR_END_SEQ		"\x0e"
 
 # ifdef __APPLE__
 #  define HOME_SEQ			"\x01"
 #  define END_SEQ			"\x06"
-#  define NEXTWD_SEQ		"\a"
-#  define PREVWD_SEQ		"\b"
+#  define NEXTWD_SEQ		"\b"
+#  define PREVWD_SEQ		"\a"
 #  define LNUP_SEQ			"\033[1;5A"
 #  define LNDOWN_SEQ		"\e[1;5B"
 #  define CUTST_CUR_SEQ		"\x02"
@@ -107,6 +108,7 @@
 ** MACRO PERMETTANT D'acceder a la structure contenant la gestion
 ** de la touche
 */
+
 # define KEY_TAB(i)			conf->keyman[i]
 # define KLEFT				conf->keyman[0]
 # define KRIGHT				conf->keyman[1]
@@ -151,9 +153,7 @@
 **	move cursor to next line: nw
 **	says that `le' may be used in column
 **	zero to move to the last column of the preceding line: bw
-*/
-
-/*
+** --
 **	ERRORS
 */
 
@@ -171,7 +171,8 @@ typedef struct s_var		t_var;
 ** key sequence to identify
 ** function to execute when the corresponding key is pressed
 */
-struct	s_key_man
+
+struct						s_key_man
 {
 	size_t					seq_len;
 	char					seq[SEL_KEY_SIZE];
@@ -188,7 +189,8 @@ struct	s_key_man
 **	cur		: current conf to apply
 ** 	keyman : tableau de  structure permettant d'identifier la touche pressee
 */
-struct	s_tconf
+
+struct						s_tconf
 {
 	int						cur_pos[2];
 	int						rfd;
@@ -203,11 +205,13 @@ struct	s_tconf
 /*
 ** MAIN
 */
+
 int							init_terminal(t_var *var);
 
 /*
 ** TERM MANAGER
 */
+
 int							load_term_prop(t_tconf *conf);
 int							terminal_input_mode(t_tconf *conf);
 int							terminal_execute_mode(t_tconf *conf);
@@ -216,6 +220,7 @@ void						set_str_cap(char *cap_str);
 /*
 ** KEY MANAGERS
 */
+
 int							read_key(t_var *var);
 int							return_command(t_var *var);
 int							restore_terminal(t_var *var);
@@ -244,6 +249,7 @@ int							paste(t_var *var);
 /*
 ** PRINTING
 */
+
 void						ft_putchar_cursor_wrap(char c);
 void						ft_putstr_cursor_wrap(t_var *var);
 void						ft_putchar_cursor(char c);
@@ -254,6 +260,7 @@ void						ft_putstr_fixed(char *str);
 /*
 ** TOOLS
 */
+
 int							putchar_int(int c);
 void						move_to(int x, int y);
 void						update_win_size(int signo);

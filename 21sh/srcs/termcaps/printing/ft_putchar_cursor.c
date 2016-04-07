@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_cursor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:40:11 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/22 16:04:40 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:21:52 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Insere un caractere depuis la position du curseur. Met a jour les positions
 ** necessaires
 */
+
 void		ft_putchar_cursor(char c)
 {
 	t_var	*var;
@@ -37,6 +38,7 @@ void		ft_putchar_cursor(char c)
 **	version mise a jour de la ligne
 ** ATTENTION : laisse le curseur en fin de ligne.
 */
+
 void		ft_putchar_cursor_wrap(char c)
 {
 	t_var	*var;

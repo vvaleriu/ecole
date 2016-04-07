@@ -6,13 +6,13 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 16:06:52 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:37:07 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -20,6 +20,7 @@
 /*
 ** Si on a un argument
 */
+
 static void		check_for_back_quote(t_var *var, char **com)
 {
 	int		i;
@@ -107,10 +108,11 @@ static int		exec_bin(char **com, t_var *var)
 
 /*
 ** bin_exit : si le retour est -1 c'est que l'on n'a pas trouve le builtin. Il
-			  s'agit donc d'une commande systeme classique
+**			  s'agit donc d'une commande systeme classique
 ** 			  si le builtin a ete execute alors la variable contient le retour
 **			  de la fonction executee.
 */
+
 int				exe_command(t_var *var, t_token *tk)
 {
 	pid_t		father;
@@ -139,30 +141,3 @@ int				exe_command(t_var *var, t_token *tk)
 	}
 	return (status);
 }
-/*int				exe_command(t_var *var, t_token *tk)
-{
-	pid_t		father;
-	char		*path;
-	char		**com;
-	int			status;
-
-	com = (tk->exe ? tk->exe : NULL);
-	status = exec_bin(com, var);
-	if (com != NULL && status == -1)
-	{
-		if (com && (path = get_path(com[0], var->tenv)))
-		{
-			ft_strrev(com[0]);
-			father = fork();
-			if (!father)
-				exit(execve(path, com, var->tenv));
-			if (father > 0)
-			{
-				waitpid(father, &status, 0);
-				status = WEXITSTATUS(status);
-			}
-			ft_strdel(&path);
-		}
-	}
-	return (status);
-}*/

@@ -6,17 +6,18 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 23:28:18 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/28 10:12:07 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:56:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** cl : on nettoie l'ecran
 ** ti : on s'autorise a bouger le curseur
 ** im : mode d'insertion
 */
+
 int				terminal_input_mode(t_tconf *conf)
 {
 	conf->cur.c_lflag &= ~(ICANON | ECHO | ECHOE);

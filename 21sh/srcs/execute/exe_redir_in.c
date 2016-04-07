@@ -17,7 +17,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 int		exe_redir_in(t_var *var, t_token *tk)
 {

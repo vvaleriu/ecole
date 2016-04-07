@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell2.h                                    :+:      :+:    :+:   */
+/*   42sh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 11:02:50 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 14:05:09 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL2_H
-# define FT_MINISHELL2_H
+#ifndef 42SH_H
+# define 42SH_H
 
 # include <libft.h>
 # include <ft_termcaps.h>
-# include <sh_errors.h>
+# include <ft_sh_errors.h>
 
 /*
 ** LEX_NB		: Nombre de fonctions pour le lexer
@@ -67,7 +67,7 @@
 ** OPS_AND		"||":	5
 ** OPS_DRIN		"<<":	6
 ** OPS_DROUT	">>":	7
-**
+** --
 ** Priorite : ordre de priorite associe a une operation
 ** Permet de construire l'arbre en sachant quelle operations passent
 ** avant ou apres les autres
@@ -105,7 +105,7 @@
 */
 # define CMD_LENGTH		325
 
-typedef struct s_var		t_var;
+typedef struct s_var	t_var;
 
 /*
 ** tokens to be executed
@@ -180,7 +180,7 @@ typedef struct		s_cmd_hist
 
 /*
 **			GENERAL VARIABLES STRUCTURE
-**
+** -
 ** bin : array of builtins structures (set a app start)
 ** line : current command line
 ** hist : liste de l'hitorique des commandes rentrees.
@@ -278,8 +278,8 @@ int			exe_command(t_var *var, t_token *tk);
 **			SIGNAL HANDLERS
 */
 
-void		sig_catcher();
-void		sig_catcher_fork();
+void		sig_catcher(void);
+void		sig_catcher_fork(void);
 void		sig_handler(int signo);
 void		sig_handler_fork(int signo);
 void		go_background(int signo);
@@ -289,7 +289,7 @@ void		go_foreground(int signo);
 **			COMPLETION
 */
 
-int 		completion(t_var *var);
+int			completion(t_var *var);
 int			look_for_exe(t_var *var);
 int			currently_on_a_word(t_var *var);
 char		*get_current_word(t_var *var);
@@ -321,8 +321,8 @@ int			history_prev(t_var *var);
 /*
 **			TOOLS
 */
-t_var		*get_instance();
-t_tconf		*get_conf();
+t_var		*get_instance(void);
+t_tconf		*get_conf(void);
 int			is_text(char c);
 int			is_filename(char c);
 void		free_all_list(t_list *alst);
@@ -344,6 +344,6 @@ void		check_tabs_init(t_var *var);
 void		init_line_struct(t_var *var);
 void		update_line_struct(t_var *var);
 void		del_hist_el(void *p, size_t size);
-void 		get_cursor_position();
+void		get_cursor_position(void);
 
 #endif

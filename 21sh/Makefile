@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/04/07 10:54:36 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/04/07 12:00:49 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,6 @@ SRC = main.c					\
 		build_line.c			\
 		history.c				\
 		setup_line_struct.c		\
-		cursor_pos.c			\
 		clear_screen.c			\
 		copy_paste.c			\
 		del_hist_el.c			\
@@ -102,7 +101,6 @@ SRC = main.c					\
 		get_cursor_position.c	\
 		is_filename.c			\
 		debugging_tools.c		\
-		lex_arithme.c			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

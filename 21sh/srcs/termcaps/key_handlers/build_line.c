@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/07 08:34:42 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:13:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Augmente la capacite de la ligne de commande actuelle. La nouvelle capacite
@@ -19,6 +19,7 @@
 ** extended_value : si 0, alors on etend la valeur avec CMD_LENGHT, sinon on
 ** etend la valeur avec celle de extended_value
 */
+
 static void	extend_line_capacity(t_var *var, int extended_value)
 {
 	char	*new_line_buffer;
@@ -45,6 +46,7 @@ static void	extend_line_capacity(t_var *var, int extended_value)
 ** Pour finir on affiche la ligne, on ramene le curseur ou il etait et on
 ** avance d'une caractere.
 */
+
 int			insert_char(t_var *var)
 {
 	size_t	len;
@@ -102,7 +104,8 @@ int			insert_str(t_var *var, char *str)
 	set_str_cap("rc");
 	LN_POS -= len;
 	CUR_POS_Y = (CUR_POS_X - len < 0 ? CUR_POS_Y - 1 : CUR_POS_Y);
-	CUR_POS_X = (CUR_POS_X - len < 0 ? WIN_X + (CUR_POS_X - len) :  CUR_POS_X - len);
+	CUR_POS_X = (CUR_POS_X - len < 0 ? WIN_X + (CUR_POS_X - len) : \
+		CUR_POS_X - len);
 	while (len > 0)
 	{
 		move_to_next_char(var);
@@ -115,10 +118,11 @@ int			insert_str(t_var *var, char *str)
 ** Fonction executee lors d'un appui sur retour arriere
 ** on bouge le curseur sur le caractere precedent
 */
+
 int			erase_char(t_var *var)
 {
 	size_t			len;
-	unsigned long 	i;
+	unsigned long	i;
 
 	len = ft_strlen(var->line.s);
 	move_to_previous_char(var);
@@ -136,7 +140,28 @@ int			erase_char(t_var *var)
 
 /*
 ** Fonction executee lors d'un appui sur delete / suppr
+** int			delete_char(t_var *var)
+** {
+** 	set_str_cap("do:cr:sc");
+** 	terminal_execute_mode(var->conf);
+** 	set_str_cap("rc");
+** 	print_trackers_status(var);
+** 	set_str_cap("sc");
+** 	terminal_input_mode(var->conf);
+** 	set_str_cap("rc");
+** 	set_str_cap("sc");
+** 	CUR_POS_X = PROMPT_LEN;
+** 	CUR_POS_Y = 0;
+** 	if (ft_strlen(LN_S))
+** 	{
+** 		ft_putstr_cursor(LN_S);
+** 		update_line_struct(var);
+** 		LN_POS = ft_strlen(LN_S);
+** 	}
+** 	return (2);
+** }
 */
+
 int			delete_char(t_var *var)
 {
 	int		initial_pos;
@@ -154,25 +179,3 @@ int			delete_char(t_var *var)
 	}
 	return (2);
 }
-
-/*int			delete_char(t_var *var)
-{
-	set_str_cap("do:cr:sc");
-	terminal_execute_mode(var->conf);
-	set_str_cap("rc");
-	print_trackers_status(var);
-	set_str_cap("sc");
-	terminal_input_mode(var->conf);
-	set_str_cap("rc");
-	set_str_cap("sc");
-	CUR_POS_X = PROMPT_LEN;
-	CUR_POS_Y = 0;
-	if (ft_strlen(LN_S))
-	{
-		ft_putstr_cursor(LN_S);
-		update_line_struct(var);
-		LN_POS = ft_strlen(LN_S);
-	}
-	return (2);
-}*/
-

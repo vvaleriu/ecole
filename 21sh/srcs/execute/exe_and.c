@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 15:21:23 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 12:48:11 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:18:55 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Execute l'arbre sans fork car il faut executer un Builtin
 ** Execute la commande suivante si et seulement si le retour de la premiere
 ** commande est 0. Sinon n'excute pas la commande
 */
+
 static	int		exe_and_builtins(t_var *var, t_token *tk)
 {
 	int		status;
@@ -40,6 +41,7 @@ static	int		exe_and_builtins(t_var *var, t_token *tk)
 ** Execute la commande suivante si et seulement si le retour de la premiere
 ** commande est 0. Sinon n'excute pas la commande
 */
+
 static	int		exe_and_normal(t_var *var, t_token *tk)
 {
 	pid_t	father;
@@ -68,11 +70,12 @@ static	int		exe_and_normal(t_var *var, t_token *tk)
 ** branche gauche est une fonction builtins, elle ne sera pas executee dans un
 ** fork, mais directement dans le processus principal.
 */
+
 int				exe_and(t_var *var, t_token *tk)
 {
 	int		status;
 
-	if (tk->left->exe != NULL &&tk->left->exe[0] != NULL && \
+	if (tk->left->exe != NULL && tk->left->exe[0] != NULL &&\
 		is_builtin(tk->left->exe[0], var))
 		status = exe_and_builtins(var, tk);
 	else

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/27 10:40:29 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 11:36:14 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Permet de gerer la redirection des files descripteurs standards.
 ** exemple : ls 2>&-
 */
-/*O_NONBLOCK | */
+
 int				stdfd_redir(t_token *tk)
 {
 	int		fd;
@@ -35,7 +35,8 @@ int				stdfd_redir(t_token *tk)
 		else if (ft_isdigit(tk->exe[1][1]))
 			dup2(ft_atoi(tk->exe[1] + 1), ft_atoi(tk->exe[0]));
 	}
-	else if (tk->exe[1] != 0 && (fd = open(tk->exe[1], O_WRONLY | O_CREAT | O_TRUNC, 0644)))
+	else if (tk->exe[1] != 0 && (fd = open(tk->exe[1], O_WRONLY | O_CREAT | \
+		O_TRUNC, 0644)))
 	{
 		dup2(fd, ft_atoi(tk->exe[0]));
 		return (fd);
@@ -44,8 +45,9 @@ int				stdfd_redir(t_token *tk)
 }
 
 /*
-**
+** LOL
 */
+
 int				exe_redir_out(t_var *var, t_token *tk)
 {
 	pid_t	father;

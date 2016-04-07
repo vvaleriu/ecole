@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   restore_terminal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 08:16:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:26:32 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:19:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** te : fin du programme permettant de bouger le curseur
 ** ei : fin du mode d'insertion
 */
+
 int			restore_terminal(t_var *var)
 {
 	t_tconf		*conf;
@@ -27,7 +28,6 @@ int			restore_terminal(t_var *var)
 		exit(-1);
 	}
 	set_str_cap("te");
-	//close(conf->rfd);
 	conf->cur.c_lflag = (ICANON | ECHO | ISIG);
 	return (-1);
 }

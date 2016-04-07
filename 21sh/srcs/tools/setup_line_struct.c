@@ -6,19 +6,20 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 09:15:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 06:57:29 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:23:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** Initialise la structure ligne qui contient la chaine de caracteres tapee
 ** la longueur max du buffer ainsi que la position actuelle dans la chaine
-**
+** -------
 ** initialise la position du curseur
 ** initialise la struture pour son utilisation lors de la capture de la commande
 */
+
 void			init_line_struct(t_var *var)
 {
 	var->line.s = ft_strnew(CMD_LENGTH);
@@ -34,6 +35,7 @@ void			init_line_struct(t_var *var)
 ** Met a jour la longueur acutelle et la longeur max afin de bien gerer les
 ** mallocs et autres
 */
+
 void			update_line_struct(t_var *var)
 {
 	var->line.max = ft_strlen(var->line.s);

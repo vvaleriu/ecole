@@ -6,13 +6,32 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:23:20 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 10:27:47 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:28:46 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <libft.h>
-#include <ft_minishell2.h>
+#include <42sh.h>
+
+/*
+** void		clean_env(t_var *var)
+** {
+** 	int		i;
+**  --
+** 	i = 0;
+** 	if (var->tenv)
+** 	{
+** 		while (var->tenv[i])
+** 		{
+** 			free(var->tenv[i]);
+** 			i++;
+** 		}
+** 		free(var->tenv);
+** 		var->tenv = NULL;
+** 	}
+** }
+*/
 
 void		clean_env(t_var *var)
 {
@@ -27,19 +46,3 @@ void		clean_env(t_var *var)
 		var->tenv = NULL;
 	}
 }
-/*void		clean_env(t_var *var)
-{
-	int		i;
-
-	i = 0;
-	if (var->tenv)
-	{
-		while (var->tenv[i])
-		{
-			free(var->tenv[i]);
-			i++;
-		}
-		free(var->tenv);
-		var->tenv = NULL;
-	}
-}*/

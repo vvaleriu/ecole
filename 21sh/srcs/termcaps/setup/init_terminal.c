@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/07 07:24:46 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:04:12 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_minishell2.h>
+#include <42sh.h>
 
 /*
 ** On va utiliser ft_strncmp pour identifier la sequence capturee
@@ -18,6 +18,7 @@
 ** Comme la taille de la sequence a comparer differe selon la touche,
 ** on mesure la taille de la sequence pour un faire strncmp de la bonne taille
 */
+
 static void	fill_keyman_tab(t_tconf *conf)
 {
 	ft_strcpy(KLEFT.seq, LEFT_SEQ);
