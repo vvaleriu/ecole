@@ -14,7 +14,8 @@ int			load_term_prop(t_tconf *conf)
 	int		success;
 
 	term_name = NULL;
-	if (!(term_name = getenv("TERM")))
+	//if (!(term_name = getenv("TERM")))
+	if (!(term_name = get_env_value("TERM", get_instance()->tenv)))
 		return (-1);
 	success = tgetent(conf->term_buffer, term_name);
 	if (success == -1)

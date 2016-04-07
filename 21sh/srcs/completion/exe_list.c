@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:10:51 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 07:16:52 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 08:02:35 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static t_dlist	*build_exe_list(char **path, char *word)
 void		delete_completion_list(void *content, size_t size)
 {
 	if (size)
+	{
 		free(content);
+		content = NULL;
+	}
 }
 
 t_dlist		*create_exe_list(t_var *var, char *word)

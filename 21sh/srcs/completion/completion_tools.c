@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:53:59 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 10:21:55 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 07:53:46 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** En cherche a partir de la position  -1
 ** Si on est sur la premiere position on ne cherche rien.
 ** Retourne 1 si vrai, sinon 0
-**
+** -----------------------------------------------------------------------------
 ** Si on est sur un espace ou sur la fin on recule jusqu'au mot precedant.
 ** une fois sur le mot on se place avant ce mot pour savoir si c'est le premier
 ** ou non.
@@ -46,23 +46,6 @@ int			look_for_exe(t_var *var)
 		return (1);
 	return (0);
 }
-/*int			look_for_exe(t_var *var)
-{
-	int		i;
-
-	i = LN_POS;
-	if (LN_POS != 0 && currently_on_a_word(var))
-	{
-		i = (LN_S[i] == '\0' || ft_isspace(LN_S[i]) ? i - 1 : i);
-		while (i && ft_isalnum(LN_S[i]))
-			i--;
-		while (ft_isspace(LN_S[i]) || LN_S[i] == '\0')
-		i--;
-	}
-	if (!i || LN_S[i] == '&' || LN_S[i] == '|' || LN_S[i] == ';')
-		return (1);
-	return (0);
-}*/
 
 /*
 ** Dit si on doit faire une recherche sur rien ou bien sur un mot

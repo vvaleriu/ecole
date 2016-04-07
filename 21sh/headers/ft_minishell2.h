@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:34:06 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 09:44:09 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 09:50:49 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ typedef struct		s_var
 	int				abord;
 	char			**tenv;
 	char			key_buf[SEL_KEY_SIZE];
+	char			*errstr;
 	int				(*ef[OPS_NB])(struct s_var *, t_token *);
 }					t_var;
 
@@ -214,6 +215,7 @@ typedef struct		s_var
 ** 			INITIALISATION FUNCTIONS
 */
 
+int			chk_stdin();
 void		init_function(t_var *var, char **envp);
 void		ft_fill_tab(t_builtin *bin);
 void		fill_lex_ft(t_lexing_ft *lex);
@@ -327,21 +329,21 @@ void		free_all_list(t_list *alst);
 void		clean_tree(t_token *root);
 void		clean_env(t_var *var);
 void		clean_term_conf(t_var *var);
+void		clean_line(t_var *var);
+void		clean_clist(t_var *var);
+void		clean_var(t_var *var);
+void 		clean_history(t_var *var);
 void		save_std_fds(int fds[2]);
 void		restore_std_fds(int fds[2]);
-
 void		print_token(t_token *tk);
 void		deb_print_first_list(t_list *list);
 void		deb_print_token_list(t_list *list);
 void		check_tree(t_token *root);
-
 char		*get_env_value(char *var, char **env);
 void		check_tabs_init(t_var *var);
-
 void		init_line_struct(t_var *var);
 void		update_line_struct(t_var *var);
 void		del_hist_el(void *p, size_t size);
-
 void 		get_cursor_position();
 
 #endif

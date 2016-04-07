@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 17:09:40 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/04 19:24:11 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 06:49:17 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_copy_env(t_var *var, char **env)
 	int i;
 
 	i = 0;
-	if (env)
+	if (env && ft_strarray_len(env))
 	{
 		while (env[i])
 			i++;

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 09:15:31 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/03/15 08:44:53 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 06:57:29 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 */
 void			init_line_struct(t_var *var)
 {
-	/*if (var->line.s)
-		ft_strdel(&(var->line.s));*/
 	var->line.s = ft_strnew(CMD_LENGTH);
 	var->line.max = CMD_LENGTH;
 	var->line.pos = 0;

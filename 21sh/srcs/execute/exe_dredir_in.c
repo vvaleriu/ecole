@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 12:03:16 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/05 12:46:49 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 08:31:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void		dredir_loop(t_var *var)
 		del = tmp;
 		tmp = ft_strjoin(tmp, LN_S);
 		ft_strdel(&del);
-		//ft_strdel(&(LN_S));
 		print_heredoc_prompt(var);
 		read_key(var);
 	}

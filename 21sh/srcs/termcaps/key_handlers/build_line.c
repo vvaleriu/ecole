@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 22:13:09 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 09:13:10 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 08:34:42 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int			insert_str(t_var *var, char *str)
 	char	*tmp;
 	int		len;
 
-	print_term_status1(var, "avant :");
 	len = ft_strlen(str);
 	set_str_cap("sc");
 	tmp = ft_strnew(ft_strlen(LN_S) + len);
@@ -99,9 +98,7 @@ int			insert_str(t_var *var, char *str)
 	ft_strdel(&(LN_S));
 	LN_S = tmp;
 	update_line_struct(var);
-	print_term_status1(var, "milieu :");
 	ft_putstr_cursor_wrap(var);
-	print_term_status1(var, "milieu2 :");
 	set_str_cap("rc");
 	LN_POS -= len;
 	CUR_POS_Y = (CUR_POS_X - len < 0 ? CUR_POS_Y - 1 : CUR_POS_Y);
@@ -111,7 +108,6 @@ int			insert_str(t_var *var, char *str)
 		move_to_next_char(var);
 		len--;
 	}
-	print_term_status1(var, "apres :");
 	return (2);
 }
 

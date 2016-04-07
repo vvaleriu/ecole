@@ -6,45 +6,43 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 16:07:13 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/06 07:47:35 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 09:37:50 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_minishell2.h>
 #include <stdio.h>
 
-void		check_tabs_init(t_var *var)
+static void			init_values(t_var *var)
 {
-	int		i;
-
-	i = -1;
-	ft_printf("---------------------- TABLEAU DES LEXERS\n");
-	while (++i < LEX_NB)
-		ft_printf("Adresse lex[%d].f [%s]: %p\n", i, var->lex[i].s,\
-			var->lex[i].f);
-	i = -1;
-	ft_printf("---------------------- TABLEAU DES BUILTINS\n");
-	while (++i < BIN_NB)
-		ft_printf("Adresse bin[%d].f [%s]: %p\n", i, var->bin[i].na,\
-			var->bin[i].f);
-	i = -1;
-	ft_printf("---------------------- TABLEAU DES EXE\n");
-	while (++i < OPS_NB)
-		ft_printf("Adresse ef[%d]\n", var->ef[i]);
+	var->root = NULL;
+	var->list = NULL;
+	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
+	var->hist.cur = NULL;
+	var->hist.start = NULL;
+	var->hist.tmp = NULL;
+	var->line.tmp = NULL;
+	var->line.quote = '\0';
+	var->errstr = NULL;
+	var->line.heredoc = 0;
+	var->tenv = NULL;
+	LN_S = NULL;
+	LN_TMP = NULL;
+	LN_CPY = NULL;
+	ABORD = 0;
+	PROMPT_LEN = PROMPT_LEN_VALUE;
+	CLIST = NULL;
 }
 
-/*static void	empty_stdin()
+/*
+** Check si l'entree standard est ouverte et qu'il s'agit bien d'un terminal
+*/
+int					chk_stdin()
 {
-	char	buf[200];
-	int		rd;
-
-	rd = 1;
-	while (rd)
-	{
-		rd = read(0, buf, 199);
-	}
-	ft_printf("AAFW");
-}*/
+	if (isatty(0))
+    	return (1);
+	return (-1);
+}
 
 /*
 ** initialise les pointeurs a NULL
@@ -53,22 +51,14 @@ void		check_tabs_init(t_var *var)
 ** on initialise le buffer contenant la ligne actuelle avec un taille donnee
 ** ainsi que renseignement de la taille maxi du buffer
 */
-void		init_function(t_var *var, char **envp)
+void				init_function(t_var *var, char **envp)
 {
-	//empty_stdin();
-	var->root = NULL;
-	var->conf = (t_tconf *)(ft_memalloc(sizeof(*(var->conf))));
-	var->hist.cur = NULL;
-	var->hist.start = NULL;
-	var->hist.tmp = NULL;
-	var->line.tmp = NULL;
-	var->line.quote = '\0';
-	var->line.heredoc = 0;
-	ABORD = 0;
-	PROMPT_LEN = PROMPT_LEN_VALUE;
-	CLIST = NULL;
-	err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 1);
-	//ft_copy_env(var, envp);
+	init_values(var);
+	if (err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 0) < 0 || chk_stdin() < 0)
+	{
+		var->errstr = ERR_NO_ENV;
+		ft_exit(NULL, var);
+	}
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);
 	fill_exec_funct_array(var->ef);
@@ -77,7 +67,7 @@ void		init_function(t_var *var, char **envp)
 /*
 ** initialisation des fonctions de lexing via remplissage du tableau
 */
-void		fill_lex_ft(t_lexing_ft *lex)
+void				fill_lex_ft(t_lexing_ft *lex)
 {
 	lex[0].s = ";";
 	lex[0].f = lex_semicon;

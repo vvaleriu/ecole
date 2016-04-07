@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/01 01:33:47 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 12:44:01 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 07:25:08 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ struct	s_tconf
 /*
 ** MAIN
 */
-int							init_fd(int fd);
 int							init_terminal(t_var *var);
 
 /*

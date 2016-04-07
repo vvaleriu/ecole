@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:03:49 by vincent           #+#    #+#             */
-/*   Updated: 2016/04/06 12:45:19 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 07:24:46 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,6 @@ static void	fill_keyman_tab2(t_tconf *conf)
 	i = -1;
 	while (++i < KEY_NUMBER)
 		conf->keyman[i].seq_len = ft_strlen(conf->keyman[i].seq);
-}
-
-int			init_fd(int fd)
-{
-	return (open(ttyname(fd), O_RDWR | O_NONBLOCK));
 }
 
 int			init_terminal(t_var *var)

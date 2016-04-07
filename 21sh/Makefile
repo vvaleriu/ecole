@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/04/06 09:22:32 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/04/07 08:28:02 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ SRC = main.c					\
 		create_tokens.c			\
 		execute_tree.c			\
 		free_all_list.c 		\
-		clean_tree.c			\
 		clean_env.c				\
 		sig_catcher.c			\
 		sig_handler.c			\
@@ -64,7 +63,8 @@ SRC = main.c					\
 		go_foreground.c			\
 		restore_terminal.c		\
 		get_instance.c			\
-		clean_term_conf.c		\
+		cleaning_tools.c		\
+		cleaning_tools2.c		\
 		read_key.c				\
 		update_win_size.c 		\
 		ft_putstr_cursor.c		\
@@ -80,7 +80,6 @@ SRC = main.c					\
 		history.c				\
 		setup_line_struct.c		\
 		cursor_pos.c			\
-		debug_termcaps.c		\
 		clear_screen.c			\
 		copy_paste.c			\
 		del_hist_el.c			\
@@ -102,6 +101,7 @@ SRC = main.c					\
 		exe_dredir_in.c			\
 		get_cursor_position.c	\
 		is_filename.c			\
+		debugging_tools.c		\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

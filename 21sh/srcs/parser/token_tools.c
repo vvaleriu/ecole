@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 21:52:22 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/31 20:00:10 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 09:30:28 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char		**create_exe(t_list **list)
 		tmp = tmp->next;
 		i++;
 	}
-	exe = (char **)ft_memalloc(sizeof(char *) * i + 1);
+	exe = (char **)ft_memalloc(sizeof(char *) * (i + 1));
 	while (j < i)
 	{
 		exe[j] = (!is_quote(*((char *)(*list)->content)) ? \

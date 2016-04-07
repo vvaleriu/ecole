@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 15:51:42 by vincent           #+#    #+#             */
-/*   Updated: 2016/03/16 12:20:36 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 10:14:04 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void		save_current_input(t_var *var)
 int			add_to_history(t_var *var)
 {
 	t_dlist	*elem;
+	char 	*tmp;
 
 	if ((int)ft_dlstlen(var->hist.start) == HIST_LEN)
 		ft_dlstdelone(&(var->hist.start), var->hist.start->prev, del_hist_el);
-	elem = ft_dlstnew((void *)ft_strdup(var->line.s), sizeof(char *));
+	tmp = ft_strdup(var->line.s);
+	elem = ft_dlstnew((void *)tmp, sizeof(char *));
 	ft_dlstadd(&(var->hist.start), elem);
 	ft_strdel(&(var->hist.tmp));
 	return (2);
@@ -97,7 +99,7 @@ int			history_next(t_var *var)
 **	  l'entree actuelle et on affche l'historique
 ** - Si la prochaine entree est celle du depart
 **	- on efface la ligne actuelle, on la remplace par la ligne temp
-**	  
+**
 */
 int 		history_prev(t_var *var)
 {
