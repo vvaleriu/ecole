@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/18 10:51:55 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/19 09:26:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,11 +213,14 @@ int					is_operator(char c);
 int					is_text(char c);
 int					is_quote(char c);
 void				ft_strarray_del(char ***c);
-char				**ft_strarray_del_one(char **c, int pos);
+void				ft_strarray_del_one(char ***c, int pos);
 int					ft_strarray_len(char **ar);
 int					ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);
 void				ft_strarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_first(char ***ar, char *str);
+void				ft_strcarray_del_one(char ***c, int pos);
 
 /*
 **		ERROR CHECKER

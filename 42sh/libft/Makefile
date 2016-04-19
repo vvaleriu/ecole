@@ -6,7 +6,7 @@
 #    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/16 15:19:26 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/03/24 09:39:51 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/04/19 09:35:30 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,6 +163,9 @@ SRC = ft_putchar.c			\
 		ft_strarray_add_first.c\
 		ft_strarray_add_last.c\
 		ft_strarray_del_one.c\
+		ft_strcarray_add_first.c\
+		ft_strcarray_add_last.c\
+		ft_strcarray_del_one.c\
 		error_checker.c		\
 		ft_dlstadd.c 		\
 		ft_dlstadd_last.c	\
