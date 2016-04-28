@@ -101,6 +101,7 @@ SRC = main.c					\
 		get_cursor_position.c	\
 		is_filename.c			\
 		debugging_tools.c		\
+		move_cursor3.c 			\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

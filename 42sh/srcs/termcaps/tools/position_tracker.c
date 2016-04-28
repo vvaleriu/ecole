@@ -60,6 +60,15 @@ void		update_line_pos(t_var *var, int movement)
 
 void		update_trackers(t_var *var, int movement)
 {
-	update_cur_pos(var, movement);
+	int save_pos;
+
+	save_pos = LN_POS;
 	update_line_pos(var, movement);
+	if ((!save_pos && var->key_buf[0] == '	' && movement < 0) || \
+		(movement < 0 && LN_S[save_pos - 1] == '	'))
+		movement -= TAB_LEN - 1;
+	else if ((!save_pos && var->key_buf[0] == '	' && movement > 0) \
+		|| (movement > 0 && LN_S[save_pos] == '	'))
+		movement += TAB_LEN - 1;
+	update_cur_pos(var, movement);
 }

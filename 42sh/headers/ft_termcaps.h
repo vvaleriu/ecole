@@ -47,6 +47,7 @@
 # define LIST_LEN			ftsel[2]
 # define TMP				ftsel[3]
 # define Y_OFFSET			ftsel[4]
+# define TAB_LEN			6
 
 /*
 ** SEQUENCE DE CARACTERES RETOURNEE PAR LA PRESSION DE LA TOUCHE

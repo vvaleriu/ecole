@@ -22,9 +22,9 @@
 ** 	- Si non on deplace simplement le curseur vers la gauche
 */
 
-int		move_to_next_char(t_var *var)
+static void		move_cursor_forward(t_var *var, int repeat)
 {
-	if (var->line.pos < (int)ft_strlen(var->line.s))
+	while (repeat)
 	{
 		if (CUR_POS_X == WIN_X - 1)
 		{
@@ -37,6 +37,18 @@ int		move_to_next_char(t_var *var)
 			CUR_POS_X++;
 			set_str_cap("nd");
 		}
+		repeat--;
+	}
+}
+
+int				move_to_next_char(t_var *var)
+{
+	if (var->line.pos < (int)ft_strlen(var->line.s))
+	{
+		if (LN_S[LN_POS] == '	')
+			move_cursor_forward(var, TAB_LEN);
+		else
+			move_cursor_forward(var, 1);
 		var->line.pos++;
 		return (2);
 	}
@@ -51,11 +63,11 @@ int		move_to_next_char(t_var *var)
 ** 	- Si non on deplace simplement le curseur vers la gauche
 */
 
-int		move_to_previous_char(t_var *var)
+static void		move_cursor_back(t_var *var, int repeat)
 {
 	int		i;
 
-	if (var->line.pos > 0)
+	while (repeat)
 	{
 		if (!(CUR_POS_X))
 		{
@@ -71,39 +83,19 @@ int		move_to_previous_char(t_var *var)
 			CUR_POS_X--;
 			set_str_cap("le");
 		}
+		repeat--;
+	}
+}
+
+int				move_to_previous_char(t_var *var)
+{
+	if (var->line.pos > 0)
+	{
+		if (LN_S[LN_POS - 1] == '	')
+			move_cursor_back(var, TAB_LEN);
+		else
+			move_cursor_back(var, 1);
 		var->line.pos--;
 	}
-	return (2);
-}
-
-int		move_to_next_line(t_var *var)
-{
-	var = (void *)var;
-	set_str_cap("do");
-	return (2);
-}
-
-/*
-** Fonction executee lors d'un appui sur home
-*/
-
-int		move_to_origin(t_var *var)
-{
-	int		i;
-
-	i = LN_POS;
-	while (--i >= 0)
-		move_to_previous_char(var);
-	return (2);
-}
-
-/*
-** Fonction executee lors d'un appui sur end
-*/
-
-int		move_to_end(t_var *var)
-{
-	while (var->line.pos < (int)ft_strlen(var->line.s))
-		move_to_next_char(var);
 	return (2);
 }

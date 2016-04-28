@@ -70,6 +70,22 @@ int			print_com(t_var *var)
 	return (2);
 }
 
+static int	check_if_tab_completion(t_var *var)
+{
+	int i;
+
+	i = 0;
+	if (!LN_POS)
+		return (0);
+	while (LN_S[i])
+	{
+		if (LN_S[i] != '	')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 /*
 ** On recupere la liste
 ** On se place au debut du mot et on insere l'element de la liste dans LN_S
@@ -81,6 +97,8 @@ int			completion(t_var *var)
 {
 	int		first;
 
+	if (!check_if_tab_completion(var))
+		return (0);
 	first = create_list(var);
 	if (CLIST)
 	{
