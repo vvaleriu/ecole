@@ -2,7 +2,6 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
-
 /*
 **	sv->fds[0].ft_read = sv_accept;
 **	sv->fds[0].ft_read : correspond a la function appelee lorsque le socket server 

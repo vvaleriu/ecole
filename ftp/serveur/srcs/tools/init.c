@@ -30,6 +30,11 @@ void				init_sv_prop(t_sv_prop *sv, char *port, char **env)
 	}
 }
 
+/*
+** Initialise l'env et la structure pour la gestion des lignes de
+** commande
+*/
+
 void				init_env(t_sv_prop *sv, char **env)
 {
 	int		i;
@@ -53,16 +58,16 @@ void				init_env(t_sv_prop *sv, char **env)
 
 void				init_command_list(t_sv_prop *sv)
 {
-	sv->cmd->bin[0].name = ft_strdup("ls");
-	sv->cmd->bin[0].f = exe_command;
-	sv->cmd->bin[1].name = ft_strdup("cd");
-	sv->cmd->bin[1].f = bin_cd;
-	sv->cmd->bin[2].name = ft_strdup("get");
-	sv->cmd->bin[2].f = bin_get;
-	sv->cmd->bin[3].name = ft_strdup("pwd");
-	sv->cmd->bin[3].f = bin_pwd;
-	sv->cmd->bin[4].name = ft_strdup("help");
-	sv->cmd->bin[4].f = bin_help;
-	sv->cmd->bin[5].name = ft_strdup("quit");
-	sv->cmd->bin[5].f = sv_kill;
+	sv->cmd->bin[CMD_LS].name = ft_strdup("ls");
+	sv->cmd->bin[CMD_LS].f = exe_command;
+	sv->cmd->bin[CMD_CD].name = ft_strdup("cd");
+	sv->cmd->bin[CMD_CD].f = bin_cd;
+	sv->cmd->bin[CMD_GET].name = ft_strdup("get");
+	sv->cmd->bin[CMD_GET].f = bin_get;
+	sv->cmd->bin[CMD_PWD].name = ft_strdup("pwd");
+	sv->cmd->bin[CMD_PWD].f = bin_pwd;
+	sv->cmd->bin[CMD_HELP].name = ft_strdup("help");
+	sv->cmd->bin[CMD_HELP].f = bin_help;
+	sv->cmd->bin[CMD_QUIT].name = ft_strdup("quit");
+	sv->cmd->bin[CMD_QUIT].f = sv_kill;
 }

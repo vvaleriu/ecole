@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftp_server.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/15 08:32:42 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/06/24 10:32:26 by vvaleriu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SERVER_H
 # define SERVER_H
 
@@ -40,6 +52,7 @@ typedef struct s_sv_prop	t_sv_prop;
 **	bin:		list of string of allowed command on the server (init at start) (HEAP)
 **	cmda:		list of string, cmda[0]: exe name, cmda[1]: args, etc. (HEAP)
 **	cmd:		client entered command (HEAP)
+**	gnl:		???
 */
 
 struct			s_cmd
@@ -54,15 +67,15 @@ struct			s_cmd
 };
 
 /*
-**	fds:	array of socks, 0: is "master server socket",
-**			the rest are clients
-**	port:	port
-**	fd: 	server fd
-**	max:	value of the higher file descriptor
-**	left:	number of file despcriptor left after select called (= file descrip
-**			in which there is something to read/write)
-**	readfds: set of read file descriptor
-**	writefds: set of write fds
+**	fds:		array of socks, 0: is "master server socket",
+**				the rest are clients
+**	readfds:	set of read file descriptor
+**	writefds:	set of write fds
+**	fd: 		server fd
+**	max:		value of the higher file descriptor
+**	port:		port
+**	left:		number of file despcriptor left after select called (= file descrip
+**				in which there is something to read/write)
 */
 
 struct			s_sv_prop

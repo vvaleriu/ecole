@@ -14,8 +14,8 @@ NAME = serveur
 BIN_PATH = ../bin/s
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = -I./headers -I../libs/libft/headers -I../common/headers
-LIBS = -L../libs -lft
+HEADERS = -I./headers -I../libs/libft/header -I../common/headers
+LIBS = -L../libs/libft -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/execute ./srcs/lexer ./srcs/network ./srcs/tools \
 		./srcs/commands ./srcs/send ../common/srcs ./srcs/receive \

@@ -13,11 +13,12 @@
 **				ERRORS
 */
 
-# define ERR_RECV			"Error with received data. Recv function error."
-# define ERR_WRITE_FILE		"Could not write to this file descriptor"
-# define ERR_FILE_NOT_FOUND	"File not found on the client. Check file path and name."
-# define ERR_INVALID_PORT	"This is not a valid port."
-# define ERR_EMPTY_ENV		"env not found."
+# define ERR_RECV				"Error with received data. Recv function error."
+# define ERR_WRITE_FILE			"Could not write to this file descriptor"
+# define ERR_FILE_NOT_FOUND		"File not found on the client. Check file path and name."
+# define ERR_INVALID_PORT		"This is not a valid port."
+# define ERR_INVALID_PORT_RANGE	"A valid port value must be between 0 and 65535"
+# define ERR_EMPTY_ENV			"env not found."
 
 
 /*
@@ -27,7 +28,6 @@
 */
 
 # define ERR_USAGE			"usage"
-
 # define SK_SERV			0
 # define SK_CLIENT			1
 # define SK_FREE			2
@@ -42,6 +42,17 @@
 # define T_COMMAND			0
 # define T_BINARY			1
 # define T_OUTPUT			2
+
+/*
+** COMMAND VALUES
+*/
+
+# define CMD_LS				0
+# define CMD_CD				1
+# define CMD_GET			2
+# define CMD_PWD			3
+# define CMD_HELP			4
+# define CMD_QUIT			5
 
 /*
 **	BUF_SIZE: size of the buffer for read and write operation for each socket

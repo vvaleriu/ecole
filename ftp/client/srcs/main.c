@@ -2,6 +2,10 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
+/*
+** Se connecte en prenant comme parametre l'ip et le port du serveur
+*/
+
 int					main(int ac, char **av, char **env)
 {
 	t_cl_prop		cl;
@@ -12,4 +16,3 @@ int					main(int ac, char **av, char **env)
 	main_loop(&cl);
 	return (0);
 }
-

@@ -14,8 +14,8 @@ NAME = client
 BIN_PATH = ../bin/c/
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = -I./headers -I../libs/libft/headers  -I../common/headers
-LIBS = -L../libs -lft
+HEADERS = -I./headers -I../libs/libft/header -I../common/headers
+LIBS = -L../libs/libft -lft
 RM = rm -rf
 vpath %.c ./srcs ./srcs/network ./srcs/tools ./srcs/commands ../common/srcs \
 			./srcs/send ./srcs/receive ../common/srcs/lexer \

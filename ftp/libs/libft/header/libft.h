@@ -53,6 +53,11 @@
 # define PF_J_CQ		5
 # define PF_Z_CQ		6
 
+# define E(a, b, c, d)	err_int(a, b, c, d)
+# define EV(a, b, c, d)	err_void(a, b, c, d)
+# define FORCE_EXIT		1
+# define NO_EXIT		0
+
 /*
 **	PRINTF : FLAGS POSITION
 */

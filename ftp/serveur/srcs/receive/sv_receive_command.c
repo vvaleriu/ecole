@@ -5,7 +5,6 @@
 /*
 ** cl : case du tableau de sockets clients (= client)
 ** remplacer if par un while en cas de commande extrement longue
-**
 */
 
 void		sv_receive_command(t_sv_prop *sv, int cl)
@@ -21,8 +20,7 @@ void		sv_receive_command(t_sv_prop *sv, int cl)
 		if (!ret_cmd)
 			pterr(ERR_CMD_NOT_FOUND);
 		ft_strarray_del(&(sv->cmd->cmda));
-		//ft_bzero(sv->fds[cl].rd, rd);
-		ft_bzero(sv->fds[cl].rd, BUF_SIZE + 1);		
+		ft_bzero(sv->fds[cl].rd, BUF_SIZE + 1);
 	}
 	else
 		clean_fd(&(sv->fds[cl]));
