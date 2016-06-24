@@ -4,6 +4,6 @@
 *.a
 .obj/
 .DS_Store
-
+._*
 ## projet ftp
 ftp/bin
