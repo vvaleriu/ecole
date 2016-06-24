@@ -12,18 +12,7 @@
 
 #include <ft_select.h>
 
-/*static void		sig_int(int signo)
-{
-	t_tconf *conf;
-
-	if (signo == SIGINT)
-	{
-		conf = get_instance();
-		close_program(conf, NULL);
-	}
-}*/
-
-void			sig_catcher()
+void			sig_catcher(void)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGWINCH, resize_list);

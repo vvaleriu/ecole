@@ -14,6 +14,6 @@
 
 void		deb_item(t_item *item)
 {
-	printf("[deb_item] %s {len: %zu, x: %d, y: %d, sel: %d}\n", item->s, item->len,
-		item->x, item->y, item->sel);
+	printf("[deb_item] %s {len: %zu, x: %d, y: %d, sel: %d}\n",
+		item->s, item->len, item->x, item->y, item->sel);
 }

@@ -18,8 +18,8 @@
 ** returns the size od the longest word to know which X_offest to start to with
 ** the next column
 ** current : current item the cursor is on
-** check the state of the item to be printed, actived term caps and put them back
-** at the end.
+** check the state of the item to be printed, actived term caps and put them
+** back at the end.
 */
 
 size_t			print_item(t_tconf *conf, t_dlist *elem, int x, int y)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_term_prop.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/07/31 23:29:19 by vincent           #+#    #+#             */
+/*   Updated: 2016/03/04 11:52:39 by vincent          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_select.h>
 
 /*
@@ -22,6 +34,6 @@ int			load_term_prop(t_tconf *conf)
 	else if (success == 0)
 		ft_putendl(ERR_TERM_UNDEF);
 	if (tcgetattr(0, &conf->def) == -1 || tcgetattr(0, &conf->cur) == -1)
-    	return (-1);
+		return (-1);
 	return (success);
 }

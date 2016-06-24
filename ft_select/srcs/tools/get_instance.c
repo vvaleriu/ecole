@@ -15,10 +15,11 @@
 /*
 ** Return a singleton of conf structure
 */
-t_tconf 		*get_instance()
+
+t_tconf		*get_instance(void)
 {
 	static t_tconf *conf = NULL;
- 
+
 	if (conf == NULL)
 	{
 		conf = (t_tconf *)ft_memalloc(sizeof(*conf));

@@ -12,46 +12,7 @@
 
 #include <ft_select.h>
 
-/*
-**
-*/
-
-/*static int print_sel_item_s(t_tconf *conf, t_dlist *el)
-{
-	t_item	*item;
-
-	item = (t_item *)el->content;
-	if (item->sel == 1)
-	{
-		ft_putstr_fd(item->s, conf->fd);
-		return (1);
-	}
-	return (0);
-}
-
-static void return_selected_elements(t_tconf *conf)
-{
-	t_dlist		*tmp;
-	int			print_space;
-
-	tmp = conf->list;
-	print_space = 0;
-	print_space = print_sel_item_s(conf, tmp);
-	tmp = tmp->next;
-	while (tmp != conf->list)
-	{
-		if (((t_item *)tmp->content)->sel == 1 || print_space == 1)
-		{
-			ft_putstr_fd(" ", conf->fd);
-			print_space = 0;
-		}
-		print_sel_item_s(conf, tmp);
-		tmp = tmp->next;
-	}
-	ft_putstr_fd("\n", conf->fd);
-}*/
-
-static int print_sel_item_s(t_dlist *el)
+static int	print_sel_item_s(t_dlist *el)
 {
 	t_item	*item;
 
@@ -64,7 +25,7 @@ static int print_sel_item_s(t_dlist *el)
 	return (0);
 }
 
-static void return_selected_elements(t_tconf *conf)
+static void	return_selected_elements(t_tconf *conf)
 {
 	t_dlist		*tmp;
 	int			print_space;

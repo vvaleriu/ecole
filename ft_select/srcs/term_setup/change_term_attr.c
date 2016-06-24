@@ -12,16 +12,6 @@
 
 #include <ft_select.h>
 
-/*int				change_term_attr(t_tconf *conf)
-{
-	conf->cur.c_lflag &= ~(ICANON);
-	conf->cur.c_lflag &= ~(ECHO);
-	conf->cur.c_cc[VMIN] = 1;
-	conf->cur.c_cc[VTIME] = 0;
-	set_str_cap("vi");
-	return (err_int(-1, tcsetattr(0, TCSADRAIN, &conf->cur), ERR_SET_TERM_CAPS, 0));
-}*/
-
 int				change_term_attr(t_tconf *conf)
 {
 	conf->cur.c_lflag &= ~(ICANON | ECHO);
@@ -29,5 +19,6 @@ int				change_term_attr(t_tconf *conf)
 	conf->cur.c_cc[VMIN] = 1;
 	conf->cur.c_cc[VTIME] = 0;
 	set_str_cap("vi:ti");
-	return (err_int(-1, tcsetattr(0, TCSADRAIN, &conf->cur), ERR_SET_TERM_CAPS, 0));
+	return (err_int(-1, tcsetattr(0, TCSADRAIN, &conf->cur),
+		ERR_SET_TERM_CAPS, 0));
 }

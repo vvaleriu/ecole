@@ -12,12 +12,14 @@
 
 #include <ft_select.h>
 
+/*
+**	static int	fd;
+**	if (fd == 0)
+**		fd = init_fd(fd);
+*/
+
 int		putchar_int(int c)
 {
-	/*static int	fd;
-
-	if (fd == 0)
-		fd = init_fd(fd);*/
 	write((get_instance())->fd, &c, 1);
 	return (1);
 }

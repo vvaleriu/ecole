@@ -15,7 +15,7 @@
 t_item		*new_item(char *str)
 {
 	t_item	*ret;
-	
+
 	ret = (t_item*)ft_memalloc(sizeof(t_item));
 	if (!ret)
 		return (NULL);

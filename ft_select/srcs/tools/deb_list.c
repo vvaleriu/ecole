@@ -21,9 +21,9 @@ static void		pt_elem(t_dlist *elem)
 		item->x, item->y, item->sel);
 }
 
-
 void			deb_list(t_tconf *conf)
 {
-	ft_printf("[deb_list]\nLongueur de la liste : %u\n", ft_dlstlen(conf->list));
+	ft_printf("[deb_list]\nLongueur de la liste : %u\n",
+		ft_dlstlen(conf->list));
 	ft_dlstiter(conf->list, pt_elem);
 }

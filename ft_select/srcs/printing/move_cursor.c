@@ -40,7 +40,7 @@ static t_dlist	*new_selected_item(t_tconf *conf, char arrow)
 	return (CUR_ITM);
 }
 
-int			move_cursor(t_tconf *conf, char *key_buf)
+int				move_cursor(t_tconf *conf, char *key_buf)
 {
 	t_item	*item;
 

@@ -13,7 +13,7 @@
 #include <ft_select.h>
 
 /*
-**
+** COMMENT
 */
 
 int			select_item(t_tconf *conf, char *key_buf)

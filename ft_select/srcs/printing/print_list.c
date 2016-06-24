@@ -25,7 +25,8 @@
 ** return -1 if a not enough space in column to print the longest word
 */
 
-static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
+static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset,
+	int *toprint)
 {
 	int		ftsel[5];
 
@@ -37,7 +38,8 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 	ROWS = conf->w.ws_row;
 	while (ROWS && *toprint)
 	{
-		if ((int)ft_strlen(((t_item*)((*list)->content))->s) >= ((int)conf->w.ws_col - x_offset))
+		if ((int)ft_strlen(((t_item*)((*list)->content))->s) >=
+			((int)conf->w.ws_col - x_offset))
 			return (-1);
 		move_to(x_offset, Y_OFFSET);
 		TMP = (int)print_item(conf, *list, x_offset, Y_OFFSET);
@@ -55,11 +57,10 @@ static	int		print_col(t_tconf *conf, t_dlist **list, int x_offset, int *toprint)
 ** tmp : is a marker on the list sent to print_col
 ** offest : is set to 1 more space of the longest word from the latest column
 ** toprint : number of item left to print
-** Launch a first draw of items. If some items are left to be drawn then we enter
-** the loop until no item left. Each time we enter the loop we update the number
-** of columns (conf->col) of items inside conf.
+** Launch a first draw of items. If some items are left to be drawn then we
+** enter the loop until no item left. Each time we enter the loop we update
+** the number of columns (conf->col) of items inside conf.
 ** At the end of printing, it moves the cursors to the current selected item.
-**
 */
 
 void			print_list(t_tconf *conf)

@@ -12,10 +12,10 @@
 
 #include <ft_select.h>
 
-void 		move_to(int x, int y)
+void		move_to(int x, int y)
 {
 	char *res;
- 
+
 	res = tgetstr("cm", NULL);
 	tputs(tgoto(res, x, y), 1, putchar_int);
 }

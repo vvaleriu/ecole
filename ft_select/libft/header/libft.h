@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/11 12:41:28 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/19 09:26:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,8 @@ int					ft_dlstlen(t_dlist *alst);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
-void				ft_dlstdelone(t_dlist **alst, t_dlist *d, void (*del)(void *, size_t));
-
+void				ft_dlstdelone(t_dlist **alst, t_dlist *d, \
+	void (*del)(void *, size_t));
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
 char				*ft_itoh(unsigned int n);
@@ -211,12 +211,16 @@ int					get_next_line(int const fd, char **line);
 int					is_space(char c);
 int					is_operator(char c);
 int					is_text(char c);
+int					is_quote(char c);
 void				ft_strarray_del(char ***c);
 void				ft_strarray_del_one(char ***c, int pos);
-int	    			ft_strarray_len(char **ar);
-int 				ft_strarray_char_len(char **ar);
+int					ft_strarray_len(char **ar);
+int					ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);
 void				ft_strarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_first(char ***ar, char *str);
+void				ft_strcarray_del_one(char ***c, int pos);
 
 /*
 **		ERROR CHECKER

@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 19:02:35 by vincent           #+#    #+#             */
-/*   Updated: 2015/03/03 16:01:33 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:38:34 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 **	prop->char_rd = -1;
 **	prop->file = NULL;
 **	prop->tmp = NULL;
-**}
+**} -
 **  function return -2 when reachs EOF
-**
+** -
 ** (end = ft_strchr(prop.file, '\n')) == NULL && prop.char_rd != 0
 ** -> Tant qu'on ne trouve pas de \n et que le nombre de caract lus est > 0
 ** prop.char_rd = read(fd, buf, GNL_BUFFER);
@@ -42,10 +42,10 @@
 **	on met tmp sur le debut de la chaine et on fait une copie de ce qui se
 **	trouve apres le \n pour pouvoir le reutiliser et le remttre au debut de
 **	la prochaine chaine qu'on lira.
-**
-**			end_of_file(t_str_prop *p, char **line)	
-**
-** p->rd = -3 signifie qu'on a finit de le fichier mais que celui ce ne prend
+** -
+**			end_of_file(t_str_prop *p, char **line)
+** -
+** p->rd = -3 signifie qu'on a finit de le fichier mais que celui ci ne prend
 ** pas de \n final. On renvoit donc la chaine mais on met le marqueur a -3
 ** ce qui fait qu'a la prochaine entree on va quitter et renvoyer 0 directement
 */
@@ -68,7 +68,8 @@ int				get_next_line(int const fd, char **line)
 
 	if (p.rd == -3)
 		return (0);
-	p.buf = (p.rd == -2 ? (char *)malloc(sizeof(char) * GNL_BUFFER + 1) : p.buf);
+	p.buf = (p.rd == -2 ? (char *)malloc(sizeof(char) * GNL_BUFFER + 1) : \
+		p.buf);
 	if (fd < 0 || GNL_BUFFER < 1 || !p.buf)
 		return (-1);
 	ft_strdel(&p.tmp);
@@ -83,7 +84,8 @@ int				get_next_line(int const fd, char **line)
 		ft_strdel(&p.tmp);
 	}
 	*p.end = '\0';
-	*line = p.tmp = p.file;
+	*line = p.file;
+	p.tmp = p.file;
 	p.file = ft_strdup(p.end + 1);
 	return (1);
 }

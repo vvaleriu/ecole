@@ -14,10 +14,9 @@
 
 /*
 ** Change terminam
-**
-**
 */
-int 		main(int ac, char **av)
+
+int		main(int ac, char **av)
 {
 	t_tconf	*conf;
 

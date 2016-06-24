@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 11:49:19 by vvaleriu          #+#    #+#             */
-/*   Updated: 2014/01/18 16:15:29 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/06 10:01:22 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@ int		ft_isprint(int c)
 {
 	if (c > 31 && c < 127)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

@@ -18,10 +18,9 @@
 ** Returns 1 if a registered key has been identified.
 ** Return 0 is the pressed key is not registered.
 ** Returns -1 if ESC or RET is pressed (program has to stop)
-**
 */
 
-static int			key_identifier(t_tconf *conf, char *key_buf)
+static int	key_identifier(t_tconf *conf, char *key_buf)
 {
 	int		i;
 
@@ -47,7 +46,7 @@ int			get_key(t_tconf *conf)
 		if (loop == 2 || loop == 0)
 			print_list(conf);
 		else if (loop == -1)
-			break;
+			break ;
 		ft_bzero((void *)key_buf, SEL_KEY_SIZE);
 	}
 	return (0);

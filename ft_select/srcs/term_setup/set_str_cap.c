@@ -21,7 +21,7 @@ void			set_str_cap(char *cap_str)
 {
 	char	**cap;
 	char	**tmp;
-	char    *res;
+	char	*res;
 
 	cap = ft_strsplit(cap_str, ':');
 	tmp = cap;
