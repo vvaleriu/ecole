@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 
 int		execute_tree(t_var *var, t_token *tk)
 {

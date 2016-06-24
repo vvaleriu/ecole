@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>

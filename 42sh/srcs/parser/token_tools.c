@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** Permet de recuperer le numero de l'operation a effectuer

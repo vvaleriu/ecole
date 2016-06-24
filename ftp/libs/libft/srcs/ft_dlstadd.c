@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstadd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/08/03 18:15:03 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/07 12:31:05 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **	A inserer apres 'if (*alst == NULL)' si necessaire
-**	new->next = NULL; 
+**	new->next = NULL;
 **	new->prev = NULL;
 */
 

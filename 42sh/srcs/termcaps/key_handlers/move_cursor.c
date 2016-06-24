@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** Delace le curseur sur la prochaine/precedente case. Calcule le retour a la

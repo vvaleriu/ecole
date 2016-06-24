@@ -6,12 +6,20 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/02/17 10:40:53 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:32:56 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <stdlib.h>
+
+/*
+** alst : list que l'on veut decouper
+** elem : element ou la liste doit etre decoupee (debut de l'autre liste)
+** On avance tant qu'on n'est pas a l'element de separation. une fois arrive,
+** on fait pointer l'element precedent vers null et on renvoir tmp = elem, comme
+** debut de la nouvelle liste
+*/
 
 t_list	*ft_lstsplit(t_list *alst, t_list *elem)
 {

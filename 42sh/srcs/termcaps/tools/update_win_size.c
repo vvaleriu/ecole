@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** t_printf("List_size: %d, row: %d - col: %d\n", ft_dlstlen(conf->list), \

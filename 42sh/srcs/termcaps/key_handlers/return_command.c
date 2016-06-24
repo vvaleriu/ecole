@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** On check d'abord si on attend la fermeture d'une quote ou non.

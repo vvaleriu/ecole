@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** Deplace le curseur a une position donnee

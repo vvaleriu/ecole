@@ -100,7 +100,6 @@ SRC = main.c					\
 		exe_dredir_in.c			\
 		get_cursor_position.c	\
 		is_filename.c			\
-		debugging_tools.c		\
 		move_cursor3.c 			\
 
 $(NAME): libft.a $(OBJ)

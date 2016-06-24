@@ -6,13 +6,13 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 18:33:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 09:51:01 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/06/24 07:30:03 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <stdlib.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 
 int		ft_exit(char **exe, void *var1)
 {
@@ -32,4 +32,9 @@ int		ft_exit(char **exe, void *var1)
 	clean_history(var);
 	clean_var(var);
 	exit(val);
+}
+
+int		ft_exit_no_env(void)
+{
+	exit(0);
 }

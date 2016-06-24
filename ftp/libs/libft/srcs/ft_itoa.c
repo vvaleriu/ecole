@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 12:07:10 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/01/16 10:44:19 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/07 12:32:36 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char			*ft_itoa(int n)
 	}
 	i = 0;
 	len = pow_len(n);
-	str = (char *)ft_memalloc (sizeof(char) * mal_size(n) + 1);
+	str = (char *)ft_memalloc(sizeof(char) * mal_size(n) + 1);
 	if (!str)
 		return (NULL);
 	if (n < 0)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 #include <stdio.h>
 
 static void		init_values(t_var *var)
@@ -48,7 +48,7 @@ void			init_function(t_var *var, char **envp)
 	if (err_int(-1, ft_copy_env(var, envp), ERR_NO_ENV, 0) < 0 || !isatty(0))
 	{
 		var->errstr = ERR_NO_ENV;
-		ft_exit(NULL, var);
+		ft_exit_no_env();
 	}
 	fill_lex_ft(var->lex);
 	ft_fill_tab(var->bin);

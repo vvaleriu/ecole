@@ -17,7 +17,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <libft.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 
 static int		check_access(char *file)
 {

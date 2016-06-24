@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 16:38:27 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/08/05 15:03:00 by vincent          ###   ########.fr       */
+/*   Updated: 2016/04/19 09:26:15 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define K				t[2]
 # define L				t[3]
 # define GNL_BUFFER		1024
+
 /*
 **	PRINTF : FLAGS POSITION
 **	CONVERSION QUALIFIER DEFINE
@@ -45,9 +46,6 @@
 
 # define PF_NUM_OF_FCT	14
 
-/*
-**	PRINTF : FLAGS POSITION
-*/
 # define PF_H_CQ		1
 # define PF_HH_CQ		2
 # define PF_L_CQ		3
@@ -55,15 +53,9 @@
 # define PF_J_CQ		5
 # define PF_Z_CQ		6
 
-/*	
-**	ERROR FUNCTIONS
-**	Used in error checking functions
-**	Tells the function wether an error has to exit or continue running the exe.
+/*
+**	PRINTF : FLAGS POSITION
 */
-# define E(e, r, s, q)		err_int(e, r, s, q)
-# define EV(e, r, s, q)		err_void(e, r, s, q)
-# define NO_EXIT			0
-# define FORCE_EXIT			1
 
 typedef struct		s_list
 {
@@ -190,8 +182,8 @@ int					ft_dlstlen(t_dlist *alst);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
-void				ft_dlstdelone(t_dlist **alst, t_dlist *d, void (*del)(void *, size_t));
-
+void				ft_dlstdelone(t_dlist **alst, t_dlist *d, \
+	void (*del)(void *, size_t));
 int					ft_lstlen(t_list *list);
 void				ft_lstadd_last(t_list **alst, t_list *new);
 char				*ft_itoh(unsigned int n);
@@ -219,12 +211,16 @@ int					get_next_line(int const fd, char **line);
 int					is_space(char c);
 int					is_operator(char c);
 int					is_text(char c);
+int					is_quote(char c);
 void				ft_strarray_del(char ***c);
 void				ft_strarray_del_one(char ***c, int pos);
-int      			ft_strarray_len(char **ar);
-int 				ft_strarray_char_len(char **ar);
+int					ft_strarray_len(char **ar);
+int					ft_strarray_char_len(char **ar);
 void				ft_strarray_add_first(char ***ar, char *str);
 void				ft_strarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_last(char ***ar, char *str);
+void				ft_strcarray_add_first(char ***ar, char *str);
+void				ft_strcarray_del_one(char ***c, int pos);
 
 /*
 **		ERROR CHECKER

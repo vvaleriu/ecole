@@ -12,7 +12,7 @@
 
 #include <libft.h>
 #include <stdlib.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** Look for an already set variable withe the same name

@@ -13,7 +13,7 @@
 #include <libft.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <42sh.h>
+#include <ft_42sh.h>
 
 static void		mod_pwd(char **env)
 {
@@ -47,7 +47,7 @@ int				ft_cd(char **exe, void *var)
 
 	path = NULL;
 	var1 = (t_var *)var;
-	if (!exe[1] || (exe[1] && !ft_strncmp(exe[1], "~", 1)))
+	if (!exe[1] || (exe[1] && !ft_strcmp(exe[1], "~")))
 	{
 		path = ft_strdup(var1->tenv[find_env("HOME", var1->tenv)] + 5);
 		ret = chdir(path);

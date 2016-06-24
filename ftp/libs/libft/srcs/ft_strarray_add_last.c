@@ -6,7 +6,7 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 12:22:47 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/03 12:54:28 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/04/19 09:25:57 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** On creer une str geaante avec le nombre de lettres + le nombre de lettes
 ** de l'ajout
 ** On copie tout ca et roulez jeunesse
- */
+*/
 
 static int	ct_w(char **ar, char *s)
 {
@@ -30,7 +30,7 @@ static int	ct_w(char **ar, char *s)
 void		ft_strarray_add_last(char ***ar, char *str)
 {
 	char	**ret;
-	char 	*s;
+	char	*s;
 	int		i;
 
 	ret = NULL;

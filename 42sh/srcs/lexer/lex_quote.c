@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 /*
 ** imprime la bonne valeur sur le prompteur lorsqu'on doit fermer une quote

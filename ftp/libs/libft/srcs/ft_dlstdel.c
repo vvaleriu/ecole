@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/08/04 17:04:26 by vincent          ###   ########.fr       */
+/*   Updated: 2016/03/28 10:54:17 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ void	ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
 	t_dlist	*tmp;
 	t_dlist	*swap;
 
-	tmp = *alst;
-	(*alst)->prev->next = NULL;
-	swap = NULL;
-	while (tmp)
+	if (alst != NULL && *alst != NULL)
 	{
-		swap = tmp->next;
-		del(tmp->content, tmp->content_size);
-		free(tmp);
-		tmp = swap;
+		tmp = *alst;
+		(*alst)->prev->next = NULL;
+		swap = NULL;
+		while (tmp)
+		{
+			swap = tmp->next;
+			del(tmp->content, tmp->content_size);
+			free(tmp);
+			tmp = swap;
+		}
+		*alst = NULL;
 	}
-	*alst = NULL;
 }

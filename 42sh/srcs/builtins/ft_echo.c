@@ -6,11 +6,11 @@
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/05 11:59:04 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/04/07 11:13:36 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/06/23 19:07:22 by gschroed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <42sh.h>
+#include <ft_42sh.h>
 
 int			ft_echo(char **exe, void *var)
 {
@@ -18,7 +18,7 @@ int			ft_echo(char **exe, void *var)
 	int		print_ret;
 
 	i = 0;
-	print_ret = (!ft_strcmp(exe[1], "-n") ? 0 : 1);
+	print_ret = 1;
 	var = (void *)var;
 	while (++i && exe[i])
 	{
@@ -27,9 +27,6 @@ int			ft_echo(char **exe, void *var)
 		else if (i != 1)
 			ft_printf("%s%s", exe[i], (exe[i + 1] ? " " : ""));
 	}
-	if (print_ret)
-		ft_putendl("");
-	else
-		move_to_next_line(var);
+	move_to_next_line(var);
 	return (0);
 }

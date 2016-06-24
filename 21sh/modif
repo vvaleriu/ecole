@@ -1,8 +1,0 @@
-Sur la commande >$ echo "salut" > toto
-
-	1. Si le fichier toto a les droits en ecriture, le comportement est identique.
-	2. Si le fichier toto n'a aucun droit (chmod 000), les comportement est different de ce qui est attendu.
-		=> Le shell execute la commande echo "salut" sans tenir compte de la suite (> toto).
-
-		Comportement attendu: >$ sh: permission denied: toto	
-	

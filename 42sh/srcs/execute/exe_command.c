@@ -12,7 +12,7 @@
 
 #include <libft.h>
 
-#include <42sh.h>
+#include <ft_42sh.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
