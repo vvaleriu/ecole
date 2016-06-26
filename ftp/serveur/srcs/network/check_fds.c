@@ -2,7 +2,7 @@
 #include <sys/select.h>
 
 /*
-**	Pour chaque fd, si celui ci appartient au set de lecture, on execute la fonction
+**	Pour chaque fd ouvert, si celui ci appartient au set de lecture, on execute la fonction
 **	correspondante, de meme pour l'ecriture, et enfin si on a traite qqc a propos de ce fd
 **	alors on soustrait un au nombre de fd restant a traiter (left).
 */
@@ -21,7 +21,7 @@ void			check_fds(t_sv_prop *sv)
 	while (i < MAX_SOCKETS && sv->left > 0)
 	{
 		//sv_socket_status(sv, i, "check_fds");
-		if (FD_ISSET(sv->fds[i].sock, &(sv->readfds)))
+		if (sv->fds[i].type != SK_FREE && FD_ISSET(sv->fds[i].sock, &(sv->readfds)))
 		{
 			if (sv->fds[i].ft_read)
 				sv->fds[i].ft_read(sv, i);

@@ -4,7 +4,7 @@
 /*
 ** On ajoute aussi l'entree standard pour lire les
 ** commandes serveur.
-** 
+**
 **	FD_SET(0, &(sv->readfds)); = verifie si on a entre des choses sur
 **			l'entree standard (= permet de recuperer des commandes)
 ** ------
@@ -13,6 +13,10 @@
 **	* si le socket n'est pas libre, on l'ajoute a l'ensemble de lecture
 ** 	* s'il y a des choses dans son bufer d'ecriture, alors on le remet
 **    dans l'ensemble d'ecriture
+** =======================================
+** On met lensemble des sockets dans write_fds car cela sert simplement a savoir
+** si a un appel a write dans ce socket ne sera pas bloquant, en gros a savoiir si on peut ecrire
+** tout suimplement
 */
 
 void				init_fds(t_sv_prop *sv)

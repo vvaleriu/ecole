@@ -8,6 +8,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <sys/socket.h>
+# include <sys/mman.h>
 
 /*
 **				ERRORS

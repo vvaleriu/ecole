@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 17:57:08 by vvaleriu          #+#    #+#             */
-/*   Updated: 2015/03/06 14:13:40 by vvaleriu         ###   ########.fr       */
+/*   Updated: 2016/06/24 22:06:54 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#ifdef __linux__
+# include <sys/time.h>
+# include <sys/resource.h>
+#endif
+
 
 /*
 ** fill_tab fill the array of structure t_pcom with fonctions and how to
