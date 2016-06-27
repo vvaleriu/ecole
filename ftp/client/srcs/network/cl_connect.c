@@ -12,7 +12,7 @@
 ** Enfin on connect le s
 */
 
-int			cl_connect(t_cl_prop *cl)
+int							cl_connect(t_cl_prop *cl)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
@@ -31,7 +31,30 @@ int			cl_connect(t_cl_prop *cl)
 	sin.sin_port = htons(cl->port);
 	printf("address: %s:%d\n", cl->ip, cl->port);
 	sin.sin_addr.s_addr = inet_addr(cl->ip);
-	E(-1, connect(cl->fd.sock, (const struct sockaddr *)&sin, sizeof(sin)), ERR_CONNECT, FORCE_EXIT);
+	E(-1, connect(SOCK, (const struct sockaddr *)&sin, sizeof(sin)), ERR_CONNECT, FORCE_EXIT);
 	printf("connecte.\n");
 	return (1);
 }
+
+/*
+int							cl_connect(t_cl_prop *cl)
+{
+	struct protoent				*proto;
+	int							yes;
+
+	proto = NULL;
+	yes = 1;
+	printf("cl_connect - port: %d\n", cl->port);
+	cl->sin.sin_port = htons(cl->port);
+	print_sin(cl->sin);
+	EV(NULL, (proto = getprotobyname("tcp")), ERR_UNKNOWN_PROTOCOL, FORCE_EXIT);
+	if (!(cl->fd.sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)))
+		return (-1);
+	E(-1, setsockopt(SOCK, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)), "setsockopt", NO_EXIT);
+	cl->fd.ft_read = cl_receive_prepare;
+	cl->fd.ft_write = cl_send_prepare;
+	cl->max = cl->fd.sock + 1;
+	E(-1, connect(SOCK, (const struct sockaddr *)&(cl->sin), sizeof(cl->sin)), ERR_CONNECT, FORCE_EXIT);
+	printf("connecte.\n");
+	return (1);
+}*/

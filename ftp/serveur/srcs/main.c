@@ -12,13 +12,14 @@
 
 int					main(int ac, char **av, char **env)
 {
-	t_sv_prop		sv;
+	t_sv_prop		*sv;
 
 	usage(2, ac, av);
 	signal(SIGINT, sig_handler);
-	init_sv_prop(&sv, av[1], env);
-	if (sv_create(&sv) != -1)
-		main_loop(&sv);
-	sv_kill(&sv);
+	sv = get_instance();
+	init_sv_prop(sv, av[1], env);
+	if (sv_create(sv) != -1)
+		main_loop(sv);
+	sv_kill(sv);
 	return (0);
 }

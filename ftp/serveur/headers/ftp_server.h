@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftp_server.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 08:32:42 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/06/24 21:54:12 by vincent          ###   ########.fr       */
+/*   Updated: 2016/06/27 11:23:01 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void						kill_server(t_sv_prop *sv);
 **				INITIALISATION
 */
 
+t_sv_prop					*get_instance(void);
 void						init_sv_prop(t_sv_prop *sv, char *port, char **env);
 void						init_env(t_sv_prop *sv, char **env);
 void						init_command_list(t_sv_prop *sv);

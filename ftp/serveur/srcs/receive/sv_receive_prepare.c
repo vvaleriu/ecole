@@ -29,6 +29,7 @@ void		sv_receive_prepare(t_sv_prop *sv, int cl)
 			sv_receive_command(sv, cl);
 		else if (info.type == T_BINARY)
 			nt_receive_files(CL_SOCK(cl), sv->fds[cl].rd, &info);
+			// nt_receive_files(CL_SOCK(cl), &info);
 	}
 	else
 		clean_fd(&(sv->fds[cl]));

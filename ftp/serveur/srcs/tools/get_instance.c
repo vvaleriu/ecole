@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   get_instance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/27 04:48:12 by mzapata           #+#    #+#             */
-/*   Updated: 2016/06/27 11:17:11 by vvaleriu         ###   ########.fr       */
+/*   Created: 2016/06/27 11:12:38 by vvaleriu          #+#    #+#             */
+/*   Updated: 2016/06/27 11:26:10 by vvaleriu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <ftp_common.h>
+#include <ftp_server.h>
 
-void	sig_handler(int signo)
+t_sv_prop	*get_instance(void)
 {
-	if (signo == SIGUSR1)
-		printf("received SIGUSR1\n");
-	else if (signo == SIGINT)
-	{
-		printf("received SIGINT\n");
-		exit(1);
-	}
-	else if (signo == SIGKILL)
-		printf("received SIGKILL\n");
-	else if (signo == SIGSTOP)
-		printf("received SIGSTOP\n");
+	static t_sv_prop *instance = NULL;
+
+	if (instance == NULL)
+		return ((instance = ft_memalloc(sizeof(*instance))));
+	return instance;
 }

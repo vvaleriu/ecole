@@ -9,6 +9,8 @@
 # include <fcntl.h>
 # include <sys/socket.h>
 # include <sys/mman.h>
+# include <netdb.h>
+# include <arpa/inet.h>
 
 /*
 **				ERRORS
@@ -128,6 +130,7 @@ int							nt_send_info(int sock, int type, off_t size, char *name);
 int							nt_receive_info(int socket, t_send_info *info);
 int							nt_display_send_info(t_send_info info);
 int							nt_receive_files(int sock, char *buf, t_send_info *info);
+// int							nt_receive_files(int sock, t_send_info *info);
 int							nt_send_files(char **files, int sock);
 
 /*
@@ -137,6 +140,7 @@ int							nt_send_files(char **files, int sock);
 void						clean_fd(t_fd *fd);
 void						wipe_fd(t_fd *fd);
 void						check_port(char *port);
+void						print_sin(struct sockaddr_in sin);
 
 /*
 **				ERROR MANAGEMENT

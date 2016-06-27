@@ -25,6 +25,7 @@ typedef struct			s_cl_prop
 	char				*gnl;
 	char				*ip;
 	unsigned short		port;
+	struct sockaddr_in	sin;
 }						t_cl_prop;
 
 /*
@@ -71,5 +72,6 @@ char						*ft_readdir(char *exe, char *rep);
 void						init_cl_prop(t_cl_prop *cl, char *ip, char *port, char **env);
 void						init_env(t_cl_prop *cl, char **env);
 void						init_command_list(t_cl_prop *cl);
+t_cl_prop					*get_instance(void);
 
 #endif

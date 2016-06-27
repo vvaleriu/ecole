@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/06/12 13:23:03 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/06/27 11:17:40 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC = main.c								\
 		check_port.c 						\
 		sv_socket_status.c 					\
 		sv_send_message.c 					\
+		get_instance.c						\
 
 all: $(NAME)
 

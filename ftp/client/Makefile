@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
+#    By: vvaleriu <vvaleriu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2015/02/02 11:36:54 by vvaleriu         ###   ########.fr        #
+#    Updated: 2016/06/27 13:54:39 by vvaleriu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRC = main.c								\
 		is_client_side_command.c 			\
 		exe_command.c 						\
 		get_path.c 							\
+		get_instance.c						\
+		print_sin.c							\
 
 all: $(NAME)
 
