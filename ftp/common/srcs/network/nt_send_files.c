@@ -31,7 +31,7 @@ static int		send_file_info(int sock, char *fname, struct stat stat)
 	return (1);
 }
 
-/*static int		send_file(int sock, char *buf, int file_fd)
+static int		send_file(int sock, char *buf, int file_fd)
 {
 	int		rd;
 
@@ -44,8 +44,8 @@ static int		send_file_info(int sock, char *fname, struct stat stat)
 		return (rd);
 	}
 	return (1);
-}*/
-
+}
+/*
 static int		send_file(int sock, int file_fd, struct stat stat)
 {
 	int				wr;
@@ -61,7 +61,7 @@ static int		send_file(int sock, int file_fd, struct stat stat)
 	}
 	return (1);
 }
-
+*/
 int				nt_send_files(char **files, int sock)
 {
 	int 		i;
@@ -75,8 +75,8 @@ int				nt_send_files(char **files, int sock)
 		if ((file_fd = open(files[i], O_RDONLY)) && is_send_granted(file_fd, &stat))
 		{
 			send_file_info(sock, files[i], stat);
-			// send_file(sock, files[i], file_fd, stat);
-			send_file(sock, file_fd, stat);
+			send_file(sock, files[i], file_fd);
+			// send_file(sock, file_fd, stat);
 			if (close(file_fd) == -1)
 				printf("%s\n", "[ERR] [Closing file error]");
 		}

@@ -2,7 +2,20 @@
 #include <stdio.h>
 #include <errno.h>
 
-int			nt_receive_files(int sock, char *buf, t_send_info *info)
+static void		print_transfer_status(long long int already_read, off_t size)
+{
+	static short int percentage = -1;
+
+	if ((already_read * 100 / size) != percentage && ((already_read * 100 / size) % 10 == 0))
+	{
+		percentage = already_read * 100 / size;
+		printf("[%lld%%]\n", ((already_read * 100 / size)));
+	}
+	if (percentage == 100)
+		percentage = -1;
+}
+
+int				nt_receive_files(int sock, char *buf, t_send_info *info)
 {
 	int				fd;
 	int				rd;
@@ -20,7 +33,7 @@ int			nt_receive_files(int sock, char *buf, t_send_info *info)
 			rd = E(-1, recv(sock, buf, to_read, 0), ERR_RECV, NO_EXIT);
 			already_read += rd;
 			write(fd, buf, rd);
-			printf("[%lld%%]\n", ((already_read * 100 / info->size)));
+			print_transfer_status(already_read, info->size);
 		}
 		ft_printf("[files sent to the socket] [fsize: %lld] [sent size: %lld]\n", info->size, already_read);
 		close(fd);

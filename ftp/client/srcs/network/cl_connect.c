@@ -11,8 +11,8 @@
 ** pour remplir la structure sockaddr avec les proprietes du server.
 ** Enfin on connect le s
 */
-
-int							cl_connect(t_cl_prop *cl)
+/*
+int		cl_connect(t_cl_prop *cl)
 {
 	struct protoent				*proto;
 	struct sockaddr_in			sin;
@@ -35,9 +35,9 @@ int							cl_connect(t_cl_prop *cl)
 	printf("connecte.\n");
 	return (1);
 }
+*/
 
-/*
-int							cl_connect(t_cl_prop *cl)
+int		cl_connect(t_cl_prop *cl)
 {
 	struct protoent				*proto;
 	int							yes;
@@ -57,4 +57,4 @@ int							cl_connect(t_cl_prop *cl)
 	E(-1, connect(SOCK, (const struct sockaddr *)&(cl->sin), sizeof(cl->sin)), ERR_CONNECT, FORCE_EXIT);
 	printf("connecte.\n");
 	return (1);
-}*/
+}

@@ -30,7 +30,6 @@ void				init_cl_prop(t_cl_prop *cl, char *ip, char *port, char **env)
 	cl->ip = ft_strdup(ip);
 	check_port(port);
 	cl->port = (unsigned short) ft_atoi(port);
-	printf("init_cl_prop - port: %d\n", cl->port);
 	init_env(cl, env);
 	init_command_list(cl);
 	clean_fd(&(cl->fd));
