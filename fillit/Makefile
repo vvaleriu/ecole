@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/07/12 15:51:42 by vincent          ###   ########.fr        #
+#    Updated: 2016/07/15 01:28:26 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRC = main.c								\
 		get_line_info.c						\
 		tools.c								\
 		map_tools.c							\
+		recursive.c							\
+
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
