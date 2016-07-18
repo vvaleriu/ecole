@@ -6,13 +6,13 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/07/15 01:28:26 by vincent          ###   ########.fr        #
+#    Updated: 2016/07/18 08:11:41 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3 -march=native
 I_LINKS = -I./headers -I./libft/header
 L_LINKS = -L./libft -lft
 RM = rm -rf
@@ -27,7 +27,6 @@ SRC = main.c								\
 		tools.c								\
 		map_tools.c							\
 		recursive.c							\
-
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)

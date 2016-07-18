@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 07:44:18 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/15 02:10:41 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/17 01:58:21 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ void		get_relative_coordonates(short rcoord[8], unsigned short piece)
 	}
 }
 
+void		delete_from_map(char **map, unsigned short mcoord[2], unsigned short pnb)
+{
+	t_fillit_inst *inst;
+	short	*rcoord;
+
+	inst = get_instance();
+	rcoord = inst->p_rcoord[pnb];
+	map[Y][X] = EMPTY;
+	map[Y + P1Y][X + P1X] = EMPTY;
+	map[Y + P2Y][X + P2X] = EMPTY;
+	map[Y + P3Y][X + P3X] = EMPTY;
+}
+
 /*
 ** Recoit des coordonnees du plan principales et les coordonnees relatives
 ** d'une piece et verifie si cette piece peut etre placee sur le plan
@@ -71,24 +84,22 @@ void		get_relative_coordonates(short rcoord[8], unsigned short piece)
 **
 */
 
-short		fit_on_map(char **map, unsigned short mcoord[2], unsigned short pnb)
+short		fit_on_map(t_fillit_inst *inst, char **map, unsigned short mcoord[2], unsigned short pnb)
 {
-	t_fillit_inst *inst;
 	short	*rcoord;
 
-	inst = get_instance();
 	rcoord = inst->p_rcoord[pnb];
-	if (X + P1X < 0 || X + P1X > XY_MAX || Y + P1Y < 0 || Y + P1Y > XY_MAX || map[X + P1X][Y + P1Y] != EMPTY)
-		return (0);
-	if (X + P2X < 0 || X + P2X > XY_MAX || Y + P2Y < 0 || Y + P2Y > XY_MAX || map[X + P2X][Y + P2Y] != EMPTY)
-		return (0);
-	if (X + P3X < 0 || X + P3X > XY_MAX || Y + P3Y < 0 || Y + P3Y > XY_MAX || map[X + P3X][Y + P3Y] != EMPTY)
+	if ((map[Y][X] != EMPTY) ||
+		(X + P1X < 0 || X + P1X >= LEN_MAX || Y + P1Y < 0 || Y + P1Y >= LEN_MAX || map[Y + P1Y][X + P1X] != EMPTY) ||
+		(X + P2X < 0 || X + P2X >= LEN_MAX || Y + P2Y < 0 || Y + P2Y >= LEN_MAX || map[Y + P2Y][X + P2X] != EMPTY) ||
+		(X + P3X < 0 || X + P3X >= LEN_MAX || Y + P3Y < 0 || Y + P3Y >= LEN_MAX || map[Y + P3Y][X + P3X] != EMPTY)
+		)
 		return (0);
 	map[Y][X] = (char)(pnb + 65);
 	map[Y + P1Y][X + P1X] = (char)(pnb + 65);
 	map[Y + P2Y][X + P2X] = (char)(pnb + 65);
 	map[Y + P3Y][X + P3X] = (char)(pnb + 65);
-	if (inst->len && map_len(map) > inst->len)
+	if (inst->len && map_len(inst, map) > inst->len)
 	{
 		map[Y][X] = EMPTY;
 		map[Y + P1Y][X + P1X] = EMPTY;
@@ -98,21 +109,3 @@ short		fit_on_map(char **map, unsigned short mcoord[2], unsigned short pnb)
 	}
 	return (1);
 }
-
-/*short		fit_on_map(char **map, short mcoord[2], short rcoord[8])
-{
-	t_fillit_inst *inst;
-
-	inst = get_instance();
-	if (X + P1X < 0 || X + P1X > XY_MAX || Y + P1Y < 0 || Y + P1Y > XY_MAX || map[X + P1X][Y + P1Y] != EMPTY)
-		return (0);
-	if (X + P2X < 0 || X + P2X > XY_MAX || Y + P2Y < 0 || Y + P2Y > XY_MAX || map[X + P2X][Y + P2Y] != EMPTY)
-		return (0);
-	if (X + P3X < 0 || X + P3X > XY_MAX || Y + P3Y < 0 || Y + P3Y > XY_MAX || map[X + P3X][Y + P3Y] != EMPTY)
-		return (0);
-	map[Y][X] = FILLED;
-	map[Y + P1Y][X + P1X] = FILLED;
-	map[Y + P2Y][X + P2X] = FILLED;
-	map[Y + P3Y][X + P3X] = FILLED;
-	return (1);
-}*/

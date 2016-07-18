@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 23:50:39 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/12 18:59:04 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/15 17:50:03 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,10 @@ int							get_line_info(char *line)
 	E(0, map_piece(line, &st), WRONG_FORMAT, FORCE_EXIT);
 	if (st.cur_line_pos == 3)
 	{
-		ft_printf("blocs de la piece: %u\n", st.block_nb);
 		E(0, st.block_nb == 4, WRONG_FORMAT, FORCE_EXIT);
 		E(0, check_contiguous(st.inst->piece[st.inst->piece_nb]), WRONG_CONT, FORCE_EXIT);
 		st.block_nb = 0;
 		st.inst->piece_nb++;
-		ft_printf("nb de tetrimos: %u\n", st.inst->piece_nb);
 	}
 	st.cur_line_pos = (st.cur_line_pos + 1) % 5;
 	return (1);
