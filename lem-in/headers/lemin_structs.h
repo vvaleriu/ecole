@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 12:51:28 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/26 01:47:43 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/26 12:02:09 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct			s_vertex {
 	int			rcoord[2];
 	int			lk_nb;
 	int			tag;
+	int			ant_nb;
 	t_dlist		*lks;
 	t_vertex	*father;
 };

@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 12:38:57 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/26 01:47:00 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/26 15:46:25 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		main()
 	algo(var);
 
 	print_all_paths(var);
-	print_ants(var);
+	//print_ants(var);
+	print_mouv(var);
 
 	// On reset pour la recherche en profondeur
 	/*ft_printf("[Reset des pieces necessaires apres le meilleur chemin :]\n");

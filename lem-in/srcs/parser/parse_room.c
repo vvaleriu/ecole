@@ -75,6 +75,7 @@ static t_vertex	*create_room(void)
 	room->lks = NULL;
 	room->tag = 0;
 	room->father = NULL;
+	room->ant_nb = 0;
 	return (room);
 }
 

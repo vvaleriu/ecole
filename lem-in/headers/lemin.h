@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 23:17:16 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/26 01:39:31 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/26 12:40:35 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int				are_rcoord_correct(char **split, int len);
 */
 int				deep_search(t_lemin_var *var, t_vertex *room, t_dlist **path);
 int				width_search(t_lemin_var *var, t_vertex *room);
+
+/*
+** ====== PRINT ======
+*/
+void			print_mouv(t_lemin_var *var);
 
 /*
 ** ====== ALGO ======
