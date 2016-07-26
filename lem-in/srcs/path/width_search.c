@@ -6,12 +6,19 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:53 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/24 23:43:02 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/26 02:07:32 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lemin.h>
 
+/*
+** creer un nouveau chemin
+** creer une nouvelle liste doublement chainee contenant les pieces du chemin
+** trouve
+** elle met le tag des pieces a -1 pour qu'elles ne soient ni resetee plus tard
+** dans reset_rooms_tag() ni exploitees dans une recherche ulterieure
+*/
 static void		create_path_list(t_fpath *path, t_vertex *cur_room)
 {
 	t_vertex	*tmp;
@@ -22,6 +29,7 @@ static void		create_path_list(t_fpath *path, t_vertex *cur_room)
 	while (cur_room)
 	{
 		ft_dlstadd(&(path->start), ft_dlstnew((void *)cur_room, sizeof(*cur_room)));
+		cur_room->tag = -1;
 		cur_room = cur_room->father;
 		i++;
 	}
@@ -29,6 +37,11 @@ static void		create_path_list(t_fpath *path, t_vertex *cur_room)
 	path->len = i;
 }
 
+
+/*
+** Sauvegarde le chemin trouve dans le tableau des chemins en l'agrandissant
+** a chaque ajout d'un nouveau chemin
+*/
 static int		save_best_path(t_lemin_var *var, t_vertex *cur_room)
 {
 	t_fpath			*tmp;
