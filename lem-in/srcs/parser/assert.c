@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstdel.c                                       :+:      :+:    :+:   */
+/*   assert.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/07/20 21:43:03 by vincent          ###   ########.fr       */
+/*   Created: 2016/07/18 12:49:04 by vincent           #+#    #+#             */
+/*   Updated: 2016/07/19 18:46:57 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <stdlib.h>
+#include <lemin.h>
 
-void	ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
+int				is_room_name_correct(char *str)
 {
-	t_dlist	*tmp;
-	t_dlist	*swap;
+	return (*str != 'L');
+}
 
-	if (alst != NULL && *alst != NULL)
+int				is_digit_only(char *len)
+{
+	while (*len)
 	{
-		tmp = *alst;
-		(*alst)->prev->next = NULL;
-		swap = NULL;
-		while (tmp)
-		{
-			swap = tmp->next;
-			if (del)
-				del(tmp->content, tmp->content_size);
-			free(tmp);
-			tmp = swap;
-		}
-		*alst = NULL;
+		if (!ft_isdigit(*len))
+			return (0);
+		len++;
 	}
+	return (1);
+}
+
+int				are_rcoord_correct(char **split, int len)
+{
+	if (len < 3)
+		return (0);
+	if (!is_digit_only(split[len - 1]) || !is_digit_only(split[len - 2]))
+		return (0);
+	return (1);
 }

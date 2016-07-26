@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit_errors.h                                    :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/08 23:31:13 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/14 12:17:59 by vincent          ###   ########.fr       */
+/*   Created: 2016/07/19 12:38:36 by vincent           #+#    #+#             */
+/*   Updated: 2016/07/24 23:51:25 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _FILLIT_ERRORS_H_
-# define _FILLIT_ERRORS_H_
+#include <lemin.h>
 
-# define USAGE			"you must provide at least one argument"
-# define OPEN_FAILED	"File provided can't be opened\nError"
-# define CLOSE_FAILED	"Error closing file\nError"
-# define WRONG_FORMAT	"Your entry file is not well formated\nError"
-# define WRONG_CONT		"Your pieces are not contiguous\nError"
+t_lemin_var		*init()
+{
+	t_lemin_var	*ret;
 
-#endif
+	ret = (t_lemin_var *)ft_memalloc(sizeof(*ret));
+	if (!ret)
+	{
+		ft_printf("INIT MALLOC ERROR");
+		return (ret);
+	}
+	ret->ant_nb = 0;
+	ret->room_nb = 0;
+	ret->rooms = NULL;
+	ret->start = NULL;
+	ret->end = NULL;
+	ret->paths = NULL;
+	ret->paths_nb = 0;
+	ret->ants = NULL;
+	return (ret);
+}

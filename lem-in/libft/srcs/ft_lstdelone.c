@@ -6,19 +6,47 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2013/12/20 22:09:12 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/24 13:00:12 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <stdlib.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+static void	del_first(t_list **alst, void (*del)(void *, size_t))
 {
-	if (alst != NULL && del != NULL)
+	t_list	*tmp;
+
+	tmp = *alst;
+	*alst = tmp->next;
+	if (del)
+		del(tmp->content, tmp->content_size);
+	free(tmp);
+}
+
+void		ft_lstdelone(t_list **alst, t_list *d, void (*del)(void *, size_t))
+{
+	t_list	*tmp;
+	t_list	*prev;
+
+	tmp = *alst;
+	if (!alst || !(*alst) || !d)
+		return;
+	if (tmp == d)
+		del_first(alst, del);
+	else
 	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		while (tmp && tmp != d)
+		{
+			prev = tmp;
+			tmp = tmp->next;
+		}
+		if (tmp)
+		{
+			prev->next = tmp->next;
+			if (del)
+				del(tmp->content, tmp->content_size);
+			free(tmp);
+		}
 	}
 }

@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstdel.c                                       :+:      :+:    :+:   */
+/*   lemin_errors.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:51:24 by vvaleriu          #+#    #+#             */
-/*   Updated: 2016/07/20 21:43:03 by vincent          ###   ########.fr       */
+/*   Created: 2016/07/08 23:31:13 by vincent           #+#    #+#             */
+/*   Updated: 2016/07/19 15:09:51 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <stdlib.h>
+#ifndef _LEMIN_ERRORS_H_
+# define _LEMIN_ERRORS_H_
 
-void	ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t))
-{
-	t_dlist	*tmp;
-	t_dlist	*swap;
+# define WRONG_FORMAT	"Your entry file is not well formated\nError"
+# define WRONG_CONT		"Your pieces are not contiguous\nError"
 
-	if (alst != NULL && *alst != NULL)
-	{
-		tmp = *alst;
-		(*alst)->prev->next = NULL;
-		swap = NULL;
-		while (tmp)
-		{
-			swap = tmp->next;
-			if (del)
-				del(tmp->content, tmp->content_size);
-			free(tmp);
-			tmp = swap;
-		}
-		*alst = NULL;
-	}
-}
+#endif

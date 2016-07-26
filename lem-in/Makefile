@@ -6,7 +6,7 @@
 #    By: vincent <vincent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/21 14:33:36 by vvaleriu          #+#    #+#              #
-#    Updated: 2016/07/18 12:28:55 by vincent          ###   ########.fr        #
+#    Updated: 2016/07/24 23:54:35 by vincent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,25 @@ CFLAGS = -Wall -Wextra -Werror -O3
 I_LINKS = -I./headers -I./libft/header
 L_LINKS = -L./libft -lft
 RM = rm -rf
-vpath %.c ./srcs
+vpath %.c ./srcs ./srcs/parser ./srcs/debug ./srcs/tools ./srcs/path \
+			./srcs/algo ./srcs/print
 vpath %.h headers libft/header
 vpath %.a libft
 OBJ = $(SRC:%.c=$(O_P)%.o)
 O_P = ./obj/
 SRC = main.c								\
-		entry_manager.c						\
-		get_line_info.c						\
+		read_entry.c						\
+		parser.c							\
+		parse_room.c						\
+		parse_link.c						\
+		assert.c							\
+		print.c								\
+		init.c								\
 		tools.c								\
-		map_tools.c							\
-		recursive.c							\
+		clean.c								\
+		deep_search.c						\
+		width_search.c						\
+		algo.c								\
 
 $(NAME): libft.a $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(I_LINKS) $(L_LINKS)
