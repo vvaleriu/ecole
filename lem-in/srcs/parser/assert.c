@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 12:49:04 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/19 18:46:57 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 00:02:57 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int				is_room_name_correct(char *str)
 
 int				is_digit_only(char *len)
 {
+	if ((*len == '+' || *len == '-') && *(len + 1) == '\0')
+		return (0);
+	else if (*len == '+' || *len == '-')
+		++len;
 	while (*len)
 	{
 		if (!ft_isdigit(*len))

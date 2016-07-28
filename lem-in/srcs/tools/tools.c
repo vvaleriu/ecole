@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 23:40:15 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/24 23:23:38 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 00:17:08 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,19 @@ int			is_part_of_final_path(t_fpath fpath, t_dlist *el)
 }
 
 /*
-** Creer un tableau de piece a partir de la liste chainee
+** Permet de creer une piece
 */
-/*int			create_room_array(t_lemin_var *var)
-{
-	int		i;
 
-	i = -1;
-	var->rooms = var->lstart;
-	if ((var->roomsarray = (t_vertex *)ft_memalloc(sizeof(*(var->roomsarray) * var->room_nb))))
-		return (0);
-	while (++i < var->room_nb)
-	{
-		var->roomsarray[i] = var->rooms;
-		var->rooms = var->rooms->next;
-	}
-	return (1);
-}*/
+t_vertex	*create_room(void)
+{
+	t_vertex	*room;
+
+	if (!(room = (t_vertex *)ft_memalloc(sizeof(*room))))
+		return (NULL);
+	room->lk_nb = 0;
+	room->lks = NULL;
+	room->tag = 0;
+	room->father = NULL;
+	room->ant_nb = 0;
+	return (room);
+}

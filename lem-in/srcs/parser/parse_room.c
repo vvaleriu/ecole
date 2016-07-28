@@ -50,8 +50,10 @@ static	int		does_room_exist_already(t_lemin_var *var, t_vertex *room)
 	int			*coord;
 	int			cont;
 
+	if (!var->rooms)
+		return (0);
 	start = var->rooms;
-	cont = 0;
+	cont = 1;
 	while (start != var->rooms || cont)
 	{
 		cont = 0;
@@ -65,18 +67,21 @@ static	int		does_room_exist_already(t_lemin_var *var, t_vertex *room)
 	return (0);
 }
 
-static t_vertex	*create_room(void)
+static void		manage_start_end(t_lemin_var *var, t_parser_info *pi,
+	t_vertex *room, t_dlist *el)
 {
-	t_vertex	*room;
-
-	if (!(room = (t_vertex *)ft_memalloc(sizeof(*room))))
-		return (NULL);
-	room->lk_nb = 0;
-	room->lks = NULL;
-	room->tag = 0;
-	room->father = NULL;
-	room->ant_nb = 0;
-	return (room);
+	if (pi->is_start)
+	{
+		var->start = room;
+		pi->is_start = 0;
+		var->lstart = el;
+	}
+	if (pi->is_end)
+	{
+		var->end = room;
+		pi->is_end = 0;
+		var->lend = el;
+	}
 }
 
 int				parse_room(t_lemin_var *var, char **split, t_parser_info *pi)
@@ -95,18 +100,7 @@ int				parse_room(t_lemin_var *var, char **split, t_parser_info *pi)
 	if (does_room_exist_already(var, room))
 		return (0);
 	el = ft_dlstnew((void *)room, sizeof(t_vertex));
-	if (pi->is_start)
-	{
-		var->start = room;
-		pi->is_start = 0;
-		var->lstart = el;
-	}
-	if (pi->is_end)
-	{
-		var->end = room;
-		pi->is_end = 0;
-		var->lend = el;
-	}
+	manage_start_end(var, pi, room, el);
 	ft_dlstadd_last(&(var->rooms), el);
 	var->room_nb++;
 	return (1);

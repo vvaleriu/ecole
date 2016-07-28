@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 00:57:25 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/20 01:17:55 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 01:34:29 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,33 @@ void			del_room(void *room, size_t size)
 		free(del);
 }
 
+static void		del_paths(t_lemin_var *var)
+{
+	int		i;
+
+	i = -1;
+	if (!var->paths)
+		return;
+	while (++i < var->paths_nb && var->paths)
+		ft_dlstdel(&(var->paths[i].start), NULL);
+	free(var->paths);
+}
+
 /*
 ** supprime la liste des liens de chaque piece
 ** supprime la liste de pieces
 */
-void			clean(t_lemin_var *var)
+int				clean(t_lemin_var **var)
 {
-	ft_dlstiter(var->rooms, del_links);
-	ft_dlstdel(&(var->rooms), del_room);
+
+	if (!var || !*var)
+		return (0);
+	ft_dlstiter((*var)->rooms, del_links);
+	ft_dlstdel(&((*var)->rooms), del_room);
+	del_paths(*var);
+	if ((*var)->ants)
+		free((*var)->ants);
+	if (*var)
+		free(*var);
+	return (0);
 }

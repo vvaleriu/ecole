@@ -1,1 +1,22 @@
 ((t_vertex *)((*path)->content))->n
+
+TODO:
+
+- Erreurs possibles :
+	Pas de start
+	Pas de end
+	Start et end similaires
+	redefinition d'une piece
+	lien n'existant pas
+	Pas de fourmis
+
+empty_line ....................... OK
+no_ants .......................... OK
+no_start ......................... OK
+no_end ........................... OK
+redefined_end .................... OK
+redefined_start .................. Ok
+redefined_room ................... OK
+redefined_room2 .................. OK
+start_equals_end ................. OK
+wrong_link ....................... OK

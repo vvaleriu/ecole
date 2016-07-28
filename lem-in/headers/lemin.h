@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 23:17:16 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/26 12:40:35 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 00:46:34 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				algo(t_lemin_var *var);
 t_lemin_var		*init();
 t_vertex		*find_room_by_name(t_lemin_var *var, char *name);
 int				is_part_of_final_path(t_fpath fpath, t_dlist *el);
+t_vertex		*create_room(void);
 
 /*
 ** DEBUG
@@ -67,7 +68,7 @@ int				is_part_of_final_path(t_fpath fpath, t_dlist *el);
 void			print_room_name(t_dlist *el);
 void			print_room_dlist(t_dlist *el);
 void			print_path(t_dlist *el);
-void			clean(t_lemin_var *var);
+int				clean(t_lemin_var **var);
 void			print_ants(t_lemin_var *var);
 void			print_all_paths(t_lemin_var *var);
 

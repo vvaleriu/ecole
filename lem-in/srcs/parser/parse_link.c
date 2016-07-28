@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 07:41:12 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/20 00:25:12 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 00:13:12 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		parse_link(t_lemin_var *var, char **split)
 		!(r2 = find_room_by_name(var, split[1])))
 		return (0);
 	if (r1 == r2)
-		return (0);
+		return (1);
 	ft_dlstadd_last(&(r1->lks), ft_dlstnew((void *)r2, sizeof(*r2)));
 	ft_dlstadd_last(&(r2->lks), ft_dlstnew((void *)r1, sizeof(*r1)));
 	r1->lk_nb++;

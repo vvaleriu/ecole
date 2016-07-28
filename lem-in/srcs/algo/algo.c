@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/24 23:38:41 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/26 01:54:14 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 13:31:41 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void		reset_rooms_tag(t_lemin_var *var)
 {
 	int			i;
 
-	i= -1;
+	i = -1;
 
 	var->start->tag = 0;
 	var->end->tag = 0;
-	while (++i < var->room_nb)
+	while (++i < var->room_nb && var->paths_nb)
 	{
 		if (!is_part_of_final_path(var->paths[var->paths_nb - 1], var->rooms)
 			&& ((t_vertex *)(var->rooms->content))->tag != -1)
@@ -34,26 +34,23 @@ static void		reset_rooms_tag(t_lemin_var *var)
 	}
 }
 
-
 /*
 ** si le nombre de souris est superieur a 1 alors on doit chercher au moins
 ** les deux meilleurs chemins
+** retourne -1 si ne trouve aucun chemin
 */
 static int		init_algo(t_lemin_var *var)
 {
+	int		ret;
+
 	if (var->ant_nb == 1)
 		return (width_search(var, var->start));
-	width_search(var, var->start);
+	if (!(ret = width_search(var, var->start)))
+		return (-1);
 	reset_rooms_tag(var);
 	width_search(var, var->start);
 	reset_rooms_tag(var);
 	return (var->paths_nb);
-}
-
-static int		execute_one_path(t_lemin_var *var)
-{
-	ft_printf("[(PATH: %d, ANTS: %d)one path cause no path or only one ant]\n", var->paths_nb, var->ant_nb);
-	return (1);
 }
 
 /*
@@ -61,6 +58,8 @@ static int		execute_one_path(t_lemin_var *var)
 ** transiter de fournis avant d'utliser celui la pour une seule fourmi.
 ** Si toutes les fourmis ont transite alors on a notre nombre de coup et on
 ** peut calculer la repartition
+** RETOURNE -1 si auncun chemin n'a ete trouve
+** Retourne 2 si on n'a qu'un seul chemin a faire
 */
 static int		nb_of_necessary_turns(t_lemin_var *var)
 {
@@ -72,9 +71,10 @@ static int		nb_of_necessary_turns(t_lemin_var *var)
 
 	i = -1;
 	turn = 0;
-	init_algo(var);
+	if ((ret_search = init_algo(var)) == -1)
+		return (-1);
 	if (!var->paths_nb || var->paths_nb == 1)
-		return (execute_one_path(var));
+		return (1);
 	ants_moved = 0;
 	while (ants_moved < var->ant_nb)
 	{
@@ -103,7 +103,8 @@ int		algo(t_lemin_var *var)
 	int		longest_len;
 	int		ants_to_move;
 
-	nb_of_necessary_turns(var);
+	if ((longest_len = nb_of_necessary_turns(var)) == -1)
+		return (-1);
 	i = -1;
 	j = 0;
 	k = -1;

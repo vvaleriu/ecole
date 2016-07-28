@@ -6,7 +6,7 @@
 /*   By: vincent <vincent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 12:48:19 by vincent           #+#    #+#             */
-/*   Updated: 2016/07/19 22:29:53 by vincent          ###   ########.fr       */
+/*   Updated: 2016/07/28 00:33:44 by vincent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,25 @@ int				parse(t_lemin_var *var, char *line)
 {
 	static t_parser_info 	pi = {0, 0, };
 	char					**split;
+	int						ret;
 
 	if (!ft_strcmp(line, "##start"))
-		return ((pi.is_start = 1));
+		return (var->start ? 0 : (pi.is_start = 1));
 	if (!ft_strcmp(line, "##end"))
-		return ((pi.is_end = 1));
+		return (var->end ? 0 : (pi.is_end = 1));
 	if (!ft_strncmp(line, "#", 1))
 		return (1);
 	if (is_ant_number(var, line))
 		return (1);
 	split = ft_strsplit(line, ' ');
 	if (ft_strarray_len(split) > 1)
-		parse_room(var,split, &pi);
+		ret = parse_room(var,split, &pi);
 	else
 	{
 		free_split_memory(&split);
 		split = ft_strsplit(line, '-');
-		parse_link(var, split);
+		ret = parse_link(var, split);
 	}
 	free_split_memory(&split);
-	return (1);
+	return (ret);
 }
